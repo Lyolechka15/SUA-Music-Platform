@@ -91,3 +91,19 @@ I developed the project from concept to a working web application, including:
 ---
 
 Developed as a commercial web project for SUA Music.
+## Screenshots
+
+### Home
+![SUA Music Platform — Home](screenshots/home.png)
+
+### Authentication
+![SUA Music Platform — Authentication](screenshots/auth.png)
+
+### Music
+![SUA Music Platform — Music](screenshots/music.png)
+
+### Music Distribution
+![SUA Music Platform — Distribution](screenshots/distribution.png)
+
+### Real-Time Messenger
+![SUA Music Platform — Messenger](screenshots/messenger.png)
