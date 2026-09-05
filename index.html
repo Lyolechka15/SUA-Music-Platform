@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUA Music — World Music Records</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --gold:#d8ad57;
+      --gold2:#f0c86f;
+      --text:#f7f7f4;
+      --muted:rgba(255,255,255,.68);
+      --line:rgba(255,255,255,.14);
+      --glass:rgba(12,16,24,.58);
+      --glass-strong:rgba(13,16,23,.78);
+      --sidebar:#14161c;
+      --outer:#bca795;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{min-height:100%;font-family:'Inter',sans-serif}
+    body{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:radial-gradient(circle at 20% 15%,#d8c9bb 0,#c3ad9a 46%,#a48b79 100%);
+      color:var(--text);
+      overflow:hidden;
+    }
+    button,input,textarea,select{font:inherit}
+    button{border:0}
+
+    .app{
+      width:min(1540px,97vw);
+      height:min(930px,95vh);
+      display:flex;
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      box-shadow:0 35px 90px rgba(33,20,13,.34);
+      border:1px solid rgba(255,255,255,.42);
+      background:#11151c;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width:255px;
+      flex:0 0 255px;
+      background:linear-gradient(180deg,rgba(17,19,25,.98),rgba(22,23,29,.96));
+      border-right:1px solid rgba(255,255,255,.08);
+      padding:28px 22px 28px;
+      overflow-y:auto;
+      z-index:8;
+    }
+    .brand{display:flex;align-items:flex-start;margin-bottom:28px}
+    .brand-lockup{display:block;width:100%}
+    .brand-logo-img{display:block;width:205px;max-width:100%;height:auto;object-fit:contain}
+    .auth{display:flex;gap:10px;margin-bottom:26px}
+    .auth-btn{flex:1;padding:10px 8px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:.2s}
+    .auth-btn.login{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.32)}
+    .auth-btn.register{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#20190f}
+    .auth-btn:hover{transform:translateY(-1px)}
+    .nav{display:flex;flex-direction:column;gap:6px}
+    .nav-item{display:flex;align-items:center;gap:15px;padding:12px 13px;border-radius:10px;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px;transition:.18s;position:relative}
+    .nav-item i{width:20px;text-align:center;font-size:17px}
+    .nav-item:hover{background:rgba(255,255,255,.06);color:#fff}
+    .nav-item.active{background:linear-gradient(90deg,rgba(216,173,87,.16),rgba(255,255,255,.04));color:#fff}
+    .nav-item.active::after{content:"";position:absolute;right:-1px;top:8px;bottom:8px;width:4px;border-radius:5px;background:var(--gold)}
+    .nav-item.active i{color:var(--gold2)}
+    .sidebar-bottom{position:static;width:100%;margin:0 0 10px;padding:0}
+    .bg-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;padding:11px 13px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.34);border-radius:10px;cursor:pointer;font-size:12px}
+    .bg-btn:hover{border-color:var(--gold);color:var(--gold2)}
+
+    /* WORKSPACE */
+    .workspace{
+      flex:1;
+      min-width:0;
+      position:relative;
+      overflow-y:auto;
+      overflow-x:hidden;
+      padding:26px 26px 126px 30px;
+      background-image:url('assets/bg-1.jpg');
+      background-size:cover;
+      background-position:center;
+      transition:background-image .35s ease;
+    }
+    .workspace::before{content:"";position:fixed;pointer-events:none}
+    .workspace-inner{position:relative;z-index:1;min-height:100%}
+    .app-screen{display:none;animation:fade .22s ease}.app-screen.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .search{width:min(520px,54%);height:46px;border-radius:12px;background:rgba(13,17,24,.76);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);display:flex;align-items:center;padding:0 16px;gap:10px;box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    .search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:13px}.search input::placeholder{color:rgba(255,255,255,.62)}
+    .search i{font-size:18px}
+    .top-icons{display:flex;align-items:center;gap:14px;font-size:19px}.icon-btn{width:38px;height:38px;border-radius:50%;background:rgba(12,16,24,.40);border:1px solid rgba(255,255,255,.13);color:#fff;display:grid;place-items:center;cursor:pointer}
+
+    .music-grid{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:18px;align-items:start}
+    .glass{background:var(--glass);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(17px);-webkit-backdrop-filter:blur(17px);box-shadow:0 16px 38px rgba(0,0,0,.13)}
+    .main-panel{border-radius:22px;padding:20px 22px 16px;min-width:0}
+    .panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:14px}
+    .panel-head h1{font-size:26px;font-weight:800;letter-spacing:-.8px}
+    .panel-head p{margin-top:4px;font-size:12px;color:rgba(255,255,255,.83)}
+    .genre{background:rgba(17,20,28,.55);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:12px;padding:10px 13px;outline:0;font-size:12px}
+
+    .hero{height:220px;border-radius:18px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(90deg,rgba(9,14,24,.78),rgba(19,23,30,.36));position:relative;overflow:hidden;display:flex;align-items:center;padding:22px}
+    .hero-copy{max-width:54%;z-index:2}.kicker{font-size:10px;font-weight:700;color:var(--gold2);letter-spacing:.6px;margin-bottom:14px}.hero h2{font-size:27px;line-height:1.1;margin-bottom:9px}.hero p{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:20px}.gold-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold2),#c8943d);color:#241a0d;border-radius:9px;padding:11px 15px;font-size:12px;font-weight:800;cursor:pointer}
+    .hero-art{position:absolute;right:28px;top:12px;width:205px;height:196px;border-radius:16px;object-fit:cover;box-shadow:0 14px 28px rgba(0,0,0,.28)}
+    .dots{position:absolute;left:48%;bottom:13px;display:flex;gap:8px}.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35)}.dot.active{background:var(--gold2)}
+
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin:19px 0 11px}.section-title h3{font-size:17px}.section-title button{background:none;color:var(--gold2);font-size:11px;cursor:pointer}
+    .release-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px}
+    .release-card{min-width:0;cursor:pointer}.cover-wrap{position:relative}.release-card img{width:100%;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid rgba(255,255,255,.12);box-shadow:0 9px 20px rgba(0,0,0,.16)}
+    .mini-play{position:absolute;right:9px;bottom:9px;width:32px;height:32px;border-radius:50%;background:rgba(12,14,20,.76);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;color:#fff}
+    .release-card b{display:block;font-size:11px;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.release-card span{display:block;color:var(--muted);font-size:10px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .tracks-box{border-radius:17px;overflow:hidden}.track-row{display:grid;grid-template-columns:28px minmax(0,1fr) 45px 28px;gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.12);cursor:pointer}.track-row:last-child{border-bottom:0}.track-row:hover{background:rgba(255,255,255,.04)}
+    .track-play{font-size:16px}.track-meta{display:flex;align-items:center;gap:10px;min-width:0}.track-meta img{width:38px;height:38px;border-radius:7px;object-fit:cover}.track-meta b{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track-meta span{font-size:10px;color:var(--muted)}.duration{font-size:10px;color:rgba(255,255,255,.82)}.plus{font-size:20px;color:#fff}
+
+    .now{border-radius:20px;padding:16px;min-height:690px;position:sticky;top:0}.now h3{font-size:13px;margin-bottom:15px}.now-cover{width:100%;aspect-ratio:1/1;border-radius:16px;object-fit:cover;border:1px solid rgba(255,255,255,.12);box-shadow:0 16px 30px rgba(0,0,0,.22)}
+    .now-title{text-align:center;font-size:14px;font-weight:800;margin-top:12px}.now-artist{text-align:center;font-size:11px;color:var(--muted);margin-top:3px}
+    .mini-progress{margin:17px 3px 8px;height:3px;border-radius:4px;background:rgba(255,255,255,.16);position:relative}.mini-progress::after{content:"";position:absolute;left:0;top:0;bottom:0;width:28%;border-radius:4px;background:var(--gold2)}
+    .time-row{display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,.72)}
+    .now-controls{display:flex;align-items:center;justify-content:space-between;margin:9px 1px 18px}.now-controls button{background:transparent;color:#fff;font-size:17px;cursor:pointer}.now-controls .main-play{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),#c8943d);color:#20170b;font-size:17px}
+    .queue-title{font-size:13px;font-weight:750;margin:8px 0}.queue-row{display:grid;grid-template-columns:34px minmax(0,1fr) 35px;gap:8px;align-items:center;padding:7px 8px;border-radius:8px}.queue-row.active{background:rgba(255,255,255,.05)}.queue-row img{width:34px;height:34px;border-radius:6px;object-fit:cover}.queue-row b{display:block;font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.queue-row span{display:block;font-size:8.5px;color:var(--muted);margin-top:2px}.queue-row em{font-style:normal;font-size:9px;color:rgba(255,255,255,.75)}
+    .outline-btn{width:100%;padding:10px;margin-top:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:9px;font-size:10px;cursor:pointer}
+
+    /* OTHER SCREENS */
+    .content-card{border-radius:22px;padding:24px}.content-card h1{font-size:25px}.content-card .lead{font-size:12px;color:rgba(255,255,255,.72);margin-top:7px;line-height:1.6}.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.info-card{padding:18px;border-radius:15px;background:rgba(10,13,20,.45);border:1px solid rgba(255,255,255,.12)}.info-card i{color:var(--gold2);font-size:22px}.info-card h3{font-size:13px;margin-top:12px}.info-card p{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.55}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:10px;color:rgba(255,255,255,.72);font-weight:700}.field input,.field textarea{border:1px solid rgba(255,255,255,.15);background:rgba(7,10,16,.45);color:#fff;border-radius:10px;padding:11px 12px;outline:0}.field textarea{min-height:90px;resize:vertical}.drop{padding:18px;border:1px dashed rgba(255,255,255,.25);border-radius:12px;background:rgba(8,11,18,.38);text-align:center;color:rgba(255,255,255,.65);cursor:pointer}.primary{margin-top:16px;padding:11px 16px;border-radius:10px;background:linear-gradient(135deg,var(--gold2),#c8943d);font-weight:800;color:#261a0b;cursor:pointer}
+
+    .chat{display:grid;grid-template-columns:325px minmax(0,1fr);height:650px;border-radius:22px;overflow:hidden;position:relative}
+    .chat-list{display:flex;flex-direction:column;background:rgba(10,13,20,.80);border-right:1px solid rgba(255,255,255,.1);min-width:0}
+    .chat-list-head{padding:16px 15px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .chat-list-title{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:15px;font-weight:800;margin-bottom:11px}
+    .chat-me{display:flex;align-items:center;gap:9px;padding:8px 9px;margin-bottom:10px;border-radius:10px;background:rgba(255,255,255,.045)}
+    .chat-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:0 0 38px;background:linear-gradient(135deg,rgba(240,200,111,.95),rgba(174,122,47,.9));color:#20170b;font-size:12px;font-weight:800;overflow:hidden}
+    .chat-avatar img{width:100%;height:100%;object-fit:cover}
+    .chat-me b,.chat-peer b{display:block;font-size:11px}.chat-me span,.chat-peer span{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+    .chat-search{position:relative}.chat-search i{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:11px;color:rgba(255,255,255,.48)}
+    .chat-search input{width:100%;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(5,8,13,.42);color:#fff;padding:0 11px 0 31px;outline:none;font-size:11px}
+    .chat-results{max-height:175px;overflow:auto;margin-top:7px}.chat-results:empty{display:none}
+    .user-result,.chat-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;cursor:pointer;transition:.17s;margin:2px 7px;color:rgba(255,255,255,.84)}
+    .user-result:hover,.chat-item:hover{background:rgba(255,255,255,.055)}.chat-item.active{background:rgba(216,173,87,.15);color:#fff}
+    .chat-item-copy{min-width:0;flex:1}.chat-item-copy b{display:block;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat-item-copy span{display:block;font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+    .chat-item-time{font-size:8px;color:rgba(255,255,255,.45);align-self:flex-start;margin-top:3px}.unread{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--gold);color:#21170a;display:grid;place-items:center;font-size:8px;font-weight:800;margin-top:5px}
+    .chat-conversations{flex:1;overflow:auto;padding:7px 0 12px}.chat-empty-list{padding:24px 16px;text-align:center;font-size:10px;color:var(--muted);line-height:1.5}
+    .chat-window{display:flex;flex-direction:column;min-width:0;background:rgba(8,11,18,.38);position:relative}
+    .chat-window-head{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid rgba(255,255,255,.1);background:rgba(8,11,18,.45);backdrop-filter:blur(12px)}
+    .chat-peer{display:flex;align-items:center;gap:10px;min-width:0}.chat-status{font-size:9px;color:#8ed5a4!important}.chat-head-actions{display:flex;gap:7px}.chat-head-actions button{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.055);color:#fff;cursor:pointer}
+    .messages{flex:1;min-height:0;overflow-y:auto;padding:20px;scroll-behavior:smooth}.message-row{display:flex;margin:7px 0}.message-row.me{justify-content:flex-end}
+    .message{max-width:min(70%,520px);padding:9px 11px 7px;border-radius:14px 14px 14px 4px;background:rgba(255,255,255,.09);font-size:11px;line-height:1.45;box-shadow:0 8px 22px rgba(0,0,0,.09);word-break:break-word}.message-row.me .message{border-radius:14px 14px 4px 14px;background:linear-gradient(135deg,rgba(216,173,87,.28),rgba(174,122,47,.22))}
+    .message-meta{display:flex;justify-content:flex-end;align-items:center;gap:5px;margin-top:4px;font-size:7.5px;color:rgba(255,255,255,.47)}.message-meta .read{color:var(--gold2)}
+    .chat-placeholder{height:100%;display:grid;place-items:center;text-align:center;color:var(--muted);padding:35px}.chat-placeholder i{display:block;font-size:36px;color:var(--gold2);margin-bottom:12px}.chat-placeholder b{display:block;color:#fff;font-size:13px;margin-bottom:6px}.chat-placeholder span{font-size:10px;line-height:1.5}
+    .compose{position:static;flex:0 0 auto;margin:10px 18px 18px;display:flex;align-items:flex-end;gap:9px;padding:8px;border-radius:15px;background:rgba(9,12,18,.86);border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(16px)}
+    .compose button{width:38px;height:38px;flex:0 0 38px;border-radius:10px;background:transparent;color:rgba(255,255,255,.72);cursor:pointer}.compose button.send{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a}.compose button:disabled{opacity:.35;cursor:not-allowed}
+    .compose textarea{flex:1;max-height:110px;min-height:38px;resize:none;background:transparent;border:0;outline:0;color:#fff;padding:10px 4px 8px;font-size:11px;line-height:1.4}
+    .messenger-login-required{height:650px;border-radius:22px;display:grid;place-items:center;text-align:center;padding:30px}
+    #messengerLoggedOut[hidden]{display:none!important}
+    #messengerApp[hidden]{display:none!important}.messenger-login-required i{font-size:34px;color:var(--gold2);margin-bottom:12px}.messenger-login-required h2{font-size:18px;margin-bottom:7px}.messenger-login-required p{font-size:10px;color:var(--muted);max-width:340px;line-height:1.6}.messenger-login-required button{margin-top:16px;padding:10px 16px;border-radius:9px;background:linear-gradient(135deg,var(--gold2),#c8943d);font-weight:800;cursor:pointer}
+
+    .auth-card{pointer-events:auto}
+
+    .auth-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.68);backdrop-filter:blur(12px);padding:20px}.auth-modal.open{display:flex}.auth-card{width:min(420px,100%);border-radius:22px;padding:24px;background:#151820;border:1px solid rgba(255,255,255,.13);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+    .auth-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.auth-card-head h2{font-size:20px}.auth-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);color:#fff;cursor:pointer}.auth-tabs{display:flex;background:rgba(255,255,255,.045);padding:4px;border-radius:10px;margin-bottom:16px}.auth-tab{flex:1;padding:8px;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;font-size:11px}.auth-tab.active{background:rgba(216,173,87,.16);color:#fff}.auth-form{display:none}.auth-form.active{display:block}.auth-input{width:100%;height:43px;margin:6px 0;border-radius:10px;border:1px solid rgba(255,255,255,.13);background:rgba(5,8,13,.5);color:#fff;padding:0 12px;outline:none}.auth-submit{width:100%;margin-top:11px;height:43px;border-radius:10px;background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a;font-weight:800;cursor:pointer}.auth-note{font-size:9px;color:var(--muted);line-height:1.5;margin-top:10px}.auth-error{min-height:16px;margin-top:8px;color:#ff9a9a;font-size:9px}.auth-ok{color:#9ee5b2}.connection-badge{display:inline-flex;align-items:center;gap:6px;font-size:8px;color:var(--muted)}.connection-dot{width:7px;height:7px;border-radius:50%;background:#777}.connection-dot.online{background:#5dcc7d;box-shadow:0 0 10px rgba(93,204,125,.5)}
+
+    /* AUTH VISIBILITY FIX v3 */
+    body.auth-out #messengerLoggedOut{display:grid!important}
+    body.auth-out #messengerApp{display:none!important}
+    body.auth-in #messengerLoggedOut{display:none!important}
+    body.auth-in #messengerApp{display:grid!important}
+    body.auth-pending #messengerLoggedOut{display:none!important}
+    body.auth-pending #messengerApp{display:none!important}
+
+
+
+
+
+    .messenger-user-search{
+      position:relative;
+      margin-top:12px;
+    }
+    .messenger-user-search i{
+      position:absolute;
+      right:15px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:18px;
+      color:#fff;
+      pointer-events:none;
+    }
+    .messenger-user-search input{
+      width:100%;
+      height:52px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(13,17,24,.82);
+      color:#fff;
+      padding:0 48px 0 16px;
+      outline:none;
+      font-size:13px;
+      font-weight:500;
+      box-shadow:0 12px 30px rgba(0,0,0,.10);
+    }
+    .messenger-user-search input::placeholder{color:rgba(255,255,255,.62)}
+    .messenger-search-results{max-height:210px;overflow:auto;margin-top:8px}
+    .messenger-search-results:empty{display:none}
+
+    .people-panel{background:rgba(10,13,20,.78);border-left:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;min-width:0}
+    .people-head{padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .people-head h3{font-size:14px;margin-bottom:5px}
+    .people-head p{font-size:9px;color:var(--muted);line-height:1.45;margin-bottom:11px}
+    .people-search{position:relative}
+    .people-search i{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:11px;color:rgba(255,255,255,.48)}
+    .people-search input{width:100%;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(5,8,13,.5);color:#fff;padding:0 11px 0 31px;outline:none;font-size:11px}
+    .people-results{padding:8px;overflow:auto;flex:1}
+    .people-card{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:9px;align-items:center;padding:10px;border-radius:11px;margin-bottom:6px;background:rgba(255,255,255,.035)}
+    .people-card:hover{background:rgba(255,255,255,.06)}
+    .people-copy{min-width:0}.people-copy b{display:block;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .people-copy span{display:block;font-size:9px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .people-actions{display:flex;gap:6px}
+    .people-actions button{height:30px;min-width:30px;padding:0 9px;border-radius:8px;cursor:pointer;font-size:9px;font-weight:700}
+    .people-actions .message-user{background:rgba(216,173,87,.16);color:var(--gold2);border:1px solid rgba(216,173,87,.28)}
+    .people-actions .friend-user{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a}
+    .people-actions .friend-user.sent{background:rgba(255,255,255,.06);color:var(--muted)}
+    .requests-block{padding:0 8px 8px}
+    .requests-title{font-size:10px;font-weight:800;color:#fff;padding:10px 2px 6px}
+    .request-card{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px;border-radius:10px;background:rgba(255,255,255,.04);margin-bottom:6px}
+    .request-actions{display:flex;gap:5px}.request-actions button{width:28px;height:28px;border-radius:8px;cursor:pointer}
+    .accept-request{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a}
+    .decline-request{background:rgba(255,255,255,.07);color:#fff}
+    .pinned-organizer{margin:8px 8px 4px;padding:10px;border-radius:11px;background:linear-gradient(90deg,rgba(216,173,87,.15),rgba(255,255,255,.03));border:1px solid rgba(216,173,87,.18);cursor:pointer}
+    .pinned-organizer .pin-label{font-size:8px;color:var(--gold2);text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px}
+    .pinned-organizer-row{display:flex;align-items:center;gap:9px}
+    .pinned-organizer-row b{font-size:10.5px}.pinned-organizer-row span{display:block;font-size:8.5px;color:var(--muted);margin-top:2px}
+
+
+    body.white-workspace .workspace{color:#17191f}
+    body.white-workspace .glass{background:rgba(255,255,255,.82);border-color:rgba(20,24,32,.12);box-shadow:0 16px 38px rgba(0,0,0,.08)}
+    body.white-workspace .main-panel,
+    body.white-workspace .now,
+    body.white-workspace .content-card,
+    body.white-workspace .chat{color:#17191f}
+    body.white-workspace .panel-head p,
+    body.white-workspace .lead,
+    body.white-workspace .now-artist,
+    body.white-workspace .queue-row span,
+    body.white-workspace .chat-me span,
+    body.white-workspace .chat-peer span,
+    body.white-workspace .people-copy span,
+    body.white-workspace .chat-item-copy span,
+    body.white-workspace .chat-empty-list,
+    body.white-workspace .chat-placeholder,
+    body.white-workspace .messenger-login-required p{color:rgba(20,24,32,.62)!important}
+    body.white-workspace .chat-list,
+    body.white-workspace .chat-window{background:rgba(255,255,255,.86)}
+    body.white-workspace .chat-list{border-right-color:rgba(20,24,32,.1)}
+    body.white-workspace .chat-window-head{background:rgba(255,255,255,.78);border-bottom-color:rgba(20,24,32,.1)}
+    body.white-workspace .chat-placeholder b,
+    body.white-workspace .chat-list-title,
+    body.white-workspace .chat-me b,
+    body.white-workspace .chat-item-copy b,
+    body.white-workspace .people-copy b{color:#17191f}
+    body.white-workspace .messenger-user-search input{background:#fff;color:#17191f;border-color:rgba(20,24,32,.16)}
+    body.white-workspace .messenger-user-search input::placeholder{color:rgba(20,24,32,.52)}
+    body.white-workspace .messenger-user-search i{color:#17191f}
+    body.white-workspace .message{background:rgba(20,24,32,.07);color:#17191f}
+    body.white-workspace .message-row.me .message{background:linear-gradient(135deg,rgba(216,173,87,.42),rgba(174,122,47,.28))}
+    body.white-workspace .compose{background:rgba(255,255,255,.94);border-color:rgba(20,24,32,.12)}
+    body.white-workspace .compose textarea{color:#17191f}
+
+
+    #activeChat{min-height:0;overflow:hidden}
+    #activeChat .messages{min-height:0}
+
+
+    /* MESSENGER LAYOUT FIX v14:
+       поле ввода всегда остаётся внизу окна чата */
+    .chat{min-height:0}
+    .chat-window{
+      min-height:0!important;
+      height:100%;
+      overflow:hidden!important;
+    }
+    #activeChat[hidden]{display:none!important}
+    #activeChat:not([hidden]){
+      display:grid!important;
+      grid-template-rows:66px minmax(0,1fr) auto;
+      height:100%!important;
+      min-height:0!important;
+      max-height:100%!important;
+      overflow:hidden!important;
+      position:relative;
+    }
+    #activeChat .chat-window-head{
+      height:66px;
+      min-height:66px;
+      max-height:66px;
+      overflow:hidden;
+    }
+    #activeChat .messages{
+      min-height:0!important;
+      height:auto!important;
+      overflow-y:auto!important;
+      overscroll-behavior:contain;
+      padding:20px;
+    }
+    #activeChat .compose{
+      position:relative!important;
+      inset:auto!important;
+      margin:10px 18px 18px!important;
+      flex:none!important;
+      z-index:4;
+    }
+
+
+    /* DOCUMENT CONTENT v16 */
+    .knowledge-block{margin-top:22px}
+    .knowledge-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px}
+    .knowledge-heading h2{font-size:18px}
+    .knowledge-heading p{font-size:9.5px;color:var(--muted);max-width:480px;line-height:1.55;text-align:right}
+    .knowledge-list{display:flex;flex-direction:column;gap:9px}
+    .knowledge-item{border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(8,11,18,.38);overflow:hidden}
+    .knowledge-item summary{list-style:none;display:flex;align-items:center;gap:11px;padding:14px 15px;cursor:pointer;font-size:12px;font-weight:750;color:#fff}
+    .knowledge-item summary::-webkit-details-marker{display:none}
+    .knowledge-icon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:rgba(216,173,87,.13);color:var(--gold2);flex:0 0 31px}
+    .knowledge-arrow{margin-left:auto;font-size:10px;color:var(--muted);transition:.2s}
+    .knowledge-item[open] .knowledge-arrow{transform:rotate(180deg)}
+    .knowledge-body{padding:2px 16px 16px 57px}
+    .knowledge-body p{font-size:10.5px;color:rgba(255,255,255,.74);line-height:1.7;margin:0 0 10px}
+    .knowledge-body p:last-child{margin-bottom:0}
+    body.white-workspace .knowledge-item{background:rgba(255,255,255,.76);border-color:rgba(20,24,32,.12)}
+    body.white-workspace .knowledge-item summary{color:#17191f}
+    body.white-workspace .knowledge-body p{color:rgba(20,24,32,.72)}
+    body.white-workspace .knowledge-heading p{color:rgba(20,24,32,.58)}
+    @media(max-width:820px){
+      .knowledge-heading{align-items:flex-start;flex-direction:column}
+      .knowledge-heading p{text-align:left}
+      .knowledge-body{padding-left:16px}
+    }
+
+
+    /* FULL SITE UI v19 */
+    .dashboard-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+    .dash-card{padding:16px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);cursor:pointer;transition:.2s}
+    .dash-card:hover{transform:translateY(-2px);border-color:rgba(216,173,87,.45)}
+    .dash-card i{font-size:18px;color:var(--gold2);margin-bottom:12px}.dash-card b{display:block;font-size:13px;margin-bottom:5px}.dash-card span{font-size:9.5px;color:var(--muted);line-height:1.45}
+    .quick-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+    .quick-btn,.soft-btn{border-radius:10px;padding:10px 13px;cursor:pointer;font-size:10px;font-weight:700}
+    .quick-btn{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#20190f}
+    .soft-btn{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.13)}
+    .subtabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+    .subtab{padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:10px}
+    .subtab.active{background:rgba(216,173,87,.18);color:var(--gold2);border-color:rgba(216,173,87,.35)}
+    .panel-view{display:none}.panel-view.active{display:block}
+    .data-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .data-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+    .data-row b{font-size:11px}.data-row span{font-size:9px;color:var(--muted);display:block;margin-top:3px}.data-row-actions{display:flex;gap:6px}
+    .mini-btn{height:30px;padding:0 10px;border-radius:8px;cursor:pointer;font-size:9px;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)}
+    .mini-btn.gold{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#20190f}
+    .form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .notice-box{padding:12px 14px;border-radius:12px;background:rgba(216,173,87,.09);border:1px solid rgba(216,173,87,.18);font-size:10px;color:rgba(255,255,255,.76);line-height:1.55}
+    .site-modal{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.62);display:none;align-items:center;justify-content:center;padding:24px}
+    .site-modal.open{display:flex}
+    .site-modal-card{width:min(680px,96vw);max-height:82vh;overflow:auto;border-radius:20px;padding:20px;background:rgba(12,15,22,.96);border:1px solid rgba(255,255,255,.15);box-shadow:0 30px 80px rgba(0,0,0,.45);backdrop-filter:blur(18px)}
+    .site-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.site-modal-head h2{font-size:18px}.site-modal-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);color:#fff;cursor:pointer}
+    .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modal-grid .full{grid-column:1/-1}
+    .modal-input,.modal-select,.modal-textarea{width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.05);color:#fff;padding:10px 11px;outline:none;font-size:10px}.modal-textarea{min-height:90px;resize:vertical}
+    .post-card{padding:15px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);margin-top:10px}.post-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.post-head b{font-size:11px}.post-body{font-size:10.5px;line-height:1.65;color:rgba(255,255,255,.78);margin:10px 0}.post-actions{display:flex;gap:8px}.post-actions button{background:transparent;color:var(--muted);cursor:pointer;font-size:9.5px}
+    .community-card{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);margin-top:9px}.community-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(216,173,87,.12);color:var(--gold2)}
+    .course-card{padding:14px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);margin-top:9px}.course-card h3{font-size:12px;margin-bottom:5px}.course-card p{font-size:9.5px;color:var(--muted);line-height:1.5}.progress-line{height:5px;background:rgba(255,255,255,.08);border-radius:999px;margin:10px 0;overflow:hidden}.progress-line span{display:block;height:100%;background:var(--gold2)}
+    .status-pill{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:8.5px;background:rgba(255,255,255,.07);color:var(--muted)}.status-pill.gold{background:rgba(216,173,87,.14);color:var(--gold2)}
+    body.white-workspace .dash-card,body.white-workspace .data-row,body.white-workspace .post-card,body.white-workspace .community-card,body.white-workspace .course-card{background:rgba(255,255,255,.82);border-color:rgba(20,24,32,.1)}
+    body.white-workspace .dash-card b,body.white-workspace .data-row b,body.white-workspace .post-card,body.white-workspace .community-card,body.white-workspace .course-card{color:#17191f}
+    body.white-workspace .dash-card span,body.white-workspace .data-row span,body.white-workspace .post-body,body.white-workspace .course-card p{color:rgba(20,24,32,.62)}
+    @media(max-width:1000px){.dashboard-grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* PLAYER */
+    .player{position:absolute;left:277px;right:20px;bottom:14px;height:82px;border-radius:20px;background:rgba(12,15,22,.90);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(18px);display:grid;grid-template-columns:260px 1fr 260px;align-items:center;padding:11px 18px;z-index:20;box-shadow:0 16px 38px rgba(0,0,0,.28)}
+    .player-track{display:flex;align-items:center;gap:11px;min-width:0}.player-track img{width:54px;height:54px;border-radius:9px;object-fit:cover}.player-track b{display:block;font-size:11px}.player-track span{font-size:9px;color:var(--muted)}.heart{margin-left:auto;background:none;color:#fff;font-size:18px}
+    .player-center{display:flex;align-items:center;justify-content:center;gap:20px}.player-center button{background:none;color:#fff;font-size:16px;cursor:pointer}.player-center .play{width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a}.player-right{display:flex;align-items:center;justify-content:flex-end;gap:12px}.volume{width:130px;height:3px;border-radius:4px;background:rgba(255,255,255,.18);position:relative}.volume::after{content:"";position:absolute;left:0;top:0;bottom:0;width:42%;background:var(--gold);border-radius:4px}.volume::before{content:"";position:absolute;left:42%;top:50%;width:9px;height:9px;background:#fff;border-radius:50%;transform:translate(-50%,-50%)}
+
+    ::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:10px}::-webkit-scrollbar-track{background:transparent}
+
+    @media(max-width:1180px){
+      body{padding:0}.app{width:100vw;height:100vh;border-radius:0}.music-grid{grid-template-columns:1fr}.now{position:relative;min-height:auto}.release-row{grid-template-columns:repeat(3,1fr)}.player{left:270px;right:12px}.player-right{display:none}.player{grid-template-columns:230px 1fr}.sidebar{width:245px;flex-basis:245px}}
+    @media(max-width:820px){
+      .sidebar{width:80px;flex-basis:80px;padding:20px 10px 110px}.brand-logo-img,.auth,.nav-item span,.sidebar-bottom{display:none}.nav-item{justify-content:center}.player{left:90px;grid-template-columns:170px 1fr}.player-track .meta{display:none}.workspace{padding:18px 15px 120px}.release-row{grid-template-columns:repeat(2,1fr)}.hero-art{opacity:.35;right:8px}.hero-copy{max-width:78%}.cards3,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.chat{grid-template-columns:1fr;height:650px}.chat-list{display:none}.people-panel{display:none}}
+
+    /* EMPTY MUSIC STATES */
+    .empty-state{
+      min-height:118px;
+      border:1px dashed rgba(255,255,255,.22);
+      border-radius:15px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:8px;
+      text-align:center;
+      color:rgba(255,255,255,.72);
+      background:rgba(8,12,18,.18);
+      padding:22px;
+    }
+    .empty-state i{font-size:23px;color:var(--gold2)}
+    .empty-state b{font-size:12px;color:#fff}
+    .empty-state span{font-size:10px;max-width:360px;line-height:1.45}
+    .empty-release{grid-column:1/-1;min-height:150px}
+    .empty-track{min-height:105px}
+    .now-empty-cover{
+      width:100%;
+      aspect-ratio:1/1;
+      border-radius:16px;
+      border:1px dashed rgba(255,255,255,.2);
+      display:grid;
+      place-items:center;
+      background:rgba(8,12,18,.24);
+      color:rgba(255,255,255,.25);
+      font-size:42px;
+    }
+
+  </style>
+<!-- SUA FULL SITE BUILD: 2026-09-05-v20 -->
+</head>
+<body class="auth-pending home-screen">
+
+<div class="app" id="appShell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-lockup">
+        <img src="assets/logo-lockup.png" alt="SUA World Music Records" class="brand-logo-img">
+      </div>
+    </div>
+
+    <div class="auth">
+      <button class="auth-btn login" id="loginBtn" type="button">Вход</button>
+      <button class="auth-btn register" id="registerBtn" type="button">Регистрация</button>
+    </div>
+
+    <nav class="nav">
+      <div class="sidebar-bottom">
+        <button class="bg-btn" type="button" onclick="changeBackground()"><i class="fa-regular fa-image"></i> Изменить фон</button>
+      </div>
+      <div class="nav-item active" onclick="switchScreen('home',this)"><i class="fa-solid fa-house"></i><span>Главная</span></div>
+      <div class="nav-item" onclick="switchScreen('music',this)"><i class="fa-solid fa-music"></i><span>Музыка</span></div>
+      <div class="nav-item" onclick="switchScreen('distribution',this)"><i class="fa-solid fa-cloud-arrow-up"></i><span>Дистрибуция</span></div>
+      <div class="nav-item" onclick="switchScreen('artist-services',this)"><i class="fa-solid fa-user-gear"></i><span>Сервис для артистов</span></div>
+      <div class="nav-item" onclick="switchScreen('messenger',this)"><i class="fa-regular fa-comment"></i><span>Мессенджер</span></div>
+      <div class="nav-item" onclick="switchScreen('feed',this)"><i class="fa-regular fa-newspaper"></i><span>Лента</span></div>
+      <div class="nav-item" onclick="switchScreen('communities',this)"><i class="fa-solid fa-user-group"></i><span>Сообщества</span></div>
+      <div class="nav-item" onclick="switchScreen('sanctum',this)"><i class="fa-solid fa-graduation-cap"></i><span>Клуб знаний</span></div>
+      <div class="nav-item" onclick="switchScreen('advertising',this)"><i class="fa-solid fa-bullhorn"></i><span>Рекламная кампания</span></div>
+      <div class="nav-item" id="adminNavItem" hidden onclick="switchScreen('admin',this)"><i class="fa-solid fa-shield-halved"></i><span>Админ-панель</span></div>
+    </nav>
+</aside>
+
+  <main class="workspace" id="workspace">
+    <div class="workspace-inner">
+      <div class="topbar" id="globalTopbar">
+        <div class="search"><input id="searchInput" placeholder="Поиск музыки, артистов, альбомов..." oninput="filterMusic()"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="top-icons"><button class="icon-btn" id="notificationsBtn" title="Уведомления"><i class="fa-regular fa-bell"></i></button><button class="icon-btn" id="profileBtn" title="Профиль"><i class="fa-regular fa-user"></i></button></div>
+      </div>
+
+      <section id="screen-home" class="app-screen active">
+        <div class="content-card glass">
+          <h1>SUA World Music Records</h1>
+          <p class="lead">Музыка, дистрибуция, коммуникации и интеллектуальная среда внутри одной премиальной платформы.</p>
+
+          <div class="dashboard-grid">
+            <div class="dash-card" onclick="goSection('music')"><i class="fa-solid fa-music"></i><b>Музыка</b><span>Каталог, чарты, плейлисты и релизы.</span></div>
+            <div class="dash-card" onclick="goSection('distribution')"><i class="fa-solid fa-cloud-arrow-up"></i><b>Дистрибуция</b><span>Загрузить релиз и проверить статус заявки.</span></div>
+            <div class="dash-card" onclick="goSection('messenger')"><i class="fa-regular fa-comments"></i><b>Мессенджер</b><span>Диалоги, друзья и организатор SUA.</span></div>
+            <div class="dash-card" onclick="goSection('artist-services')"><i class="fa-solid fa-user-gear"></i><b>Сервис для артистов</b><span>Аналитика, роялти и смарт-ссылки.</span></div>
+            <div class="dash-card" onclick="goSection('feed')"><i class="fa-regular fa-newspaper"></i><b>Лента</b><span>Новости, публикации и события.</span></div>
+            <div class="dash-card" onclick="goSection('communities')"><i class="fa-solid fa-user-group"></i><b>Сообщества</b><span>Артисты, продюсеры, авторы и коллаборации.</span></div>
+            <div class="dash-card" onclick="goSection('sanctum')"><i class="fa-solid fa-graduation-cap"></i><b>Клуб знаний</b><span>Библиотека, лекции, курсы и обсуждения.</span></div>
+            <div class="dash-card" onclick="goSection('advertising')"><i class="fa-solid fa-bullhorn"></i><b>Рекламная кампания</b><span>Создание и ведение кампаний релиза.</span></div>
+          </div>
+
+          <div class="quick-row">
+            <button class="quick-btn" onclick="goSection('distribution')"><i class="fa-solid fa-plus"></i> Загрузить релиз</button>
+            <button class="soft-btn" onclick="openQuickProfile()"><i class="fa-regular fa-user"></i> Мой профиль</button>
+            <button class="soft-btn" onclick="showNotifications()"><i class="fa-regular fa-bell"></i> Уведомления</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-music" class="app-screen">
+        <div class="music-grid">
+          <div class="main-panel glass">
+            <div class="panel-head">
+              <div><h1>Музыка / Обзор</h1><p>Каталог SUA будет наполняться вашими релизами</p></div>
+              <select class="genre"><option>Все жанры</option><option>Hip-Hop</option><option>Pop</option><option>Electronic</option><option>Alternative</option></select>
+            </div>
+            <div class="subtabs" id="musicTabs">
+              <button class="subtab active" data-music-tab="overview">Обзор</button>
+              <button class="subtab" data-music-tab="charts">Чарты</button>
+              <button class="subtab" data-music-tab="playlists">Плейлисты</button>
+            </div>
+            <div id="musicExtraPanel"></div>
+            
+            <div class="hero" id="musicOverviewHero">
+              <div class="hero-copy">
+                <div class="kicker">SUA WORLD MUSIC RECORDS</div>
+                <h2>Новые релизы скоро здесь</h2>
+                <p>Добавим настоящий каталог, артистов, обложки и музыку после утверждения контента.</p>
+                <button class="gold-btn" onclick="switchScreen('distribution',document.querySelector('[onclick*=distribution]'))"><i class="fa-solid fa-cloud-arrow-up"></i> Загрузить релиз</button>
+              </div>
+              <img class="hero-art" src="assets/logo-lockup.png" alt="SUA" style="object-fit:contain;padding:28px;background:rgba(7,10,15,.30)">
+              <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            </div>
+
+            <div id="musicOverviewContent"><div class="section-title"><h3>Новые релизы</h3><button type="button">Смотреть все</button></div>
+            <div class="release-row" id="releaseRow">
+              <div class="empty-state empty-release"><i class="fa-solid fa-compact-disc"></i><b>Релизов пока нет</b><span>Здесь появятся реальные релизы SUA, когда вы добавите музыку и обложки.</span></div>
+            </div>
+
+            <div class="section-title"><h3>Популярные треки</h3><button type="button">Смотреть все</button></div>
+            <div class="tracks-box glass" id="trackList">
+              <div class="empty-state empty-track"><i class="fa-solid fa-music"></i><b>Треков пока нет</b><span>Демо-композиции удалены. Раздел готов для настоящего каталога.</span></div>
+            </div>
+            </div>
+          </div>
+
+          <aside class="now glass">
+            <h3>Сейчас играет</h3>
+            <div class="now-empty-cover"><i class="fa-solid fa-music"></i></div>
+            <div id="nowTitle" class="now-title">Нет трека</div>
+            <div id="nowArtist" class="now-artist">Выберите композицию из каталога</div>
+            <div class="mini-progress"></div><div class="time-row"><span>0:00</span><span>0:00</span></div>
+            <div class="now-controls"><button disabled><i class="fa-solid fa-shuffle"></i></button><button disabled><i class="fa-solid fa-backward-step"></i></button><button class="main-play" disabled><i id="sidePlayIcon" class="fa-solid fa-play"></i></button><button disabled><i class="fa-solid fa-forward-step"></i></button><button disabled><i class="fa-solid fa-repeat"></i></button></div>
+            <div class="queue-title">Плейлист</div>
+            <div id="queueList"><div class="empty-state" style="min-height:120px"><span>Очередь пуста</span></div></div>
+            <button class="outline-btn">Открыть плейлист</button>
+          </aside>
+        </div>
+      </section>
+
+      <section id="screen-distribution" class="app-screen">
+        <div class="content-card glass">
+          <h1>Дистрибуция</h1>
+          <p class="lead">Загрузите музыкальный файл, обложку, данные артиста и договор для проверки администратором.</p>
+
+          <div class="form-grid">
+            <div class="field"><label>Музыкальный файл</label><label class="drop" id="audioFileLabel">Выбрать WAV / FLAC / MP3<input id="releaseAudio" type="file" accept="audio/*" hidden></label></div>
+            <div class="field"><label>Обложка</label><label class="drop" id="coverFileLabel">Выбрать JPG / PNG<input id="releaseCover" type="file" accept="image/*" hidden></label></div>
+            <div class="field"><label>Название трека</label><input id="releaseTitle" placeholder="Название трека"></div>
+            <div class="field"><label>Артист</label><input id="releaseArtist" placeholder="Название артиста"></div>
+            <div class="field"><label>ФИО правообладателя</label><input id="releaseOwner" placeholder="ФИО"></div>
+            <div class="field"><label>Телефон</label><input id="releasePhone" placeholder="+7 999 000-00-00"></div>
+            <div class="field full"><label>Комментарий администратору</label><textarea id="releaseComment" placeholder="Комментарий..."></textarea></div>
+            <div class="field full"><label>Договор</label><label class="drop" id="contractFileLabel">Прикрепить PDF / DOCX<input id="releaseContract" type="file" accept=".pdf,.doc,.docx" hidden></label></div>
+          </div>
+          <button class="primary" id="releaseSubmitBtn" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Отправить на модерацию</button>
+          <div id="releaseFeedback" class="notice-box" style="display:none;margin-top:12px"></div>
+          <div id="releaseProgressWrap" style="display:none;margin-top:10px">
+            <div class="progress-line"><span id="releaseProgressBar" style="width:0%"></span></div>
+            <div id="releaseProgressText" style="font-size:9px;color:var(--muted);margin-top:5px">0%</div>
+          </div>
+          <div class="knowledge-block">
+            <div class="knowledge-heading"><h2>Мои заявки</h2><p>Заявки и файлы отправляются в Firebase. Здесь отображается актуальный статус модерации.</p></div>
+            <div id="myReleaseRequests" class="data-list"></div>
+          </div>
+
+          <div class="knowledge-block">
+            <div class="knowledge-heading">
+              <h2>Правила и рекомендации</h2>
+              <p>Модерация, срочная публикация, ИИ-контент, требования к авторам, обложкам и текстам.</p>
+            </div>
+            <div class="knowledge-list"><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-clock"></i></span><span>Модерация релиза и сроки</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Модерация загружаемого вами контента происходит в среднем 1-5 рабочих дней, но традиционно — есть тонкости, о которых вам ценно знат Наш сервис цифровой дистрибуции музыки — S U A World Music Records для тысяч музыкальных проектов и не является персональным сервисом для только лишь вашего аккаунта. Не очевидно, но из вышеуказанного возникают особенности взаимодействия, выраженные в ожидании. Артисты не договариваются друг с другом о том, когда и в каком объеме будут загружать музыкальные релизы в личном кабинете, а значит — взаимодействие со всеми пользователями имеет непредсказуемый характер (сегодня загруженных релизов и писем больше, завтра меньше — например). Новый статус релиза с одобрением можно получить в течении дня или ожидать значительно дольше. В первую очередь вам важно понять, что даже длительное ожидание — не является проблемой, если вы ответственно относитесь к планированию релизов. Почему? — если вы следуете рекомендуемой дате релиза, указанной по умолчанию (в форме загрузки) — релиз состоится в назначенный день премьеры с минимальной вероятностью задержки и любых иных потенциальных проблем. Другой вопрос, если вы хотите опубликовать творчество уже ближайшие дни — тогда придется столкнуться с рядом ограничений в полноте оказываемых услуг, а также с риском задержки в публикации на стороне музыкальных сервисов.</p>
+<p>Что делать, если релиз нужно опубликовать быстрее?</p>
+<p>Пожалуйста, укажите просьбу в поле &quot;Комментарий к релизу&quot;. Например:  &quot;Пожалуйста, опубликуйте релиз раньше рекомендуемой даты&quot;. Данное поле предназначено для указания пожеланий и просьб, не учтенных упрощённой анкетой для загрузки релиза. Обратите внимание, просьба будет выполнена, если физически возможно ее выполнить. Частью услуг сервиса не является решение организационных проблем музыкального проекта. К вопросу о срочной публикации важно добавить, что существует большая разница между &quot;действительно нужно опубликовать быстрее&quot; и &quot;кажется, что нужно опубликовать быстрее&quot;. В 90%  случаев мы сталкиваемся с желанием опубликовать контент срочно без какой-либо существенной причины (просто хочется, сами не знаем зачем).  Дело в том, что большинству музыкальных проектов не понятен и/или неизвестен технический и организационный принцип доставки музыки на площадки — давайте обсудим это далее.</p>
+<p>Какие недостатки у срочной публикации?</p>
+<p>Никак нельзя упустить возможность и объяснить читателю этой статьи, что у срочной публикации контента есть существенные минусы.</p>
+<p>Пожалуйста, ознакомьтесь с ними:</p>
+<p>ваша просьба о приоритетной доставке на площадки будет выполнена не всегда по организационным и техническим причинам. Не всегда возможно срочно отправить контент на площадки; ваш релиз может не появиться на музыкальных сервисах в желаемую срочную дату (потому-что музыкальному сервису нужно принять ваш контент и подготовить его к премьере заранее— это занимает непредсказуемый период, точно также, как и модерация у музыкального дистрибьютора); мы не сможем показать ваши песни музыкальным редакторам или сможем, но в спешке — что влечет бессмысленную трату времени для всех сторон процесса. Такие треки часто лишаются шанса на поддержку в плейлистах или не получают приоритета в сети рекомендаций. Потому-что у редакции музыкальных сервисов нет времени прослушать их срочно.</p>
+<p>Спешка, как стиль жизни...</p>
+<p>Намерения стереотипизировать пользователей сайта нет, но факты говорят о том, что артисты, загружающие контент в срочном порядке — в 90% случаев совершают ошибки во всём, что касается музыкального проекта в принципе (спешка для спешки ради спешки, чтобы непонятно что и непонятно зачем). Большинство просьб о срочной публикации поступает в комплекте с неправильными файлами или банальными ошибками и опечатками в форме загрузки. Очень часто приходится видеть музыкальные релизы с просьбой опубликовать &quot;сегодня или завтра&quot; с обложками и аудиозаписями неправильного формата. Из этого вытекают уточнения, переписки, исправления контента перед отгрузкой, что занимает время. Время, которое вы могли бы потратить на внимательное чтение простых правил и загрузку изначально корректного релиза.</p>
+<p>Время, которое вы можете потратить на подготовку к премьере песни и на подготовку к рекламе, например.</p>
+<p>Выводы:</p>
+<p>Чаще всего просьба о быстрой публикации песни не оправдана для всех участников процесса, включая самого артиста. Исключения — большая редкость. Из соображений индивидуального взаимодействия с каждым проектом мы очень часто идем на встречу в этом, но надеемся, что прочтение этой статьи сделает ваш проект ещё опытнее.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-microchip"></i></span><span>ИИ-контент: политика и модерация</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Волна популярности сервисов на базе искусственного интеллекта растёт, а значит, настал момент, когда нужно обозначить политику относительно результатов ИИ и дать дополнительные пояснения пользователям сайтов и приложений для генерации аудио. Чтобы текст был менее тяжёлым для чтения — наличие в нём юридической и технической терминологии сведено к минимуму. Печатая эти буквы, есть понимание, что вам необходимо знать — пройдет ли ваш релиз модерацию перед публикацией на площадки, но... К сожалению, ответа формата &quot;да/нет&quot; не будет в этой статье. Релизы, созданные с использованием ИИ или сгенерированные при помощи ИИ иногда пройдут модерацию, иногда нет.  Если вы планируете публиковать такой контент, ознакомьтесь с принципами модерации такого контента, а также с причинами потенциального отклонения таких релизов.</p>
+<p>ИИ можно использовать по-разному Один музыкальный проект использует современные решения в области искусственного интеллекта для улучшения качества звучания; и/или для вдохновения на написание собственных аранжировок; и/или привносит в полученный результат значительное собственное участие. Другой музыкальный проект — набор из аудиофайлов и картинок, созданных путём автоматической генерации из информации в интернете (зачастую из фрагментов фонограмм и текстов посторонних авторов, которые не давали согласие на использование своих произведений). Первый вариант  будет загружаться на музыкальные сервисы без проблем (при соблюдении прочих равных условий и правил), второй — скорее всего получит отказ в сотрудничестве сразу или позже. Обратите внимание — предложены две крайности, чтобы наглядно продемонстрировать отличия. Каждый случай использования ИИ — индивидуален т.к. области использования нейросети огромны, а уровень владения современными музыкальными программами очень сильно отличается от пользователя к пользователю.</p>
+<p>Чем музыка ИИ отличается от созданной вручную в музыкальных программах и/или способом живой записи? Юридические отличия: Музыка и песни, сгенерированные средствами ИИ создают дилемму в юридическом смысле, а музыкальные площадки, в свою очередь, не сформировали единое мнение относительно такого контента. Принято считать, что сервисы ИИ генерируют музыку самостоятельно, но это не совсем так. Нейросети &quot;обучаются&quot; изготавливать аудио на основании других песен в интернете, цифровых отпечатков голосов исполнителей и музыкальных инструментов в фонограммах, а значит, и на основании текстов, исполнений, фонограмм и произведений других правообладателей, цифровых отпечатков голосов артистов, которые не соглашались на это. (при желании, вы можете найти в интернете информацию о случаях использования голосов мировых звёзд и последствий такого использования). Аудиозапись, созданная полностью ИИ автоматически создает риск в правовом смысле — риск будет расти с развитием технологии. Нейросети неизбежно будут использоваться правообладателями для поиска заимствований из объектов, обладателем прав на которые они являются. С развитием таких инструментов поиска, аудитория &quot;искусственных музыкантов и певцов&quot; будет сталкиваться с претензиями о заимствовании и плагиате значительно чаще, чем сейчас. А значит, будет сталкиваться и каждый участник публикации песен на цифровых площадках. Музыкальный дистрибьютор стремится к юридической чистоте контента и является промежуточным звеном для доставки многих тысяч песен, что увеличивает риски участия в спорах о юридической чистоте сгенерированных песен.</p>
+<p>Отличия в политиках сервисов: Музыкальный дистрибьютор и музыкальные площадки всегда связывает договор. Неотъемлемой частью условий сотрудничества являются гарантии в области авторского и смежного права, а если простыми словами — два эти игрока плотно связаны обязательствами не создавать друг другу сложности и траты времени, неизбежно вытекающие в финансовые потери. Принято считать в сети, что музыкальные сервисы &quot;не против&quot; треков, созданных через ИИ. Это не совсем так из-за тесной связи особенностей происхождения ИИ песен и несовершенства законодательства в разных странах.</p>
+<p>Правильно будет сказать так: на данный момент инструменты для генерации аудио более развиты, чем инструменты для поиска контента, созданного искусственно. Так будет не всегда — хранить не совсем легальные тысячи песен и треков (часто не нужных даже их инициатору) никакой музыкальной площадке не нужно. Пользователи ИИ сервисов генерации могли обратить внимание, что сервисы предоставляют права на сгенерированный контент, но и тут не всё просто (нельзя разрешить использовать то, что сервису ИИ-генерации тоже не полностью принадлежит с правовой точки зрения.)</p>
+<p>Финансовые отличия: Ценность контента, созданного полностью ИИ с коммерческой точки зрения крайне сомнительна (в контексте аудио-генерации) и вот почему: ценность создания песни через нейросети низкая, таких песен можно генерировать десятки в день (что и происходит по воле особенно вдохновлённых пользователей); юзеров, использующих ИИ для генерации аудио, часто затмевает иллюзия, что количество созданных треков равняется количеству вознаграждений от музыкальных сервисов (количество не равняется популярности и/или востребованности таких песен);  сгенерированные треки, при этом, нужно хранить на серверах музыкального дистрибьютора и каждой музыкальной площадки (на это нужно иметь ежегодных бюджет, оправданный  соответствующей популярностью контента, которой зачастую нет); ИИ песни имеют артефакты в ударениях и произношении слов, а также в звучании почти всех музыкальных инструментов. Способ создания отчетливо слышен носителю языка, на котором песня, а исключением являются лишь некоторые единицы аудиофайлов; это &quot;мёртвая музыка&quot; с эмоциональной точки зрения. Написать &quot;хит&quot; только с использованием ИИ, как твердят десятки роликов на YouTube - на данный момент невозможно. Понятие &quot;хит&quot; — это результат труда в продвижении хорошей песни или трека, а не характеристика аудио-записи; вышеописанное серьезно влияет на востребованность сгенерированных песен и треков. Их значительно реже дослушивают до конца на стриминг-сервисах, не добавляют в избранное, чтобы послушать снова и прочая отрицательная обратная связь от слушателей.</p>
+<p>Значит, мою песню не пропустят на площадки, если она создана ИИ? 50/50. Основным краеугольным камнем в этом вопросе является способ и возможность определения контента, как искусственный. Если невозможно или очень сложно отличить ваши аудио от генерации ИИ - есть высокий шанс на одобрение (это зависит от объекта, который у вас получился). Для музыкального дистрибьютора важен также баланс между количеством загруженного вами контента и потенциальной или фактической его востребованностью. Простыми словами — любой музыкальной компании не интересен промышленный объем песен, которые никто не будет слушать. Другая ситуация, если искусственный интеллект органично вписывается в музыкальный проект, уже доказавший востребованность своих песен на деле, а не в теории. И/или, если в результат генерации привнесено значительное участие музыканта или вокалиста.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-file-circle-check"></i></span><span>Авторы, обложка, текст и подготовка релиза</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Авторы музыки и слов — заполняются всегда только фамилией и именем Не указывайте в полях авторства ничего другого — ошибка приведет к необходимости повторной загрузки релиза. Правильное указание автора музыки: Иванов Иван — если автор один, например Иванов Иван, Петрова Наталья — если авторов два, например</p>
+<p>Неправильное указание: Никнейм исполнителя (ник не может быть указан в этом поле, если вам нужно указать prod. Никнейм) Что-либо другое кроме фамилии и имени.</p>
+<p>Мои одобренные релизы будут удалены?</p>
+<p>Нет. Релизы, одобренные и отправленные музыкальным витринам в процессе нашего партнерства, продолжают размещаться согласно соглашениям и их сроку. Вам не нужно это оплачивать или что-либо делать, чтобы размещение контента продолжилось далее. За исключением случаев, предусмотренных индивидуальным договором и/или тарифом и его условиями.</p>
+<p>Требования к обложке:</p>
+<p>Обложка должна быть авторской или измененной до неузнаваемости (производное изображение). Это может быть коллаж, арт, иной художественный дизайн или ваше фото. Размеры обложки 3000х3000 пикселей. Текстовая составляющая обложки должна дублировать имя релиза (не отличаться от него) или отсутствовать. Разный текст на обложке и названии релиза запрещен на iTunes/Apple Music. Также запрещена порнография, оскорбления других рас, социальных групп и прочие и без того понятные вещи. Обратите также внимание, что далеко не все FREE фото в интернете действительно являются таковыми, у большинства красивых и действительно качественных фотографий есть законный автор.</p>
+<p>Требование к тексту песни</p>
+<p>iTunes/Apple Music уделил этим требованиям огромное количество внимания, но сосредотачиваться в рамках этой статьи не хочется, т.к. она и так большая. Давайте упростим понимание. Сервису iTunes/Apple Music нужен порядок, поэтому текст вашей песни должен выглядеть читабельно и не содержать ошибок. Состав текста и порядок предложений/слов должен полностью соответствовать последовательности в песне. Если припев дважды подряд — он обязательно должен быть написан дважды. Как в песне. Этот пункт насыщен тонкостями, но публиковать их не станем, т.к. их проще исправить, чем описывать. Нам не трудно.</p>
+<p>Сроки до релиза и рекомендации</p>
+<p>Общая рекомендация о доставке релиза за 2-3 недели (и более) распространяется и на Spotify. Как минимум за 7 дней до премьеры (а лучше еще раньше) вы можете обратить особое внимание кураторов глобальных плейлистов на релиз. Вероятно, если это ваш первый релиз, понадобится время на верификацию учетной записи и всякие мелочи. Крайне не рекомендуем &quot;скорострельные&quot; релизы, если они не привязаны к важному событию или того требует стратегия продвижения артиста.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Вопросы и ответы об ИИ-релизах</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Вопросы и ответы:</p>
+<p>Если я использую платную часть услуг сайта и уже загружен трек, полностью сгенерированный ИИ. Мне вернут деньги в случае отклонения релиза?</p>
+<p>Следующая политика о возврате средств для аккаунтов, с контентом, созданным полностью или в значительной степени ИИ инструментами действует с 22 Января 2025 года -&gt;.</p>
+<p>•	Если вы уже публиковали другие песни и, в том числе, если у вас был опыт успешной публикации треков с использованием ИИ ранее — средства за активацию годового аккаунта не могут быть возвращены, т.к. аккаунт уже использовался. (обратите внимание, если вы будущий пользователь и читаете этот текст до сотрудничества — музыкальные сервисы, а также сервисы дистрибуции могут изменить политику в отношении песен, генерированных ИИ в любой момент. Если ваш первый трек/релиз был одобрен — это не значит, что так будет всегда. Одобренный трек, созданный через ИИ может быть удалён в будущем, при работе музыкального сервиса с своим каталогом.)</p>
+<p>•	Если вы не загружали на сервис какие-либо песни ранее, являетесь пользователем годового аккаунта, и вам было отказано в публикации контента на этапе первого взаимодействия (модерация первого релиза), а также если у вас нет другого контента, который можно загрузить вместо отклоненного, - вы можете обратиться в поддержку за частичным возвратом средств в размере 50% от оплаты.</p>
+<p>•	Если вы относитесь к пользователям, которые используют формат оплаты за один релиз (аккаунт &quot;ONE&quot;) и трек с ИИ не прошёл этап модерации - ваш аккаунт будет однократно активирован повторно для загрузки другого одного релиза (без необходимости повторной оплаты). Процесс повторной активации аккаунта &quot;One&quot; не может длиться бесконечно, т.к. проверка даже отклоненного релиза требует времени и использования технической инфраструктуры сайта. В случае повторной загрузки, новая копия релиза проходит рассмотрение, если пользователь получает отказ - средства не возвращаются (в том числе частично).</p>
+<p>•	Если вы пользуетесь сервисом бесплатно в результате индивидуальных договоренностей об использовании или в течении бонусного периода после завершения основного срока действия аккаунта — данный вопрос не актуален для вас, т.к. никаких услуг вы не оплачивали. При этом, бонусное или бесплатное сопровождение аккаунта, загружающего сгенерированные треки может быть прекращено администрацией сервиса досрочно.</p>
+<p>Я использую искусственный интеллект для работы с технической частью трека (баланс инструментов, сведение и мастеринг). Это считается треком, сгенерированным ИИ?</p>
+<p>•	Нет. Этот случай относится к вспомогательному использованию ИИ, а не к генерации песен через ИИ. Множество VST плагинов сегодня используют искусственный интеллект для работы с качеством звучания на основании референса. Разница между генерацией песен через ИИ и использованием ИИ для самопомощи при музыкальном производстве/для вдохновения — огромна. Не путайте два эти способа при прочтении статьи.</p>
+<p>Могу ли я использовать обложку для релиза, созданную средствами ИИ?</p>
+<p>Как правило, проблем не возникает. При этом, вам, как лицу, предоставляющему гарантии на юридическую чистоту контента, важно использовать нейросети аккуратно и оценивать результат самостоятельно, т.к. принцип работы сервисов ИИ для картинок аналогично основан на изображениях в интернете: фотографиях моделей; актеров; картин; арт-объектов и т.п. Сгенерированные изображения вполне могут нарушать права какого-либо художника, например, в случае значительного сходства.</p>
+<p>Мой релиз прошел модерацию. Значит мой контент с использованием ИИ юридически чист?</p>
+<p>Успешная модерация не означает, что ваш контент юридически чист, а также не значит, что любая другая песня пройдет проверку точно также, как первая. Если релиз прошел шаг модерации и был опубликован - означает, что на момент проверки технические или физические средства проверки не смогли найти чего-либо, препятствующего публикации. Ответственность за любые нарушения в области интеллектуальной собственности в будущем несет пользователь, являющийся правообладателем при загрузке.</p></div>
+    </details></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-artist-services" class="app-screen">
+        <div class="content-card glass">
+          <h1>Сервис для артистов</h1>
+          <p class="lead">Инструменты развития артиста, финансовая информация, профиль на площадках и смарт-ссылки.</p>
+
+          <div class="cards3">
+            <div class="info-card"><i class="fa-solid fa-chart-line"></i><h3>Аналитика</h3><p>Прослушивания, аудитория, динамика каталога.</p></div>
+            <div class="info-card"><i class="fa-solid fa-wallet"></i><h3>Финансы</h3><p>Роялти, отчёты и вывод средств.</p></div>
+            <div class="info-card"><i class="fa-solid fa-link"></i><h3>Смарт-ссылки</h3><p>Страница релиза и ссылки на музыкальные сервисы.</p></div>
+          </div>
+
+          <div class="subtabs" id="artistTabs">
+            <button class="subtab active" data-artist-tab="analytics">Аналитика</button>
+            <button class="subtab" data-artist-tab="wallet">Кошелёк</button>
+            <button class="subtab" data-artist-tab="smartlinks">Смарт-ссылки</button>
+          </div>
+          <div id="artistFunctionalPanel"></div>
+
+          <div class="knowledge-block">
+            <div class="knowledge-heading">
+              <h2>Условия и возможности</h2>
+              <p>Оплата, возврат средств, роялти, Spotify for Artists и работа со смарт-ссылками.</p>
+            </div>
+            <div class="knowledge-list"><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-credit-card"></i></span><span>Оплата и возврат средств</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Условия оплаты и возврата средств</p>
+<p>Оплата услуг на сайте реализована при помощи безопасного международного платежного сервиса Cloudpayments Мы принимаем оплату картами Visa/Mastercard/Мир за услуги сайта на срок, указанный в каждой конкретной услуге, если это применимо. Возврат средств за активацию аккаунта Мы можем вернуть средства в течении 48 часов с момента активации, в случае если: Вы не использовали инструменты сайта, как минимум единожды, а именно одну или все из нижеперечисленных функций: Не верифицировали ваш аккаунт Не отправляли релизы на модерацию Не использовали форму редактирования Не использовали форму заявки размещения на витринах Не использовали функционал сервиса как-либо еще в рамках инструментов аккаунта Условия возврата средств Вам необходимо: Обратиться с просьбой вернуть средства в течении указанного времени с момента активации, используя адрес поддержки. Сумма возвращается с вычетом комиссии банка или платёжного сервиса, если таковая была при оплате аккаунта и/или при возврате средств на вашу карту.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-wallet"></i></span><span>Кошелёк, роялти и вывод средств</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p></p>
+<p>Информация о роялти на данной странице агрегируется со всех партнёрских площадок, предоставивших отчёт на текущий момент для вашего контента. Название отчёта означает месяц предоставления данных и оплаты, а не период, за который произошли события. При просмотре финансовых данных следует учитывать наличие задержки между произошедшими фактически событиями на музыкальных площадках и наличием данных событий в фактическом отчёте. Например, если конкретный музыкальные сервис сформировал отчётный документ за квартал или иной диапазон, а направил нам эту информацию в предыдущем месяце — все такие данные будут размещены и доступны для фильтрации с наименованием месяца поступления. Обновление данных происходит по-факту получения данных, а также платежей от музыкальных витрин. Пожалуйста, обратите внимание, что инструмент не может вам показать данные, которые вы ожидаете, но их еще нет в базе данных. При использовании фильтров в верхней части инструмента важно учитывать заведомо нулевые значения — это означает, что фильтр не предлагает к выбору варианты, которые приведут к показу нуля строчек. Таким образом, выбирая один фильтр — вы оказываете влияние на возможные варианты выбора соседнего значения.</p>
+<p>Как вывести средства? Независимо от того активен ваш аккаунт, или завершился — вы можете вывести средства при достижении минимальной суммы согласно договору. Как правило, — это 50 € / 5000 рублей. В случае, если ваш контент не пользуется популярностью — средства продолжают накапливаться из месяца в месяц.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-chart-line"></i></span><span>Spotify for Artists</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Spotify для артистов, верифицируем аккаунт</p>
+<p>Чтобы получить контроль над своим профилем на Spotify используйте актуальную инструкцию на официальном сайте artists.spotify.com</p>
+<p>Вы сможете отредактировать биографию, изменить фото профиля и фотогалерею, ссылки на официальные страницы. + Доступ к статистике, возможность показать трек кураторам и указать его настроение, жанр согласно иерархии внутри Спотифай.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-link"></i></span><span>Смарт-ссылки на релизы</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Как открыть страницу ссылок на мой релиз?</p>
+<p>URL-адрес страницы смарт-линка доступен в личном кабинете, либо же, обратитесь в поддержку с запросом.</p>
+<p>Как на странице релиза указать название трека и название артиста?</p>
+<p>Функционал смарт-линков является неотъемлемой частью сервиса дистрибуции музыкального контента. Поэтому наименование и релиза и артистов уже указаны на странице и не требуют заполнения. Вам также не требуется указывать UPC релиза и прочие настройки.</p>
+<p>Как изменить порядок ссылок на удобный для меня?</p>
+<p>Изменяйте порядок ссылок нажав на кнопку &quot;Добавить&quot; — далее используйте навигационные элементы вверх и вниз для перемещения нужной ссылки. Нажмите &quot;Сохранить изменения&quot;. Готово.</p>
+<p>Как добавить отсутствующие ссылки на страницу смарт-линка?</p>
+<p>Пожалуйста, нажмите &quot;Добавить&quot;, если некоторые ссылки не отображены. Скопируйте, а затем вставьте необходимую ссылку в поле ввода. Нажмите &quot;Добавить&quot; под полем ввода. Изменения выполнены.</p>
+<p>Вам доступно добавление ссылок на следующие ресурсы: ВКонтакте, ВК Музыка (ранее BOOM), Яндекс Музыка, ЗВУК, Apple Music, Spotify, Deezer, YouTube Music, YouTube, SoundCloud, Amazon, Tidal, Anghami, TikTok, Pandora, Napster, Boomplay, Bandcamp, JunoDownload.</p>
+<p>Мне нужны дополнительные возможности</p>
+<p>Пожалуйста, обратитесь в поддержку с описанием желаемых функций и особенностей. Способы связи указаны в личном кабинете.</p>
+<p>Сколько это стоит?</p>
+<p>Линк для трека — бонус для пользователей нашего сервиса дистрибуции музыки. На данный момент использование функции не требует оплаты. Страница трека создаётся автоматически для всех музыкальных релизов, которые мы выпустим в партнерстве с вами. На данный момент вы не сможете настроить страницу релиза для музыки, которую выпускали любые другие партнеры.</p></div>
+    </details></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-admin" class="app-screen">
+        <div class="content-card glass">
+          <div class="panel-head">
+            <div><h1>Админ-панель</h1><p>Модерация релизов и управление статусами заявок.</p></div>
+            <span class="status-pill gold">Только администратор</span>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="dash-card"><i class="fa-solid fa-inbox"></i><b id="adminPendingCount">0</b><span>На модерации</span></div>
+            <div class="dash-card"><i class="fa-solid fa-circle-check"></i><b id="adminApprovedCount">0</b><span>Одобрено</span></div>
+            <div class="dash-card"><i class="fa-solid fa-pen-to-square"></i><b id="adminRevisionCount">0</b><span>На доработке</span></div>
+            <div class="dash-card"><i class="fa-solid fa-ban"></i><b id="adminRejectedCount">0</b><span>Отклонено</span></div>
+          </div>
+
+          <div class="subtabs" id="adminTabs">
+            <button class="subtab active" data-admin-tab="all">Все</button>
+            <button class="subtab" data-admin-tab="pending">На модерации</button>
+            <button class="subtab" data-admin-tab="revision">На доработке</button>
+            <button class="subtab" data-admin-tab="approved">Одобрено</button>
+            <button class="subtab" data-admin-tab="rejected">Отклонено</button>
+          </div>
+
+          <div id="adminReleaseList" class="data-list">
+            <div class="notice-box">Загрузка заявок...</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-advertising" class="app-screen">
+        <div class="content-card glass">
+          <h1>Рекламная кампания</h1>
+          <p class="lead">Продвижение релизов внутри платформы и во внешних каналах.</p>
+
+          <div class="cards3">
+            <div class="info-card"><i class="fa-solid fa-bullhorn"></i><h3>Кампания</h3><p>Цели, сроки, бюджет и география.</p></div>
+            <div class="info-card"><i class="fa-brands fa-spotify"></i><h3>Spotify</h3><p>Плейлисты, профили артиста и рекомендации.</p></div>
+            <div class="info-card"><i class="fa-brands fa-tiktok"></i><h3>TikTok</h3><p>Музыкальная вкладка, использование треков и роялти.</p></div>
+          </div>
+
+          <div class="subtabs" id="adTabs">
+            <button class="subtab active" data-ad-tab="campaigns">Мои кампании</button>
+            <button class="subtab" data-ad-tab="create">Создать кампанию</button>
+          </div>
+          <div id="advertisingFunctionalPanel"></div>
+
+          <div class="knowledge-block">
+            <div class="knowledge-heading">
+              <h2>Продвижение релиза</h2>
+              <p>Практические материалы по Spotify, TikTok и использованию смарт-ссылок.</p>
+            </div>
+            <div class="knowledge-list"><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-spotify"></i></span><span>Spotify: плейлисты и продвижение</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Как получить поддержку в Spotify global и пользовательских плейлистах</p>
+<p>Сначала немножко скучной, но важной терминологии. :)</p>
+<p>Global Spotify Playlists — плейлисты курируемые анонимными кураторами из команды Спотифай. В них можно попасть в случае отправки заявки и её одобрения, а также по относительной случайности (благодаря алгоритмам рекомендаций, которые используются и кураторской командой, а не только слушателями). Это большие и, как правило, значимые плейлисты. Попасть в них можно в основном составе и в &quot;персонализированном&quot; (когда ваш трек отображается лишь для части слушателей, основываясь на сложных алгоритмах). И первый и второй случай обычно приносит артисту и роялти и прослушивания.</p>
+<p>User Spotify Playlists — пользовательские плейлисты. Обычно с существенно меньшей активностью, но порой очень значимой. Разумеется, попасть в них намного проще. Используйте сервисы Dailyplaylist, Submithub  и десятки других.</p>
+<p>Как увеличить шансы быть замеченным на Spotify?</p>
+<p>Спотифай наиболее алгоритмически сложный сервис, использующий для рекомендаций музыки и ваши соцсети тоже. При этом, поскольку ВКонтакте никак не используется в ранжировании музыки, акцент отдан Instagram &amp; Facebook, Twitter и присутствию на Wikipedia. Именно поэтому, в том числе, сервис попросит указать ссылки на ваши социальные профили. Чтобы иметь возможность</p>
+<p>Поддержка не оригинального контента</p>
+<p>Отправлять заявку можно только на оригинальный аудиофайл. Если вы повторно выпускаете песню в составе альбома — свяжитесь с нами перед оформлением релиза. Поможем выполнить доставку на Spotify правильно.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-music"></i></span><span>TikTok: релизы, музыкальная вкладка и роялти</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Как создать страницу своей песни на ТикТок?</p>
+<p>После доставки вашей песни в Tik Tok , соцсеть создаст отдельную страничку с обложкой релиза, названием песни, именем артиста, а также покажет список видео-роликов, использующих ваш хит. Для этого не требуется дополнительных действий, кроме предварительной доставки контента.</p>
+<p>Как на своём профиле Тик Ток создать дополнительную вкладку с релизами? (музыкальная вкладка)</p>
+<p>Если имя вашего профиля в ТикТок совпадает с именем исполнителя (ваш никнейм) - это не означает, что вкладка с музыкой появится на вашей страничке автоматически. Но хотелось бы — верно? К сожалению платформа имеет ограничения в предоставлении такой функции. Но вы можете её получить.</p>
+<p>Что для этого нужно:</p>
+<p>•	Верифицированный аккаунт</p>
+<p>или, если аккаунт не верифицирован:</p>
+<p>•	5000+ созданных видео под треки артиста (количество клипов, в которых использованы ваши песни)</p>
+<p>•	аккаунт не должен быть заброшен: минимум 50 опубликованных клипов, у которых суммарное количество просмотров более 1 млн.</p>
+<p>•	к TIKTOK аккаунту нужно привязать аккаунт в другой социальной сети, где более 100 тысяч человек.</p>
+<p>Как заработать на своих песнях в ТикТок?</p>
+<p>Уверен, вы множество раз слышали, что трек &quot;завирусился&quot; в ТикТок? Эта платформа действительно способна сделать артиста популярным и прилично заработать, но трек должен стать хитом.</p>
+<p>ТикТок оплачивает использование музыки в клипах. Каждое добавление песни в ролик — это роялти. Количество просмотров ролика при этом, не влияет на роялти. Только добавление.</p>
+<p>В зависимости от территории эта сумма существенно варьируется. Начинающим артистам рекомендуем рассматривать площадку, как отличное место для популяризации песен. Ведь популярность в ТикТок подразумевает активность на других музыкальных площадках. Если вы обрели популярность там — это отразиться на востребованности вашей музыки в других витринах.</p></div>
+    </details>
+<details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-bullhorn"></i></span><span>Как использовать смарт-линк для продвижения</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Как использовать смарт-линк для продвижения?</p>
+<p>В день релиза рекомендуем указывать ссылку на ваш новый релиз в социальных сетях. Это также отличный вариант для использования в таргетированной рекламе в качестве целевой страницы. Заинтересованным в вашей песне просто и легко выбрать удобный способ прослушивания, а значит большинство потенциальных фанов не потеряются.</p></div>
+    </details></div>
+          </div>
+        </div>
+      </section>
+      <section id="screen-messenger" class="app-screen">
+        <div id="messengerLoggedOut" class="messenger-login-required glass">
+          <div><i class="fa-regular fa-comments"></i><h2>SUA Messenger</h2><p>Войдите или зарегистрируйтесь, чтобы находить пользователей и переписываться с ними в реальном времени.</p><button type="button" id="messengerLoginBtn">Войти в аккаунт</button></div>
+        </div>
+
+        <div id="messengerApp" class="chat glass" hidden>
+          <aside class="chat-list">
+            <div class="chat-list-head">
+              <div class="chat-list-title">
+                <span>Мессенджер</span>
+                <span class="connection-badge"><i id="realtimeDot" class="connection-dot"></i><span id="realtimeText">подключение</span></span>
+              </div>
+
+              <div class="messenger-user-search">
+                <input id="userSearch" placeholder="Найти пользователя">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div id="userSearchResults" class="messenger-search-results"></div>
+
+              <div id="friendRequestsWrap" class="requests-block" hidden>
+                <div class="requests-title">Запросы в друзья</div>
+                <div id="friendRequests"></div>
+              </div>
+
+              <div class="chat-me">
+                <div class="chat-avatar" id="myAvatar">S</div>
+                <div><b id="myDisplayName">SUA User</b><span id="myUsername">@username</span></div>
+              </div>
+            </div>
+
+            <div id="organizerPinned" class="pinned-organizer">
+              <div class="pin-label"><i class="fa-solid fa-thumbtack"></i> Закреплено</div>
+              <div class="pinned-organizer-row">
+                <div class="chat-avatar">S</div>
+                <div><b>Организатор SUA</b><span id="organizerStatus">@sua_admin</span></div>
+              </div>
+            </div>
+
+            <div id="conversationList" class="chat-conversations">
+              <div class="chat-empty-list">У вас пока нет диалогов.</div>
+            </div>
+          </aside>
+
+          <div class="chat-window">
+            <div id="chatPlaceholder" class="chat-placeholder">
+              <div><i class="fa-regular fa-message"></i><b>Выберите диалог</b><span>Или найдите пользователя слева.</span></div>
+            </div>
+
+            <div id="activeChat" hidden>
+              <div class="chat-window-head">
+                <div class="chat-peer">
+                  <div class="chat-avatar" id="peerAvatar">U</div>
+                  <div><b id="peerName">Пользователь</b><span id="peerUsername">@username</span><span id="peerStatus" class="chat-status">SUA Messenger</span></div>
+                </div>
+                <div class="chat-head-actions">
+                  <button title="Информация" id="chatInfoBtn"><i class="fa-solid fa-circle-info"></i></button>
+                </div>
+              </div>
+              <div id="messages" class="messages"></div>
+              <div class="compose">
+                <button type="button" title="Прикрепить файл" disabled><i class="fa-solid fa-paperclip"></i></button>
+                <textarea id="messageInput" rows="1" placeholder="Сообщение..."></textarea>
+                <button type="button" class="send" id="sendMessageBtn" title="Отправить"><i class="fa-solid fa-paper-plane"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="screen-feed" class="app-screen">
+        <div class="content-card glass">
+          <h1>Новостная лента</h1>
+          <p class="lead">Новости SUA, релизы, публикации пользователей и материалы музыкальной индустрии.</p>
+          <div class="quick-row">
+            <button class="quick-btn" id="createPostBtn"><i class="fa-solid fa-pen"></i> Новая публикация</button>
+            <button class="soft-btn" onclick="renderFeed()"><i class="fa-solid fa-rotate"></i> Обновить</button>
+          </div>
+          <div id="feedList"></div>
+        </div>
+      </section>
+      <section id="screen-communities" class="app-screen">
+        <div class="content-card glass">
+          <h1>Сообщества</h1>
+          <p class="lead">Пространства для артистов, продюсеров, авторов и слушателей.</p>
+          <div class="subtabs">
+            <button class="subtab active" onclick="renderCommunities('all',this)">Все</button>
+            <button class="subtab" onclick="renderCommunities('joined',this)">Мои сообщества</button>
+          </div>
+          <div id="communityList"></div>
+        </div>
+      </section>
+      <section id="screen-sanctum" class="app-screen">
+        <div class="content-card glass">
+          <h1>Клуб знаний</h1>
+          <p class="lead">Книги, аудиолекции, курсы и ветви обсуждений.</p>
+          <div class="subtabs" id="knowledgeTabs">
+            <button class="subtab active" data-knowledge-tab="library">Библиотека</button>
+            <button class="subtab" data-knowledge-tab="lectures">Аудиолекции</button>
+            <button class="subtab" data-knowledge-tab="courses">Курсы</button>
+            <button class="subtab" data-knowledge-tab="discussions">Дискуссии</button>
+          </div>
+          <div id="knowledgeFunctionalPanel"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+  <div class="site-modal" id="siteModal">
+    <div class="site-modal-card">
+      <div class="site-modal-head"><h2 id="siteModalTitle">SUA</h2><button class="site-modal-close" id="siteModalClose"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="siteModalBody"></div>
+    </div>
+  </div>
+
+  <div class="auth-modal" id="authModal">
+    <div class="auth-card">
+      <div class="auth-card-head"><h2>SUA Account</h2><button class="auth-close" id="authClose"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="auth-tabs"><button class="auth-tab active" data-auth-tab="login">Вход</button><button class="auth-tab" data-auth-tab="register">Регистрация</button></div>
+      <div class="auth-form active" id="authLoginForm">
+        <input class="auth-input" id="loginEmail" type="email" autocomplete="email" placeholder="Электронная почта">
+        <input class="auth-input" id="loginPassword" type="password" autocomplete="current-password" placeholder="Пароль">
+        <button class="auth-submit" id="loginSubmit">Войти</button>
+      </div>
+      <div class="auth-form" id="authRegisterForm">
+        <input class="auth-input" id="registerName" placeholder="Имя, которое увидят пользователи">
+        <input class="auth-input" id="registerUsername" placeholder="Username, например artist_name">
+        <input class="auth-input" id="registerEmail" type="email" autocomplete="email" placeholder="Электронная почта">
+        <input class="auth-input" id="registerPassword" type="password" autocomplete="new-password" placeholder="Пароль — минимум 8 символов">
+        <button class="auth-submit" id="registerSubmit">Создать аккаунт</button>
+        <div class="auth-note">Для первой рабочей версии SUA Messenger используется вход по электронной почте и паролю. Телефон и SMS добавим отдельным этапом.</div>
+      </div>
+      <div id="authFeedback" class="auth-error"></div>
+    </div>
+  </div>
+
+  <div class="player">
+    <div class="player-track">
+      <div id="playerCover" style="width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:rgba(255,255,255,.35)"><i class="fa-solid fa-music"></i></div>
+      <div class="meta"><b id="playerTitle">Без трека</b><span id="playerArtist">Каталог пока пуст</span></div>
+      <button class="heart" disabled><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="player-center"><button disabled><i class="fa-solid fa-shuffle"></i></button><button disabled><i class="fa-solid fa-backward-step"></i></button><button class="play" disabled><i id="playIcon" class="fa-solid fa-play"></i></button><button disabled><i class="fa-solid fa-forward-step"></i></button><button disabled><i class="fa-solid fa-repeat"></i></button></div>
+    <div class="player-right"><i class="fa-solid fa-volume-high"></i><div class="volume"></div><i class="fa-solid fa-sliders"></i></div>
+  </div>
+</div>
+
+<script>
+  const backgrounds=['white','assets/bg-1.jpg','assets/bg-2.jpg','assets/bg-3.jpg','assets/bg-4.jpg','assets/bg-5.jpg','assets/bg-6.jpg','assets/bg-7.jpg','assets/bg-8.jpg','assets/bg-9.jpg'];
+  let bgIndex=Number(localStorage.getItem('suaBgIndex')||0)%backgrounds.length;
+  const workspace=document.getElementById('workspace');
+  function applyBackground(){
+    const bg=backgrounds[bgIndex];
+    if(bg==='white'){
+      workspace.style.backgroundImage='none';
+      workspace.style.backgroundColor='#ffffff';
+      document.body.classList.add('white-workspace');
+    }else{
+      workspace.style.backgroundColor='';
+      workspace.style.backgroundImage=`url('${bg}')`;
+      document.body.classList.remove('white-workspace');
+    }
+  }
+  function changeBackground(){bgIndex=(bgIndex+1)%backgrounds.length;localStorage.setItem('suaBgIndex',bgIndex);applyBackground();}
+  applyBackground();
+
+  // Демо-треки удалены. Позже сюда можно добавить реальный каталог.
+  const musicDatabase=[];
+  const releases=[];
+
+  function filterMusic(){
+    const q=document.getElementById('searchInput').value.trim();
+    const box=document.getElementById('trackList');
+    if(!box)return;
+    box.innerHTML=`<div class="empty-state empty-track"><i class="fa-solid fa-music"></i><b>${q?'Ничего не найдено':'Треков пока нет'}</b><span>${q?'Каталог ещё не наполнен.':'Демо-композиции удалены. Раздел готов для настоящего каталога.'}</span></div>`;
+  }
+  function playTrack(){return}
+  function togglePlay(){return}
+
+
+  const suaStore={
+    get(key,fallback=[]){try{return JSON.parse(localStorage.getItem(key)) ?? fallback}catch(_){return fallback}},
+    set(key,value){localStorage.setItem(key,JSON.stringify(value))}
+  };
+  const h=value=>String(value??'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+
+  function goSection(id){
+    const nav=[...document.querySelectorAll('.nav-item')].find(x=>x.getAttribute('onclick')?.includes(`'${id}'`));
+    switchScreen(id,nav||null);
+  }
+
+  function openSiteModal(title,body){
+    document.getElementById('siteModalTitle').textContent=title;
+    document.getElementById('siteModalBody').innerHTML=body;
+    document.getElementById('siteModal').classList.add('open');
+  }
+  function closeSiteModal(){document.getElementById('siteModal').classList.remove('open')}
+  document.getElementById('siteModalClose').addEventListener('click',closeSiteModal);
+  document.getElementById('siteModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSiteModal()});
+
+  async function showNotifications(){
+    if(window.suaShowFirebaseNotifications) return window.suaShowFirebaseNotifications();
+
+    const notes=suaStore.get('suaNotifications',[
+      {title:'Добро пожаловать в SUA',text:'Платформа готова к настройке вашего профиля и загрузке первого релиза.',time:'сейчас'}
+    ]);
+    openSiteModal('Уведомления',`<div class="data-list">${notes.map(n=>`<div class="data-row"><div><b>${h(n.title)}</b><span>${h(n.text)}</span></div><span class="status-pill">${h(n.time)}</span></div>`).join('')}</div>`);
+  }
+
+  function openQuickProfile(){
+    if(window.suaOpenProfile) return window.suaOpenProfile();
+    openSiteModal('Профиль','<div class="notice-box">Войдите в аккаунт, чтобы открыть профиль.</div>');
+  }
+  document.getElementById('notificationsBtn').addEventListener('click',showNotifications);
+  document.getElementById('profileBtn').addEventListener('click',openQuickProfile);
+
+  // MUSIC
+  const chartDemo=[
+    ['1','Новые релизы SUA','Каталог будет формироваться из одобренных релизов'],
+    ['2','Тренды недели','Данные появятся после наполнения каталога'],
+    ['3','Выбор редакции','Редакторская подборка SUA']
+  ];
+  const playlistDemo=[
+    ['Новые релизы','Свежая музыка каталога SUA'],
+    ['Фокус','Подборка для внимательного прослушивания'],
+    ['Ночной эфир','Атмосферный плейлист платформы']
+  ];
+  function renderMusicTab(tab){
+    const hero=document.getElementById('musicOverviewHero');
+    const content=document.getElementById('musicOverviewContent');
+    const panel=document.getElementById('musicExtraPanel');
+    if(tab==='overview'){hero.style.display='flex';content.style.display='block';panel.innerHTML='';return}
+    hero.style.display='none';content.style.display='none';
+    if(tab==='charts'){
+      panel.innerHTML=`<div class="data-list">${chartDemo.map(x=>`<div class="data-row"><div><b>${x[0]}. ${x[1]}</b><span>${x[2]}</span></div><span class="status-pill gold">Скоро</span></div>`).join('')}</div>`;
+    }else{
+      panel.innerHTML=`<div class="data-list">${playlistDemo.map(x=>`<div class="data-row"><div><b>${x[0]}</b><span>${x[1]}</span></div><button class="mini-btn" onclick="alert('Плейлист станет доступен после наполнения каталога')">Открыть</button></div>`).join('')}</div>`;
+    }
+  }
+  document.querySelectorAll('#musicTabs .subtab').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#musicTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderMusicTab(b.dataset.musicTab);
+  }));
+
+  // DISTRIBUTION
+  const fileNames={audio:'',cover:'',contract:''};
+  function bindFile(id,label,key){
+    const input=document.getElementById(id),lab=document.getElementById(label);
+    input?.addEventListener('change',()=>{
+      fileNames[key]=input.files?.[0]?.name||'';
+      if(fileNames[key]) lab.childNodes[0].nodeValue=fileNames[key]+' ';
+    });
+  }
+  bindFile('releaseAudio','audioFileLabel','audio');
+  bindFile('releaseCover','coverFileLabel','cover');
+  bindFile('releaseContract','contractFileLabel','contract');
+
+  function renderReleaseRequests(){
+    if(window.suaRenderReleaseRequests) return window.suaRenderReleaseRequests();
+    const box=document.getElementById('myReleaseRequests');
+    if(box) box.innerHTML='<div class="notice-box">Войдите в аккаунт, чтобы увидеть заявки.</div>';
+  }
+
+  document.getElementById('releaseSubmitBtn')?.addEventListener('click',()=>{
+    if(window.suaSubmitRelease) return window.suaSubmitRelease();
+    alert('Firebase ещё подключается. Обновите страницу и попробуйте снова.');
+  });
+
+  // ARTIST SERVICES
+  function renderArtistPanel(tab='analytics'){
+    const box=document.getElementById('artistFunctionalPanel');if(!box)return;
+    if(tab==='analytics'){
+      box.innerHTML='<div class="dashboard-grid"><div class="dash-card"><i class="fa-solid fa-headphones"></i><b>0</b><span>Прослушиваний</span></div><div class="dash-card"><i class="fa-solid fa-user-group"></i><b>0</b><span>Слушателей</span></div><div class="dash-card"><i class="fa-solid fa-heart"></i><b>0</b><span>Добавлений</span></div><div class="dash-card"><i class="fa-solid fa-globe"></i><b>—</b><span>Главный рынок</span></div></div><div class="notice-box" style="margin-top:12px">Аналитика начнёт заполняться после получения отчётов от музыкальных площадок.</div>';
+    }else if(tab==='wallet'){
+      box.innerHTML='<div class="data-row"><div><b>Доступно к выводу</b><span>Роялти будут агрегироваться из отчётов партнёрских площадок.</span></div><b style="font-size:20px">0 ₽</b></div><div class="form-actions"><button class="quick-btn" onclick="alert(\'Минимальная сумма вывода и реквизиты будут подключены вместе с финансовым backend.\')">Вывести средства</button><button class="soft-btn" onclick="alert(\'Отчётов пока нет\')">История отчётов</button></div>';
+    }else{
+      const links=suaStore.get('suaSmartlinks',[]);
+      box.innerHTML=`<div class="form-actions"><button class="quick-btn" onclick="createSmartlink()">Создать смарт-ссылку</button></div><div class="data-list">${links.length?links.map(l=>`<div class="data-row"><div><b>${h(l.title)}</b><span>${h(l.url)}</span></div><button class="mini-btn" onclick="navigator.clipboard?.writeText('${h(l.url)}')">Копировать</button></div>`).join(''):'<div class="notice-box">Смарт-ссылок пока нет.</div>'}</div>`;
+    }
+  }
+  function createSmartlink(){
+    openSiteModal('Новая смарт-ссылка',`<div class="modal-grid"><input class="modal-input full" id="smartTitle" placeholder="Название релиза"><input class="modal-input full" id="smartSlug" placeholder="Короткий адрес, например my-release"><button class="quick-btn full" onclick="saveSmartlink()">Создать</button></div>`);
+  }
+  window.saveSmartlink=function(){
+    const title=document.getElementById('smartTitle').value.trim(),slug=document.getElementById('smartSlug').value.trim().toLowerCase().replace(/[^a-z0-9_-]/g,'-');
+    if(!title||!slug)return;
+    const arr=suaStore.get('suaSmartlinks',[]);arr.push({title,url:`https://sua.music/${slug}`});suaStore.set('suaSmartlinks',arr);closeSiteModal();renderArtistPanel('smartlinks');
+  };
+  document.querySelectorAll('#artistTabs .subtab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#artistTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderArtistPanel(b.dataset.artistTab)}));
+
+  // FEED
+  function renderFeed(){
+    const base=[{id:'official1',author:'SUA Music',text:'Добро пожаловать в ленту SUA. Здесь будут появляться новости платформы, анонсы релизов и материалы музыкальной индустрии.',likes:12,time:'Официально'}];
+    const user=suaStore.get('suaFeedPosts',[]);
+    const rows=[...user.slice().reverse(),...base],box=document.getElementById('feedList');if(!box)return;
+    box.innerHTML=rows.map(p=>`<div class="post-card"><div class="post-head"><b>${h(p.author||'SUA User')}</b><span class="status-pill">${h(p.time||'сейчас')}</span></div><div class="post-body">${h(p.text)}</div><div class="post-actions"><button onclick="likePost('${h(p.id)}')"><i class="fa-regular fa-heart"></i> ${Number(p.likes||0)}</button><button onclick="alert('Комментарии подключим как отдельные ветви Firebase')"><i class="fa-regular fa-comment"></i> Комментарии</button></div></div>`).join('');
+  }
+  document.getElementById('createPostBtn')?.addEventListener('click',()=>openSiteModal('Новая публикация','<textarea id="newPostText" class="modal-textarea" placeholder="Что нового?"></textarea><div class="form-actions"><button class="quick-btn" onclick="savePost()">Опубликовать</button></div>'));
+  window.savePost=function(){const t=document.getElementById('newPostText').value.trim();if(!t)return;const a=suaStore.get('suaFeedPosts',[]);a.push({id:String(Date.now()),author:'SUA User',text:t,likes:0,time:new Date().toLocaleString('ru-RU')});suaStore.set('suaFeedPosts',a);closeSiteModal();renderFeed()};
+  window.likePost=function(id){const a=suaStore.get('suaFeedPosts',[]),p=a.find(x=>x.id===id);if(p){p.likes=(p.likes||0)+1;suaStore.set('suaFeedPosts',a);renderFeed()}};
+
+  // COMMUNITIES
+  const communityData=[
+    {id:'artists',name:'Артисты',desc:'Коллаборации, релизы и развитие артистического проекта.',icon:'fa-microphone-lines'},
+    {id:'production',name:'Продакшн',desc:'Сведение, мастеринг, оборудование и звук.',icon:'fa-sliders'},
+    {id:'authors',name:'Авторы',desc:'Тексты, композиция и поиск соавторов.',icon:'fa-pen-nib'},
+    {id:'business',name:'Музыкальный бизнес',desc:'Дистрибуция, продвижение, права и стратегия.',icon:'fa-briefcase'}
+  ];
+  function renderCommunities(mode='all',btn){
+    if(btn){document.querySelectorAll('#screen-communities .subtab').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+    const joined=suaStore.get('suaCommunities',[]),rows=communityData.filter(c=>mode!=='joined'||joined.includes(c.id)),box=document.getElementById('communityList');
+    box.innerHTML=rows.length?rows.map(c=>`<div class="community-card"><div class="community-icon"><i class="fa-solid ${c.icon}"></i></div><div><b>${c.name}</b><span style="display:block;font-size:9px;color:var(--muted);margin-top:4px">${c.desc}</span></div><div class="data-row-actions"><button class="mini-btn" onclick="openCommunity('${c.id}')">Открыть</button><button class="mini-btn gold" onclick="toggleCommunity('${c.id}')">${joined.includes(c.id)?'Выйти':'Вступить'}</button></div></div>`).join(''):'<div class="notice-box">Вы пока не вступили ни в одно сообщество.</div>';
+  }
+  window.toggleCommunity=function(id){let a=suaStore.get('suaCommunities',[]);a=a.includes(id)?a.filter(x=>x!==id):[...a,id];suaStore.set('suaCommunities',a);renderCommunities('all')};
+  window.openCommunity=function(id){const c=communityData.find(x=>x.id===id);openSiteModal(c.name,`<div class="notice-box">${c.desc}</div><div class="form-actions"><button class="quick-btn" onclick="alert('Публикации сообщества подключим к Firebase на следующем этапе')">Создать тему</button></div>`)};
+
+  // KNOWLEDGE
+  const knowledgeData={
+    library:[['Музыкальный бизнес: основы','Книга / подборка'],['Диалектика просвещения','Философия и культурная теория'],['Маркетинг артиста','Практическое руководство']],
+    lectures:[['Стратегия релиза','Аудиолекция · 28 мин'],['Авторское право без сложных терминов','Аудиолекция · 34 мин'],['Как читать статистику стриминга','Аудиолекция · 21 мин']],
+    courses:[['Дистрибуция от загрузки до отчёта','4 модуля'],['Продвижение первого релиза','6 модулей'],['Позиционирование артиста','5 модулей']],
+    discussions:[['Что делает релиз успешным?','Открытая дискуссия'],['ИИ и музыка: инструмент или автор?','Дискуссионная ветка'],['Как искать команду?','Обсуждение сообщества']]
+  };
+  function renderKnowledge(tab='library'){
+    const box=document.getElementById('knowledgeFunctionalPanel'),rows=knowledgeData[tab]||[];
+    box.innerHTML=rows.map((x,i)=>`<div class="course-card"><h3>${h(x[0])}</h3><p>${h(x[1])}</p>${tab==='courses'?`<div class="progress-line"><span style="width:${suaStore.get('suaCourseProgress',{})[`${tab}-${i}`]||0}%"></span></div>`:''}<div class="form-actions"><button class="mini-btn gold" onclick="openKnowledgeItem('${tab}',${i})">${tab==='discussions'?'Открыть':'Подробнее'}</button>${tab==='courses'?`<button class="mini-btn" onclick="advanceCourse('${tab}-${i}')">Продолжить</button>`:''}</div></div>`).join('');
+  }
+  window.openKnowledgeItem=function(tab,i){const x=knowledgeData[tab][i];openSiteModal(x[0],`<div class="notice-box">${h(x[1])}. Полный контент материала будет добавляться администрацией клуба знаний.</div>`)};
+  window.advanceCourse=function(key){const p=suaStore.get('suaCourseProgress',{});p[key]=Math.min(100,(p[key]||0)+25);suaStore.set('suaCourseProgress',p);renderKnowledge('courses')};
+  document.querySelectorAll('#knowledgeTabs .subtab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#knowledgeTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderKnowledge(b.dataset.knowledgeTab)}));
+
+  // ADVERTISING
+  function renderAdvertising(tab='campaigns'){
+    const box=document.getElementById('advertisingFunctionalPanel');if(!box)return;
+    if(tab==='campaigns'){
+      const arr=suaStore.get('suaAdCampaigns',[]);
+      box.innerHTML=arr.length?`<div class="data-list">${arr.slice().reverse().map(c=>`<div class="data-row"><div><b>${h(c.name)}</b><span>${h(c.platform)} · ${h(c.budget)} ₽ · ${h(c.goal)}</span></div><span class="status-pill gold">${h(c.status)}</span></div>`).join('')}</div>`:'<div class="notice-box">Кампаний пока нет. Создайте первую рекламную кампанию.</div>';
+    }else{
+      box.innerHTML=`<div class="modal-grid"><input id="adName" class="modal-input full" placeholder="Название кампании"><select id="adPlatform" class="modal-select"><option>Instagram / Meta</option><option>TikTok</option><option>VK</option><option>Spotify / playlists</option></select><input id="adBudget" class="modal-input" type="number" min="0" placeholder="Бюджет, ₽"><input id="adGoal" class="modal-input full" placeholder="Цель: прослушивания, подписки, переходы..."><button class="quick-btn full" onclick="saveCampaign()">Сохранить кампанию</button></div>`;
+    }
+  }
+  window.saveCampaign=function(){const name=document.getElementById('adName').value.trim(),budget=document.getElementById('adBudget').value;if(!name||!budget)return;const a=suaStore.get('suaAdCampaigns',[]);a.push({id:Date.now(),name,platform:document.getElementById('adPlatform').value,budget,goal:document.getElementById('adGoal').value.trim()||'Продвижение релиза',status:'Черновик'});suaStore.set('suaAdCampaigns',a);renderAdvertising('campaigns');document.querySelectorAll('#adTabs .subtab').forEach((x,i)=>x.classList.toggle('active',i===0))};
+  document.querySelectorAll('#adTabs .subtab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#adTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderAdvertising(b.dataset.adTab)}));
+
+  function initFullSite(){
+    renderReleaseRequests();renderArtistPanel('analytics');renderFeed();renderCommunities('all');renderKnowledge('library');renderAdvertising('campaigns');renderMusicTab('overview');
+  }
+  window.addEventListener('DOMContentLoaded',initFullSite);
+
+
+  function switchScreen(id,btn){
+    document.querySelectorAll('.app-screen').forEach(x=>x.classList.remove('active'));
+    document.getElementById('screen-'+id).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+    if(btn)btn.classList.add('active');
+    const topbar=document.getElementById('globalTopbar');
+    if(topbar) topbar.style.display = id==='home' ? 'flex' : 'none';
+    document.body.classList.toggle('home-screen', id==='home');
+    if(id==='feed')renderFeed();
+    if(id==='communities')renderCommunities('all');
+    if(id==='sanctum')renderKnowledge('library');
+    if(id==='distribution')renderReleaseRequests();
+  }
+</script>
+
+
+<script>
+  // Резервные обработчики для кнопок входа/регистрации.
+  // Основная Firebase-логика подключится ниже через type="module".
+  window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('authModal');
+    const loginForm = document.getElementById('authLoginForm');
+    const registerForm = document.getElementById('authRegisterForm');
+    const tabs = [...document.querySelectorAll('.auth-tab')];
+
+    function openFallbackAuth(tab) {
+      if (!modal) return;
+      modal.classList.add('open');
+      tabs.forEach(b => b.classList.toggle('active', b.dataset.authTab === tab));
+      if (loginForm) loginForm.classList.toggle('active', tab === 'login');
+      if (registerForm) registerForm.classList.toggle('active', tab === 'register');
+    }
+
+    document.getElementById('loginBtn')?.addEventListener('click', () => {
+      if (!window.__suaFirebaseReady) openFallbackAuth('login');
+    });
+
+    document.getElementById('registerBtn')?.addEventListener('click', () => {
+      if (!window.__suaFirebaseReady) openFallbackAuth('register');
+    });
+  });
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
+  import {
+    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signOut, onAuthStateChanged, deleteUser
+  } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+  import {
+    getDatabase, ref, get, set, update, push, onValue, off,
+    runTransaction, onDisconnect, serverTimestamp, increment, query, orderByChild, limitToLast
+  } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js';
+  import {
+    getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL
+  } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js';
+
+  /* Firebase SUA Music — уже подключён к вашему проекту */
+  const firebaseConfig = {
+    apiKey: "AIzaSyCnzVmDCXko5XN7YFZ-hzToVOTX28D0Igs",
+    authDomain: "sua-music.firebaseapp.com",
+    databaseURL: "https://sua-music-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "sua-music",
+    storageBucket: "sua-music.firebasestorage.app",
+    messagingSenderId: "233930266962",
+    appId: "1:233930266962:web:4567d6cac73c6f110c028b"
+  };
+
+  console.log('SUA build 2026-09-05-v20');
+  const firebaseApp = initializeApp(firebaseConfig);
+  const auth = getAuth(firebaseApp);
+  const db = getDatabase(firebaseApp);
+  const storage = getStorage(firebaseApp);
+  window.__suaFirebaseReady = true;
+
+  const $ = id => document.getElementById(id);
+  let currentUser = null;
+  let myProfile = null;
+  let activeConversationId = null;
+  let activePeer = null;
+  let conversationUnsubscribe = null;
+  let messagesUnsubscribe = null;
+  let presenceUnsubscribe = null;
+  let searchTimer = null;
+  let cachedConversations = [];
+  let usersDirectoryUnsubscribe = null;
+  let peerPresenceUnsubscribe = null;
+  let cachedUsers = {};
+  let peerReadUnsubscribe = null;
+  let activePeerReadAt = 0;
+  let myReleasesUnsubscribe = null;
+  let adminReleasesUnsubscribe = null;
+  let isAdmin = false;
+  let adminReleaseCache = [];
+  let currentAdminFilter = 'all';
+  let friendRequestsUnsubscribe = null;
+  let organizerUser = null;
+  const ORGANIZER_USERNAME = 'sua_admin';
+
+  const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+  const initials = name => (name || 'S').trim().split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+  const timeLabel = value => value ? new Date(Number(value)).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) : '';
+  const dayLabel = value => value ? new Date(Number(value)).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'}) : '';
+  const safeUsername = value => value.trim().replace(/^@/,'').toLowerCase();
+
+  function firebaseErrorMessage(error){
+    const code = error?.code || '';
+    const map = {
+      'auth/email-already-in-use':'Этот email уже зарегистрирован.',
+      'auth/invalid-email':'Проверьте адрес электронной почты.',
+      'auth/weak-password':'Пароль слишком простой.',
+      'auth/invalid-credential':'Неверная почта или пароль.',
+      'auth/user-not-found':'Пользователь не найден.',
+      'auth/wrong-password':'Неверный пароль.',
+      'auth/too-many-requests':'Слишком много попыток. Попробуйте позже.',
+      'PERMISSION_DENIED':'Firebase отклонил запрос. Проверьте Rules.'
+    };
+    return map[code] || error?.message || 'Произошла ошибка.';
+  }
+
+  function feedback(text='', ok=false){
+    $('authFeedback').textContent = text;
+    $('authFeedback').className = ok ? 'auth-error auth-ok' : 'auth-error';
+  }
+  function openAuth(tab='login'){
+    $('authModal').classList.add('open');
+    switchAuthTab(tab);
+  }
+  function closeAuth(){ $('authModal').classList.remove('open'); feedback(''); }
+  function switchAuthTab(tab){
+    document.querySelectorAll('.auth-tab').forEach(b=>b.classList.toggle('active',b.dataset.authTab===tab));
+    $('authLoginForm').classList.toggle('active',tab==='login');
+    $('authRegisterForm').classList.toggle('active',tab==='register');
+  }
+
+  $('loginBtn').addEventListener('click',()=> currentUser ? logout() : openAuth('login'));
+  $('registerBtn').addEventListener('click',()=> currentUser ? switchScreen('messenger',document.querySelector('[onclick*=messenger]')) : openAuth('register'));
+  $('messengerLoginBtn').addEventListener('click',()=>openAuth('login'));
+  $('authClose').addEventListener('click',closeAuth);
+  let authBackdropPointerDown = false;
+
+  $('authModal').addEventListener('pointerdown',e=>{
+    authBackdropPointerDown = (e.target === $('authModal'));
+  });
+
+  $('authModal').addEventListener('pointerup',e=>{
+    const shouldClose = authBackdropPointerDown && (e.target === $('authModal'));
+    authBackdropPointerDown = false;
+    if(shouldClose) closeAuth();
+  });
+
+  $('authModal').addEventListener('pointercancel',()=>{
+    authBackdropPointerDown = false;
+  });
+  document.querySelectorAll('.auth-tab').forEach(b=>b.addEventListener('click',()=>switchAuthTab(b.dataset.authTab)));
+
+  $('loginSubmit').addEventListener('click', async()=>{
+    const email=$('loginEmail').value.trim();
+    const password=$('loginPassword').value;
+    if(!email || !password) return feedback('Введите email и пароль.');
+    feedback('Входим...');
+    try{
+      await signInWithEmailAndPassword(auth,email,password);
+      feedback('Готово',true);
+      setTimeout(closeAuth,300);
+    }catch(error){ feedback(firebaseErrorMessage(error)); }
+  });
+
+  $('registerSubmit').addEventListener('click', async()=>{
+    const displayName=$('registerName').value.trim();
+    const username=safeUsername($('registerUsername').value);
+    const email=$('registerEmail').value.trim();
+    const password=$('registerPassword').value;
+
+    if(!displayName) return feedback('Укажите имя.');
+    if(!/^[a-z0-9_]{3,24}$/.test(username)) return feedback('Username: 3–24 латинских букв, цифр или _.');
+    if(!email) return feedback('Укажите электронную почту.');
+    if(password.length<8) return feedback('Пароль должен содержать минимум 8 символов.');
+
+    feedback('Создаём аккаунт...');
+    let credential = null;
+    try{
+      credential = await createUserWithEmailAndPassword(auth,email,password);
+      const uid = credential.user.uid;
+
+      const usernameSnap = await get(ref(db,`usernames/${username}`));
+      if(usernameSnap.exists()){
+        await deleteUser(credential.user);
+        return feedback('Этот @username уже занят. Выберите другой.');
+      }
+
+      const now = Date.now();
+      await set(ref(db,`users/${uid}`),{
+        uid,
+        displayName,
+        username,
+        email,
+        avatarUrl:'',
+        online:true,
+        createdAt:now,
+        lastSeen:now
+      });
+      await set(ref(db,`usernames/${username}`),uid);
+
+      feedback('Аккаунт создан',true);
+      setTimeout(closeAuth,400);
+    }catch(error){
+      if(credential?.user){
+        try{ await deleteUser(credential.user); }catch(_){}
+      }
+      feedback(firebaseErrorMessage(error));
+    }
+  });
+
+  async function logout(){
+    await setPresence(false);
+    await signOut(auth);
+  }
+
+  async function setPresence(isOnline){
+    if(!currentUser) return;
+    const userRef = ref(db,`users/${currentUser.uid}`);
+    try{
+      await update(userRef,{online:isOnline,lastSeen:Date.now()});
+    }catch(error){ console.warn('Presence:',error); }
+  }
+
+  function startPresence(){
+    if(!currentUser) return;
+    const connectedRef = ref(db,'.info/connected');
+    if(presenceUnsubscribe) presenceUnsubscribe();
+    presenceUnsubscribe = onValue(connectedRef, async snap=>{
+      if(snap.val() !== true) return;
+      const userRef = ref(db,`users/${currentUser.uid}`);
+      const disconnect = onDisconnect(userRef);
+      await disconnect.update({online:false,lastSeen:serverTimestamp()});
+      await update(userRef,{online:true,lastSeen:Date.now()});
+      $('realtimeDot').classList.add('online');
+      $('realtimeText').textContent='онлайн';
+    });
+  }
+
+
+
+  const releaseStatusLabels={
+    pending:'На модерации',
+    revision:'На доработке',
+    approved:'Одобрено',
+    rejected:'Отклонено'
+  };
+
+  function safeFileName(name='file'){
+    return String(name).replace(/[^\w.\-а-яА-ЯёЁ]+/g,'_').slice(0,140);
+  }
+
+  function uploadReleaseFile(path,file,onProgress){
+    return new Promise((resolve,reject)=>{
+      const task=uploadBytesResumable(storageRef(storage,path),file);
+      task.on('state_changed',
+        snap=>{
+          const pct=snap.totalBytes ? (snap.bytesTransferred/snap.totalBytes)*100 : 0;
+          onProgress?.(pct);
+        },
+        reject,
+        async()=>{
+          try{ resolve(await getDownloadURL(task.snapshot.ref)); }
+          catch(err){ reject(err); }
+        }
+      );
+    });
+  }
+
+  function setReleaseProgress(show,pct=0,text=''){
+    const wrap=$('releaseProgressWrap'),bar=$('releaseProgressBar'),label=$('releaseProgressText');
+    if(!wrap)return;
+    wrap.style.display=show?'block':'none';
+    if(bar)bar.style.width=Math.max(0,Math.min(100,pct))+'%';
+    if(label)label.textContent=text||Math.round(pct)+'%';
+  }
+
+  function releaseFeedback(message,isError=false){
+    const box=$('releaseFeedback');
+    if(!box)return;
+    box.style.display='block';
+    box.textContent=message;
+    box.style.borderColor=isError?'rgba(255,120,120,.3)':'rgba(216,173,87,.18)';
+  }
+
+  function resetReleaseForm(){
+    ['releaseTitle','releaseArtist','releaseOwner','releasePhone','releaseComment'].forEach(id=>{
+      if($(id))$(id).value='';
+    });
+    ['releaseAudio','releaseCover','releaseContract'].forEach(id=>{
+      if($(id))$(id).value='';
+    });
+    if($('audioFileLabel')) $('audioFileLabel').childNodes[0].nodeValue='Выбрать WAV / FLAC / MP3 ';
+    if($('coverFileLabel')) $('coverFileLabel').childNodes[0].nodeValue='Выбрать JPG / PNG ';
+    if($('contractFileLabel')) $('contractFileLabel').childNodes[0].nodeValue='Прикрепить PDF / DOCX ';
+    fileNames.audio=fileNames.cover=fileNames.contract='';
+  }
+
+  window.suaSubmitRelease=async function(){
+    if(!currentUser){
+      openAuth('login');
+      releaseFeedback('Сначала войдите в аккаунт.',true);
+      return;
+    }
+
+    const title=$('releaseTitle').value.trim();
+    const artist=$('releaseArtist').value.trim();
+    const owner=$('releaseOwner').value.trim();
+    const phone=$('releasePhone').value.trim();
+    const comment=$('releaseComment').value.trim();
+    const audio=$('releaseAudio').files?.[0];
+    const cover=$('releaseCover').files?.[0];
+    const contract=$('releaseContract').files?.[0]||null;
+
+    if(!title||!artist||!owner||!audio||!cover){
+      releaseFeedback('Заполните название, артиста, правообладателя и выберите аудио + обложку.',true);
+      return;
+    }
+
+    const allowedAudio=/\.(wav|flac|mp3|m4a)$/i.test(audio.name);
+    const allowedCover=/\.(jpg|jpeg|png|webp)$/i.test(cover.name);
+    if(!allowedAudio||!allowedCover){
+      releaseFeedback('Проверьте формат файлов: аудио WAV/FLAC/MP3/M4A, обложка JPG/PNG/WEBP.',true);
+      return;
+    }
+
+    const btn=$('releaseSubmitBtn');
+    btn.disabled=true;
+    releaseFeedback('Загрузка файлов...');
+    setReleaseProgress(true,1,'Подготовка...');
+
+    const releaseId=push(ref(db,'releases')).key;
+    const base=`releases/${currentUser.uid}/${releaseId}`;
+
+    try{
+      let audioP=0,coverP=0,contractP=contract?0:100;
+      const updateTotal=()=>{
+        const total=(audioP+coverP+contractP)/3;
+        setReleaseProgress(true,total,`Загрузка ${Math.round(total)}%`);
+      };
+
+      const audioPromise=uploadReleaseFile(`${base}/audio_${safeFileName(audio.name)}`,audio,p=>{audioP=p;updateTotal()});
+      const coverPromise=uploadReleaseFile(`${base}/cover_${safeFileName(cover.name)}`,cover,p=>{coverP=p;updateTotal()});
+      const contractPromise=contract
+        ? uploadReleaseFile(`${base}/contract_${safeFileName(contract.name)}`,contract,p=>{contractP=p;updateTotal()})
+        : Promise.resolve('');
+
+      const [audioUrl,coverUrl,contractUrl]=await Promise.all([audioPromise,coverPromise,contractPromise]);
+
+      const now=Date.now();
+      const release={
+        id:releaseId,
+        uid:currentUser.uid,
+        username:myProfile?.username||'user',
+        displayName:myProfile?.displayName||currentUser.email||'SUA User',
+        title,artist,owner,phone,comment,
+        status:'pending',
+        moderatorComment:'',
+        createdAt:now,
+        updatedAt:now,
+        files:{
+          audio:{name:audio.name,url:audioUrl},
+          cover:{name:cover.name,url:coverUrl},
+          contract:contract?{name:contract.name,url:contractUrl}:null
+        }
+      };
+
+      await update(ref(db),{
+        [`releases/${releaseId}`]:release,
+        [`userReleases/${currentUser.uid}/${releaseId}`]:{
+          title,artist,status:'pending',createdAt:now,updatedAt:now
+        }
+      });
+
+      setReleaseProgress(true,100,'Готово');
+      releaseFeedback('Релиз отправлен на модерацию. Статус появится в разделе «Мои заявки».');
+      resetReleaseForm();
+      setTimeout(()=>setReleaseProgress(false),1200);
+    }catch(error){
+      console.error('Release upload:',error);
+      releaseFeedback('Не удалось отправить релиз: '+firebaseErrorMessage(error),true);
+      setReleaseProgress(false);
+    }finally{
+      btn.disabled=false;
+    }
+  };
+
+  window.suaRenderReleaseRequests=function(){
+    const box=$('myReleaseRequests');
+    if(!box)return;
+
+    if(!currentUser){
+      box.innerHTML='<div class="notice-box">Войдите в аккаунт, чтобы увидеть свои заявки.</div>';
+      return;
+    }
+
+    if(myReleasesUnsubscribe)myReleasesUnsubscribe();
+    myReleasesUnsubscribe=onValue(ref(db,`userReleases/${currentUser.uid}`),async snap=>{
+      const raw=snap.val()||{};
+      const entries=Object.entries(raw).sort((a,b)=>(b[1].createdAt||0)-(a[1].createdAt||0));
+
+      if(!entries.length){
+        box.innerHTML='<div class="notice-box">Заявок пока нет.</div>';
+        return;
+      }
+
+      box.innerHTML=entries.map(([id,r])=>`
+        <div class="data-row">
+          <div>
+            <b>${escapeHtml(r.title||'Без названия')} — ${escapeHtml(r.artist||'')}</b>
+            <span>${new Date(r.createdAt||Date.now()).toLocaleString('ru-RU')}</span>
+            ${r.moderatorComment?`<span style="color:var(--gold2);margin-top:5px">Комментарий: ${escapeHtml(r.moderatorComment)}</span>`:''}
+          </div>
+          <div class="data-row-actions">
+            <span class="status-pill ${r.status==='approved'?'gold':''}">${releaseStatusLabels[r.status]||r.status||'Статус'}</span>
+            <button class="mini-btn" onclick="suaOpenRelease('${id}')">Открыть</button>
+          </div>
+        </div>`).join('');
+    });
+  };
+
+  window.suaOpenRelease=async function(releaseId){
+    if(!currentUser)return;
+    try{
+      const snap=await get(ref(db,`releases/${releaseId}`));
+      if(!snap.exists())throw new Error('Заявка не найдена');
+      const r=snap.val();
+
+      openSiteModal('Релиз: '+(r.title||''),`
+        <div class="data-list">
+          <div class="data-row"><div><b>Артист</b><span>${escapeHtml(r.artist||'')}</span></div><span class="status-pill ${r.status==='approved'?'gold':''}">${releaseStatusLabels[r.status]||r.status}</span></div>
+          <div class="data-row"><div><b>Правообладатель</b><span>${escapeHtml(r.owner||'')}</span></div></div>
+          ${r.moderatorComment?`<div class="notice-box">Комментарий модератора: ${escapeHtml(r.moderatorComment)}</div>`:''}
+        </div>
+        <div class="form-actions">
+          ${r.files?.cover?.url?`<button class="soft-btn" onclick="window.open('${r.files.cover.url}','_blank')">Обложка</button>`:''}
+          ${r.files?.audio?.url?`<button class="soft-btn" onclick="window.open('${r.files.audio.url}','_blank')">Аудио</button>`:''}
+          ${r.files?.contract?.url?`<button class="soft-btn" onclick="window.open('${r.files.contract.url}','_blank')">Договор</button>`:''}
+        </div>
+      `);
+    }catch(error){
+      alert(firebaseErrorMessage(error));
+    }
+  };
+
+  async function checkAdminAccess(){
+    isAdmin=false;
+    $('adminNavItem')?.setAttribute('hidden','');
+    if(!currentUser)return false;
+
+    try{
+      const snap=await get(ref(db,`admins/${currentUser.uid}`));
+      isAdmin=snap.val()===true;
+      if(isAdmin){
+        $('adminNavItem')?.removeAttribute('hidden');
+        subscribeAdminReleases();
+      }
+      return isAdmin;
+    }catch(error){
+      console.warn('Admin check:',error);
+      return false;
+    }
+  }
+
+  function subscribeAdminReleases(){
+    if(!isAdmin)return;
+    if(adminReleasesUnsubscribe)adminReleasesUnsubscribe();
+
+    adminReleasesUnsubscribe=onValue(ref(db,'releases'),snap=>{
+      const raw=snap.val()||{};
+      adminReleaseCache=Object.values(raw).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+      renderAdminReleases();
+    });
+  }
+
+  function renderAdminReleases(filter=currentAdminFilter){
+    currentAdminFilter=filter;
+    const list=$('adminReleaseList');
+    if(!list)return;
+
+    const counts={pending:0,approved:0,revision:0,rejected:0};
+    adminReleaseCache.forEach(r=>{if(counts[r.status]!==undefined)counts[r.status]++});
+    $('adminPendingCount').textContent=counts.pending;
+    $('adminApprovedCount').textContent=counts.approved;
+    $('adminRevisionCount').textContent=counts.revision;
+    $('adminRejectedCount').textContent=counts.rejected;
+
+    const rows=filter==='all'?adminReleaseCache:adminReleaseCache.filter(r=>r.status===filter);
+    if(!rows.length){
+      list.innerHTML='<div class="notice-box">Заявок в этой категории нет.</div>';
+      return;
+    }
+
+    list.innerHTML=rows.map(r=>`
+      <div class="data-row">
+        <div>
+          <b>${escapeHtml(r.title||'Без названия')} — ${escapeHtml(r.artist||'')}</b>
+          <span>${escapeHtml(r.displayName||r.username||'Пользователь')} · ${new Date(r.createdAt||Date.now()).toLocaleString('ru-RU')}</span>
+          ${r.comment?`<span style="margin-top:4px">Комментарий артиста: ${escapeHtml(r.comment)}</span>`:''}
+        </div>
+        <div class="data-row-actions">
+          <span class="status-pill ${r.status==='approved'?'gold':''}">${releaseStatusLabels[r.status]||r.status}</span>
+          <button class="mini-btn" onclick="adminOpenRelease('${r.id}')">Модерация</button>
+        </div>
+      </div>`).join('');
+  }
+
+  window.adminOpenRelease=function(releaseId){
+    if(!isAdmin)return;
+    const r=adminReleaseCache.find(x=>x.id===releaseId);
+    if(!r)return;
+
+    openSiteModal('Модерация релиза',`
+      <div class="data-list">
+        <div class="data-row"><div><b>${escapeHtml(r.title||'')}</b><span>${escapeHtml(r.artist||'')}</span></div><span class="status-pill">${releaseStatusLabels[r.status]||r.status}</span></div>
+        <div class="data-row"><div><b>Пользователь</b><span>${escapeHtml(r.displayName||'')} · @${escapeHtml(r.username||'user')}</span></div></div>
+        <div class="data-row"><div><b>Правообладатель</b><span>${escapeHtml(r.owner||'')}</span></div></div>
+      </div>
+
+      <div class="form-actions">
+        ${r.files?.cover?.url?`<button class="soft-btn" onclick="window.open('${r.files.cover.url}','_blank')">Открыть обложку</button>`:''}
+        ${r.files?.audio?.url?`<button class="soft-btn" onclick="window.open('${r.files.audio.url}','_blank')">Открыть аудио</button>`:''}
+        ${r.files?.contract?.url?`<button class="soft-btn" onclick="window.open('${r.files.contract.url}','_blank')">Открыть договор</button>`:''}
+      </div>
+
+      <textarea id="adminModeratorComment" class="modal-textarea" placeholder="Комментарий пользователю...">${escapeHtml(r.moderatorComment||'')}</textarea>
+      <div class="form-actions">
+        <button class="quick-btn" onclick="adminSetReleaseStatus('${r.id}','approved')">Одобрить</button>
+        <button class="soft-btn" onclick="adminSetReleaseStatus('${r.id}','revision')">На доработку</button>
+        <button class="soft-btn" onclick="adminSetReleaseStatus('${r.id}','rejected')">Отклонить</button>
+      </div>
+    `);
+  };
+
+  window.adminSetReleaseStatus=async function(releaseId,status){
+    if(!isAdmin)return;
+    const r=adminReleaseCache.find(x=>x.id===releaseId);
+    if(!r)return;
+
+    const moderatorComment=$('adminModeratorComment')?.value.trim()||'';
+    const now=Date.now();
+    const notificationId=push(ref(db,`notifications/${r.uid}`)).key;
+
+    try{
+      await update(ref(db),{
+        [`releases/${releaseId}/status`]:status,
+        [`releases/${releaseId}/moderatorComment`]:moderatorComment,
+        [`releases/${releaseId}/updatedAt`]:now,
+
+        [`userReleases/${r.uid}/${releaseId}/status`]:status,
+        [`userReleases/${r.uid}/${releaseId}/moderatorComment`]:moderatorComment,
+        [`userReleases/${r.uid}/${releaseId}/updatedAt`]:now,
+
+        [`notifications/${r.uid}/${notificationId}`]:{
+          title:'Статус релиза изменён',
+          text:`${r.title}: ${releaseStatusLabels[status]||status}${moderatorComment?' — '+moderatorComment:''}`,
+          createdAt:now,
+          read:false,
+          type:'release',
+          releaseId
+        }
+      });
+      closeSiteModal();
+    }catch(error){
+      alert('Не удалось изменить статус: '+firebaseErrorMessage(error));
+    }
+  };
+
+  document.querySelectorAll('#adminTabs .subtab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#adminTabs .subtab').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      renderAdminReleases(btn.dataset.adminTab);
+    });
+  });
+
+
+
+  window.suaShowFirebaseNotifications=async function(){
+    if(!currentUser){
+      openAuth('login');
+      return;
+    }
+
+    try{
+      const snap=await get(ref(db,`notifications/${currentUser.uid}`));
+      const raw=snap.val()||{};
+      const rows=Object.entries(raw).map(([id,n])=>({id,...n})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+
+      openSiteModal('Уведомления',`
+        <div class="data-list">
+          ${rows.length?rows.map(n=>`
+            <div class="data-row">
+              <div><b>${escapeHtml(n.title||'Уведомление')}</b><span>${escapeHtml(n.text||'')}</span></div>
+              <span class="status-pill">${new Date(n.createdAt||Date.now()).toLocaleDateString('ru-RU')}</span>
+            </div>`).join(''):'<div class="notice-box">Новых уведомлений нет.</div>'}
+        </div>
+      `);
+
+      const updates={};
+      rows.filter(n=>!n.read).forEach(n=>updates[`notifications/${currentUser.uid}/${n.id}/read`]=true);
+      if(Object.keys(updates).length)update(ref(db),updates).catch(()=>{});
+    }catch(error){
+      alert(firebaseErrorMessage(error));
+    }
+  };
+
+
+  window.suaOpenProfile=function(){
+    if(!currentUser){
+      openAuth('login');
+      return;
+    }
+    const p=myProfile||{};
+    openSiteModal('Мой профиль',`
+      <div class="modal-grid">
+        <input class="modal-input full" id="profileNameEdit" value="${escapeHtml(p.displayName||'')}" placeholder="Имя">
+        <input class="modal-input full" value="@${escapeHtml(p.username||'user')}" disabled>
+        <input class="modal-input full" value="${escapeHtml(currentUser.email||'')}" disabled>
+        <button class="quick-btn full" id="profileSaveBtn">Сохранить имя</button>
+      </div>
+      <div class="notice-box" style="margin-top:12px">Username и email пока защищены от изменения, чтобы не нарушить ссылки на аккаунт и авторизацию.</div>
+    `);
+    document.getElementById('profileSaveBtn').addEventListener('click',async()=>{
+      const name=document.getElementById('profileNameEdit').value.trim();
+      if(!name)return;
+      await update(ref(db,`users/${currentUser.uid}`),{displayName:name});
+      myProfile={...(myProfile||{}),displayName:name};
+      $('myDisplayName').textContent=name;
+      $('myAvatar').textContent=initials(name);
+      closeSiteModal();
+    });
+  };
+
+  async function loadProfile(){
+    if(!currentUser)return;
+    const snap = await get(ref(db,`users/${currentUser.uid}`));
+    if(!snap.exists()) return;
+    myProfile=snap.val();
+    $('myDisplayName').textContent=myProfile.displayName || 'SUA User';
+    $('myUsername').textContent='@'+(myProfile.username || 'user');
+    $('myAvatar').textContent=initials(myProfile.displayName);
+    $('loginBtn').textContent='Выйти';
+    $('registerBtn').textContent='Мессенджер';
+  }
+
+  function setAuthUi(loggedIn){
+    document.body.classList.remove('auth-pending','auth-in','auth-out');
+    document.body.classList.add(loggedIn ? 'auth-in' : 'auth-out');
+
+    const loggedOut=$('messengerLoggedOut');
+    const app=$('messengerApp');
+
+    loggedOut.hidden=loggedIn;
+    app.hidden=!loggedIn;
+
+    if(loggedIn){
+      $('loginBtn').textContent='Выйти';
+      $('registerBtn').textContent='Мессенджер';
+    }else{
+      $('loginBtn').textContent='Вход';
+      $('registerBtn').textContent='Регистрация';
+      $('realtimeDot').classList.remove('online');
+      $('realtimeText').textContent='офлайн';
+    }
+  }
+
+  function stopListeners(){
+    if(conversationUnsubscribe){conversationUnsubscribe();conversationUnsubscribe=null}
+    if(messagesUnsubscribe){messagesUnsubscribe();messagesUnsubscribe=null}
+    if(presenceUnsubscribe){presenceUnsubscribe();presenceUnsubscribe=null}
+    if(friendRequestsUnsubscribe){friendRequestsUnsubscribe();friendRequestsUnsubscribe=null}
+    if(usersDirectoryUnsubscribe){usersDirectoryUnsubscribe();usersDirectoryUnsubscribe=null}
+    if(peerPresenceUnsubscribe){peerPresenceUnsubscribe();peerPresenceUnsubscribe=null}
+    if(peerReadUnsubscribe){peerReadUnsubscribe();peerReadUnsubscribe=null}
+    if(myReleasesUnsubscribe){myReleasesUnsubscribe();myReleasesUnsubscribe=null}
+    if(adminReleasesUnsubscribe){adminReleasesUnsubscribe();adminReleasesUnsubscribe=null}
+    activePeerReadAt=0;
+    isAdmin=false;
+    $('adminNavItem')?.setAttribute('hidden','');
+  }
+
+  onAuthStateChanged(auth, async user=>{
+    stopListeners();
+    currentUser=user || null;
+    myProfile=null;
+    activeConversationId=null;
+    activePeer=null;
+    setAuthUi(!!currentUser);
+
+    if(currentUser){
+      await loadProfile();
+      startPresence();
+      subscribeUsersDirectory();
+      subscribeConversationList();
+      subscribeFriendRequests();
+      resolveOrganizer();
+      window.suaRenderReleaseRequests?.();
+      checkAdminAccess();
+    }else{
+      $('conversationList').innerHTML='<div class="chat-empty-list">Войдите, чтобы увидеть диалоги.</div>';
+      $('chatPlaceholder').style.display='grid';
+      $('activeChat').hidden=true;
+      $('activeChat').style.display='';
+    }
+  });
+
+  async function searchUsers(){
+    if(!currentUser)return;
+
+    const raw=$('userSearch').value.trim();
+    const q=raw.replace(/^@/,'').toLowerCase();
+
+    if(q.length<1){
+      $('userSearchResults').innerHTML='';
+      return;
+    }
+
+    try{
+      const usersSnap=await get(ref(db,'users'));
+      const rows=[];
+
+      usersSnap.forEach(child=>{
+        const u=child.val()||{};
+        const uid=child.key;
+
+        // Никогда не показываем текущий аккаунт в собственном поиске.
+        if(uid===currentUser.uid) return;
+        if(u.email && currentUser.email && String(u.email).toLowerCase()===String(currentUser.email).toLowerCase()) return;
+
+        const username=String(u.username||'').toLowerCase();
+        const displayName=String(u.displayName||'').toLowerCase();
+        const email=String(u.email||'').toLowerCase();
+
+        if(username.includes(q) || displayName.includes(q) || email.includes(q)){
+          rows.push({...u,uid});
+        }
+      });
+
+      rows.sort((a,b)=>{
+        const au=String(a.username||'').toLowerCase();
+        const bu=String(b.username||'').toLowerCase();
+        const aExact=au===q ? 0 : au.startsWith(q) ? 1 : 2;
+        const bExact=bu===q ? 0 : bu.startsWith(q) ? 1 : 2;
+        return aExact-bExact || String(a.displayName||'').localeCompare(String(b.displayName||''),'ru');
+      });
+
+      const users=rows.slice(0,10);
+      if(!users.length){
+        $('userSearchResults').innerHTML='<div class="chat-empty-list">Пользователь не найден</div>';
+        return;
+      }
+
+      const friendsSnap=await get(ref(db,`friends/${currentUser.uid}`)).catch(()=>null);
+      const friends=friendsSnap?.val?.()||{};
+
+      $('userSearchResults').innerHTML=users.map(u=>{
+        const isFriend=!!friends[u.uid];
+        return `<div class="people-card" data-user-id="${escapeHtml(u.uid)}">
+          <div class="chat-avatar">${escapeHtml(initials(u.displayName))}</div>
+          <div class="people-copy">
+            <b>${escapeHtml(u.displayName||'Пользователь')}</b>
+            <span>@${escapeHtml(u.username||'user')}${u.online?' · онлайн':''}${isFriend?' · друг':''}</span>
+          </div>
+          <div class="people-actions">
+            <button class="message-user" data-action="message" title="Написать"><i class="fa-regular fa-message"></i></button>
+            <button class="friend-user ${isFriend?'sent':''}" data-action="friend" title="${isFriend?'Уже в друзьях':'Добавить в друзья'}">${isFriend?'✓':'+'}</button>
+          </div>
+        </div>`;
+      }).join('');
+
+      $('userSearchResults').querySelectorAll('.people-card').forEach(card=>{
+        const uid=card.dataset.userId;
+
+        const openChat=async()=>{
+          await startConversation(uid);
+          $('userSearch').value='';
+          $('userSearchResults').innerHTML='';
+        };
+
+        card.querySelector('[data-action="message"]').addEventListener('click',async e=>{
+          e.stopPropagation();
+          await openChat();
+        });
+
+        card.querySelector('[data-action="friend"]').addEventListener('click',async e=>{
+          e.stopPropagation();
+          await sendFriendRequest(uid,e.currentTarget);
+          $('userSearch').value='';
+          $('userSearchResults').innerHTML='';
+        });
+
+        card.addEventListener('click',async e=>{
+          if(e.target.closest('button')) return;
+          await openChat();
+        });
+      });
+    }catch(error){
+      console.error('User search error:',error);
+      $('userSearchResults').innerHTML='<div class="chat-empty-list">Ошибка поиска. Проверьте Firebase Rules.</div>';
+    }
+  }
+
+  $('userSearch').addEventListener('input',()=>{
+    clearTimeout(searchTimer);
+    searchTimer=setTimeout(searchUsers,180);
+  });
+
+
+  async function sendFriendRequest(otherUserId,button){
+    if(!currentUser || otherUserId===currentUser.uid)return;
+    try{
+      const existingFriend=await get(ref(db,`friends/${currentUser.uid}/${otherUserId}`));
+      if(existingFriend.exists()){
+        if(button){button.textContent='✓';button.classList.add('sent')}
+        return;
+      }
+
+      await set(ref(db,`friendRequests/${otherUserId}/${currentUser.uid}`),{
+        from:currentUser.uid,
+        createdAt:Date.now()
+      });
+
+      if(button){
+        button.textContent='✓';
+        button.classList.add('sent');
+        button.title='Запрос отправлен';
+      }
+    }catch(error){
+      console.error(error);
+      alert('Не удалось отправить запрос в друзья: '+firebaseErrorMessage(error));
+    }
+  }
+
+  function subscribeFriendRequests(){
+    if(!currentUser)return;
+    if(friendRequestsUnsubscribe) friendRequestsUnsubscribe();
+
+    friendRequestsUnsubscribe=onValue(ref(db,`friendRequests/${currentUser.uid}`),async snap=>{
+      const raw=snap.val()||{};
+      const entries=Object.entries(raw);
+
+      $('friendRequestsWrap').hidden=entries.length===0;
+      if(!entries.length){
+        $('friendRequests').innerHTML='';
+        return;
+      }
+
+      const rows=await Promise.all(entries.map(async([fromUid,item])=>{
+        const uSnap=await get(ref(db,`users/${fromUid}`));
+        return {uid:fromUid,...(uSnap.val()||{})};
+      }));
+
+      $('friendRequests').innerHTML=rows.map(u=>`<div class="request-card" data-request-id="${escapeHtml(u.uid)}">
+        <div class="chat-avatar">${escapeHtml(initials(u.displayName))}</div>
+        <div class="people-copy"><b>${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}</span></div>
+        <div class="request-actions">
+          <button class="accept-request" title="Принять"><i class="fa-solid fa-check"></i></button>
+          <button class="decline-request" title="Отклонить"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>`).join('');
+
+      $('friendRequests').querySelectorAll('.request-card').forEach(card=>{
+        const uid=card.dataset.requestId;
+        card.querySelector('.accept-request').addEventListener('click',()=>acceptFriendRequest(uid));
+        card.querySelector('.decline-request').addEventListener('click',()=>declineFriendRequest(uid));
+      });
+    });
+  }
+
+  async function acceptFriendRequest(fromUid){
+    if(!currentUser)return;
+    try{
+      await update(ref(db),{
+        [`friends/${currentUser.uid}/${fromUid}`]:true,
+        [`friends/${fromUid}/${currentUser.uid}`]:true,
+        [`friendRequests/${currentUser.uid}/${fromUid}`]:null
+      });
+      searchUsers();
+    }catch(error){
+      console.error(error);
+      alert('Не удалось принять запрос: '+firebaseErrorMessage(error));
+    }
+  }
+
+  async function declineFriendRequest(fromUid){
+    if(!currentUser)return;
+    try{
+      await set(ref(db,`friendRequests/${currentUser.uid}/${fromUid}`),null);
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  async function resolveOrganizer(){
+    if(!currentUser)return;
+    try{
+      const usernameSnap=await get(ref(db,`usernames/${ORGANIZER_USERNAME}`));
+      const organizerUid=usernameSnap.val();
+      if(!organizerUid){
+        organizerUser=null;
+        $('organizerStatus').textContent='@'+ORGANIZER_USERNAME+' · аккаунт ещё не создан';
+        return;
+      }
+
+      const userSnap=await get(ref(db,`users/${organizerUid}`));
+      organizerUser={uid:organizerUid,...(userSnap.val()||{})};
+      $('organizerStatus').textContent='@'+(organizerUser.username||ORGANIZER_USERNAME)+(organizerUser.online?' · онлайн':'');
+    }catch(error){
+      console.warn('Organizer:',error);
+    }
+  }
+
+  $('organizerPinned').addEventListener('click',async()=>{
+    if(!organizerUser){
+      await resolveOrganizer();
+    }
+    if(!organizerUser){
+      alert('Создайте аккаунт организатора с username @'+ORGANIZER_USERNAME+'. После этого этот закреплённый чат заработает у всех.');
+      return;
+    }
+    if(organizerUser.uid===currentUser?.uid)return;
+
+    startConversation(organizerUser.uid);
+  });
+
+
+  const directChatId=(a,b)=>'direct_'+[a,b].sort().join('_');
+
+  async function startConversation(otherUserId){
+    if(!currentUser || otherUserId===currentUser.uid)return;
+
+    try{
+      const peerSnap=await get(ref(db,`users/${otherUserId}`));
+      if(!peerSnap.exists()) throw new Error('Пользователь не найден');
+
+      const peer={...peerSnap.val(),uid:otherUserId};
+      const chatId=directChatId(currentUser.uid,otherUserId);
+
+      // Сначала проверяем: есть ли этот диалог уже в МОЁМ списке чатов.
+      // Если есть — ничего в Firebase повторно не записываем, а сразу открываем чат.
+      const myChatSnap=await get(ref(db,`userChats/${currentUser.uid}/${chatId}`));
+
+      if(myChatSnap.exists()){
+        const item=myChatSnap.val()||{};
+        await openConversation(chatId,{
+          chatId,
+          peerId:otherUserId,
+          peerDisplayName:peer.displayName,
+          peerUsername:peer.username,
+          peerOnline:!!peer.online,
+          lastMessage:item.lastMessage||'',
+          lastMessageAt:item.lastMessageAt||0,
+          unread:item.unread||0
+        });
+        return;
+      }
+
+      // Новый диалог создаём последовательно.
+      // Так Rules Firebase проверяются предсказуемо и не возникает ложного Permission denied.
+      const now=Date.now();
+
+      await set(ref(db,`chats/${chatId}`),{
+        type:'direct',
+        createdAt:now,
+        lastMessage:'',
+        lastMessageAt:now,
+        lastSenderId:'',
+        members:{
+          [currentUser.uid]:true,
+          [otherUserId]:true
+        }
+      });
+
+      await set(ref(db,`userChats/${currentUser.uid}/${chatId}`),{
+        peerId:otherUserId,
+        lastMessage:'',
+        lastMessageAt:now,
+        unread:0
+      });
+
+      await set(ref(db,`userChats/${otherUserId}/${chatId}`),{
+        peerId:currentUser.uid,
+        lastMessage:'',
+        lastMessageAt:now,
+        unread:0
+      });
+
+      await openConversation(chatId,{
+        chatId,
+        peerId:otherUserId,
+        peerDisplayName:peer.displayName,
+        peerUsername:peer.username,
+        peerOnline:!!peer.online,
+        lastMessage:'',
+        lastMessageAt:now,
+        unread:0
+      });
+
+    }catch(error){
+      console.error('Open conversation error:',error);
+
+      // Если диалог уже успел появиться в списке, открываем его без показа ошибки.
+      const existing=cachedConversations.find(c=>c.peerId===otherUserId);
+      if(existing){
+        await openConversation(existing.chatId,existing);
+        return;
+      }
+
+      alert('Не удалось открыть диалог: '+firebaseErrorMessage(error));
+    }
+  }
+
+
+  function subscribeUsersDirectory(){
+    if(!currentUser)return;
+    if(usersDirectoryUnsubscribe) usersDirectoryUnsubscribe();
+
+    usersDirectoryUnsubscribe=onValue(ref(db,'users'),snap=>{
+      cachedUsers=snap.val()||{};
+
+      // Обновляем online-статус в списке чатов без перезагрузки.
+      cachedConversations=cachedConversations.map(c=>{
+        const peer=cachedUsers[c.peerId]||{};
+        return {
+          ...c,
+          peerDisplayName:peer.displayName||c.peerDisplayName,
+          peerUsername:peer.username||c.peerUsername,
+          peerOnline:!!peer.online
+        };
+      });
+      renderConversationList();
+
+      // И одновременно статус в уже открытом диалоге.
+      if(activePeer?.peerId){
+        const peer=cachedUsers[activePeer.peerId]||{};
+        activePeer.peerOnline=!!peer.online;
+        $('peerStatus').textContent=peer.online ? 'онлайн' : lastSeenLabel(peer.lastSeen);
+      }
+    });
+  }
+
+  function lastSeenLabel(value){
+    if(!value) return 'не в сети';
+    const ts=Number(value);
+    if(!Number.isFinite(ts)) return 'не в сети';
+
+    const diff=Date.now()-ts;
+    if(diff<60_000) return 'был(а) только что';
+    if(diff<60*60_000) return `был(а) ${Math.max(1,Math.floor(diff/60_000))} мин назад`;
+
+    const d=new Date(ts);
+    const today=new Date();
+    if(d.toDateString()===today.toDateString()){
+      return 'был(а) сегодня в '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+    }
+    return 'был(а) '+d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})+
+      ' в '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  }
+
+
+  function subscribePeerReadState(chatId,peerId){
+    if(peerReadUnsubscribe){peerReadUnsubscribe();peerReadUnsubscribe=null}
+    activePeerReadAt=0;
+    if(!chatId || !peerId)return;
+
+    peerReadUnsubscribe=onValue(ref(db,`chatReads/${chatId}/${peerId}`),snap=>{
+      activePeerReadAt=Number(snap.val()||0);
+      // Перерисовываем сообщения, чтобы ✓ автоматически превратилось в ✓✓.
+      if(activeConversationId===chatId){
+        get(ref(db,`messages/${chatId}`)).then(s=>{
+          const rows=[];
+          s.forEach(child=>rows.push({id:child.key,...child.val()}));
+          rows.sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+          renderMessages(rows);
+        }).catch(()=>{});
+      }
+    });
+  }
+
+  function subscribeActivePeerPresence(peerId){
+    if(peerPresenceUnsubscribe){peerPresenceUnsubscribe();peerPresenceUnsubscribe=null}
+    if(!peerId)return;
+
+    peerPresenceUnsubscribe=onValue(ref(db,`users/${peerId}`),snap=>{
+      const peer=snap.val()||{};
+      if(activePeer && activePeer.peerId===peerId){
+        activePeer.peerOnline=!!peer.online;
+        activePeer.peerDisplayName=peer.displayName||activePeer.peerDisplayName;
+        activePeer.peerUsername=peer.username||activePeer.peerUsername;
+
+        $('peerName').textContent=activePeer.peerDisplayName||'Пользователь';
+        $('peerUsername').textContent='@'+(activePeer.peerUsername||'user');
+        $('peerAvatar').textContent=initials(activePeer.peerDisplayName);
+        $('peerStatus').textContent=peer.online ? 'онлайн' : lastSeenLabel(peer.lastSeen);
+      }
+    });
+  }
+
+  function subscribeConversationList(){
+    if(!currentUser)return;
+    if(conversationUnsubscribe) conversationUnsubscribe();
+
+    conversationUnsubscribe=onValue(ref(db,`userChats/${currentUser.uid}`),async snap=>{
+      const raw=snap.val()||{};
+      const rows=await Promise.all(Object.entries(raw).map(async([chatId,item])=>{
+        let peer=cachedUsers[item.peerId]||null;
+
+        if(!peer){
+          const peerSnap=await get(ref(db,`users/${item.peerId}`));
+          peer=peerSnap.val()||{};
+        }
+
+        return {
+          chatId,
+          peerId:item.peerId,
+          peerDisplayName:peer.displayName||'Пользователь',
+          peerUsername:peer.username||'user',
+          peerOnline:!!peer.online,
+          lastMessage:item.lastMessage||'',
+          lastMessageAt:item.lastMessageAt||0,
+          unread:item.unread||0
+        };
+      }));
+
+      rows.sort((a,b)=>(b.lastMessageAt||0)-(a.lastMessageAt||0));
+      cachedConversations=rows;
+      renderConversationList();
+    },error=>{
+      console.error(error);
+      $('conversationList').innerHTML='<div class="chat-empty-list">Нет доступа к списку диалогов. Проверьте Firebase Rules.</div>';
+    });
+  }
+
+  function renderConversationList(){
+    const box=$('conversationList');
+    if(!cachedConversations.length){
+      box.innerHTML='<div class="chat-empty-list">У вас пока нет диалогов.<br>Найдите пользователя выше и начните переписку.</div>';
+      return;
+    }
+    box.innerHTML=cachedConversations.map(c=>`<div class="chat-item ${c.chatId===activeConversationId?'active':''}" data-conversation="${escapeHtml(c.chatId)}"><div class="chat-avatar">${escapeHtml(initials(c.peerDisplayName))}</div><div class="chat-item-copy"><b>${escapeHtml(c.peerDisplayName)}</b><span>${escapeHtml(c.lastMessage || '@'+c.peerUsername)}${c.peerOnline?' · онлайн':''}</span></div><div><div class="chat-item-time">${c.lastMessageAt?dayLabel(c.lastMessageAt):''}</div>${Number(c.unread)>0?`<div class="unread">${Number(c.unread)}</div>`:''}</div></div>`).join('');
+    box.querySelectorAll('.chat-item').forEach(el=>el.addEventListener('click',()=>{
+      const row=cachedConversations.find(x=>x.chatId===el.dataset.conversation);
+      if(row) openConversation(row.chatId,row);
+    }));
+  }
+
+  async function openConversation(chatId,row){
+    if(!currentUser)return;
+    activeConversationId=chatId;
+    activePeer=row;
+
+    // Сразу очищаем сообщения предыдущего собеседника при переключении чата.
+    $('messages').innerHTML='<div class="chat-empty-list">Загрузка переписки...</div>';
+
+    $('chatPlaceholder').style.display='none';
+    $('activeChat').hidden=false;
+    $('activeChat').style.display='';
+    $('peerName').textContent=row.peerDisplayName||'Пользователь';
+    $('peerUsername').textContent='@'+(row.peerUsername||'user');
+    $('peerAvatar').textContent=initials(row.peerDisplayName);
+    $('peerStatus').textContent=row.peerOnline?'онлайн':'не в сети';
+    subscribeActivePeerPresence(row.peerId);
+    subscribePeerReadState(chatId,row.peerId);
+
+    subscribeMessages();
+    markRead();
+    renderConversationList();
+    $('messageInput').focus();
+  }
+
+  async function migrateLegacyMessages(chatId){
+    if(!currentUser || !chatId)return;
+
+    const marker=`suaLegacyMigrated:${chatId}`;
+    if(localStorage.getItem(marker)==='1') return;
+
+    try{
+      const legacySnap=await get(ref(db,`chats/${chatId}/messages`));
+
+      if(!legacySnap.exists()){
+        localStorage.setItem(marker,'1');
+        return;
+      }
+
+      const updates={};
+      legacySnap.forEach(child=>{
+        const m=child.val()||{};
+        updates[`messages/${chatId}/${child.key}`]={
+          senderId:m.senderId||'',
+          body:m.body||'',
+          createdAt:Number(m.createdAt||Date.now())
+        };
+      });
+
+      if(Object.keys(updates).length){
+        await update(ref(db),updates);
+      }
+
+      localStorage.setItem(marker,'1');
+    }catch(error){
+      console.warn('Legacy message migration skipped:',error);
+    }
+  }
+
+  async function subscribeMessages(){
+    if(messagesUnsubscribe){messagesUnsubscribe();messagesUnsubscribe=null}
+    if(!activeConversationId || !currentUser)return;
+
+    const chatId=activeConversationId;
+
+    // Не ждём миграцию старых сообщений: она идёт в фоне.
+    migrateLegacyMessages(chatId);
+
+    // Загружаем только последние 100 сообщений — чат открывается намного быстрее.
+    const messagesQuery=query(
+      ref(db,`messages/${chatId}`),
+      orderByChild('createdAt'),
+      limitToLast(100)
+    );
+
+    messagesUnsubscribe=onValue(messagesQuery,snap=>{
+      if(activeConversationId!==chatId) return;
+
+      const rows=[];
+      snap.forEach(child=>{
+        const value=child.val()||{};
+        rows.push({id:child.key,...value});
+      });
+
+      rows.sort((a,b)=>{
+        const timeDiff=Number(a.createdAt||0)-Number(b.createdAt||0);
+        if(timeDiff!==0) return timeDiff;
+        return String(a.id).localeCompare(String(b.id));
+      });
+
+      renderMessages(rows);
+      markRead();
+    },error=>{
+      console.error('Messages listener error:',error);
+      if(activeConversationId===chatId){
+        $('messages').innerHTML='<div class="chat-empty-list">Не удалось получить сообщения.</div>';
+      }
+    });
+  }
+
+  function renderMessages(messages){
+    const box=$('messages');
+    box.innerHTML=messages.map(m=>{
+      const me=m.senderId===currentUser.uid;
+      const peerRead=me && activePeer?.peerId && Number(m.createdAt||0) <= Number(activePeerReadAt||0);
+      return `<div class="message-row ${me?'me':''}" data-message-id="${escapeHtml(m.id)}"><div class="message">${escapeHtml(m.body).replace(/\n/g,'<br>')}<div class="message-meta"><span>${timeLabel(m.createdAt)}</span>${me?`<span class="${peerRead?'read':''}">${peerRead?'✓✓':'✓'}</span>`:''}</div></div></div>`;
+    }).join('') || '<div class="chat-empty-list">Начните диалог — отправьте первое сообщение.</div>';
+    box.scrollTop=box.scrollHeight;
+  }
+
+  async function sendMessage(){
+    if(!currentUser||!activeConversationId||!activePeer)return;
+
+    const input=$('messageInput');
+    const body=input.value.trim();
+    if(!body)return;
+
+    $('sendMessageBtn').disabled=true;
+
+    try{
+      const now=Date.now();
+      const messageRef=push(ref(db,`messages/${activeConversationId}`));
+
+      // Главное: каждое сообщение записывается отдельным неизменяемым объектом.
+      // Эта операция не зависит от lastMessage, unread или read receipts.
+      await set(messageRef,{
+        senderId:currentUser.uid,
+        body,
+        createdAt:now
+      });
+
+      // Очищаем поле сразу после успешного сохранения самого сообщения.
+      input.value='';
+      autoGrow();
+
+      // Сохраняем собственную отметку прочтения отдельно от сообщения.
+      // Даже если метаданные ниже не обновятся, сообщение УЖЕ сохранено.
+      set(ref(db,`chatReads/${activeConversationId}/${currentUser.uid}`),now).catch(()=>{});
+
+      // Метаданные списка чатов — отдельная best-effort операция.
+      // Ошибка здесь больше не отменяет и не скрывает сохранённое сообщение.
+      try{
+        await update(ref(db),{
+          [`chats/${activeConversationId}/lastMessage`]:body,
+          [`chats/${activeConversationId}/lastMessageAt`]:now,
+          [`chats/${activeConversationId}/lastSenderId`]:currentUser.uid,
+
+          [`userChats/${currentUser.uid}/${activeConversationId}/lastMessage`]:body,
+          [`userChats/${currentUser.uid}/${activeConversationId}/lastMessageAt`]:now,
+          [`userChats/${currentUser.uid}/${activeConversationId}/unread`]:0,
+
+          [`userChats/${activePeer.peerId}/${activeConversationId}/lastMessage`]:body,
+          [`userChats/${activePeer.peerId}/${activeConversationId}/lastMessageAt`]:now,
+          [`userChats/${activePeer.peerId}/${activeConversationId}/unread`]:increment(1)
+        });
+      }catch(metaError){
+        console.warn('Message saved; metadata update skipped:',metaError);
+      }
+
+    }catch(error){
+      console.error('Send message error:',error);
+      alert('Сообщение не отправлено: '+firebaseErrorMessage(error));
+    }finally{
+      $('sendMessageBtn').disabled=false;
+      requestAnimationFrame(()=>input.focus());
+    }
+  }
+
+
+  $('chatInfoBtn').addEventListener('click',()=>{
+    if(!activePeer)return;
+    openSiteModal('Информация о пользователе',`
+      <div class="data-row"><div><b>${escapeHtml(activePeer.peerDisplayName||'Пользователь')}</b><span>@${escapeHtml(activePeer.peerUsername||'user')}</span></div><span class="status-pill ${activePeer.peerOnline?'gold':''}">${activePeer.peerOnline?'онлайн':'не в сети'}</span></div>
+      <div class="form-actions"><button class="soft-btn" onclick="alert('Блокировка пользователя будет добавлена вместе с системой модерации')">Заблокировать</button></div>
+    `);
+  });
+
+  $('sendMessageBtn').addEventListener('click',sendMessage);
+  $('messageInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}});
+  $('messageInput').addEventListener('input',autoGrow);
+  function autoGrow(){const el=$('messageInput');el.style.height='38px';el.style.height=Math.min(el.scrollHeight,110)+'px'}
+
+  async function markRead(){
+    if(!currentUser||!activeConversationId)return;
+
+    const now=Date.now();
+
+    try{
+      await set(ref(db,`chatReads/${activeConversationId}/${currentUser.uid}`),now);
+    }catch(error){
+      console.warn('Read timestamp skipped:',error);
+    }
+
+    try{
+      await set(ref(db,`userChats/${currentUser.uid}/${activeConversationId}/unread`),0);
+    }catch(error){
+      console.warn('Unread reset skipped:',error);
+    }
+  }
+</script>
+
+</body>
+</html>
