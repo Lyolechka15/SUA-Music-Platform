@@ -98,6 +98,37 @@
     .search i{font-size:18px}
     .top-icons{display:flex;align-items:center;gap:14px;font-size:19px}.icon-btn{width:38px;height:38px;border-radius:50%;background:rgba(12,16,24,.40);border:1px solid rgba(255,255,255,.13);color:#fff;display:grid;place-items:center;cursor:pointer}
 
+    /* HOME FIXED PROFILE + NOTIFICATIONS v27 */
+    body.home-screen #globalTopbar{
+      position:sticky;
+      top:0;
+      z-index:130;
+      width:100%;
+      min-height:56px;
+      margin:0 0 14px;
+      padding:6px 0 8px;
+      display:flex;
+      justify-content:flex-end;
+      align-items:flex-start;
+      background:transparent;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
+      pointer-events:none;
+    }
+    body.home-screen #globalTopbar .top-icons{
+      margin-left:auto;
+      justify-content:flex-end;
+      pointer-events:auto;
+    }
+    body.home-screen #globalTopbar .icon-btn{
+      background:rgba(12,16,24,.58);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+    body.home-screen #screen-home{
+      position:relative;
+    }
+
     .music-grid{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:18px;align-items:start}
     .glass{background:var(--glass);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(17px);-webkit-backdrop-filter:blur(17px);box-shadow:0 16px 38px rgba(0,0,0,.13)}
     .main-panel{border-radius:22px;padding:20px 22px 16px;min-width:0}
@@ -378,6 +409,103 @@
     body.white-workspace .dash-card span,body.white-workspace .data-row span,body.white-workspace .post-body,body.white-workspace .course-card p{color:rgba(20,24,32,.62)}
     @media(max-width:1000px){.dashboard-grid{grid-template-columns:repeat(2,1fr)}}
 
+
+    /* PROFILE + NOTIFICATIONS v21 */
+    .top-icon-with-badge{position:relative}
+    .top-notification-badge{position:absolute;right:-4px;top:-5px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#e74c3c;color:#fff;border:2px solid rgba(12,16,24,.9);font-size:9px;font-weight:800;display:grid;place-items:center;line-height:1}
+    .profile-screen{position:fixed;inset:0;z-index:1500;display:none;background:rgba(7,9,14,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);overflow:auto;color:#fff}
+    .profile-screen.open{display:block}
+    .profile-shell{width:min(1180px,94vw);margin:28px auto 60px}
+    .profile-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.profile-topbar h1{font-size:25px}
+    .profile-close{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.07);color:#fff;cursor:pointer;font-size:18px}
+    .profile-layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px}
+    .profile-card,.profile-main-card{border-radius:22px;padding:22px;background:rgba(15,18,27,.86);border:1px solid rgba(255,255,255,.12);box-shadow:0 18px 50px rgba(0,0,0,.25)}
+    .profile-avatar-wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+    .profile-avatar-large{width:142px;height:142px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),#a9722e);color:#21170a;font-size:42px;font-weight:850;border:4px solid rgba(255,255,255,.08);box-shadow:0 18px 35px rgba(0,0,0,.25)}
+    .profile-avatar-large img{width:100%;height:100%;object-fit:cover}.avatar-upload-btn{margin-top:13px;padding:9px 12px;border-radius:10px;background:rgba(216,173,87,.14);border:1px solid rgba(216,173,87,.28);color:var(--gold2);cursor:pointer;font-size:10px;font-weight:800}
+    .profile-name{font-size:21px;font-weight:800;margin-top:15px}.profile-username{font-size:11px;color:var(--muted);margin-top:4px}
+    .profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.profile-stat{padding:12px;border-radius:12px;background:rgba(255,255,255,.045);text-align:center}.profile-stat b{font-size:18px;display:block}.profile-stat span{font-size:9px;color:var(--muted)}
+    .profile-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.profile-tab{padding:10px 13px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:10px;font-weight:750}.profile-tab.active{background:rgba(216,173,87,.17);border-color:rgba(216,173,87,.34);color:var(--gold2)}
+    .profile-panel{display:none}.profile-panel.active{display:block}
+    .profile-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.profile-form-grid .full{grid-column:1/-1}.profile-label{font-size:9px;color:var(--muted);font-weight:750;margin-bottom:5px}
+    .profile-input{width:100%;height:44px;border-radius:11px;border:1px solid rgba(255,255,255,.13);background:rgba(7,10,16,.55);color:#fff;padding:0 12px;outline:0}.profile-save{margin-top:14px;padding:11px 15px;border-radius:10px;background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a;font-weight:850;cursor:pointer}
+    .friend-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:11px;align-items:center;padding:12px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);margin-bottom:8px}.friend-copy b{display:block;font-size:11px}.friend-copy span{display:block;font-size:9px;color:var(--muted);margin-top:3px}.friend-actions{display:flex;gap:6px}.friend-actions button{height:32px;padding:0 10px;border-radius:8px;cursor:pointer;font-size:9px;font-weight:750}
+    .friend-primary{background:linear-gradient(135deg,var(--gold2),#c8943d);color:#21170a}.friend-secondary{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.1)}
+    .profile-empty{padding:26px;text-align:center;border:1px dashed rgba(255,255,255,.13);border-radius:13px;color:var(--muted);font-size:10px;line-height:1.5}.request-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#e74c3c;color:#fff;font-size:8px;margin-left:5px}
+    .notification-drawer{position:fixed;inset:0;z-index:1450;display:none;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);padding:24px}.notification-drawer.open{display:flex;justify-content:flex-end}.notification-panel{width:min(500px,96vw);height:100%;border-radius:22px;padding:20px;background:rgba(14,17,25,.97);border:1px solid rgba(255,255,255,.12);overflow:auto;box-shadow:0 25px 70px rgba(0,0,0,.4)}
+    .notification-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.notification-head h2{font-size:19px}.notification-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);color:#fff;cursor:pointer}
+    .notification-item{padding:13px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);margin-bottom:8px}.notification-item.unread{border-color:rgba(216,173,87,.35);background:rgba(216,173,87,.07)}.notification-item b{font-size:11px;display:block}.notification-item p{font-size:9.5px;color:var(--muted);line-height:1.5;margin-top:5px}.notification-item time{display:block;font-size:8px;color:rgba(255,255,255,.4);margin-top:7px}
+    .notification-actions{display:flex;gap:6px;margin-top:9px}.notification-actions button{height:30px;padding:0 10px;border-radius:8px;cursor:pointer;font-size:9px}
+    @media(max-width:800px){.profile-layout{grid-template-columns:1fr}.profile-form-grid{grid-template-columns:1fr}.profile-form-grid .full{grid-column:auto}}
+
+
+    /* CHAT AVATARS + PUBLIC PROFILE v22 */
+    .clickable-avatar{cursor:pointer;transition:.18s}
+    .clickable-avatar:hover{transform:scale(1.04);box-shadow:0 0 0 2px rgba(216,173,87,.28)}
+    .message-row{align-items:flex-end;gap:7px}
+    .message-avatar{width:28px;height:28px;border-radius:50%;overflow:hidden;display:grid;place-items:center;flex:0 0 28px;background:linear-gradient(135deg,rgba(240,200,111,.95),rgba(174,122,47,.9));color:#20170b;font-size:9px;font-weight:850}
+    .message-avatar img{width:100%;height:100%;object-fit:cover}
+    .message-row.me .message-avatar{order:2}
+    .message-row.me .message{order:1}
+    #publicProfilePresence.online{color:#80d89b}
+    #publicProfileFriendBtn.pending{background:rgba(255,255,255,.08);color:var(--muted);border:1px solid rgba(255,255,255,.12)}
+    #publicProfileFriendBtn.remove{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.14)}
+    .public-post{padding:15px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);margin-bottom:10px}
+    .public-post-head{display:flex;align-items:center;gap:9px}.public-post-head .chat-avatar{width:34px;height:34px;flex-basis:34px}
+    .public-post-head b{font-size:11px}.public-post-head span{display:block;font-size:8.5px;color:var(--muted);margin-top:2px}
+    .public-post-body{font-size:10.5px;line-height:1.65;color:rgba(255,255,255,.8);margin-top:10px}
+
+
+    /* HOME LONGFORM v24 */
+    #screen-home{padding-bottom:40px}
+    .home-stack{display:grid;gap:18px}
+    .home-section{position:relative;overflow:hidden;border-radius:22px;padding:28px;background:linear-gradient(135deg,rgba(10,13,21,.86),rgba(16,15,18,.76));border:1px solid rgba(255,255,255,.11);box-shadow:0 18px 55px rgba(0,0,0,.16)}
+    .home-section::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-110px;top:-130px;background:radial-gradient(circle,rgba(216,173,87,.13),transparent 68%);pointer-events:none}
+    .home-kicker{font-size:8px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);font-weight:850;margin-bottom:8px}
+    .home-title{font-size:clamp(25px,3.2vw,49px);font-weight:500;line-height:.98;letter-spacing:-.035em;max-width:860px}
+    .home-title .gold{color:var(--gold2)}
+    .home-copy{font-size:10.5px;color:rgba(255,255,255,.70);line-height:1.72;max-width:760px;margin-top:13px}
+    .home-rule{height:1px;background:linear-gradient(90deg,var(--gold2),rgba(216,173,87,.08),transparent);margin:21px 0}
+    .home-quote{border-left:1px solid var(--gold2);padding:18px 20px;margin-top:18px;background:rgba(255,255,255,.025);font-size:17px;line-height:1.35;color:rgba(255,255,255,.9)}
+    .home-quote small{display:block;margin-top:10px;color:var(--muted);font-size:8px;letter-spacing:.18em}
+    .steps-track{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:24px;position:relative}
+    .steps-track::before{content:"";position:absolute;left:5%;right:5%;top:8px;height:1px;background:rgba(216,173,87,.72)}
+    .step-card{position:relative;padding:28px 12px 5px 0}
+    .step-card::before{content:"";position:absolute;top:3px;left:0;width:11px;height:11px;border-radius:50%;background:var(--gold2);box-shadow:0 0 0 4px rgba(216,173,87,.08)}
+    .step-no{font-size:7px;letter-spacing:.2em;color:rgba(255,255,255,.38);text-transform:uppercase}
+    .step-card b{display:block;margin-top:7px;font-size:12px}.step-card p{font-size:9px;color:var(--muted);line-height:1.55;margin-top:7px}
+    .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+    .service-card{min-height:145px;padding:16px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);border-radius:13px}
+    .service-icon{width:30px;height:30px;border:1px solid rgba(216,173,87,.34);border-radius:8px;display:grid;place-items:center;color:var(--gold2);font-size:11px}
+    .service-card b{display:block;font-size:11px;margin-top:13px}.service-card p{font-size:8.8px;color:var(--muted);line-height:1.55;margin-top:7px}
+    .price-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start;margin-top:18px}
+    .price-table{border-top:1px solid rgba(216,173,87,.65)}
+    .price-row{display:grid;grid-template-columns:.7fr 1fr 1.1fr;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:8.8px;line-height:1.5}
+    .price-row.head{font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+    .price-row b{font-size:9px}
+    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:17px}
+    .why-card{padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:13px;background:rgba(255,255,255,.025)}
+    .why-card b{display:block;font-size:10.5px;margin-top:10px}.why-card p{font-size:8.5px;line-height:1.55;color:var(--muted);margin-top:6px}
+    .fit-grid{display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:12px;margin-top:18px}
+    .fit-card{padding:17px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.025);border-radius:13px}
+    .fit-card.highlight{border-color:rgba(216,173,87,.75);background:rgba(216,173,87,.045)}
+    .fit-label{display:inline-block;font-size:7px;padding:4px 7px;border:1px solid rgba(216,173,87,.30);border-radius:999px;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase}
+    .fit-card h3{font-size:13px;margin-top:10px}.fit-card ul{margin:10px 0 0 16px}.fit-card li{font-size:8.8px;color:var(--muted);line-height:1.6;margin-bottom:6px}
+    .join-form{display:grid;gap:8px;margin-top:11px}.join-form input,.join-form textarea{width:100%;border:1px solid rgba(255,255,255,.12);background:rgba(7,10,16,.55);color:#fff;border-radius:9px;padding:10px 11px;font-size:9px;outline:0}.join-form textarea{min-height:88px;resize:vertical}
+    .manifesto-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+    .manifesto-block{padding:18px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(255,255,255,.022)}
+    .manifesto-block h3{font-size:14px;line-height:1.25}.manifesto-block p{font-size:9.3px;line-height:1.68;color:rgba(255,255,255,.68);margin-top:9px}
+    .score-overview{display:grid;grid-template-columns:260px 1fr;gap:18px;margin-top:17px}
+    .score-hero{padding:20px;border-radius:16px;background:radial-gradient(circle at 70% 20%,rgba(216,173,87,.17),transparent 45%),rgba(255,255,255,.03);border:1px solid rgba(216,173,87,.28)}
+    .score-number{font-size:53px;line-height:1;font-weight:650;color:var(--gold2);letter-spacing:-.05em}.score-label{font-size:9px;color:var(--muted);margin-top:6px}
+    .score-bars{display:grid;gap:8px;margin-top:14px}.score-bar-row{display:grid;grid-template-columns:105px 1fr 34px;gap:8px;align-items:center;font-size:8.5px}.score-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}.score-bar span{display:block;height:100%;background:linear-gradient(90deg,#9f7634,var(--gold2));border-radius:99px}
+    .score-rules{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.score-rule{padding:14px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025)}.score-rule b{font-size:10px}.score-rule p{font-size:8.5px;color:var(--muted);line-height:1.55;margin-top:5px}
+    .levels{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.level-pill{padding:6px 8px;border-radius:999px;border:1px solid rgba(216,173,87,.25);font-size:7.8px;color:rgba(255,255,255,.74)}
+    .achievement-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}.achievement{padding:11px;text-align:center;border-radius:11px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08)}.achievement i{font-size:16px;color:var(--gold2)}.achievement b{display:block;font-size:8.5px;margin-top:7px}
+    .home-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px;border:1px solid rgba(255,255,255,.11);border-radius:15px;background:rgba(255,255,255,.025);margin-top:18px}.home-cta h3{font-size:18px}.home-cta p{font-size:9px;color:var(--muted);margin-top:5px}
+    @media(max-width:1000px){.steps-track{grid-template-columns:1fr 1fr}.steps-track::before{display:none}.service-grid,.why-grid{grid-template-columns:1fr 1fr}.fit-grid,.price-layout,.score-overview,.manifesto-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:650px){.home-section{padding:18px}.service-grid,.why-grid,.fit-grid{grid-template-columns:1fr}.steps-track{grid-template-columns:1fr}.achievement-grid{grid-template-columns:1fr 1fr}.price-row{grid-template-columns:1fr}.price-row.head{display:none}}
+
     /* PLAYER */
     .player{position:absolute;left:277px;right:20px;bottom:14px;height:82px;border-radius:20px;background:rgba(12,15,22,.90);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(18px);display:grid;grid-template-columns:260px 1fr 260px;align-items:center;padding:11px 18px;z-index:20;box-shadow:0 16px 38px rgba(0,0,0,.28)}
     .player-track{display:flex;align-items:center;gap:11px;min-width:0}.player-track img{width:54px;height:54px;border-radius:9px;object-fit:cover}.player-track b{display:block;font-size:11px}.player-track span{font-size:9px;color:var(--muted)}.heart{margin-left:auto;background:none;color:#fff;font-size:18px}
@@ -388,7 +516,7 @@
     @media(max-width:1180px){
       body{padding:0}.app{width:100vw;height:100vh;border-radius:0}.music-grid{grid-template-columns:1fr}.now{position:relative;min-height:auto}.release-row{grid-template-columns:repeat(3,1fr)}.player{left:270px;right:12px}.player-right{display:none}.player{grid-template-columns:230px 1fr}.sidebar{width:245px;flex-basis:245px}}
     @media(max-width:820px){
-      .sidebar{width:80px;flex-basis:80px;padding:20px 10px 110px}.brand-logo-img,.auth,.nav-item span,.sidebar-bottom{display:none}.nav-item{justify-content:center}.player{left:90px;grid-template-columns:170px 1fr}.player-track .meta{display:none}.workspace{padding:18px 15px 120px}.release-row{grid-template-columns:repeat(2,1fr)}.hero-art{opacity:.35;right:8px}.hero-copy{max-width:78%}.cards3,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.chat{grid-template-columns:1fr;height:650px}.chat-list{display:none}.people-panel{display:none}}
+      .sidebar{width:80px;flex-basis:80px;padding:20px 10px 110px}.brand-logo-img,.auth,.nav-item span,.sidebar-bottom{display:none}.nav-item{justify-content:center}.player{left:90px;grid-template-columns:170px 1fr}.player-track .meta{display:none}.workspace{padding:18px 15px 120px}.release-row{grid-template-columns:repeat(2,1fr)}.hero-art{opacity:.35;right:8px}.hero-copy{max-width:78%}.cards3,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.chat{grid-template-columns:1fr;height:650px}.chat-list{display:none}.people-panel{display:none}body.home-screen #globalTopbar{min-height:54px;padding:4px 0 8px}}
 
     /* EMPTY MUSIC STATES */
     .empty-state{
@@ -422,8 +550,53 @@
       font-size:42px;
     }
 
+  
+    /* FULL HOME MANIFESTO v28 */
+    .full-manifesto-section{padding:34px 38px}
+    .full-manifesto{max-width:980px}
+    .manifesto-main-title{margin-bottom:22px}
+    .manifesto-copy{
+      max-width:900px;
+      margin:0 0 12px;
+      font-size:12px;
+      line-height:1.72;
+      color:rgba(255,255,255,.78);
+    }
+    .manifesto-heading{
+      max-width:900px;
+      margin:28px 0 12px;
+      font-size:20px;
+      line-height:1.16;
+      font-weight:650;
+      letter-spacing:-.02em;
+      color:var(--gold2);
+    }
+    .full-manifesto .manifesto-copy + .manifesto-heading{margin-top:34px}
+    @media(max-width:650px){
+      .full-manifesto-section{padding:20px 18px}
+      .manifesto-copy{font-size:11px;line-height:1.68}
+      .manifesto-heading{font-size:18px}
+    }
+
+  
+    /* MESSENGER AVATAR HARDENING v29 */
+    .chat-avatar{
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .chat-avatar img,
+    .message-avatar img,
+    #peerAvatar img,
+    #myAvatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:inherit;
+    }
+
   </style>
-<!-- SUA FULL SITE BUILD: 2026-09-05-v20 -->
+<!-- SUA FULL SITE BUILD: 2026-09-06-v31 -->
 </head>
 <body class="auth-pending home-screen">
 
@@ -461,30 +634,407 @@
     <div class="workspace-inner">
       <div class="topbar" id="globalTopbar">
         <div class="search"><input id="searchInput" placeholder="Поиск музыки, артистов, альбомов..." oninput="filterMusic()"><i class="fa-solid fa-magnifying-glass"></i></div>
-        <div class="top-icons"><button class="icon-btn" id="notificationsBtn" title="Уведомления"><i class="fa-regular fa-bell"></i></button><button class="icon-btn" id="profileBtn" title="Профиль"><i class="fa-regular fa-user"></i></button></div>
+        <div class="top-icons">
+          <button class="icon-btn top-icon-with-badge" id="notificationsBtn" title="Уведомления">
+            <i class="fa-regular fa-bell"></i>
+            <span id="notificationBadge" class="top-notification-badge" hidden>0</span>
+          </button>
+          <button class="icon-btn" id="profileBtn" title="Профиль"><i class="fa-regular fa-user"></i></button>
+        </div>
       </div>
 
       <section id="screen-home" class="app-screen active">
-        <div class="content-card glass">
-          <h1>SUA World Music Records</h1>
-          <p class="lead">Музыка, дистрибуция, коммуникации и интеллектуальная среда внутри одной премиальной платформы.</p>
+        <div class="home-stack">
 
-          <div class="dashboard-grid">
-            <div class="dash-card" onclick="goSection('music')"><i class="fa-solid fa-music"></i><b>Музыка</b><span>Каталог, чарты, плейлисты и релизы.</span></div>
-            <div class="dash-card" onclick="goSection('distribution')"><i class="fa-solid fa-cloud-arrow-up"></i><b>Дистрибуция</b><span>Загрузить релиз и проверить статус заявки.</span></div>
-            <div class="dash-card" onclick="goSection('messenger')"><i class="fa-regular fa-comments"></i><b>Мессенджер</b><span>Диалоги, друзья и организатор SUA.</span></div>
-            <div class="dash-card" onclick="goSection('artist-services')"><i class="fa-solid fa-user-gear"></i><b>Сервис для артистов</b><span>Аналитика, роялти и смарт-ссылки.</span></div>
-            <div class="dash-card" onclick="goSection('feed')"><i class="fa-regular fa-newspaper"></i><b>Лента</b><span>Новости, публикации и события.</span></div>
-            <div class="dash-card" onclick="goSection('communities')"><i class="fa-solid fa-user-group"></i><b>Сообщества</b><span>Артисты, продюсеры, авторы и коллаборации.</span></div>
-            <div class="dash-card" onclick="goSection('sanctum')"><i class="fa-solid fa-graduation-cap"></i><b>Клуб знаний</b><span>Библиотека, лекции, курсы и обсуждения.</span></div>
-            <div class="dash-card" onclick="goSection('advertising')"><i class="fa-solid fa-bullhorn"></i><b>Рекламная кампания</b><span>Создание и ведение кампаний релиза.</span></div>
-          </div>
+          <section class="home-section full-manifesto-section">
+            <div class="home-kicker">манифест SUA WORLD MUSIC</div>
+            <div class="full-manifesto">
+              <div class="home-title manifesto-main-title">«Завтра» — одно из самых удобных слов человеческого языка.</div>
+              <p class="manifesto-copy">Застой редко выглядит как поражение. Человек продолжает работать. Он что-то изучает, что-то планирует, что-то обсуждает, сохраняет ссылки, сравнивает предложения, пересматривает стратегию, строит таблицы, ищет ещё одного специалиста.</p>
+              <p class="manifesto-copy">Внешне — движение.</p>
+              <p class="manifesto-copy">Внутри — неподвижность.</p>
+              <p class="manifesto-copy">Это и есть бег по кругу: усилие без продвижения, активность без результата, занятость без ответственности.</p>
+              <p class="manifesto-copy">Музыкальная индустрия особенно благоприятна для этой иллюзии. Здесь всегда существует новое объяснение, почему релиз ещё не состоялся, почему аудитория ещё не выросла, почему стратегия пока не сработала, почему необходимо подождать, почему следующий месяц будет лучше предыдущего.</p>
+              <p class="manifesto-copy">Так проходит год.</p>
+              <p class="manifesto-copy">Затем второй.</p>
+              <p class="manifesto-copy">А затем человек обнаруживает, что всё это время совершенствовал не карьеру, а способность объяснять её отсутствие.</p>
+              <p class="manifesto-copy">В словах о завтрашнем дне можно разместить всё, чего человек боится сделать сегодня.</p>
+              <p class="manifesto-copy">Завтра выпущу.</p>
+              <p class="manifesto-copy">Завтра начну.</p>
+              <p class="manifesto-copy">Завтра займусь продвижением.</p>
+              <p class="manifesto-copy">Завтра найду команду.</p>
+              <p class="manifesto-copy">Завтра разберусь с каталогом.</p>
+              <p class="manifesto-copy">Завтра изменю стратегию.</p>
+              <p class="manifesto-copy">Завтра стану тем, кем хочу быть.</p>
+              <p class="manifesto-copy">Но завтра никогда не становится действием само по себе.</p>
+              <p class="manifesto-copy">Наступает только сегодня.</p>
+              <p class="manifesto-copy">Снова.</p>
+              <p class="manifesto-copy">И снова.</p>
+              <p class="manifesto-copy">И снова.</p>
+              <p class="manifesto-copy">Поэтому человек, который всю жизнь ждёт подходящего момента, фактически ждёт момента, которого не существует.</p>
+              <p class="manifesto-copy">Нет идеального времени.</p>
+              <p class="manifesto-copy">Есть время, которым ты располагаешь.</p>
+              <p class="manifesto-copy">Есть ресурсы, которыми ты располагаешь.</p>
+              <p class="manifesto-copy">Есть знания, которыми ты располагаешь.</p>
+              <p class="manifesto-copy">Есть люди, которых ты уже можешь привлечь.</p>
+              <p class="manifesto-copy">Есть решение, которое ты способен принять сегодня.</p>
+              <p class="manifesto-copy">И есть цена отказа от него.</p>
+              <p class="manifesto-copy">Есть страхи, которые делают человека слабым. Есть страхи, которые возвращают ему сознание.</p>
+              <p class="manifesto-copy">Бояться необходимо не неудачи. Необходимо бояться прожить достаточно долго, чтобы однажды обнаружить: ты всё это время двигался, но никуда не пришёл.</p>
+              <p class="manifesto-copy">Самая незаметная форма поражения — не падение. Поражение начинается раньше: в тот момент, когда человек привыкает откладывать собственную жизнь. Он говорит себе, что ещё недостаточно готов, что сначала необходимо изучить рынок, найти правильного партнёра, дождаться лучшего момента, накопить больше опыта, сделать ещё один трек, ещё одну попытку, ещё один шаг к тому, чтобы наконец начать.</p>
+              <p class="manifesto-copy">Но совершенство, превращённое в условие действия, становится изысканной формой бездействия.</p>
+              <p class="manifesto-copy">Время не вступает с человеком в переговоры.</p>
+              <p class="manifesto-copy">Оно не обещает отсрочки. Не возвращает упущенного. Не компенсирует годы, потраченные на сомнения. Оно просто движется вперёд — без злобы, без сострадания, без намерения кого-либо наказать. Именно поэтому его движение страшнее любого противника.</p>
+              <p class="manifesto-copy">Можно потерять деньги и заработать их снова.</p>
+              <p class="manifesto-copy">Можно потерять релиз и выпустить следующий.</p>
+              <p class="manifesto-copy">Можно ошибиться в стратегии, изменить направление, начать заново.</p>
+              <p class="manifesto-copy">Но невозможно получить обратно утро, в котором ты мог сделать первый шаг и не сделал его.</p>
+              <p class="manifesto-copy">И потому главный вопрос артиста заключается не в том, «готов ли он».</p>
+              <p class="manifesto-copy">Главный вопрос звучит гораздо жёстче:</p>
+              <p class="manifesto-copy">что именно он собирается делать с тем временем, которое уже никогда не вернётся?</p>
+              <p class="manifesto-copy">Человек почти всегда способен представить себя лучше.</p>
+              <p class="manifesto-copy">Лучшим артистом.</p>
+              <p class="manifesto-copy">Лучшим продюсером.</p>
+              <p class="manifesto-copy">Лучшим предпринимателем.</p>
+              <p class="manifesto-copy">Более дисциплинированным.</p>
+              <p class="manifesto-copy">Более свободным.</p>
+              <p class="manifesto-copy">Более сильным.</p>
+              <p class="manifesto-copy">Но между человеком, которым он является, и человеком, которым он хочет стать, существует пространство.</p>
+              <p class="manifesto-copy">Это пространство невозможно преодолеть одним желанием.</p>
+              <p class="manifesto-copy">Его преодолевают действиями.</p>
+              <p class="manifesto-copy">Каждый день.</p>
+              <p class="manifesto-copy">Иногда маленькими.</p>
+              <p class="manifesto-copy">Иногда болезненными.</p>
+              <p class="manifesto-copy">Иногда ошибочными.</p>
+              <p class="manifesto-copy">Но реальными.</p>
+              <p class="manifesto-copy">Ты можешь сказать, что хочешь мировую аудиторию.</p>
+              <p class="manifesto-copy">Хорошо.</p>
+              <p class="manifesto-copy">Тогда покажи работу.</p>
+              <p class="manifesto-copy">Ты можешь сказать, что хочешь стать большим артистом.</p>
+              <p class="manifesto-copy">Хорошо.</p>
+              <p class="manifesto-copy">Тогда принимай дисциплину большого артиста.</p>
+              <p class="manifesto-copy">Ты можешь сказать, что хочешь свободы.</p>
+              <p class="manifesto-copy">Тогда принимай ответственность, которая всегда следует за свободой.</p>
+              <p class="manifesto-copy">Свобода без ответственности — фантазия.</p>
+              <p class="manifesto-copy">Ответственность без свободы — рабство.</p>
+              <p class="manifesto-copy">Нам нужна другая конструкция:</p>
+              <p class="manifesto-copy">свобода, усиленная системой.</p>
+              <h3 class="manifesto-heading">Думать — значит отвечать</h3>
+              <p class="manifesto-copy">Мы не призываем действовать бездумно.</p>
+              <p class="manifesto-copy">Напротив.</p>
+              <p class="manifesto-copy">Думать необходимо глубоко.</p>
+              <p class="manifesto-copy">Но думать необходимо для того, чтобы действовать точнее, а не для того, чтобы бесконечно откладывать действие.</p>
+              <p class="manifesto-copy">Каждое решение должно иметь последствия. Каждое последствие — оценку. Каждая оценка — следующий шаг.</p>
+              <p class="manifesto-copy">Так возникает зрелость.</p>
+              <p class="manifesto-copy">Не из уверенности в собственной непогрешимости, а из готовности посмотреть на результат и сказать:</p>
+              <p class="manifesto-copy">«Это сделал я. Значит, я отвечаю за то, что произошло дальше».</p>
+              <p class="manifesto-copy">В этом заключается принципиальное отличие стратегии от мечты.</p>
+              <p class="manifesto-copy">Мечта не требует отчёта.</p>
+              <p class="manifesto-copy">Стратегия требует.</p>
+              <p class="manifesto-copy">Мечтатель может сказать: «Я хотел».</p>
+              <p class="manifesto-copy">Стратегия спрашивает: «Что было сделано?»</p>
+              <p class="manifesto-copy">Мечтатель говорит: «Я мог бы».</p>
+              <p class="manifesto-copy">Стратегия отвечает: «Что ты сделал с тем, что имел?»</p>
+              <p class="manifesto-copy">Для артиста это означает принимать реальность как единственный достойный экзамен для амбиции. Мечта у него уже есть. S U A World Music  не предлагает новую мечту — мы предлагаем инфраструктуру, внутри которой существующая мечта может быть проверена действием, данными и результатом.</p>
+              <p class="manifesto-copy">Идеальный партнёр — не тот, кто постоянно говорит человеку, что всё получится.</p>
+              <p class="manifesto-copy">Это бесполезная форма доброжелательности.</p>
+              <p class="manifesto-copy">Идеальный партнёр способен сказать и другое:</p>
+              <p class="manifesto-copy">«Ты ошибся».</p>
+              <p class="manifesto-copy">«Этого недостаточно».</p>
+              <p class="manifesto-copy">«Эта стратегия не работает».</p>
+              <p class="manifesto-copy">«Ты теряешь время».</p>
+              <p class="manifesto-copy">«Ты можешь сделать значительно больше».</p>
+              <p class="manifesto-copy">Настоящее партнёрство начинается там, где заканчивается необходимость нравиться друг другу.</p>
+              <p class="manifesto-copy">S U A World Music не должна становиться компанией, которая успокаивает артиста.</p>
+              <p class="manifesto-copy">Она должна становиться компанией, которая помогает ему становиться сильнее.</p>
+              <p class="manifesto-copy">Если артист хочет большего — мы должны хотеть большего вместе с ним.</p>
+              <p class="manifesto-copy">Если он ставит более высокую планку — наша инфраструктура должна подниматься вслед за ней.</p>
+              <p class="manifesto-copy">Если он ошибается — система должна позволять увидеть ошибку.</p>
+              <p class="manifesto-copy">Если он растёт — платформа должна масштабировать этот рост.</p>
+              <p class="manifesto-copy">Наш интерес должен быть структурно связан с его интересом.</p>
+              <p class="manifesto-copy">Не временное обслуживание.</p>
+              <p class="manifesto-copy">Не продажа подписки.</p>
+              <p class="manifesto-copy">Не механическая обработка релиза.</p>
+              <p class="manifesto-copy">Совместное движение.</p>
+              <p class="manifesto-copy">Именно поэтому мы говорим о партнёре, а не о поставщике услуг.</p>
+              <p class="manifesto-copy">Поставщик заканчивает работу после оказания услуги.</p>
+              <p class="manifesto-copy">Партнёр продолжает работать до тех пор, пока существует общая цель.</p>
+              <p class="manifesto-copy">S U A World Music задуман не как ещё один цифровой посредник между артистом и площадкой.</p>
+              <p class="manifesto-copy">Посредников достаточно.</p>
+              <p class="manifesto-copy">Намного важнее создать инфраструктуру, в которой путь артиста перестаёт быть хаотическим набором случайных решений.</p>
+              <p class="manifesto-copy">Дистрибуция.</p>
+              <p class="manifesto-copy">Метаданные.</p>
+              <p class="manifesto-copy">Релизное планирование.</p>
+              <p class="manifesto-copy">Аналитика.</p>
+              <p class="manifesto-copy">Маркетинг.</p>
+              <p class="manifesto-copy">Промо.</p>
+              <p class="manifesto-copy">Работа с каталогом.</p>
+              <p class="manifesto-copy">Стратегия развития.</p>
+              <p class="manifesto-copy">Монетизация.</p>
+              <p class="manifesto-copy">Коммуникация.</p>
+              <p class="manifesto-copy">Документооборот.</p>
+              <p class="manifesto-copy">Права.</p>
+              <p class="manifesto-copy">Аудитория.</p>
+              <p class="manifesto-copy">Связи.</p>
+              <p class="manifesto-copy">Данные.</p>
+              <p class="manifesto-copy">Каждый элемент существует не сам по себе.</p>
+              <p class="manifesto-copy">Они должны образовывать единую систему.</p>
+              <p class="manifesto-copy">Потому что слабая система заставляет человека постоянно соединять её части собственными руками.</p>
+              <p class="manifesto-copy">Сильная система соединяет их за него.</p>
+              <p class="manifesto-copy">Именно здесь начинается наша архитектура.</p>
+              <p class="manifesto-copy">S U A World Music должна стать не дверью, через которую артист загружает музыку, а территорией, внутри которой его музыкальная деятельность получает инфраструктуру для роста.</p>
+              <p class="manifesto-copy">Мы строим платформу, способную объединить в одном пространстве то, что рынок привык разрывать на десятки отдельных сервисов.</p>
+              <p class="manifesto-copy">Не потому, что нам необходимо добавить как можно больше функций.</p>
+              <p class="manifesto-copy">А потому, что фрагментация — один из главных источников потери времени.</p>
+              <p class="manifesto-copy">Человек не должен быть диспетчером собственной карьеры.</p>
+              <p class="manifesto-copy">Он должен быть её автором.</p>
+              <p class="manifesto-copy">S U A World Music строится не вокруг обещаний, а вокруг ответственности.</p>
+              <p class="manifesto-copy">Мы хотим знать не только, сколько было прослушиваний.</p>
+              <p class="manifesto-copy">Мы хотим понимать, почему их стало больше или меньше.</p>
+              <p class="manifesto-copy">Не только сколько стоила кампания.</p>
+              <p class="manifesto-copy">А какую отдачу она создала.</p>
+              <p class="manifesto-copy">Не только вышел ли релиз.</p>
+              <p class="manifesto-copy">А был ли он услышан.</p>
+              <p class="manifesto-copy">Не только достиг ли артист определённой цифры.</p>
+              <p class="manifesto-copy">А приблизила ли эта цифра его к той позиции, которую он действительно хочет занять.</p>
+              <p class="manifesto-copy">Для нас отчётность — не бюрократия.</p>
+              <p class="manifesto-copy">Это форма уважения к времени.</p>
+              <p class="manifesto-copy">Мы не обещаем артисту отсутствие ошибок.</p>
+              <p class="manifesto-copy">Мы предлагаем систему, в которой ошибка становится информацией, действие — опытом, опыт — стратегией, а стратегия — движением вперёд.</p>
+              <p class="manifesto-copy">S U A World Music существует именно в точке между намерением и действием.</p>
+              <p class="manifesto-copy">Мы хотим сократить расстояние между ними настолько, насколько возможно.</p>
+              <p class="manifesto-copy">Не обещанием лёгкого пути.</p>
+              <p class="manifesto-copy">А устранением ненужного сопротивления.</p>
+              <p class="manifesto-copy">Мы берём на себя сложность там, где она должна принадлежать системе.</p>
+              <p class="manifesto-copy">Артисту оставляем главное — создавать.</p>
+              <p class="manifesto-copy">Но создание не заканчивается звуком.</p>
+              <p class="manifesto-copy">Оно продолжается решением выпустить.</p>
+              <p class="manifesto-copy">Решением не остановиться.</p>
+              <p class="manifesto-copy">Решением посмотреть на цифры.</p>
+              <p class="manifesto-copy">Решением признать ошибку.</p>
+              <p class="manifesto-copy">Решением изменить стратегию.</p>
+              <p class="manifesto-copy">Решением работать ещё точнее.</p>
+              <p class="manifesto-copy">Успех нельзя гарантировать.</p>
+              <p class="manifesto-copy">Ни одна честная система не способна обещать человеку результат, который зависит от миллионов переменных: качества произведения, аудитории, времени, конкуренции, культурного контекста, алгоритмов, экономики и самого артиста.</p>
+              <p class="manifesto-copy">Но можно гарантировать другое.</p>
+              <p class="manifesto-copy">Можно построить систему, в которой решения принимаются не вслепую.</p>
+              <p class="manifesto-copy">Где данные не прячутся.</p>
+              <p class="manifesto-copy">Где ошибки фиксируются.</p>
+              <p class="manifesto-copy">Где время учитывается как ресурс.</p>
+              <p class="manifesto-copy">Где релиз не исчезает после кнопки «отправить».</p>
+              <p class="manifesto-copy">Где артист понимает, что происходит с его музыкой.</p>
+              <p class="manifesto-copy">Где его каталог является активом, а не архивом.</p>
+              <p class="manifesto-copy">Где каждое действие оставляет след.</p>
+              <p class="manifesto-copy">И где этот след позволяет принимать следующее решение лучше предыдущего.</p>
+              <h3 class="manifesto-heading">Вот что значит быть монументальной платформой</h3>
+              <p class="manifesto-copy">Монументальность определяется не количеством страниц интерфейса и не количеством функций.</p>
+              <p class="manifesto-copy">Она определяется способностью системы выдерживать масштаб человеческой амбицииS U A World Music должна быть именно такой системой.</p>
+              <p class="manifesto-copy">Достаточно большой, чтобы сопровождать артиста от первого релиза до международного каталога.</p>
+              <p class="manifesto-copy">Достаточно интеллектуальной, чтобы различать контекст.</p>
+              <p class="manifesto-copy">Достаточно строгой, чтобы требовать результата.</p>
+              <p class="manifesto-copy">Достаточно гибкой, чтобы развиваться вместе с человеком.</p>
+              <p class="manifesto-copy">И достаточно амбициозной, чтобы самой никогда не считать достигнутое окончательным.</p>
+              <p class="manifesto-copy">В конечном счёте вопрос никогда не был только в музыке.</p>
+              <p class="manifesto-copy">Он был во времени.</p>
+              <p class="manifesto-copy">В том, что человек делает с ограниченным количеством дней, которые ему предоставлены.</p>
+              <p class="manifesto-copy">Можно провести их в ожидании.</p>
+              <p class="manifesto-copy">Можно провести их в бесконечной подготовке.</p>
+              <p class="manifesto-copy">Можно годами искать идеальную возможность.</p>
+              <p class="manifesto-copy">Можно постоянно начинать сначала.</p>
+              <p class="manifesto-copy">А можно принять неприятную, но освобождающую истину:</p>
+              <p class="manifesto-copy">никто не придёт прожить твою жизнь вместо тебя.</p>
+              <p class="manifesto-copy">Никто не напишет за тебя музыку.</p>
+              <p class="manifesto-copy">Никто не примет за тебя решение.</p>
+              <p class="manifesto-copy">Никто не понесёт за тебя последствия.</p>
+              <p class="manifesto-copy">И никто не вернёт тебе годы, которые ты добровольно отдал бездействию.</p>
+              <p class="manifesto-copy">Но именно поэтому у человека остаётся власть.</p>
+              <p class="manifesto-copy">Пока он способен действовать — он способен менять направление.</p>
+              <p class="manifesto-copy">Пока он способен отвечать за себя — он свободен.</p>
+              <p class="manifesto-copy">Пока он способен начать снова — история не закончена.</p>
+              <p class="manifesto-copy">S U A создана для этой свободы.</p>
+              <p class="manifesto-copy">Не для того, чтобы избавить артиста от ответственности.</p>
+              <p class="manifesto-copy">А для того, чтобы ответственность перестала быть одиночеством.</p>
+              <p class="manifesto-copy">И однажды — оглянуться назад и увидеть не бесконечную цепь попыток, а траекторию.</p>
+              <p class="manifesto-copy">Вот чего мы хотим от S U A World Music.</p>
+              <p class="manifesto-copy">Не быть компанией, которая просто присутствует в музыкальной индустрии.</p>
+              <p class="manifesto-copy">А стать системой, которая заставляет эту индустрию работать точнее.</p>
+              <p class="manifesto-copy">Не быть самым громким именем.</p>
+              <p class="manifesto-copy">А стать именем, за которым стоит доказательство.</p>
+              <p class="manifesto-copy">Не говорить артисту:</p>
+              <p class="manifesto-copy">«Мы сделаем всё за тебя».</p>
+              <p class="manifesto-copy">А сказать гораздо честнее:</p>
+              <p class="manifesto-copy">«Мы построим с тобой систему, в которой ты сможешь сделать больше, чем смог бы один».</p>
+              <p class="manifesto-copy">И тогда выбор становится простым.</p>
+              <p class="manifesto-copy">Можно продолжать ждать.</p>
+              <p class="manifesto-copy">Можно продолжать сомневаться.</p>
+              <p class="manifesto-copy">Можно продолжать бегать по одному и тому же кругу, каждый раз называя это новым опытом.</p>
+              <p class="manifesto-copy">А можно остановиться.</p>
+              <p class="manifesto-copy">Посмотреть на собственное время.</p>
+              <p class="manifesto-copy">Понять его конечность.</p>
+              <p class="manifesto-copy">И начать работать.</p>
+              <p class="manifesto-copy">Музыка — одна из немногих вещей, которым человек может доверить своё отсутствие.</p>
+              <p class="manifesto-copy">Всё остальное со временем теряет очертания.</p>
+              <p class="manifesto-copy">Здания оседают в пыли. Имена тускнеют на камне. Государства распадаются. Города меняют улицы, языки — звучание, привычки — смысл. Даже память, пока ещё хранящая человека, однажды начинает пропускать его черты: забывает голос, жесты, слова, то, что он любил и что успел создать.</p>
+              <p class="manifesto-copy">Но звук иногда переживает того, кто его породил.</p>
+              <p class="manifesto-copy">Музыка не спрашивает, сколько тебе было лет, кем ты считался, сколько у тебя было денег, сколько дверей перед тобой закрыли и сколько людей произнесли твоё имя с верой.</p>
+              <p class="manifesto-copy">Она просто продолжает звучать.</p>
+              <p class="manifesto-copy">В ней остаётся не биография, а след присутствия — то, что не помещается в даты и факты.</p>
+              <p class="manifesto-copy">Музыка никогда не была лишь способом заполнить тишину. В ней человек учится не исчезать бесследно.</p>
+              <p class="manifesto-copy">Записывая произведение, он оставляет часть своего внутреннего мира за пределами собственной жизни. Голос, однажды пойманный микрофоном, уже не принадлежит только тому мгновению, в котором прозвучал. Он может перейти дальше — в чужую комнату, в чужую память, в чужое время.</p>
+              <p class="manifesto-copy">Голос может умолкнуть.</p>
+              <p class="manifesto-copy">Человек — уйти.</p>
+              <p class="manifesto-copy">А запись продолжит жить.</p>
+              <p class="manifesto-copy">Через десять лет.</p>
+              <p class="manifesto-copy">Через пятьдесят.</p>
+              <p class="manifesto-copy">Через сто.</p>
+              <p class="manifesto-copy">В комнате, которой сегодня ещё нет. В наушниках человека, который ещё не родился. В городе, чьи улицы пока существуют только на чертеже.</p>
+              <p class="manifesto-copy">Поэтому значение музыки не исчерпывается числом прослушиваний.</p>
+              <p class="manifesto-copy">Прослушивание заканчивается. Музыка остаётся.</p>
+              <p class="manifesto-copy">Музыка — одна из немногих вещей, которым человек может доверить своё отсутствие. Всё остальное со временем теряет очертания. Здания оседают в пыли. Имена тускнеют на камне. Государства распадаются. Города меняют улицы, языки — звучание, привычки — смысл. Даже память, пока ещё хранящая человека, однажды начинает пропускать его черты: забывает голос, жесты, слова, то, что он любил и что успел создать. Но звук иногда переживает того, кто его породил. Музыка не спрашивает, сколько тебе было лет, кем ты считался, сколько у тебя было денег, сколько дверей перед тобой закрыли и сколько людей произнесли твоё имя с верой. Она просто продолжает звучать. В ней остаётся не биография, а след присутствия — то, что не помещается в даты и факты. Музыка никогда не была лишь способом заполнить тишину. В ней человек учится не исчезать бесследно. Записывая произведение, он оставляет часть своего внутреннего мира за пределами собственной жизни. Голос, однажды пойманный микрофоном, уже не принадлежит только тому мгновению, в котором прозвучал. Он может перейти дальше — в чужую комнату, в чужую память, в чужое время. Голос может умолкнуть. Человек — уйти. А запись продолжит жить. Через десять лет. Через пятьдесят. Через сто. В комнате, которой сегодня ещё нет. В наушниках человека, который ещё не родился. В городе, чьи улицы пока существуют только на чертеже. Поэтому значение музыки не исчерпывается числом прослушиваний. Прослушивание заканчивается. Музыка остаётся.</p>
+            </div>
+          </section>
 
-          <div class="quick-row">
-            <button class="quick-btn" onclick="goSection('distribution')"><i class="fa-solid fa-plus"></i> Загрузить релиз</button>
-            <button class="soft-btn" onclick="openQuickProfile()"><i class="fa-regular fa-user"></i> Мой профиль</button>
-            <button class="soft-btn" onclick="showNotifications()"><i class="fa-regular fa-bell"></i> Уведомления</button>
-          </div>
+          <section class="home-section">
+            <div class="home-kicker">как мы работаем</div>
+            <div class="home-title">5 шагов от заявки<br>до первого релиза <span class="gold">под командой.</span></div>
+            <p class="home-copy">Никаких «полугодовых тестов». Смотрим проект, фиксируем задачи, строим стратегию и запускаем работу.</p>
+            <div class="steps-track">
+              <div class="step-card"><span class="step-no">Шаг 01</span><b>Заявка</b><p>Заполняешь форму, присылаешь ссылки. Мы лично слушаем и смотрим — без ботов и автоответчиков.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 02</span><b>Аудит</b><p>Разбираем проект: сильные стороны, дыры, упущенные деньги и точки роста.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 03</span><b>Стратегия</b><p>Фиксируем цели на квартал и год, бюджет, релиз-план, концерты и медиа.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 04</span><b>Контракт</b><p>Прозрачные условия, никаких «вечных» прав и скрытых процентов. Ты в курсе всего.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 05</span><b>Запуск</b><p>Подключаем команду, запускаем первый релиз и открываем рабочую систему отчётности.</p></div>
+            </div>
+          </section>
+
+          <section class="home-section">
+            <div class="home-kicker">что внутри</div>
+            <div class="home-title">Музыкальный менеджер: 8 фронтов работы — <span class="gold">всё на нас.</span></div>
+            <p class="home-copy">Это не «пакет услуг». Это команда людей, которая каждый день думает о твоей карьере вместе с тобой.</p>
+            <div class="service-grid">
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-compass"></i></div><b>Стратегия</b><p>Позиционирование, цели на квартал/год, аудитория, ритм релизов. Без этого реклама бьёт мимо.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div><b>Букинг и туры</b><p>Договоры с площадками, техрайдеры, логистика, бэклайн. Превращаем релизы в живые деньги и аудиторию.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-regular fa-file-lines"></i></div><b>Контракты и сделки</b><p>Лейбл, дистрибуция, синки, бренды. Читаем каждый шрифт, торгуемся за роялти, защищаем мастера.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-dollar-sign"></i></div><b>Финансы</b><p>Бюджет, P&L каждого релиза, прозрачные отчёты, сбор роялти и авторских. Налоговая чистота.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-people-group"></i></div><b>Команда вокруг</b><p>Продюсеры, режиссёры клипов, SMM, PR, юристы, буеры. Координируем, чтобы все играли в одну сторону.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-link"></i></div><b>Связи</b><p>Редакторы стримингов, ТВ, радио, fashion, кинопродакшн, бренды и агентства. Открываем двери.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-regular fa-id-card"></i></div><b>Личный кабинет</b><p>Роялти, отчёты, договоры, медиа-план в одном окне. Живая аналитика по всем площадкам.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div><b>Кризис-менеджмент 24/7</b><p>Сорванный концерт, негатив в медиа, удалённый клип, проблемы со звуком — подключаемся, когда нужно.</p></div>
+            </div>
+          </section>
+
+          <section class="home-section">
+            <div class="home-kicker">условия</div>
+            <div class="home-title">Сколько стоят услуги <span class="gold">менеджера артиста.</span></div>
+            <div class="price-layout">
+              <div>
+                <div class="home-quote">«Артист без менеджера — это бизнес без отдела продаж. Креатив есть. Денег и роста — нет».</div>
+                <p class="home-copy">Единого прайса не существует: артист на старте и артист с турами требуют разного объёма работы. Поэтому формат определяется после аудита.</p>
+              </div>
+              <div class="price-table">
+                <div class="price-row head"><span>Формат</span><span>Кому подходит</span><span>Как считаем</span></div>
+                <div class="price-row"><b>Процент с дохода</b><span>Артист на старте, бюджета на фикс нет</span><span>Доля с роялти и концертов. Мы зарабатываем только когда зарабатываешь ты.</span></div>
+                <div class="price-row"><b>Фикс + процент</b><span>Есть регулярные релизы и концерты</span><span>Ежемесячная ставка за объём работ + меньшая доля с дохода.</span></div>
+                <div class="price-row"><b>Проектный</b><span>Нужен запуск альбома, тура или кампании</span><span>Смета под конкретный проект и сроки.</span></div>
+              </div>
+            </div>
+            <div class="home-rule"></div>
+            <div class="home-kicker">почему мы</div>
+            <div class="home-title">Не посредник. Не курс.<br><span class="gold">Команда лейбла в твоём углу.</span></div>
+            <div class="why-grid">
+              <div class="why-card"><div class="service-icon"><i class="fa-solid fa-bars-staggered"></i></div><b>15 лет — не на словах</b><p>Опыт индустрии и понимание того, какой шаг работает на твоей стадии.</p></div>
+              <div class="why-card"><div class="service-icon"><i class="fa-regular fa-handshake"></i></div><b>Партнёрские связи</b><p>Партнёры и отношения с площадками и музыкальными сервисами.</p></div>
+              <div class="why-card"><div class="service-icon"><i class="fa-regular fa-square"></i></div><b>Один менеджер на 15 ролей</b><p>Не «ассистент с Excel», а координация всей команды вокруг артиста.</p></div>
+              <div class="why-card"><div class="service-icon"><i class="fa-solid fa-chart-line"></i></div><b>Прозрачно. Без «вечных» прав</b><p>Все отчёты и роялти доступны в любой момент. Расходимся, если не нравится.</p></div>
+            </div>
+          </section>
+
+          <section class="home-section">
+            <div class="home-kicker">условия</div>
+            <div class="home-title">Кого берём — и <span class="gold">как попасть.</span></div>
+            <div class="fit-grid">
+              <div class="fit-card">
+                <span class="fit-label">кого ищем</span>
+                <h3>Не «уже звезду» — а характер</h3>
+                <ul>
+                  <li>Не нужны 100 000 подписчиков. Важнее характер и готовность работать.</li>
+                  <li>Готовность работать — не «прийти и стать звездой», а включиться в процесс.</li>
+                  <li>Поддержка родителей — без неё несовершеннолетним не подписать контракт.</li>
+                  <li>Хотя бы один трек, показывающий направление.</li>
+                </ul>
+              </div>
+              <div class="fit-card">
+                <span class="fit-label">кому не к нам</span>
+                <h3>Честно: с кем не получится</h3>
+                <ul>
+                  <li>«Я не хочу музыку, но хочу быть звездой» — мы не школа звёзд.</li>
+                  <li>«Мама заставляет родителя» — должна быть твоя личная мотивация.</li>
+                  <li>«Хочу 5 миллионов TikTok-вирусом» — это не наша история.</li>
+                  <li>Вам хотя бы цифровой релиз — просто не на этой стороне разговора.</li>
+                </ul>
+              </div>
+              <div class="fit-card highlight">
+                <span class="fit-label">заявка</span>
+                <h3>Присоединиться к лейблу</h3>
+                <div class="join-form">
+                  <input id="homeJoinName" placeholder="Имя / Псевдоним">
+                  <input id="homeJoinEmail" placeholder="E-mail">
+                  <input id="homeJoinContact" placeholder="Телефон или Telegram">
+                  <textarea id="homeJoinAbout" placeholder="Расскажи о себе и пришли ссылку на трек"></textarea>
+                </div>
+                <button class="quick-btn" style="margin-top:10px" onclick="submitHomeJoin()">Присоединиться к лейблу <i class="fa-solid fa-arrow-right"></i></button>
+                <div id="homeJoinFeedback" class="notice-box" style="display:none;margin-top:9px"></div>
+              </div>
+            </div>
+            <div class="home-cta">
+              <div><h3>Твой талант заслуживает быть услышанным.</h3><p>Оставь заявку — свяжемся для консультации, чтобы обсудить, как помочь стать артистом или получить максимальный быстрый рост.</p></div>
+              <button class="soft-btn" onclick="document.getElementById('homeJoinName').scrollIntoView({behavior:'smooth',block:'center'})">Оставить заявку</button>
+            </div>
+          </section>
+
+          <section class="home-section">
+            <div class="home-kicker">SUA ARTIST SCORE</div>
+            <div class="home-title">Рейтинг должен влиять на <span class="gold">экосистему.</span></div>
+            <p class="home-copy">Концепция заказчика: не один декоративный рейтинг, а система профессиональной репутации, в которой оценки, реальные данные, качество критика и антифрод влияют на рекомендации, поиск и профессиональные возможности.</p>
+            <div class="score-overview">
+              <div class="score-hero">
+                <div class="home-kicker">пример профиля</div>
+                <div class="score-number">917</div>
+                <div class="score-label">SUA SCORE / 1000</div>
+                <div class="score-bars">
+                  <div class="score-bar-row"><span>Community</span><div class="score-bar"><span style="width:87%"></span></div><b>8.7</b></div>
+                  <div class="score-bar-row"><span>Critic</span><div class="score-bar"><span style="width:94%"></span></div><b>9.4</b></div>
+                  <div class="score-bar-row"><span>Industry</span><div class="score-bar"><span style="width:92%"></span></div><b>9.2</b></div>
+                  <div class="score-bar-row"><span>Performance</span><div class="score-bar"><span style="width:89%"></span></div><b>8.9</b></div>
+                </div>
+              </div>
+              <div class="score-rules">
+                <div class="score-rule"><b>Что учитывает Score</b><p>Прослушивания, уникальные слушатели, удержание, сохранения, плейлисты, лайки, комментарии, рецензии, регулярность релизов, рост аудитории, географию, активность, качество профиля и профессиональные достижения.</p></div>
+                <div class="score-rule"><b>4 типа оценки</b><p>Community Score — аудитория. Critic Score — проверенные рецензенты. Industry Score — профессионалы. Performance Score — алгоритмическая оценка реальных данных.</p></div>
+                <div class="score-rule"><b>Вес самой оценки</b><p>Оценка пользователя с подтверждённой репутацией и высокой Predictive Accuracy должна весить больше случайной оценки нового аккаунта.</p></div>
+                <div class="score-rule"><b>Anti-Fraud Engine</b><p>Массовое голосование, одинаковые IP, подозрительные аккаунты, боты, взаимные накрутки, аномальные всплески и несколько аккаунтов одного устройства получают коэффициент доверия.</p></div>
+              </div>
+            </div>
+            <div class="levels">
+              <span class="level-pill">Reviewer</span><span class="level-pill">Critic</span><span class="level-pill">Senior Critic</span><span class="level-pill">Expert</span><span class="level-pill">SUA Editorial</span><span class="level-pill">Critic Accuracy</span>
+            </div>
+            <div class="achievement-grid">
+              <div class="achievement"><i class="fa-solid fa-music"></i><b>Первый релиз</b></div>
+              <div class="achievement"><i class="fa-solid fa-compact-disc"></i><b>10 релизов</b></div>
+              <div class="achievement"><i class="fa-solid fa-fire"></i><b>100K прослушиваний</b></div>
+              <div class="achievement"><i class="fa-solid fa-gem"></i><b>1M прослушиваний</b></div>
+              <div class="achievement"><i class="fa-solid fa-earth-europe"></i><b>10 стран</b></div>
+              <div class="achievement"><i class="fa-solid fa-trophy"></i><b>#1 рейтинга</b></div>
+              <div class="achievement"><i class="fa-solid fa-rocket"></i><b>Rising Artist</b></div>
+              <div class="achievement"><i class="fa-solid fa-microphone"></i><b>100K слушателей</b></div>
+              <div class="achievement"><i class="fa-solid fa-star"></i><b>100 отзывов</b></div>
+              <div class="achievement"><i class="fa-solid fa-crown"></i><b>SUA Legend</b></div>
+            </div>
+            <div class="home-cta">
+              <div><h3>NEW NAMES — система обнаружения талантов</h3><p>Мало слушателей + высокий рост + высокий engagement + хорошие оценки и рецензии → Potential Breakthrough.</p></div>
+              <span class="status-pill gold">Концепция для следующих этапов</span>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -793,11 +1343,6 @@
               </div>
               <div id="userSearchResults" class="messenger-search-results"></div>
 
-              <div id="friendRequestsWrap" class="requests-block" hidden>
-                <div class="requests-title">Запросы в друзья</div>
-                <div id="friendRequests"></div>
-              </div>
-
               <div class="chat-me">
                 <div class="chat-avatar" id="myAvatar">S</div>
                 <div><b id="myDisplayName">SUA User</b><span id="myUsername">@username</span></div>
@@ -825,7 +1370,7 @@
             <div id="activeChat" hidden>
               <div class="chat-window-head">
                 <div class="chat-peer">
-                  <div class="chat-avatar" id="peerAvatar">U</div>
+                  <div class="chat-avatar clickable-avatar" id="peerAvatar" title="Открыть профиль">U</div>
                   <div><b id="peerName">Пользователь</b><span id="peerUsername">@username</span><span id="peerStatus" class="chat-status">SUA Messenger</span></div>
                 </div>
                 <div class="chat-head-actions">
@@ -881,6 +1426,98 @@
   </main>
 
 
+
+  <div class="profile-screen" id="profileScreen">
+    <div class="profile-shell">
+      <div class="profile-topbar">
+        <div><h1>Мой профиль</h1><div style="font-size:10px;color:var(--muted);margin-top:4px">Управление аккаунтом, друзьями и заявками</div></div>
+        <button class="profile-close" id="profileCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="profile-layout">
+        <aside class="profile-card">
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar-large" id="profileAvatarLarge">S</div>
+            <label class="avatar-upload-btn">Изменить аватар<input id="profileAvatarInput" type="file" accept="image/*" hidden></label>
+            <div class="profile-name" id="profileDisplayName">SUA User</div>
+            <div class="profile-username" id="profileUsername">@username</div>
+          </div>
+          <div class="profile-stats">
+            <div class="profile-stat"><b id="profileFriendsCount">0</b><span>Друзей</span></div>
+            <div class="profile-stat"><b id="profileRequestsCount">0</b><span>Заявок</span></div>
+          </div>
+        </aside>
+        <main class="profile-main-card">
+          <div class="profile-nav">
+            <button class="profile-tab active" data-profile-tab="settings">Профиль</button>
+            <button class="profile-tab" data-profile-tab="friends">Друзья</button>
+            <button class="profile-tab" data-profile-tab="requests">Заявки в друзья <span id="profileRequestsBadge" class="request-count" hidden>0</span></button>
+          </div>
+          <div id="profilePanelSettings" class="profile-panel active">
+            <div class="profile-form-grid">
+              <div class="full"><div class="profile-label">Имя</div><input class="profile-input" id="profileNameInput" placeholder="Имя"></div>
+              <div class="full"><div class="profile-label">Username</div><input class="profile-input" id="profileUsernameInput" placeholder="username"></div>
+              <div class="full"><div class="profile-label">Email</div><input class="profile-input" id="profileEmailInput" disabled></div>
+            </div>
+            <div id="profileFeedback" class="notice-box" style="display:none;margin-top:12px"></div>
+            <button class="profile-save" id="profileSaveChangesBtn">Сохранить изменения</button>
+          </div>
+          <div id="profilePanelFriends" class="profile-panel"><div id="profileFriendsList"><div class="profile-empty">Список друзей загружается...</div></div></div>
+          <div id="profilePanelRequests" class="profile-panel"><div id="profileRequestsList"><div class="profile-empty">Заявки загружаются...</div></div></div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="profile-screen" id="publicProfileScreen">
+    <div class="profile-shell">
+      <div class="profile-topbar">
+        <div>
+          <h1>Профиль пользователя</h1>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px">Профиль, друзья и публикации</div>
+        </div>
+        <button class="profile-close" id="publicProfileCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="profile-layout">
+        <aside class="profile-card">
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar-large" id="publicProfileAvatar">U</div>
+            <div class="profile-name" id="publicProfileName">Пользователь</div>
+            <div class="profile-username" id="publicProfileUsername">@username</div>
+            <div id="publicProfilePresence" class="profile-username">не в сети</div>
+          </div>
+
+          <div class="profile-stats">
+            <div class="profile-stat"><b id="publicProfileFriendsCount">0</b><span>Друзей</span></div>
+            <div class="profile-stat"><b id="publicProfileRequestsCount">0</b><span>Заявок</span></div>
+          </div>
+
+          <div class="form-actions" style="margin-top:16px">
+            <button class="quick-btn" id="publicProfileFriendBtn">Добавить в друзья</button>
+            <button class="soft-btn" id="publicProfileMessageBtn"><i class="fa-regular fa-message"></i> Написать</button>
+          </div>
+        </aside>
+
+        <main class="profile-main-card">
+          <div class="profile-nav">
+            <button class="profile-tab active" data-public-profile-tab="posts">Публикации</button>
+          </div>
+          <div class="profile-panel active">
+            <div id="publicProfilePosts"><div class="profile-empty">Публикации загружаются...</div></div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification-drawer" id="notificationDrawer">
+    <div class="notification-panel">
+      <div class="notification-head"><h2>Уведомления</h2><button class="notification-close" id="notificationCloseBtn"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="notificationList"><div class="profile-empty">Загрузка уведомлений...</div></div>
+    </div>
+  </div>
+
   <div class="site-modal" id="siteModal">
     <div class="site-modal-card">
       <div class="site-modal-head"><h2 id="siteModalTitle">SUA</h2><button class="site-modal-close" id="siteModalClose"><i class="fa-solid fa-xmark"></i></button></div>
@@ -921,23 +1558,26 @@
 </div>
 
 <script>
-  const backgrounds=['white','assets/bg-1.jpg','assets/bg-2.jpg','assets/bg-3.jpg','assets/bg-4.jpg','assets/bg-5.jpg','assets/bg-6.jpg','assets/bg-7.jpg','assets/bg-8.jpg','assets/bg-9.jpg'];
+  const backgrounds=['assets/bg-1.jpg','assets/bg-2.jpg','assets/bg-3.jpg','assets/bg-4.jpg','assets/bg-5.jpg','assets/bg-6.jpg','assets/bg-7.jpg','assets/bg-8.jpg','assets/bg-9.jpg'];
   let bgIndex=Number(localStorage.getItem('suaBgIndex')||0)%backgrounds.length;
   const workspace=document.getElementById('workspace');
   function applyBackground(){
     const bg=backgrounds[bgIndex];
-    if(bg==='white'){
-      workspace.style.backgroundImage='none';
-      workspace.style.backgroundColor='#ffffff';
-      document.body.classList.add('white-workspace');
-    }else{
-      workspace.style.backgroundColor='';
-      workspace.style.backgroundImage=`url('${bg}')`;
-      document.body.classList.remove('white-workspace');
-    }
+    workspace.style.backgroundColor='';
+    workspace.style.backgroundImage=`url('${bg}')`;
+    document.body.classList.remove('white-workspace');
   }
   function changeBackground(){bgIndex=(bgIndex+1)%backgrounds.length;localStorage.setItem('suaBgIndex',bgIndex);applyBackground();}
   applyBackground();
+
+  // Стартовый экран — Главная: здесь оставляем только профиль и уведомления.
+  const initialTopbar=document.getElementById('globalTopbar');
+  if(initialTopbar){
+    const initialSearch=initialTopbar.querySelector('.search');
+    const initialIcons=initialTopbar.querySelector('.top-icons');
+    if(initialSearch) initialSearch.style.display='none';
+    if(initialIcons) initialIcons.style.display='flex';
+  }
 
   // Демо-треки удалены. Позже сюда можно добавить реальный каталог.
   const musicDatabase=[];
@@ -1016,6 +1656,35 @@
     document.querySelectorAll('#musicTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderMusicTab(b.dataset.musicTab);
   }));
 
+
+  // HOME APPLICATION
+  window.submitHomeJoin=function(){
+    const name=$('homeJoinName')?.value.trim();
+    const email=$('homeJoinEmail')?.value.trim();
+    const contact=$('homeJoinContact')?.value.trim();
+    const about=$('homeJoinAbout')?.value.trim();
+    const feedback=$('homeJoinFeedback');
+
+    if(!name || (!email && !contact) || !about){
+      if(feedback){
+        feedback.style.display='block';
+        feedback.textContent='Заполните имя, контакт и коротко расскажите о себе.';
+      }
+      return;
+    }
+
+    const applications=suaStore.get('suaHomeApplications',[]);
+    applications.unshift({id:String(Date.now()),name,email,contact,about,createdAt:Date.now()});
+    suaStore.set('suaHomeApplications',applications);
+
+    if(feedback){
+      feedback.style.display='block';
+      feedback.textContent='Заявка сохранена. На финальном этапе подключим её отправку в админ-панель и на почту заказчика.';
+    }
+    ['homeJoinName','homeJoinEmail','homeJoinContact','homeJoinAbout'].forEach(id=>{if($(id))$(id).value=''});
+  };
+
+
   // DISTRIBUTION
   const fileNames={audio:'',cover:'',contract:''};
   function bindFile(id,label,key){
@@ -1070,7 +1739,18 @@
     box.innerHTML=rows.map(p=>`<div class="post-card"><div class="post-head"><b>${h(p.author||'SUA User')}</b><span class="status-pill">${h(p.time||'сейчас')}</span></div><div class="post-body">${h(p.text)}</div><div class="post-actions"><button onclick="likePost('${h(p.id)}')"><i class="fa-regular fa-heart"></i> ${Number(p.likes||0)}</button><button onclick="alert('Комментарии подключим как отдельные ветви Firebase')"><i class="fa-regular fa-comment"></i> Комментарии</button></div></div>`).join('');
   }
   document.getElementById('createPostBtn')?.addEventListener('click',()=>openSiteModal('Новая публикация','<textarea id="newPostText" class="modal-textarea" placeholder="Что нового?"></textarea><div class="form-actions"><button class="quick-btn" onclick="savePost()">Опубликовать</button></div>'));
-  window.savePost=function(){const t=document.getElementById('newPostText').value.trim();if(!t)return;const a=suaStore.get('suaFeedPosts',[]);a.push({id:String(Date.now()),author:'SUA User',text:t,likes:0,time:new Date().toLocaleString('ru-RU')});suaStore.set('suaFeedPosts',a);closeSiteModal();renderFeed()};
+  window.savePost=async function(){
+    const t=document.getElementById('newPostText').value.trim();
+    if(!t)return;
+    if(window.suaSavePost){
+      try{await window.suaSavePost(t)}catch(error){console.error(error)}
+    }
+    const a=suaStore.get('suaFeedPosts',[]);
+    a.push({id:String(Date.now()),author:'SUA User',text:t,likes:0,time:new Date().toLocaleString('ru-RU')});
+    suaStore.set('suaFeedPosts',a);
+    closeSiteModal();
+    renderFeed()
+  };
   window.likePost=function(id){const a=suaStore.get('suaFeedPosts',[]),p=a.find(x=>x.id===id);if(p){p.likes=(p.likes||0)+1;suaStore.set('suaFeedPosts',a);renderFeed()}};
 
   // COMMUNITIES
@@ -1128,7 +1808,16 @@
     document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
     if(btn)btn.classList.add('active');
     const topbar=document.getElementById('globalTopbar');
-    if(topbar) topbar.style.display = id==='home' ? 'flex' : 'none';
+    const globalSearch=topbar?.querySelector('.search');
+    const globalIcons=topbar?.querySelector('.top-icons');
+
+    if(topbar) topbar.style.display = (id==='home' || id==='music') ? 'flex' : 'none';
+
+    // На Главной — только уведомления и профиль.
+    // В Музыке — только поиск музыки / артистов / альбомов.
+    if(globalSearch) globalSearch.style.display = id==='music' ? 'flex' : 'none';
+    if(globalIcons) globalIcons.style.display = id==='home' ? 'flex' : 'none';
+
     document.body.classList.toggle('home-screen', id==='home');
     if(id==='feed')renderFeed();
     if(id==='communities')renderCommunities('all');
@@ -1190,7 +1879,7 @@
     appId: "1:233930266962:web:4567d6cac73c6f110c028b"
   };
 
-  console.log('SUA build 2026-09-05-v20');
+  console.log('SUA build 2026-09-06-v31');
   const firebaseApp = initializeApp(firebaseConfig);
   const auth = getAuth(firebaseApp);
   const db = getDatabase(firebaseApp);
@@ -1218,11 +1907,31 @@
   let adminReleaseCache = [];
   let currentAdminFilter = 'all';
   let friendRequestsUnsubscribe = null;
+  let friendsUnsubscribe = null;
+  let notificationsUnsubscribe = null;
+  let notificationCache = [];
+  let friendRequestCache = [];
+  let friendsCache = [];
+  let publicProfileUid = null;
+  let publicProfileUser = null;
+  let publicProfileRelation = 'none';
   let organizerUser = null;
   const ORGANIZER_USERNAME = 'sua_admin';
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
   const initials = name => (name || 'S').trim().split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+  const getAvatarSrc = user => user?.avatarData || user?.avatarUrl || user?.photoURL || '';
+  const avatarInner = user => {
+    const src=getAvatarSrc(user);
+    return src ? `<img src="${escapeHtml(src)}" alt="">` : escapeHtml(initials(user?.displayName || 'S'));
+  };
+  function setAvatarElement(el,user){
+    if(!el)return;
+    const src=getAvatarSrc(user);
+    if(src)el.innerHTML=`<img src="${escapeHtml(src)}" alt="">`;
+    else el.textContent=initials(user?.displayName || 'S');
+  }
+
   const timeLabel = value => value ? new Date(Number(value)).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) : '';
   const dayLabel = value => value ? new Date(Number(value)).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'}) : '';
   const safeUsername = value => value.trim().replace(/^@/,'').toLowerCase();
@@ -1703,60 +2412,36 @@
 
 
 
-  window.suaShowFirebaseNotifications=async function(){
-    if(!currentUser){
-      openAuth('login');
-      return;
-    }
-
-    try{
-      const snap=await get(ref(db,`notifications/${currentUser.uid}`));
-      const raw=snap.val()||{};
-      const rows=Object.entries(raw).map(([id,n])=>({id,...n})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-
-      openSiteModal('Уведомления',`
-        <div class="data-list">
-          ${rows.length?rows.map(n=>`
-            <div class="data-row">
-              <div><b>${escapeHtml(n.title||'Уведомление')}</b><span>${escapeHtml(n.text||'')}</span></div>
-              <span class="status-pill">${new Date(n.createdAt||Date.now()).toLocaleDateString('ru-RU')}</span>
-            </div>`).join(''):'<div class="notice-box">Новых уведомлений нет.</div>'}
-        </div>
-      `);
-
-      const updates={};
-      rows.filter(n=>!n.read).forEach(n=>updates[`notifications/${currentUser.uid}/${n.id}/read`]=true);
-      if(Object.keys(updates).length)update(ref(db),updates).catch(()=>{});
-    }catch(error){
-      alert(firebaseErrorMessage(error));
-    }
+  window.suaShowFirebaseNotifications=function(){
+    if(!currentUser){openAuth('login');return;}
+    $('notificationDrawer').classList.add('open');
+    renderNotifications();
+    markNotificationsRead();
   };
 
 
-  window.suaOpenProfile=function(){
-    if(!currentUser){
-      openAuth('login');
-      return;
-    }
+  window.suaOpenProfile=async function(tab='settings'){
+    if(!currentUser){openAuth('login');return;}
     const p=myProfile||{};
-    openSiteModal('Мой профиль',`
-      <div class="modal-grid">
-        <input class="modal-input full" id="profileNameEdit" value="${escapeHtml(p.displayName||'')}" placeholder="Имя">
-        <input class="modal-input full" value="@${escapeHtml(p.username||'user')}" disabled>
-        <input class="modal-input full" value="${escapeHtml(currentUser.email||'')}" disabled>
-        <button class="quick-btn full" id="profileSaveBtn">Сохранить имя</button>
-      </div>
-      <div class="notice-box" style="margin-top:12px">Username и email пока защищены от изменения, чтобы не нарушить ссылки на аккаунт и авторизацию.</div>
-    `);
-    document.getElementById('profileSaveBtn').addEventListener('click',async()=>{
-      const name=document.getElementById('profileNameEdit').value.trim();
-      if(!name)return;
-      await update(ref(db,`users/${currentUser.uid}`),{displayName:name});
-      myProfile={...(myProfile||{}),displayName:name};
-      $('myDisplayName').textContent=name;
-      $('myAvatar').textContent=initials(name);
-      closeSiteModal();
-    });
+    $('profileDisplayName').textContent=p.displayName||'SUA User';
+    $('profileUsername').textContent='@'+(p.username||'user');
+    $('profileNameInput').value=p.displayName||'';
+    $('profileUsernameInput').value=p.username||'';
+    $('profileEmailInput').value=currentUser.email||'';
+    setAvatarElement($('profileAvatarLarge'),p);
+    $('profileScreen').classList.add('open');
+    document.body.style.overflow='hidden';
+    switchProfileTab(tab);
+    subscribeProfileFriends();
+    subscribeFriendRequests();
+
+    // Сразу синхронизируем количество друзей из базы, не дожидаясь onValue.
+    try{
+      const friendsSnap=await get(ref(db,`friends/${currentUser.uid}`));
+      $('profileFriendsCount').textContent=Object.keys(friendsSnap.val()||{}).length;
+    }catch(error){
+      console.warn('Own friends count preload skipped:',error);
+    }
   };
 
   async function loadProfile(){
@@ -1766,7 +2451,7 @@
     myProfile=snap.val();
     $('myDisplayName').textContent=myProfile.displayName || 'SUA User';
     $('myUsername').textContent='@'+(myProfile.username || 'user');
-    $('myAvatar').textContent=initials(myProfile.displayName);
+    setAvatarElement($('myAvatar'),myProfile);
     $('loginBtn').textContent='Выйти';
     $('registerBtn').textContent='Мессенджер';
   }
@@ -1797,6 +2482,12 @@
     if(messagesUnsubscribe){messagesUnsubscribe();messagesUnsubscribe=null}
     if(presenceUnsubscribe){presenceUnsubscribe();presenceUnsubscribe=null}
     if(friendRequestsUnsubscribe){friendRequestsUnsubscribe();friendRequestsUnsubscribe=null}
+    if(friendsUnsubscribe){friendsUnsubscribe();friendsUnsubscribe=null}
+    if(notificationsUnsubscribe){notificationsUnsubscribe();notificationsUnsubscribe=null}
+    notificationCache=[];friendRequestCache=[];friendsCache=[];
+    $('notificationBadge').hidden=true;
+    $('profileScreen').classList.remove('open');
+    $('notificationDrawer').classList.remove('open');
     if(usersDirectoryUnsubscribe){usersDirectoryUnsubscribe();usersDirectoryUnsubscribe=null}
     if(peerPresenceUnsubscribe){peerPresenceUnsubscribe();peerPresenceUnsubscribe=null}
     if(peerReadUnsubscribe){peerReadUnsubscribe();peerReadUnsubscribe=null}
@@ -1824,6 +2515,8 @@
       resolveOrganizer();
       window.suaRenderReleaseRequests?.();
       checkAdminAccess();
+      subscribeNotifications();
+      subscribeProfileFriends();
     }else{
       $('conversationList').innerHTML='<div class="chat-empty-list">Войдите, чтобы увидеть диалоги.</div>';
       $('chatPlaceholder').style.display='grid';
@@ -1880,18 +2573,21 @@
 
       const friendsSnap=await get(ref(db,`friends/${currentUser.uid}`)).catch(()=>null);
       const friends=friendsSnap?.val?.()||{};
+      const outgoingSnap=await get(ref(db,`sentFriendRequests/${currentUser.uid}`)).catch(()=>null);
+      const outgoing=outgoingSnap?.val?.()||{};
 
       $('userSearchResults').innerHTML=users.map(u=>{
         const isFriend=!!friends[u.uid];
+        const requestSent=!!outgoing[u.uid];
         return `<div class="people-card" data-user-id="${escapeHtml(u.uid)}">
-          <div class="chat-avatar">${escapeHtml(initials(u.displayName))}</div>
+          <div class="chat-avatar clickable-avatar" data-action="profile">${avatarInner(u)}</div>
           <div class="people-copy">
             <b>${escapeHtml(u.displayName||'Пользователь')}</b>
             <span>@${escapeHtml(u.username||'user')}${u.online?' · онлайн':''}${isFriend?' · друг':''}</span>
           </div>
           <div class="people-actions">
             <button class="message-user" data-action="message" title="Написать"><i class="fa-regular fa-message"></i></button>
-            <button class="friend-user ${isFriend?'sent':''}" data-action="friend" title="${isFriend?'Уже в друзьях':'Добавить в друзья'}">${isFriend?'✓':'+'}</button>
+            <button class="friend-user ${(isFriend||requestSent)?'sent':''}" data-action="friend" title="${isFriend?'Уже в друзьях':requestSent?'Запрос отправлен':'Добавить в друзья'}">${isFriend?'✓':requestSent?'…':'+'}</button>
           </div>
         </div>`;
       }).join('');
@@ -1904,6 +2600,11 @@
           $('userSearch').value='';
           $('userSearchResults').innerHTML='';
         };
+
+        card.querySelector('[data-action="profile"]')?.addEventListener('click',e=>{
+          e.stopPropagation();
+          openPublicProfile(uid);
+        });
 
         card.querySelector('[data-action="message"]').addEventListener('click',async e=>{
           e.stopPropagation();
@@ -1942,68 +2643,123 @@
         if(button){button.textContent='✓';button.classList.add('sent')}
         return;
       }
-
-      await set(ref(db,`friendRequests/${otherUserId}/${currentUser.uid}`),{
-        from:currentUser.uid,
-        createdAt:Date.now()
-      });
-
-      if(button){
-        button.textContent='✓';
-        button.classList.add('sent');
-        button.title='Запрос отправлен';
+      const existingRequest=await get(ref(db,`sentFriendRequests/${currentUser.uid}/${otherUserId}`));
+      if(existingRequest.exists()){
+        if(button){button.textContent='…';button.classList.add('sent');button.title='Запрос уже отправлен'}
+        return;
       }
+      const now=Date.now();
+      const notificationId=push(ref(db,`notifications/${otherUserId}`)).key;
+      const senderName=myProfile?.displayName||'Пользователь';
+      const senderUsername=myProfile?.username||'user';
+      await update(ref(db),{
+        [`friendRequests/${otherUserId}/${currentUser.uid}`]:{from:currentUser.uid,createdAt:now},
+        [`sentFriendRequests/${currentUser.uid}/${otherUserId}`]:true,
+        [`notifications/${otherUserId}/${notificationId}`]:{
+          title:'Новая заявка в друзья',
+          text:`${senderName} (@${senderUsername}) хочет добавить вас в друзья.`,
+          createdAt:now,read:false,type:'friend_request',senderUid:currentUser.uid
+        }
+      });
+      if(button){button.textContent='…';button.classList.add('sent');button.title='Запрос отправлен'}
     }catch(error){
       console.error(error);
       alert('Не удалось отправить запрос в друзья: '+firebaseErrorMessage(error));
     }
   }
 
-  function subscribeFriendRequests(){
+
+  async function rebuildIncomingFriendRequestsFromNotifications(){
     if(!currentUser)return;
-    if(friendRequestsUnsubscribe) friendRequestsUnsubscribe();
 
-    friendRequestsUnsubscribe=onValue(ref(db,`friendRequests/${currentUser.uid}`),async snap=>{
+    try{
+      const snap=await get(ref(db,`notifications/${currentUser.uid}`));
       const raw=snap.val()||{};
-      const entries=Object.entries(raw);
+      const senderIds=[...new Set(
+        Object.values(raw)
+          .filter(n=>n?.type==='friend_request' && n?.senderUid)
+          .map(n=>n.senderUid)
+      )];
 
-      $('friendRequestsWrap').hidden=entries.length===0;
-      if(!entries.length){
-        $('friendRequests').innerHTML='';
-        return;
+      const currentRequests=[];
+      for(const fromUid of senderIds){
+        try{
+          const reqSnap=await get(ref(db,`friendRequests/${currentUser.uid}/${fromUid}`));
+          if(!reqSnap.exists())continue;
+
+          const uSnap=await get(ref(db,`users/${fromUid}`));
+          currentRequests.push({
+            uid:fromUid,
+            createdAt:reqSnap.val()?.createdAt||0,
+            ...(uSnap.val()||{})
+          });
+        }catch(error){
+          console.warn('Incoming friend request hydrate skipped:',fromUid,error);
+        }
       }
 
-      const rows=await Promise.all(entries.map(async([fromUid,item])=>{
-        const uSnap=await get(ref(db,`users/${fromUid}`));
-        return {uid:fromUid,...(uSnap.val()||{})};
-      }));
+      friendRequestCache=currentRequests.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+      updateProfileCounters();
+      renderProfileRequests();
+    }catch(error){
+      console.warn('Notification friend-request rebuild skipped:',error);
+    }
+  }
 
-      $('friendRequests').innerHTML=rows.map(u=>`<div class="request-card" data-request-id="${escapeHtml(u.uid)}">
-        <div class="chat-avatar">${escapeHtml(initials(u.displayName))}</div>
-        <div class="people-copy"><b>${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}</span></div>
-        <div class="request-actions">
-          <button class="accept-request" title="Принять"><i class="fa-solid fa-check"></i></button>
-          <button class="decline-request" title="Отклонить"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-      </div>`).join('');
+  function subscribeFriendRequests(){
+    if(!currentUser)return;
+    if(friendRequestsUnsubscribe)friendRequestsUnsubscribe();
 
-      $('friendRequests').querySelectorAll('.request-card').forEach(card=>{
-        const uid=card.dataset.requestId;
-        card.querySelector('.accept-request').addEventListener('click',()=>acceptFriendRequest(uid));
-        card.querySelector('.decline-request').addEventListener('click',()=>declineFriendRequest(uid));
-      });
-    });
+    // Основной путь: если правила позволяют читать весь список входящих заявок.
+    friendRequestsUnsubscribe=onValue(
+      ref(db,`friendRequests/${currentUser.uid}`),
+      async snap=>{
+        const raw=snap.val()||{};
+        const entries=Object.entries(raw);
+
+        friendRequestCache=await Promise.all(entries.map(async([fromUid,item])=>{
+          const uSnap=await get(ref(db,`users/${fromUid}`));
+          return {uid:fromUid,createdAt:item?.createdAt||0,...(uSnap.val()||{})};
+        }));
+
+        friendRequestCache.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+        updateProfileCounters();
+        renderProfileRequests();
+
+        // Если direct-list дал пусто, дополнительно проверяем реальные friend_request уведомления.
+        if(!entries.length)rebuildIncomingFriendRequestsFromNotifications();
+      },
+      error=>{
+        console.warn('Direct incoming requests list unavailable:',error);
+        rebuildIncomingFriendRequestsFromNotifications();
+      }
+    );
+
+    // И сразу синхронизируем через уведомления, чтобы профиль не оставался пустым до события onValue.
+    rebuildIncomingFriendRequestsFromNotifications();
   }
 
   async function acceptFriendRequest(fromUid){
     if(!currentUser)return;
     try{
+      const now=Date.now();
+      const notificationId=push(ref(db,`notifications/${fromUid}`)).key;
+      const acceptorName=myProfile?.displayName||'Пользователь';
+      const acceptorUsername=myProfile?.username||'user';
       await update(ref(db),{
         [`friends/${currentUser.uid}/${fromUid}`]:true,
         [`friends/${fromUid}/${currentUser.uid}`]:true,
-        [`friendRequests/${currentUser.uid}/${fromUid}`]:null
+        [`friendRequests/${currentUser.uid}/${fromUid}`]:null,
+        [`sentFriendRequests/${fromUid}/${currentUser.uid}`]:null,
+        [`notifications/${fromUid}/${notificationId}`]:{
+          title:'Заявка принята',
+          text:`${acceptorName} (@${acceptorUsername}) принял(а) вашу заявку в друзья.`,
+          createdAt:now,read:false,type:'friend_accepted',senderUid:currentUser.uid
+        }
       });
       searchUsers();
+      await rebuildIncomingFriendRequestsFromNotifications();
+      if(publicProfileUid===fromUid) await refreshPublicFriendCount(fromUid);
     }catch(error){
       console.error(error);
       alert('Не удалось принять запрос: '+firebaseErrorMessage(error));
@@ -2013,11 +2769,341 @@
   async function declineFriendRequest(fromUid){
     if(!currentUser)return;
     try{
-      await set(ref(db,`friendRequests/${currentUser.uid}/${fromUid}`),null);
-    }catch(error){
-      console.error(error);
+      await update(ref(db),{
+        [`friendRequests/${currentUser.uid}/${fromUid}`]:null,
+        [`sentFriendRequests/${fromUid}/${currentUser.uid}`]:null
+      });
+      await rebuildIncomingFriendRequestsFromNotifications();
+    }catch(error){console.error(error);}
+  }
+
+
+  function switchProfileTab(tab){
+    document.querySelectorAll('.profile-tab').forEach(b=>b.classList.toggle('active',b.dataset.profileTab===tab));
+    $('profilePanelSettings').classList.toggle('active',tab==='settings');
+    $('profilePanelFriends').classList.toggle('active',tab==='friends');
+    $('profilePanelRequests').classList.toggle('active',tab==='requests');
+    if(tab==='friends')renderProfileFriends();
+    if(tab==='requests'){
+      renderProfileRequests();
+      rebuildIncomingFriendRequestsFromNotifications();
     }
   }
+  document.querySelectorAll('.profile-tab').forEach(btn=>btn.addEventListener('click',()=>switchProfileTab(btn.dataset.profileTab)));
+  $('profileCloseBtn').addEventListener('click',()=>{$('profileScreen').classList.remove('open');document.body.style.overflow='';});
+  $('notificationCloseBtn').addEventListener('click',()=>$('notificationDrawer').classList.remove('open'));
+  $('notificationDrawer').addEventListener('click',e=>{if(e.target===e.currentTarget)$('notificationDrawer').classList.remove('open')});
+
+  async function compressAvatar(file){
+    return new Promise((resolve,reject)=>{
+      const reader=new FileReader();
+      reader.onload=()=>{
+        const img=new Image();
+        img.onload=()=>{
+          const max=320,scale=Math.min(1,max/Math.max(img.width,img.height));
+          const w=Math.max(1,Math.round(img.width*scale)),h=Math.max(1,Math.round(img.height*scale));
+          const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+          canvas.getContext('2d').drawImage(img,0,0,w,h);
+          resolve(canvas.toDataURL('image/jpeg',0.82));
+        };
+        img.onerror=reject;img.src=reader.result;
+      };
+      reader.onerror=reject;reader.readAsDataURL(file);
+    });
+  }
+
+  $('profileAvatarInput').addEventListener('change',async()=>{
+    const file=$('profileAvatarInput').files?.[0];
+    if(!file||!currentUser||!file.type.startsWith('image/'))return;
+    try{
+      const avatarData=await compressAvatar(file);
+      await update(ref(db,`users/${currentUser.uid}`),{avatarData});
+      myProfile={...(myProfile||{}),avatarData};
+      cachedUsers[currentUser.uid]={uid:currentUser.uid,...myProfile};
+      setAvatarElement($('profileAvatarLarge'),myProfile);
+      setAvatarElement($('myAvatar'),myProfile);
+      if(activeConversationId){
+        document.querySelectorAll(`[data-message-profile="${currentUser.uid}"]`).forEach(el=>setAvatarElement(el,myProfile));
+      }
+    }catch(error){alert('Не удалось сохранить аватар: '+firebaseErrorMessage(error));}
+  });
+
+  $('profileSaveChangesBtn').addEventListener('click',async()=>{
+    if(!currentUser)return;
+    const name=$('profileNameInput').value.trim();
+    const nextUsername=safeUsername($('profileUsernameInput').value);
+    const oldUsername=safeUsername(myProfile?.username||'');
+    $('profileFeedback').style.display='block';
+    if(!name||nextUsername.length<3){$('profileFeedback').textContent='Укажите имя и username минимум из 3 символов.';return;}
+    if(!/^[a-z0-9_.-]+$/.test(nextUsername)){$('profileFeedback').textContent='Username может содержать латинские буквы, цифры, точку, дефис и _.';return;}
+    try{
+      if(nextUsername!==oldUsername){
+        const usernameSnap=await get(ref(db,`usernames/${nextUsername}`));
+        if(usernameSnap.exists()&&usernameSnap.val()!==currentUser.uid){$('profileFeedback').textContent='Этот username уже занят.';return;}
+        const updates={};
+        if(oldUsername)updates[`usernames/${oldUsername}`]=null;
+        updates[`usernames/${nextUsername}`]=currentUser.uid;
+        updates[`users/${currentUser.uid}/username`]=nextUsername;
+        updates[`users/${currentUser.uid}/displayName`]=name;
+        await update(ref(db),updates);
+      }else await update(ref(db,`users/${currentUser.uid}`),{displayName:name});
+      myProfile={...(myProfile||{}),displayName:name,username:nextUsername};
+      $('profileDisplayName').textContent=name;$('profileUsername').textContent='@'+nextUsername;
+      $('myDisplayName').textContent=name;$('myUsername').textContent='@'+nextUsername;setAvatarElement($('myAvatar'),myProfile);
+      $('profileFeedback').textContent='Изменения сохранены.';
+    }catch(error){$('profileFeedback').textContent='Не удалось сохранить: '+firebaseErrorMessage(error);}
+  });
+
+  function subscribeProfileFriends(){
+    if(!currentUser)return;
+    if(friendsUnsubscribe)friendsUnsubscribe();
+    friendsUnsubscribe=onValue(ref(db,`friends/${currentUser.uid}`),async snap=>{
+      const ids=Object.keys(snap.val()||{});
+      friendsCache=await Promise.all(ids.map(async uid=>{const uSnap=await get(ref(db,`users/${uid}`));return {uid,...(uSnap.val()||{})};}));
+      updateProfileCounters();renderProfileFriends();
+    });
+  }
+
+  function updateProfileCounters(){
+    $('profileFriendsCount').textContent=friendsCache.length;
+    $('profileRequestsCount').textContent=friendRequestCache.length;
+    const badge=$('profileRequestsBadge');
+    badge.hidden=friendRequestCache.length===0;
+    badge.textContent=friendRequestCache.length>99?'99+':friendRequestCache.length;
+
+    // Храним только публичные СЧЁТЧИКИ в профиле пользователя.
+    // Списки друзей и сами заявки по-прежнему остаются закрытыми правилами Firebase.
+    if(currentUser){
+      const counts={friendsCount:friendsCache.length,friendRequestsCount:friendRequestCache.length};
+      const changed=Number(myProfile?.friendsCount||0)!==counts.friendsCount ||
+                    Number(myProfile?.friendRequestsCount||0)!==counts.friendRequestsCount;
+      if(changed){
+        update(ref(db,`users/${currentUser.uid}`),counts).catch(()=>{});
+        myProfile={...(myProfile||{}),...counts};
+      }
+    }
+  }
+
+  function renderProfileFriends(){
+    const box=$('profileFriendsList');if(!box)return;
+    if(!friendsCache.length){box.innerHTML='<div class="profile-empty">У вас пока нет друзей. Найдите пользователя в мессенджере и нажмите «+».</div>';return;}
+    box.innerHTML=friendsCache.map(u=>`<div class="friend-row"><div class="chat-avatar clickable-avatar" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" title="Открыть профиль">${avatarInner(u)}</div><div class="friend-copy"><b>${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}${u.online?' · онлайн':''}</span></div><div class="friend-actions"><button class="friend-primary" onclick="profileOpenFriendChat('${escapeHtml(u.uid)}')"><i class="fa-regular fa-message"></i> Написать</button></div></div>`).join('');
+  }
+
+  function renderProfileRequests(){
+    const box=$('profileRequestsList');if(!box)return;
+    if(!friendRequestCache.length){box.innerHTML='<div class="profile-empty">Новых заявок в друзья нет.</div>';return;}
+    box.innerHTML=friendRequestCache.map(u=>`<div class="friend-row"><div class="chat-avatar clickable-avatar" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" title="Открыть профиль">${avatarInner(u)}</div><div class="friend-copy"><b>${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}</span></div><div class="friend-actions"><button class="friend-primary" onclick="profileAcceptFriend('${escapeHtml(u.uid)}')">Принять</button><button class="friend-secondary" onclick="profileDeclineFriend('${escapeHtml(u.uid)}')">Отклонить</button></div></div>`).join('');
+  }
+  window.profileAcceptFriend=acceptFriendRequest;window.profileDeclineFriend=declineFriendRequest;
+  window.profileOpenFriendProfile=async function(uid){
+    $('profileScreen').classList.remove('open');
+    document.body.style.overflow='';
+    await openPublicProfile(uid);
+  };
+  window.profileOpenFriendChat=async function(uid){$('profileScreen').classList.remove('open');document.body.style.overflow='';goSection('messenger');await startConversation(uid);};
+
+  function subscribeNotifications(){
+    if(!currentUser)return;
+    if(notificationsUnsubscribe)notificationsUnsubscribe();
+    notificationsUnsubscribe=onValue(ref(db,`notifications/${currentUser.uid}`),snap=>{
+      notificationCache=Object.entries(snap.val()||{}).map(([id,n])=>({id,...n})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+      const unread=notificationCache.filter(n=>!n.read).length,badge=$('notificationBadge');
+      badge.hidden=unread===0;
+      badge.textContent=unread>99?'99+':unread;
+      renderNotifications();
+
+      // Новая заявка может прийти через notification раньше, чем профиль открыт.
+      rebuildIncomingFriendRequestsFromNotifications();
+    });
+  }
+  function notificationTitle(n){return n.title||(n.type==='friend_request'?'Новая заявка в друзья':n.type==='friend_accepted'?'Заявка принята':n.type==='release'?'Ответ по дистрибуции':'Уведомление');}
+  function renderNotifications(){
+    const box=$('notificationList');if(!box)return;
+    if(!notificationCache.length){box.innerHTML='<div class="profile-empty">Уведомлений пока нет.</div>';return;}
+    box.innerHTML=notificationCache.map(n=>`<div class="notification-item ${n.read?'':'unread'}"><b>${escapeHtml(notificationTitle(n))}</b><p>${escapeHtml(n.text||'')}</p><time>${new Date(n.createdAt||Date.now()).toLocaleString('ru-RU')}</time>${n.type==='friend_request'&&n.senderUid?`<div class="notification-actions"><button class="friend-primary" onclick="notificationAcceptFriend('${escapeHtml(n.senderUid)}')">Принять</button><button class="friend-secondary" onclick="notificationDeclineFriend('${escapeHtml(n.senderUid)}')">Отклонить</button></div>`:''}</div>`).join('');
+  }
+  window.notificationAcceptFriend=async function(uid){await acceptFriendRequest(uid);$('notificationDrawer').classList.remove('open');window.suaOpenProfile('friends');};
+  window.notificationDeclineFriend=async function(uid){await declineFriendRequest(uid);};
+  async function markNotificationsRead(){if(!currentUser)return;const updates={};notificationCache.filter(n=>!n.read).forEach(n=>updates[`notifications/${currentUser.uid}/${n.id}/read`]=true);if(Object.keys(updates).length)update(ref(db),updates).catch(()=>{});}
+
+
+
+  window.suaSavePost=async function(text){
+    if(!currentUser)throw new Error('Нужно войти в аккаунт');
+    const postRef=push(ref(db,`posts/${currentUser.uid}`));
+    const now=Date.now();
+    await set(postRef,{
+      id:postRef.key,
+      uid:currentUser.uid,
+      body:String(text||'').trim(),
+      createdAt:now
+    });
+  };
+
+  async function getPublicProfileRelation(uid){
+    if(!currentUser||!uid||uid===currentUser.uid)return 'self';
+    const [friendSnap,outgoingSnap,incomingSnap]=await Promise.all([
+      get(ref(db,`friends/${currentUser.uid}/${uid}`)).catch(()=>null),
+      get(ref(db,`sentFriendRequests/${currentUser.uid}/${uid}`)).catch(()=>null),
+      get(ref(db,`friendRequests/${currentUser.uid}/${uid}`)).catch(()=>null)
+    ]);
+    if(friendSnap?.exists?.())return 'friend';
+    if(incomingSnap?.exists?.())return 'incoming';
+    if(outgoingSnap?.exists?.())return 'outgoing';
+    return 'none';
+  }
+
+  function renderPublicProfileFriendButton(){
+    const btn=$('publicProfileFriendBtn');
+    if(!btn||!publicProfileUid)return;
+    btn.classList.remove('pending','remove');
+    btn.disabled=false;
+
+    if(publicProfileRelation==='friend'){
+      btn.textContent='Удалить из друзей';
+      btn.classList.add('remove');
+    }else if(publicProfileRelation==='outgoing'){
+      btn.textContent='Заявка отправлена';
+      btn.classList.add('pending');
+      btn.disabled=true;
+    }else if(publicProfileRelation==='incoming'){
+      btn.textContent='Принять заявку';
+    }else if(publicProfileRelation==='self'){
+      btn.textContent='Это ваш профиль';
+      btn.classList.add('pending');
+      btn.disabled=true;
+    }else{
+      btn.textContent='Добавить в друзья';
+    }
+  }
+
+  async function renderPublicProfilePosts(uid,user){
+    const box=$('publicProfilePosts');
+    box.innerHTML='<div class="profile-empty">Публикации загружаются...</div>';
+    try{
+      const snap=await get(ref(db,`posts/${uid}`));
+      const posts=[];
+      snap.forEach(child=>posts.push({id:child.key,...(child.val()||{})}));
+      posts.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+
+      if(!posts.length){
+        box.innerHTML='<div class="profile-empty">Пользователь пока ничего не публиковал.</div>';
+        return;
+      }
+
+      box.innerHTML=posts.map(p=>`
+        <article class="public-post">
+          <div class="public-post-head">
+            <div class="chat-avatar">${avatarInner(user)}</div>
+            <div><b>${escapeHtml(user.displayName||'Пользователь')}</b><span>@${escapeHtml(user.username||'user')} · ${new Date(p.createdAt||Date.now()).toLocaleString('ru-RU')}</span></div>
+          </div>
+          <div class="public-post-body">${escapeHtml(p.body||'').replace(/\n/g,'<br>')}</div>
+        </article>`).join('');
+    }catch(error){
+      console.error(error);
+      box.innerHTML='<div class="profile-empty">Не удалось загрузить публикации.</div>';
+    }
+  }
+
+  window.openPublicProfile=async function(uid){
+    if(!currentUser){openAuth('login');return;}
+    if(!uid)return;
+    if(uid===currentUser.uid){window.suaOpenProfile('settings');return;}
+
+    try{
+      const userSnap=await get(ref(db,`users/${uid}`));
+      if(!userSnap.exists())throw new Error('Пользователь не найден');
+
+      const user={uid,...(userSnap.val()||{})};
+      publicProfileUid=uid;
+      publicProfileUser=user;
+      publicProfileRelation=await getPublicProfileRelation(uid);
+
+      setAvatarElement($('publicProfileAvatar'),user);
+      $('publicProfileName').textContent=user.displayName||'Пользователь';
+      $('publicProfileUsername').textContent='@'+(user.username||'user');
+      $('publicProfilePresence').textContent=user.online?'онлайн':lastSeenLabel(user.lastSeen);
+      $('publicProfilePresence').classList.toggle('online',!!user.online);
+      // Счётчики публичного профиля получаем из актуальных данных Firebase.
+      // friendsCount из users/{uid} мог быть устаревшим, поэтому считаем друзей по /friends/{uid}.
+      let liveFriendsCount=Number(user.friendsCount||0);
+      try{
+        const friendsSnap=await get(ref(db,`friends/${uid}`));
+        if(friendsSnap.exists()) liveFriendsCount=Object.keys(friendsSnap.val()||{}).length;
+      }catch(error){
+        console.warn('Public friends count fallback:',error);
+      }
+
+      $('publicProfileFriendsCount').textContent=liveFriendsCount;
+      // Количество входящих заявок остаётся из публичного счётчика профиля,
+      // сами заявки и их список другим пользователям не раскрываются.
+      $('publicProfileRequestsCount').textContent=Number(user.friendRequestsCount||0);
+      renderPublicProfileFriendButton();
+
+      $('publicProfileScreen').classList.add('open');
+      document.body.style.overflow='hidden';
+      renderPublicProfilePosts(uid,user);
+    }catch(error){
+      console.error(error);
+      alert('Не удалось открыть профиль: '+firebaseErrorMessage(error));
+    }
+  };
+
+  $('publicProfileCloseBtn').addEventListener('click',()=>{
+    $('publicProfileScreen').classList.remove('open');
+    document.body.style.overflow='';
+  });
+
+  $('publicProfileMessageBtn').addEventListener('click',async()=>{
+    if(!publicProfileUid)return;
+    $('publicProfileScreen').classList.remove('open');
+    document.body.style.overflow='';
+    goSection('messenger');
+    await startConversation(publicProfileUid);
+  });
+
+  async function refreshPublicFriendCount(uid){
+    if(!uid)return;
+    try{
+      const snap=await get(ref(db,`friends/${uid}`));
+      if(publicProfileUid===uid && $('publicProfileFriendsCount')){
+        $('publicProfileFriendsCount').textContent=Object.keys(snap.val()||{}).length;
+      }
+    }catch(error){
+      console.warn('Friend count refresh skipped:',error);
+    }
+  }
+
+  async function removeFriend(uid){
+    if(!currentUser||!uid)return;
+    await update(ref(db),{
+      [`friends/${currentUser.uid}/${uid}`]:null,
+      [`friends/${uid}/${currentUser.uid}`]:null
+    });
+    await refreshPublicFriendCount(uid);
+  }
+
+  $('publicProfileFriendBtn').addEventListener('click',async()=>{
+    if(!publicProfileUid||!currentUser)return;
+    try{
+      if(publicProfileRelation==='friend'){
+        await removeFriend(publicProfileUid);
+        publicProfileRelation='none';
+      }else if(publicProfileRelation==='incoming'){
+        await acceptFriendRequest(publicProfileUid);
+        publicProfileRelation='friend';
+      }else if(publicProfileRelation==='none'){
+        await sendFriendRequest(publicProfileUid,null);
+        publicProfileRelation='outgoing';
+      }
+      renderPublicProfileFriendButton();
+    }catch(error){
+      console.error(error);
+      alert(firebaseErrorMessage(error));
+    }
+  });
+
 
   async function resolveOrganizer(){
     if(!currentUser)return;
@@ -2076,6 +3162,7 @@
           peerDisplayName:peer.displayName,
           peerUsername:peer.username,
           peerOnline:!!peer.online,
+          peerAvatarData:peer.avatarData||'',
           lastMessage:item.lastMessage||'',
           lastMessageAt:item.lastMessageAt||0,
           unread:item.unread||0
@@ -2119,6 +3206,7 @@
         peerDisplayName:peer.displayName,
         peerUsername:peer.username,
         peerOnline:!!peer.online,
+        peerAvatarData:peer.avatarData||'',
         lastMessage:'',
         lastMessageAt:now,
         unread:0
@@ -2153,7 +3241,8 @@
           ...c,
           peerDisplayName:peer.displayName||c.peerDisplayName,
           peerUsername:peer.username||c.peerUsername,
-          peerOnline:!!peer.online
+          peerOnline:!!peer.online,
+          peerAvatarData:peer.avatarData||c.peerAvatarData||''
         };
       });
       renderConversationList();
@@ -2162,7 +3251,24 @@
       if(activePeer?.peerId){
         const peer=cachedUsers[activePeer.peerId]||{};
         activePeer.peerOnline=!!peer.online;
+        activePeer.peerAvatarData=peer.avatarData||activePeer.peerAvatarData||'';
         $('peerStatus').textContent=peer.online ? 'онлайн' : lastSeenLabel(peer.lastSeen);
+        setAvatarElement($('peerAvatar'),peer);
+      }
+
+      if(publicProfileUid && $('publicProfileScreen').classList.contains('open')){
+        const u=cachedUsers[publicProfileUid];
+        if(u){
+          publicProfileUser={uid:publicProfileUid,...u};
+          setAvatarElement($('publicProfileAvatar'),publicProfileUser);
+          $('publicProfileName').textContent=u.displayName||'Пользователь';
+          $('publicProfileUsername').textContent='@'+(u.username||'user');
+          $('publicProfilePresence').textContent=u.online?'онлайн':lastSeenLabel(u.lastSeen);
+          $('publicProfilePresence').classList.toggle('online',!!u.online);
+          // Не перезаписываем количество друзей устаревшим users.friendsCount.
+          // Оно обновляется из /friends/{uid} при открытии профиля.
+          $('publicProfileRequestsCount').textContent=Number(u.friendRequestsCount||0);
+        }
       }
     });
   }
@@ -2218,7 +3324,7 @@
 
         $('peerName').textContent=activePeer.peerDisplayName||'Пользователь';
         $('peerUsername').textContent='@'+(activePeer.peerUsername||'user');
-        $('peerAvatar').textContent=initials(activePeer.peerDisplayName);
+        setAvatarElement($('peerAvatar'),peer);
         $('peerStatus').textContent=peer.online ? 'онлайн' : lastSeenLabel(peer.lastSeen);
       }
     });
@@ -2265,15 +3371,55 @@
       box.innerHTML='<div class="chat-empty-list">У вас пока нет диалогов.<br>Найдите пользователя выше и начните переписку.</div>';
       return;
     }
-    box.innerHTML=cachedConversations.map(c=>`<div class="chat-item ${c.chatId===activeConversationId?'active':''}" data-conversation="${escapeHtml(c.chatId)}"><div class="chat-avatar">${escapeHtml(initials(c.peerDisplayName))}</div><div class="chat-item-copy"><b>${escapeHtml(c.peerDisplayName)}</b><span>${escapeHtml(c.lastMessage || '@'+c.peerUsername)}${c.peerOnline?' · онлайн':''}</span></div><div><div class="chat-item-time">${c.lastMessageAt?dayLabel(c.lastMessageAt):''}</div>${Number(c.unread)>0?`<div class="unread">${Number(c.unread)}</div>`:''}</div></div>`).join('');
-    box.querySelectorAll('.chat-item').forEach(el=>el.addEventListener('click',()=>{
-      const row=cachedConversations.find(x=>x.chatId===el.dataset.conversation);
-      if(row) openConversation(row.chatId,row);
-    }));
+    box.innerHTML=cachedConversations.map(c=>`<div class="chat-item ${c.chatId===activeConversationId?'active':''}" data-conversation="${escapeHtml(c.chatId)}"><div class="chat-avatar clickable-avatar" data-profile-user="${escapeHtml(c.peerId)}">${avatarInner(cachedUsers[c.peerId]||{displayName:c.peerDisplayName,avatarData:c.peerAvatarData})}</div><div class="chat-item-copy"><b>${escapeHtml(c.peerDisplayName)}</b><span>${escapeHtml(c.lastMessage || '@'+c.peerUsername)}${c.peerOnline?' · онлайн':''}</span></div><div><div class="chat-item-time">${c.lastMessageAt?dayLabel(c.lastMessageAt):''}</div>${Number(c.unread)>0?`<div class="unread">${Number(c.unread)}</div>`:''}</div></div>`).join('');
+    box.querySelectorAll('.chat-item').forEach(el=>{
+      el.querySelector('[data-profile-user]')?.addEventListener('click',e=>{
+        e.stopPropagation();
+        openPublicProfile(e.currentTarget.dataset.profileUser);
+      });
+      el.addEventListener('click',()=>{
+        const row=cachedConversations.find(x=>x.chatId===el.dataset.conversation);
+        if(row) openConversation(row.chatId,row);
+      });
+    });
   }
 
   async function openConversation(chatId,row){
     if(!currentUser)return;
+
+    // Профиль собеседника загружаем ДО сообщений.
+    // Поэтому аватар виден сразу при первом открытии чата, а не после повторного захода.
+    if(row?.peerId && !cachedUsers[row.peerId]){
+      try{
+        const peerSnap=await get(ref(db,`users/${row.peerId}`));
+        if(peerSnap.exists()){
+          cachedUsers[row.peerId]={uid:row.peerId,...(peerSnap.val()||{})};
+        }
+      }catch(error){
+        console.warn('Peer preload skipped:',error);
+      }
+    }
+
+    let loadedPeer=cachedUsers[row.peerId]||{};
+    if(row?.peerId){
+      try{
+        const peerSnap=await get(ref(db,`users/${row.peerId}`));
+        if(peerSnap.exists()){
+          loadedPeer={uid:row.peerId,...(peerSnap.val()||{})};
+          cachedUsers[row.peerId]=loadedPeer;
+        }
+      }catch(error){
+        console.warn('Peer avatar refresh skipped:',error);
+      }
+    }
+    row={
+      ...row,
+      peerDisplayName:loadedPeer.displayName||row.peerDisplayName||'Пользователь',
+      peerUsername:loadedPeer.username||row.peerUsername||'user',
+      peerOnline:typeof loadedPeer.online==='boolean'?loadedPeer.online:row.peerOnline,
+      peerAvatarData:getAvatarSrc(loadedPeer)||row.peerAvatarData||''
+    };
+
     activeConversationId=chatId;
     activePeer=row;
 
@@ -2285,7 +3431,7 @@
     $('activeChat').style.display='';
     $('peerName').textContent=row.peerDisplayName||'Пользователь';
     $('peerUsername').textContent='@'+(row.peerUsername||'user');
-    $('peerAvatar').textContent=initials(row.peerDisplayName);
+    setAvatarElement($('peerAvatar'),cachedUsers[row.peerId]||{displayName:row.peerDisplayName,avatarData:row.peerAvatarData});
     $('peerStatus').textContent=row.peerOnline?'онлайн':'не в сети';
     subscribeActivePeerPresence(row.peerId);
     subscribePeerReadState(chatId,row.peerId);
@@ -2346,7 +3492,7 @@
       limitToLast(100)
     );
 
-    messagesUnsubscribe=onValue(messagesQuery,snap=>{
+    messagesUnsubscribe=onValue(messagesQuery,async snap=>{
       if(activeConversationId!==chatId) return;
 
       const rows=[];
@@ -2361,6 +3507,23 @@
         return String(a.id).localeCompare(String(b.id));
       });
 
+      // Загружаем профили всех отправителей ДО первого renderMessages().
+      // Это убирает задержку, когда сначала была буква, а аватар появлялся позже.
+      const senderIds=[...new Set(rows.map(m=>m.senderId).filter(Boolean))];
+      const missing=senderIds.filter(uid=>uid!==currentUser.uid && !cachedUsers[uid]);
+
+      if(missing.length){
+        await Promise.all(missing.map(async uid=>{
+          try{
+            const uSnap=await get(ref(db,`users/${uid}`));
+            if(uSnap.exists())cachedUsers[uid]={uid,...(uSnap.val()||{})};
+          }catch(error){
+            console.warn('Message avatar preload skipped:',uid,error);
+          }
+        }));
+      }
+
+      if(activeConversationId!==chatId) return;
       renderMessages(rows);
       markRead();
     },error=>{
@@ -2376,8 +3539,24 @@
     box.innerHTML=messages.map(m=>{
       const me=m.senderId===currentUser.uid;
       const peerRead=me && activePeer?.peerId && Number(m.createdAt||0) <= Number(activePeerReadAt||0);
-      return `<div class="message-row ${me?'me':''}" data-message-id="${escapeHtml(m.id)}"><div class="message">${escapeHtml(m.body).replace(/\n/g,'<br>')}<div class="message-meta"><span>${timeLabel(m.createdAt)}</span>${me?`<span class="${peerRead?'read':''}">${peerRead?'✓✓':'✓'}</span>`:''}</div></div></div>`;
+      const senderUid=m.senderId||'';
+      const sender=me
+        ? (cachedUsers[currentUser.uid]||myProfile||{displayName:'SUA User'})
+        : (cachedUsers[senderUid]||cachedUsers[activePeer?.peerId]||{
+            displayName:activePeer?.peerDisplayName||'Пользователь',
+            avatarData:activePeer?.peerAvatarData||''
+          });
+      const profileUid=me?currentUser.uid:senderUid;
+      return `<div class="message-row ${me?'me':''}" data-message-id="${escapeHtml(m.id)}">
+        <div class="message-avatar clickable-avatar" data-message-profile="${escapeHtml(profileUid)}">${avatarInner(sender)}</div>
+        <div class="message">${escapeHtml(m.body).replace(/\n/g,'<br>')}<div class="message-meta"><span>${timeLabel(m.createdAt)}</span>${me?`<span class="${peerRead?'read':''}">${peerRead?'✓✓':'✓'}</span>`:''}</div></div>
+      </div>`;
     }).join('') || '<div class="chat-empty-list">Начните диалог — отправьте первое сообщение.</div>';
+    box.querySelectorAll('[data-message-profile]').forEach(el=>el.addEventListener('click',e=>{
+      const uid=e.currentTarget.dataset.messageProfile;
+      if(uid===currentUser.uid)window.suaOpenProfile('settings');
+      else openPublicProfile(uid);
+    }));
     box.scrollTop=box.scrollHeight;
   }
 
@@ -2441,11 +3620,12 @@
 
 
   $('chatInfoBtn').addEventListener('click',()=>{
-    if(!activePeer)return;
-    openSiteModal('Информация о пользователе',`
-      <div class="data-row"><div><b>${escapeHtml(activePeer.peerDisplayName||'Пользователь')}</b><span>@${escapeHtml(activePeer.peerUsername||'user')}</span></div><span class="status-pill ${activePeer.peerOnline?'gold':''}">${activePeer.peerOnline?'онлайн':'не в сети'}</span></div>
-      <div class="form-actions"><button class="soft-btn" onclick="alert('Блокировка пользователя будет добавлена вместе с системой модерации')">Заблокировать</button></div>
-    `);
+    if(!activePeer?.peerId)return;
+    openPublicProfile(activePeer.peerId);
+  });
+
+  $('peerAvatar').addEventListener('click',()=>{
+    if(activePeer?.peerId)openPublicProfile(activePeer.peerId);
   });
 
   $('sendMessageBtn').addEventListener('click',sendMessage);
