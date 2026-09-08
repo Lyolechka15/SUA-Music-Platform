@@ -1,109 +1,33 @@
-# SUA Music Platform
+SUA — v44
 
-SUA Music Platform is a web platform developed for a real client in the music industry. The project combines music distribution, artist services, social features and real-time communication in a single interface.
+ОБЯЗАТЕЛЬНО ДЛЯ НОВЫХ РАЗДЕЛОВ
+В Firebase Console откройте проект sua-music → Realtime Database → Rules.
+Замените правила содержимым файла firebase-rules.json из этой версии и нажмите Publish.
+Без этого подписки и данные клуба будут отклоняться существующими правилами.
+Новые правила подготовлены локально; в ваш Firebase они автоматически не опубликованы.
 
-## About the Project
+ИЗМЕНЕНИЯ
+• Свой профиль открывается на публикациях; сверху справа — настройки имени, адреса профиля и аватара.
+• Фото, отдельные счётчики и списки друзей, подписок и входящих заявок.
+• Исходящие заявки отображаются отдельно и отменяются кнопкой. Отменить можно и в чужом профиле/поиске.
+• Подписки независимы от дружбы: подписаться и отписаться можно в публичном профиле.
+• Посты можно создавать из профиля и удалять из профиля или ленты; доступны лайки, список оценивших и комментарии.
+• Комментарии открываются отдельным окном поверх профиля: слева пост, справа обсуждение и форма ответа. На телефоне — вертикальная компоновка.
+• Раздел «Музыка» очищен, неактивный плеер убран. Вкладка музыки профиля показывает только релизы, явно опубликованные автором в каталоге клуба.
 
-The platform is designed as a digital ecosystem for artists, listeners and music industry professionals.
+КЛУБ ЗНАНИЙ
+Структура музыкального сообщества по примеру risazatvorchestvo.com: главная, релизы, рецензии, рейтинг, ТОП-90, авторы, новые имена, авторские лайки/комментарии, альбомы, достижения, плейлисты, концерты, премия, новости, информация и FAQ.
+Наполнение создаётся пользователями SUA; чужие рецензии, аккаунты, статистика и каталоги с сайта-примера не копировались.
+Релизы, плейлисты, оценки, рецензии, лайки и комментарии сохраняются в Firebase.
+Концерты, новости и премию может публиковать только администратор SUA (admins/{uid}=true — существующий механизм).
+Оценка 0–100 — средняя оценка участников. ТОП — один балл за оценку и рецензию. Это прозрачная начальная механика SUA, а не воспроизведение закрытого алгоритма другого сайта.
+Музыка открывается по ссылке автора на выбранной площадке. Приватные файлы заявок дистрибуции не раскрываются.
 
-The project includes user authentication, personal accounts, a real-time messenger, user search, music-related sections, artist services and music distribution functionality.
+ПРОВЕРКА
+Проверены синтаксис, DOM и сценарии через изолированную базу в памяти: профиль/публикации, отмена и принятие заявок, подписки, лайки, комментарии, удаление только своих постов, оценки, рецензии и защита от повторного начисления баллов.
+Дополнительно проверены выражения новых правил доступа (входящие заявки, чужие подписки, дружба без заявки, администраторские публикации, пределы оценок).
+Проверка с реальными аккаунтами Firebase и браузерная визуальная проверка не проводились.
 
-## Key Features
-
-- User registration and authentication
-- Personal user accounts
-- Real-time messenger
-- User search
-- Private chats between users
-- Chat history and real-time message updates
-- Online/user status interface
-- Music section
-- Music distribution section
-- Artist services
-- Social feed
-- Communities
-- Knowledge Club
-- Advertising campaign section
-- Dynamic interface and navigation
-- Multiple selectable website backgrounds
-- Responsive dark UI
-
-## Technologies
-
-- HTML5
-- CSS3
-- JavaScript
-- Firebase Authentication
-- Firebase Realtime Database
-- Firebase Security Rules
-- Git
-- GitHub
-
-## Firebase Integration
-
-Firebase is used for backend functionality, including:
-
-- User authentication
-- User account management
-- Realtime Database
-- User search
-- Chat creation
-- Real-time messaging
-- Message history
-- Database security rules
-
-## Messenger
-
-The platform includes a custom real-time messenger.
-
-Users can search for other registered users, open private conversations and exchange messages in real time.
-
-Chats and messages are synchronized through Firebase Realtime Database.
-
-## UI / UX
-
-The interface was designed specifically for the SUA Music brand.
-
-The platform uses a dark premium visual style with gold accents, custom backgrounds, navigation sections and an integrated music-player interface.
-
-## Project Status
-
-The project is currently under active development.
-
-Additional modules and backend functionality are being implemented.
-
-## My Role
-
-I developed the project from concept to a working web application, including:
-
-- Interface architecture
-- UI implementation
-- Front-end development
-- Firebase integration
-- Authentication logic
-- Realtime Database structure
-- Messenger functionality
-- User search
-- Debugging
-- Firebase Security Rules configuration
-- GitHub project setup
-
----
-
-Developed as a commercial web project for SUA Music.
-## Screenshots
-
-### Home
-![SUA Music Platform — Home](screenshots/home.png)
-
-### Authentication
-![SUA Music Platform — Authentication](screenshots/auth.png)
-
-### Music
-![SUA Music Platform — Music](screenshots/music.png)
-
-### Music Distribution
-![SUA Music Platform — Distribution](screenshots/distribution.png)
-
-### Real-Time Messenger
-![SUA Music Platform — Messenger](screenshots/messenger.png)
+ОБНОВЛЕНИЕ САЙТА
+Замените index.html и папку assets. Примените firebase-rules.json в консоли Firebase отдельно.
+Не удаляйте существующие данные пользователей, друзей и публикаций.
