@@ -85,7 +85,7 @@
       background-image:url('assets/bg-1.jpg');
       background-size:cover;
       background-position:center;
-      transition:background-image .35s ease;
+      transition:none;
     }
     .workspace::before{content:"";position:fixed;pointer-events:none}
     .workspace-inner{position:relative;z-index:1;min-height:100%}
@@ -599,8 +599,354 @@
     /* REALTIME MESSAGE STABILITY v32 */
     .message.message-pending{opacity:.78}
 
+  
+    /* FIREBASE SOCIAL FEED v33 */
+    .feed-post{padding:16px;border-radius:15px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);margin-top:10px}
+    .feed-post-head{display:flex;align-items:center;gap:10px}
+    .feed-post-author{min-width:0;flex:1}
+    .feed-post-author b{display:block;font-size:11px;cursor:pointer}
+    .feed-post-author span{display:block;font-size:8.5px;color:var(--muted);margin-top:3px}
+    .feed-post-body{font-size:10.5px;line-height:1.66;color:rgba(255,255,255,.8);margin:12px 0}
+    .feed-post-actions{display:flex;gap:8px;align-items:center}
+    .feed-post-actions button{height:32px;padding:0 10px;border-radius:9px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);cursor:pointer;font-size:9px;display:inline-flex;align-items:center;gap:6px}
+    .feed-post-actions button.liked{color:#ff7676;border-color:rgba(255,118,118,.28);background:rgba(255,118,118,.06)}
+    .feed-post-actions button:hover{border-color:rgba(216,173,87,.28);color:#fff}
+    .comment-list{display:flex;flex-direction:column;gap:8px;max-height:390px;overflow:auto;margin-bottom:12px}
+    .comment-row{display:grid;grid-template-columns:34px minmax(0,1fr);gap:9px;padding:10px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.075)}
+    .comment-copy b{font-size:9.5px;cursor:pointer}.comment-copy p{font-size:9.5px;line-height:1.5;color:rgba(255,255,255,.76);margin-top:4px}.comment-copy time{display:block;font-size:7.5px;color:var(--muted);margin-top:5px}
+    .comment-compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+    .comment-compose input{width:100%;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(7,10,16,.5);color:#fff;padding:0 11px;outline:0;font-size:9.5px}
+    body.white-workspace .feed-post,body.white-workspace .comment-row{background:rgba(255,255,255,.84);border-color:rgba(20,24,32,.1)}
+
+  
+    /* STRUCTURE UPDATE v34 */
+    .score-embedded .home-title{font-size:clamp(22px,3vw,38px)}
+    .score-embedded .home-cta{margin-bottom:0}
+    .artist-score-block{margin-top:22px}
+    .artist-faq-v34 .knowledge-item + .knowledge-item{margin-top:7px}
+
+  
+    /* BADGE ZERO FIX v36 */
+    .top-notification-badge[hidden],
+    .request-count[hidden]{display:none!important}
+
+  
+    /* HIGH QUALITY BACKGROUNDS v36 */
+    .workspace{
+      background-size:cover!important;
+      background-position:center center!important;
+      background-repeat:no-repeat!important;
+      image-rendering:auto;
+    }
+
+  
+    /* SHARP STABLE BACKGROUNDS v37 */
+    .workspace{
+      background-size:cover!important;
+      background-position:center top!important;
+      background-repeat:no-repeat!important;
+      background-attachment:local;
+      transition:none!important;
+    }
+
+  
+    .feed-post-actions .post-delete-btn{margin-left:auto}
+    .feed-post-actions .post-delete-btn:hover{color:#ff8c8c;border-color:rgba(255,100,100,.3)}
+
+  
+    /* WIDE DESKTOP DESIGN v38 */
+    body{
+      padding:12px;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .app{
+      width:min(1880px,calc(100vw - 24px));
+      height:min(1040px,calc(100vh - 24px));
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.30);
+      box-shadow:0 28px 90px rgba(20,13,9,.32);
+    }
+
+    .sidebar{
+      width:270px;
+      flex:0 0 270px;
+      padding:26px 20px 18px;
+      display:flex;
+      flex-direction:column;
+      overflow:visible;
+    }
+
+    .brand{margin-bottom:22px}
+    .brand-logo-img{width:218px}
+    .auth{margin-bottom:16px}
+
+    .nav{
+      flex:1;
+      min-height:0;
+      overflow-y:auto;
+      padding-right:3px;
+      gap:4px;
+    }
+
+    .nav-item{
+      padding:11px 12px;
+      min-height:43px;
+    }
+
+    .workspace{
+      padding:18px 24px 124px 30px;
+    }
+
+    .workspace-inner{
+      width:100%;
+      max-width:none;
+    }
+
+    .content-card,
+    .home-section{
+      border-radius:20px;
+    }
+
+    .player{
+      left:290px;
+      right:22px;
+      bottom:16px;
+      height:84px;
+    }
+
+    /* Background control at the bottom of the sidebar */
+    .sidebar-background-control{
+      position:relative;
+      flex:0 0 auto;
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.08);
+      z-index:60;
+    }
+
+    .bg-picker-toggle{
+      min-height:45px;
+      justify-content:flex-start;
+      padding:0 13px;
+      gap:10px;
+      background:rgba(255,255,255,.025);
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .bg-picker-toggle span{flex:1;text-align:left}
+    .bg-picker-chevron{font-size:10px;color:var(--muted)}
+
+    .bg-picker-panel{
+      position:absolute;
+      left:0;
+      bottom:56px;
+      width:310px;
+      padding:12px;
+      border-radius:16px;
+      background:rgba(10,13,20,.97);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 18px 55px rgba(0,0,0,.42);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .bg-picker-panel[hidden]{display:none!important}
+
+    .bg-picker-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .bg-picker-head b{font-size:11px}
+    .bg-picker-head button{
+      width:28px;height:28px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:#fff;cursor:pointer;
+    }
+
+    .bg-picker-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:7px;
+    }
+
+    .bg-thumb{
+      height:48px;
+      padding:0;
+      overflow:hidden;
+      border-radius:9px;
+      border:2px solid transparent;
+      background:#111;
+      cursor:pointer;
+      opacity:.78;
+      transition:.16s ease;
+    }
+
+    .bg-thumb img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+
+    .bg-thumb:hover{
+      opacity:1;
+      transform:translateY(-1px);
+      border-color:rgba(216,173,87,.45);
+    }
+
+    .bg-thumb.active{
+      opacity:1;
+      border-color:var(--gold2);
+      box-shadow:0 0 0 2px rgba(216,173,87,.12);
+    }
+
+    @media(min-width:1500px){
+      .home-title{font-size:clamp(34px,3vw,58px)}
+      .home-section{padding:34px}
+      .home-copy{font-size:11.5px}
+    }
+
+    @media(max-width:1180px){
+      body{padding:0}
+      .app{width:100vw;height:100vh;border-radius:0}
+      .sidebar{width:255px;flex-basis:255px}
+      .player{left:270px;right:14px}
+      .bg-picker-panel{width:290px}
+    }
+
+    @media(max-width:760px){
+      .sidebar-background-control{display:none}
+    }
+
+  
+    /* FULL IMAGE BACKGROUND FIX v39
+       ВАЖНО: фон больше НЕ увеличивается и НЕ обрезается.
+       Вся исходная картинка всегда помещается целиком. */
+    .workspace{
+      background-size:contain !important;
+      background-position:center top !important;
+      background-repeat:no-repeat !important;
+      background-attachment:local !important;
+      filter:none !important;
+      transform:none !important;
+      image-rendering:auto !important;
+    }
+
+    /* Убираем любые декоративные слои, которые могли визуально
+       размывать/растягивать фон по краям. */
+    .workspace::before,
+    .workspace::after{
+      filter:none !important;
+      transform:none !important;
+    }
+
+  
+    /* DYNAMIC SHARP FULL BACKGROUND v40 */
+    .workspace{
+      background-size:contain !important;
+      background-position:center center !important;
+      background-repeat:no-repeat !important;
+      background-attachment:scroll !important;
+      background-color:#0b0e14 !important;
+      filter:none !important;
+      transform:none !important;
+    }
+
+  
+    /* BACKGROUND SYSTEM v41 */
+    .workspace{
+      position:relative!important;
+      isolation:isolate;
+      background:transparent!important;
+    }
+
+    .workspace::before{
+      content:"";
+      position:fixed;
+      z-index:0;
+      top:0;
+      right:0;
+      bottom:0;
+      left:270px;
+      background-image:var(--workspace-bg-image);
+      background-size:contain;
+      background-position:center center;
+      background-repeat:no-repeat;
+      background-color:#0b0e14;
+      pointer-events:none;
+      filter:none!important;
+      transform:none!important;
+      opacity:1;
+      visibility:visible;
+    }
+
+    .workspace.black-background::before{
+      background-image:none!important;
+      background-color:#000!important;
+    }
+
+    .workspace > *{
+      position:relative;
+      z-index:1;
+    }
+
+    .workspace.black-background{
+      background:#000!important;
+    }
+
+    .bg-thumb-black{
+      background:#000!important;
+      display:grid;
+      place-items:center;
+    }
+
+    .bg-thumb-black span{
+      width:100%;
+      height:100%;
+      display:block;
+      background:#000;
+    }
+
+    @media(max-width:1180px){
+      .workspace::before{left:255px}
+    }
+
+    @media(max-width:760px){
+      .workspace::before{left:80px}
+    }
+
+
+/* SUA v43 — continuous canvas, knowledge hub and member identity */
+.workspace::before{background-size:cover;background-position:center;}
+#screen-sanctum>.content-card{padding:clamp(20px,3vw,44px);background:rgba(10,13,19,.87)}
+.club-masthead{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #ffffff20;padding-bottom:22px;margin-bottom:28px}
+.club-brand{font-size:14px;letter-spacing:.18em;color:var(--gold2);font-weight:800}
+.club-masthead span{font-size:14px;color:var(--muted)}
+.club-intro{max-width:760px;margin-bottom:28px}.club-intro h1{font-size:clamp(30px,4vw,54px);letter-spacing:-.04em;line-height:1.08}.club-intro p{font-size:16px;line-height:1.7;color:#c1c4cc;margin-top:16px}
+#knowledgeTabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid #ffffff20;padding-bottom:20px;margin-bottom:28px}
+#knowledgeTabs .subtab{font-size:14px;padding:12px 16px;border-radius:100px}
+.club-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.club-card{padding:24px;border:1px solid #ffffff20;background:linear-gradient(145deg,#ffffff08,transparent);border-radius:18px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}.club-card h3{font-size:22px;line-height:1.3}.club-card p{font-size:16px;line-height:1.65;color:#bfc3cc}.club-card .mini-btn{margin-top:auto;font-size:14px;height:auto;min-height:44px;padding:12px 16px}.club-eyebrow{font-size:13px;color:var(--gold2);letter-spacing:.08em}.club-heading{font-size:26px;margin:0 0 20px}.club-note{font-size:14px;color:#bfc3cc;line-height:1.7;margin:18px 0}.club-route{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}.club-feature{border:1px solid #d8ad5750;border-radius:20px;padding:30px;background:radial-gradient(ellipse at top right,#d8ad5720,transparent 65%),#0d1119}.club-feature h2{font-size:32px;letter-spacing:-.03em;line-height:1.2;margin:12px 0}.club-feature p{font-size:16px;line-height:1.7;color:#bfc3cc}.club-feature button{font-size:14px;min-height:44px}.club-check{display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid #ffffff15;padding:18px 0;font-size:16px;line-height:1.5;cursor:pointer}.club-check input{width:20px;height:20px;flex-shrink:0;accent-color:#d8ad57;margin-top:2px}.club-progress{height:5px;background:#ffffff18;border-radius:9px;margin:20px 0;overflow:hidden}.club-progress span{height:100%;display:block;background:var(--gold2)}
+.club-article{font-size:16px;line-height:1.8;color:#d2d4dc}.club-article h3{font-size:20px;color:white;margin:24px 0 10px}.club-article p{margin-bottom:16px}.club-article ul{padding-left:22px}.club-article li{margin:10px 0}.club-article button{font-size:14px;min-height:44px}.club-search{width:100%;padding:14px 18px;font:inherit;font-size:16px;color:white;border:1px solid #ffffff30;border-radius:12px;background:#0c1018;margin-bottom:20px}
+.profile-screen{background:radial-gradient(ellipse at 85% 0%,#76603926,transparent 45%),#090c12}.profile-shell{width:min(1120px,92vw);margin:40px auto 80px}.profile-topbar{margin-bottom:32px}.profile-topbar h1{font-size:24px;letter-spacing:-.03em}.profile-topbar>div>div{font-size:14px!important;line-height:1.5}.profile-close{width:44px;height:44px}.profile-layout{grid-template-columns:340px minmax(0,1fr);gap:26px;align-items:start}.profile-card{position:relative;overflow:hidden;padding:40px 28px 28px;background:linear-gradient(155deg,#d8ad5710,transparent 45%),#11151d}.profile-card:before{content:'';display:block;position:absolute;top:0;left:0;right:0;height:100px;background:linear-gradient(115deg,#d8ad5718,transparent),repeating-linear-gradient(125deg,transparent 0 24px,#d8ad5712 25px 26px);border-bottom:1px solid #d8ad5720}.profile-avatar-wrap{position:relative;align-items:flex-start;text-align:left}.profile-avatar-large{width:120px;height:120px;border-radius:28px;border:5px solid #11151d;font-size:38px}.profile-name{font-size:30px;line-height:1.2;letter-spacing:-.03em;overflow-wrap:anywhere;margin-top:22px}.profile-username{font-size:15px;margin-top:8px}.avatar-upload-btn{order:5;font-size:14px;background:transparent;margin-top:20px;padding:10px 14px}.profile-stats{margin-top:30px;border-top:1px solid #ffffff15;padding-top:24px}.profile-stat{text-align:left;background:transparent;padding:0 12px 0 0}.profile-stat b{font-size:28px;font-weight:500}.profile-stat span{font-size:14px;display:block;margin-top:6px}.profile-main-card{padding:30px;background:#11151dcc}.profile-nav{gap:18px;border-bottom:1px solid #ffffff18;padding-bottom:18px;margin-bottom:28px}.profile-tab{font-size:14px;padding:10px 0;border:0;border-radius:0;background:transparent}.profile-tab.active{background:transparent;border-bottom:2px solid var(--gold2)}.profile-form-grid{gap:24px}.profile-label{font-size:14px;margin-bottom:10px}.profile-input{height:52px;font-size:16px;padding:0 16px;border-radius:10px}.profile-input:focus{border-color:var(--gold2);box-shadow:0 0 0 3px #d8ad5718}.profile-input:disabled{opacity:.55}.profile-save{font-size:14px;min-height:48px;padding:14px 22px;margin-top:28px}.profile-section-title{font-size:22px;margin-bottom:10px}.profile-section-copy{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:26px}.profile-empty{font-size:16px;padding:40px 24px;line-height:1.7}.friend-copy b{font-size:16px}.friend-copy span{font-size:14px}.friend-actions button,.profile-card .quick-btn,.profile-card .soft-btn{font-size:14px;min-height:44px}.profile-card .form-actions{flex-direction:column;align-items:stretch}.profile-card .form-actions button{justify-content:center}.profile-screen :focus-visible,#screen-sanctum :focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
+@media(max-width:1050px){.club-grid{grid-template-columns:1fr 1fr}.club-route{grid-template-columns:1fr}.profile-layout{grid-template-columns:280px minmax(0,1fr)}}
+@media(max-width:800px){.profile-layout{grid-template-columns:1fr}.profile-shell{margin-top:22px}.profile-main-card{padding:22px}.club-grid{grid-template-columns:1fr}.club-masthead{align-items:flex-start;flex-direction:column}.club-feature{padding:22px}.profile-nav{gap:14px}.profile-tab{font-size:14px}}
+
+/* v44: community and social profiles */
+.site-modal{z-index:1800}.site-modal-card{font-size:16px}.site-modal-head h2{font-size:24px}.site-modal .quick-btn,.site-modal .soft-btn{font-size:14px;min-height:44px}.modal-input,.modal-textarea,.modal-select{font-size:16px;padding:12px}.modal-textarea{min-height:160px}.site-modal [hidden],[hidden]{display:none!important}
+.profile-header-actions{display:flex;gap:12px;align-items:center}.profile-header-actions .soft-btn{font-size:14px;min-height:44px}.profile-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.profile-stat{border:0;color:white;cursor:pointer}.profile-compose{border-bottom:1px solid #ffffff20;margin-bottom:28px;padding-bottom:24px;display:flex;flex-wrap:wrap;gap:12px}.profile-compose textarea{width:100%;min-height:100px;border:1px solid #ffffff20;border-radius:12px;background:#090d14;color:white;padding:16px;font:inherit;font-size:16px;resize:vertical}.profile-compose button{font-size:14px;min-height:44px}.person-link{background:transparent;border:0;text-align:left;color:inherit;cursor:pointer}.friend-copy{min-width:0;overflow-wrap:anywhere}.friend-row{grid-template-columns:44px minmax(0,1fr) auto}.profile-card .chat-avatar{border:0}.profile-main-card .feed-post{margin-bottom:20px;padding:22px}.feed-post-author b{font-size:16px}.feed-post-author span{font-size:13px}.feed-post-body{font-size:16px;line-height:1.75;overflow-wrap:anywhere}.feed-post-actions{flex-wrap:wrap}.feed-post-actions button{font-size:14px;min-height:40px;height:auto;padding:8px 12px}.profile-main-card .avatar-upload-btn{display:inline-flex;margin:0 0 22px}.profile-main-card .profile-label{display:block}.profile-section-copy{margin-top:12px}
+.comments-modal .site-modal-card{width:min(1100px,96vw);max-height:90dvh;padding:0;overflow:hidden}.comments-modal .site-modal-head{margin:0;padding:22px 26px;border-bottom:1px solid #ffffff20}.post-modal-layout{display:grid;grid-template-columns:1.15fr 1fr;min-height:420px;max-height:calc(90dvh - 90px)}.post-modal-original{padding:24px;overflow:auto;background:#090d14}.post-modal-original .feed-post{border:0;background:transparent;padding:0}.post-modal-original .feed-post-actions button:nth-child(3){display:none}.post-modal-discussion{display:flex;flex-direction:column;min-height:0;padding:22px;border-left:1px solid #ffffff20}.comment-list{flex:1;min-height:0;max-height:none;overflow:auto}.comment-compose{flex-shrink:0;padding-top:14px;border-top:1px solid #ffffff20;grid-template-columns:minmax(0,1fr) auto}.comment-compose input{height:46px;font-size:16px}.comment-copy b{font-size:15px}.comment-copy p{font-size:16px;line-height:1.6;overflow-wrap:anywhere}.comment-copy time{font-size:12px}.comment-row{padding:14px 0;border:0;background:transparent;align-items:start}.site-modal-body{min-height:0}
+.club-v44{background:rgba(10,13,19,.93)!important;padding:clamp(18px,3vw,36px)!important}.club-v44 h1{font-size:clamp(30px,3vw,44px);letter-spacing:-.04em}.club-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}.club-toolbar p{font-size:16px;line-height:1.6;color:var(--muted);margin-top:10px}.club-toolbar button{font-size:14px;min-height:44px;white-space:nowrap}.club-nav{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid #ffffff20;padding-bottom:22px;margin-bottom:24px}.club-nav button{font-size:14px;padding:10px 14px;border:1px solid #ffffff20;border-radius:100px;background:transparent;color:#c6c9d0;cursor:pointer}.club-nav button.active{background:#d8ad5720;border-color:#d8ad5790;color:var(--gold2)}.club-filters{display:flex;gap:12px;margin-bottom:22px;flex-wrap:wrap}.club-filters input{flex:1;min-width:180px;margin:0}.club-filters select{font-size:16px;color:white;border:1px solid #ffffff20;border-radius:12px;padding:12px;background:#10151e}.club-filters option{background:#10151e}.club-section{margin-top:34px}.club-section-head{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.club-section-head h2{font-size:24px}.club-section-head button{background:none;color:var(--gold2);cursor:pointer;font-size:14px}.club-release{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px;border:1px solid #ffffff18;border-radius:16px;margin-bottom:12px;background:#ffffff04}.club-cover{width:64px;height:64px;border-radius:12px;object-fit:cover;background:linear-gradient(135deg,#d8ad5733,#111722);display:grid;place-items:center;color:var(--gold2);font-size:24px}.club-release h3{font-size:18px;line-height:1.4}.club-release p{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.5}.club-score{font-size:28px;color:var(--gold2);text-align:center;min-width:52px}.club-score small{display:block;font-size:12px;color:var(--muted);margin-top:5px}.club-item-button{cursor:pointer;text-align:left;color:inherit}.club-item-button:hover{border-color:#d8ad5770}.club-review{padding:24px;border:1px solid #ffffff20;border-radius:18px;margin-bottom:16px;background:#ffffff04}.club-review h3{font-size:20px;margin:16px 0 10px}.club-review p{font-size:16px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}.club-review-head{display:flex;align-items:center;justify-content:space-between;gap:16px}.club-review small{font-size:14px;color:var(--muted)}.club-review-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.club-review-actions button{font-size:14px;min-height:40px;padding:8px 14px}.club-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.club-stats>div{padding:20px;border-top:1px solid #ffffff20}.club-stats b{display:block;font-size:32px;font-weight:500;color:var(--gold2)}.club-stats span{display:block;font-size:14px;color:var(--muted);margin-top:8px}.club-empty{font-size:16px;line-height:1.6;color:var(--muted);padding:28px;border:1px dashed #ffffff20;border-radius:16px}.club-label{display:block;font-size:14px;margin-bottom:8px}.club-form{display:grid;gap:18px}.club-form .modal-select{background:#161b25}.club-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px}.club-links a{color:var(--gold2);font-size:14px}.club-detail{font-size:16px;line-height:1.7}.club-detail h3{font-size:22px;margin:20px 0 10px}.club-detail p{white-space:pre-wrap;overflow-wrap:anywhere}.club-detail a{color:var(--gold2)}.club-rank{font-size:20px;color:var(--gold2);margin-right:10px}.club-notice{font-size:14px;padding:14px;border:1px solid #d8ad5750;border-radius:12px;margin:16px 0;color:#e0c78f}
+@media(max-width:800px){.post-modal-layout{grid-template-columns:1fr;overflow:auto;display:block}.post-modal-original{max-height:35dvh}.post-modal-discussion{border-left:0;border-top:1px solid #ffffff20;min-height:280px}.comment-list{max-height:30dvh}.club-toolbar{align-items:flex-start;flex-direction:column}.club-stats{grid-template-columns:1fr 1fr}.profile-header-actions .soft-btn{padding:10px}.friend-row{grid-template-columns:40px minmax(0,1fr)}.friend-actions{grid-column:2}.club-release{grid-template-columns:48px minmax(0,1fr) auto;padding:14px;gap:12px}.club-cover{width:48px;height:48px}.club-score{font-size:22px}.profile-stats{gap:8px}.profile-stat span{font-size:13px}.comments-modal .site-modal-head{padding:16px}}
+
   </style>
-<!-- SUA FULL SITE BUILD: 2026-09-06-v32 -->
+<!-- SUA FULL SITE BUILD: 2026-09-07-v42 -->
 </head>
 <body class="auth-pending home-screen">
 
@@ -618,9 +964,6 @@
     </div>
 
     <nav class="nav">
-      <div class="sidebar-bottom">
-        <button class="bg-btn" type="button" onclick="changeBackground()"><i class="fa-regular fa-image"></i> Изменить фон</button>
-      </div>
       <div class="nav-item active" onclick="switchScreen('home',this)"><i class="fa-solid fa-house"></i><span>Главная</span></div>
       <div class="nav-item" onclick="switchScreen('music',this)"><i class="fa-solid fa-music"></i><span>Музыка</span></div>
       <div class="nav-item" onclick="switchScreen('distribution',this)"><i class="fa-solid fa-cloud-arrow-up"></i><span>Дистрибуция</span></div>
@@ -632,6 +975,36 @@
       <div class="nav-item" onclick="switchScreen('advertising',this)"><i class="fa-solid fa-bullhorn"></i><span>Рекламная кампания</span></div>
       <div class="nav-item" id="adminNavItem" hidden onclick="switchScreen('admin',this)"><i class="fa-solid fa-shield-halved"></i><span>Админ-панель</span></div>
     </nav>
+
+    <div class="sidebar-background-control">
+      <button class="bg-btn bg-picker-toggle" type="button" onclick="toggleBackgroundPicker(event)">
+        <i class="fa-regular fa-image"></i>
+        <span>Изменить фон</span>
+        <i class="fa-solid fa-chevron-up bg-picker-chevron"></i>
+      </button>
+
+      <div class="bg-picker-panel" id="bgPickerPanel" hidden>
+        <div class="bg-picker-head">
+          <b>Выберите фон</b>
+          <button type="button" onclick="toggleBackgroundPicker(event)" title="Закрыть">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="bg-picker-grid" id="bgPickerGrid">
+          <button class="bg-thumb bg-thumb-black" data-bg-index="0" onclick="selectBackground(0,event)" title="Черный фон"><span></span></button>
+          <button class="bg-thumb" data-bg-index="1" onclick="selectBackground(1,event)" title="Фон 1"><img src="assets/bg-1.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="2" onclick="selectBackground(2,event)" title="Фон 2"><img src="assets/bg-2.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="3" onclick="selectBackground(3,event)" title="Фон 3"><img src="assets/bg-3.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="4" onclick="selectBackground(4,event)" title="Фон 4"><img src="assets/bg-4.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="5" onclick="selectBackground(5,event)" title="Фон 5"><img src="assets/bg-5.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="6" onclick="selectBackground(6,event)" title="Фон 6"><img src="assets/bg-6.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="7" onclick="selectBackground(7,event)" title="Фон 7"><img src="assets/bg-7.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="8" onclick="selectBackground(8,event)" title="Фон 8"><img src="assets/bg-8.jpg" alt=""></button>
+          <button class="bg-thumb" data-bg-index="9" onclick="selectBackground(9,event)" title="Фон 9"><img src="assets/bg-9.jpg" alt=""></button>
+        </div>
+      </div>
+    </div>
+
 </aside>
 
   <main class="workspace" id="workspace">
@@ -641,7 +1014,7 @@
         <div class="top-icons">
           <button class="icon-btn top-icon-with-badge" id="notificationsBtn" title="Уведомления">
             <i class="fa-regular fa-bell"></i>
-            <span id="notificationBadge" class="top-notification-badge" hidden>0</span>
+            <span id="notificationBadge" class="top-notification-badge" hidden></span>
           </button>
           <button class="icon-btn" id="profileBtn" title="Профиль"><i class="fa-regular fa-user"></i></button>
         </div>
@@ -649,309 +1022,6 @@
 
       <section id="screen-home" class="app-screen active">
         <div class="home-stack">
-
-          <section class="home-section full-manifesto-section">
-            <div class="home-kicker">манифест SUA WORLD MUSIC</div>
-            <div class="full-manifesto">
-              <div class="home-title manifesto-main-title">«Завтра» — одно из самых удобных слов человеческого языка.</div>
-              <p class="manifesto-copy">Застой редко выглядит как поражение. Человек продолжает работать. Он что-то изучает, что-то планирует, что-то обсуждает, сохраняет ссылки, сравнивает предложения, пересматривает стратегию, строит таблицы, ищет ещё одного специалиста.</p>
-              <p class="manifesto-copy">Внешне — движение.</p>
-              <p class="manifesto-copy">Внутри — неподвижность.</p>
-              <p class="manifesto-copy">Это и есть бег по кругу: усилие без продвижения, активность без результата, занятость без ответственности.</p>
-              <p class="manifesto-copy">Музыкальная индустрия особенно благоприятна для этой иллюзии. Здесь всегда существует новое объяснение, почему релиз ещё не состоялся, почему аудитория ещё не выросла, почему стратегия пока не сработала, почему необходимо подождать, почему следующий месяц будет лучше предыдущего.</p>
-              <p class="manifesto-copy">Так проходит год.</p>
-              <p class="manifesto-copy">Затем второй.</p>
-              <p class="manifesto-copy">А затем человек обнаруживает, что всё это время совершенствовал не карьеру, а способность объяснять её отсутствие.</p>
-              <p class="manifesto-copy">В словах о завтрашнем дне можно разместить всё, чего человек боится сделать сегодня.</p>
-              <p class="manifesto-copy">Завтра выпущу.</p>
-              <p class="manifesto-copy">Завтра начну.</p>
-              <p class="manifesto-copy">Завтра займусь продвижением.</p>
-              <p class="manifesto-copy">Завтра найду команду.</p>
-              <p class="manifesto-copy">Завтра разберусь с каталогом.</p>
-              <p class="manifesto-copy">Завтра изменю стратегию.</p>
-              <p class="manifesto-copy">Завтра стану тем, кем хочу быть.</p>
-              <p class="manifesto-copy">Но завтра никогда не становится действием само по себе.</p>
-              <p class="manifesto-copy">Наступает только сегодня.</p>
-              <p class="manifesto-copy">Снова.</p>
-              <p class="manifesto-copy">И снова.</p>
-              <p class="manifesto-copy">И снова.</p>
-              <p class="manifesto-copy">Поэтому человек, который всю жизнь ждёт подходящего момента, фактически ждёт момента, которого не существует.</p>
-              <p class="manifesto-copy">Нет идеального времени.</p>
-              <p class="manifesto-copy">Есть время, которым ты располагаешь.</p>
-              <p class="manifesto-copy">Есть ресурсы, которыми ты располагаешь.</p>
-              <p class="manifesto-copy">Есть знания, которыми ты располагаешь.</p>
-              <p class="manifesto-copy">Есть люди, которых ты уже можешь привлечь.</p>
-              <p class="manifesto-copy">Есть решение, которое ты способен принять сегодня.</p>
-              <p class="manifesto-copy">И есть цена отказа от него.</p>
-              <p class="manifesto-copy">Есть страхи, которые делают человека слабым. Есть страхи, которые возвращают ему сознание.</p>
-              <p class="manifesto-copy">Бояться необходимо не неудачи. Необходимо бояться прожить достаточно долго, чтобы однажды обнаружить: ты всё это время двигался, но никуда не пришёл.</p>
-              <p class="manifesto-copy">Самая незаметная форма поражения — не падение. Поражение начинается раньше: в тот момент, когда человек привыкает откладывать собственную жизнь. Он говорит себе, что ещё недостаточно готов, что сначала необходимо изучить рынок, найти правильного партнёра, дождаться лучшего момента, накопить больше опыта, сделать ещё один трек, ещё одну попытку, ещё один шаг к тому, чтобы наконец начать.</p>
-              <p class="manifesto-copy">Но совершенство, превращённое в условие действия, становится изысканной формой бездействия.</p>
-              <p class="manifesto-copy">Время не вступает с человеком в переговоры.</p>
-              <p class="manifesto-copy">Оно не обещает отсрочки. Не возвращает упущенного. Не компенсирует годы, потраченные на сомнения. Оно просто движется вперёд — без злобы, без сострадания, без намерения кого-либо наказать. Именно поэтому его движение страшнее любого противника.</p>
-              <p class="manifesto-copy">Можно потерять деньги и заработать их снова.</p>
-              <p class="manifesto-copy">Можно потерять релиз и выпустить следующий.</p>
-              <p class="manifesto-copy">Можно ошибиться в стратегии, изменить направление, начать заново.</p>
-              <p class="manifesto-copy">Но невозможно получить обратно утро, в котором ты мог сделать первый шаг и не сделал его.</p>
-              <p class="manifesto-copy">И потому главный вопрос артиста заключается не в том, «готов ли он».</p>
-              <p class="manifesto-copy">Главный вопрос звучит гораздо жёстче:</p>
-              <p class="manifesto-copy">что именно он собирается делать с тем временем, которое уже никогда не вернётся?</p>
-              <p class="manifesto-copy">Человек почти всегда способен представить себя лучше.</p>
-              <p class="manifesto-copy">Лучшим артистом.</p>
-              <p class="manifesto-copy">Лучшим продюсером.</p>
-              <p class="manifesto-copy">Лучшим предпринимателем.</p>
-              <p class="manifesto-copy">Более дисциплинированным.</p>
-              <p class="manifesto-copy">Более свободным.</p>
-              <p class="manifesto-copy">Более сильным.</p>
-              <p class="manifesto-copy">Но между человеком, которым он является, и человеком, которым он хочет стать, существует пространство.</p>
-              <p class="manifesto-copy">Это пространство невозможно преодолеть одним желанием.</p>
-              <p class="manifesto-copy">Его преодолевают действиями.</p>
-              <p class="manifesto-copy">Каждый день.</p>
-              <p class="manifesto-copy">Иногда маленькими.</p>
-              <p class="manifesto-copy">Иногда болезненными.</p>
-              <p class="manifesto-copy">Иногда ошибочными.</p>
-              <p class="manifesto-copy">Но реальными.</p>
-              <p class="manifesto-copy">Ты можешь сказать, что хочешь мировую аудиторию.</p>
-              <p class="manifesto-copy">Хорошо.</p>
-              <p class="manifesto-copy">Тогда покажи работу.</p>
-              <p class="manifesto-copy">Ты можешь сказать, что хочешь стать большим артистом.</p>
-              <p class="manifesto-copy">Хорошо.</p>
-              <p class="manifesto-copy">Тогда принимай дисциплину большого артиста.</p>
-              <p class="manifesto-copy">Ты можешь сказать, что хочешь свободы.</p>
-              <p class="manifesto-copy">Тогда принимай ответственность, которая всегда следует за свободой.</p>
-              <p class="manifesto-copy">Свобода без ответственности — фантазия.</p>
-              <p class="manifesto-copy">Ответственность без свободы — рабство.</p>
-              <p class="manifesto-copy">Нам нужна другая конструкция:</p>
-              <p class="manifesto-copy">свобода, усиленная системой.</p>
-              <h3 class="manifesto-heading">Думать — значит отвечать</h3>
-              <p class="manifesto-copy">Мы не призываем действовать бездумно.</p>
-              <p class="manifesto-copy">Напротив.</p>
-              <p class="manifesto-copy">Думать необходимо глубоко.</p>
-              <p class="manifesto-copy">Но думать необходимо для того, чтобы действовать точнее, а не для того, чтобы бесконечно откладывать действие.</p>
-              <p class="manifesto-copy">Каждое решение должно иметь последствия. Каждое последствие — оценку. Каждая оценка — следующий шаг.</p>
-              <p class="manifesto-copy">Так возникает зрелость.</p>
-              <p class="manifesto-copy">Не из уверенности в собственной непогрешимости, а из готовности посмотреть на результат и сказать:</p>
-              <p class="manifesto-copy">«Это сделал я. Значит, я отвечаю за то, что произошло дальше».</p>
-              <p class="manifesto-copy">В этом заключается принципиальное отличие стратегии от мечты.</p>
-              <p class="manifesto-copy">Мечта не требует отчёта.</p>
-              <p class="manifesto-copy">Стратегия требует.</p>
-              <p class="manifesto-copy">Мечтатель может сказать: «Я хотел».</p>
-              <p class="manifesto-copy">Стратегия спрашивает: «Что было сделано?»</p>
-              <p class="manifesto-copy">Мечтатель говорит: «Я мог бы».</p>
-              <p class="manifesto-copy">Стратегия отвечает: «Что ты сделал с тем, что имел?»</p>
-              <p class="manifesto-copy">Для артиста это означает принимать реальность как единственный достойный экзамен для амбиции. Мечта у него уже есть. S U A World Music  не предлагает новую мечту — мы предлагаем инфраструктуру, внутри которой существующая мечта может быть проверена действием, данными и результатом.</p>
-              <p class="manifesto-copy">Идеальный партнёр — не тот, кто постоянно говорит человеку, что всё получится.</p>
-              <p class="manifesto-copy">Это бесполезная форма доброжелательности.</p>
-              <p class="manifesto-copy">Идеальный партнёр способен сказать и другое:</p>
-              <p class="manifesto-copy">«Ты ошибся».</p>
-              <p class="manifesto-copy">«Этого недостаточно».</p>
-              <p class="manifesto-copy">«Эта стратегия не работает».</p>
-              <p class="manifesto-copy">«Ты теряешь время».</p>
-              <p class="manifesto-copy">«Ты можешь сделать значительно больше».</p>
-              <p class="manifesto-copy">Настоящее партнёрство начинается там, где заканчивается необходимость нравиться друг другу.</p>
-              <p class="manifesto-copy">S U A World Music не должна становиться компанией, которая успокаивает артиста.</p>
-              <p class="manifesto-copy">Она должна становиться компанией, которая помогает ему становиться сильнее.</p>
-              <p class="manifesto-copy">Если артист хочет большего — мы должны хотеть большего вместе с ним.</p>
-              <p class="manifesto-copy">Если он ставит более высокую планку — наша инфраструктура должна подниматься вслед за ней.</p>
-              <p class="manifesto-copy">Если он ошибается — система должна позволять увидеть ошибку.</p>
-              <p class="manifesto-copy">Если он растёт — платформа должна масштабировать этот рост.</p>
-              <p class="manifesto-copy">Наш интерес должен быть структурно связан с его интересом.</p>
-              <p class="manifesto-copy">Не временное обслуживание.</p>
-              <p class="manifesto-copy">Не продажа подписки.</p>
-              <p class="manifesto-copy">Не механическая обработка релиза.</p>
-              <p class="manifesto-copy">Совместное движение.</p>
-              <p class="manifesto-copy">Именно поэтому мы говорим о партнёре, а не о поставщике услуг.</p>
-              <p class="manifesto-copy">Поставщик заканчивает работу после оказания услуги.</p>
-              <p class="manifesto-copy">Партнёр продолжает работать до тех пор, пока существует общая цель.</p>
-              <p class="manifesto-copy">S U A World Music задуман не как ещё один цифровой посредник между артистом и площадкой.</p>
-              <p class="manifesto-copy">Посредников достаточно.</p>
-              <p class="manifesto-copy">Намного важнее создать инфраструктуру, в которой путь артиста перестаёт быть хаотическим набором случайных решений.</p>
-              <p class="manifesto-copy">Дистрибуция.</p>
-              <p class="manifesto-copy">Метаданные.</p>
-              <p class="manifesto-copy">Релизное планирование.</p>
-              <p class="manifesto-copy">Аналитика.</p>
-              <p class="manifesto-copy">Маркетинг.</p>
-              <p class="manifesto-copy">Промо.</p>
-              <p class="manifesto-copy">Работа с каталогом.</p>
-              <p class="manifesto-copy">Стратегия развития.</p>
-              <p class="manifesto-copy">Монетизация.</p>
-              <p class="manifesto-copy">Коммуникация.</p>
-              <p class="manifesto-copy">Документооборот.</p>
-              <p class="manifesto-copy">Права.</p>
-              <p class="manifesto-copy">Аудитория.</p>
-              <p class="manifesto-copy">Связи.</p>
-              <p class="manifesto-copy">Данные.</p>
-              <p class="manifesto-copy">Каждый элемент существует не сам по себе.</p>
-              <p class="manifesto-copy">Они должны образовывать единую систему.</p>
-              <p class="manifesto-copy">Потому что слабая система заставляет человека постоянно соединять её части собственными руками.</p>
-              <p class="manifesto-copy">Сильная система соединяет их за него.</p>
-              <p class="manifesto-copy">Именно здесь начинается наша архитектура.</p>
-              <p class="manifesto-copy">S U A World Music должна стать не дверью, через которую артист загружает музыку, а территорией, внутри которой его музыкальная деятельность получает инфраструктуру для роста.</p>
-              <p class="manifesto-copy">Мы строим платформу, способную объединить в одном пространстве то, что рынок привык разрывать на десятки отдельных сервисов.</p>
-              <p class="manifesto-copy">Не потому, что нам необходимо добавить как можно больше функций.</p>
-              <p class="manifesto-copy">А потому, что фрагментация — один из главных источников потери времени.</p>
-              <p class="manifesto-copy">Человек не должен быть диспетчером собственной карьеры.</p>
-              <p class="manifesto-copy">Он должен быть её автором.</p>
-              <p class="manifesto-copy">S U A World Music строится не вокруг обещаний, а вокруг ответственности.</p>
-              <p class="manifesto-copy">Мы хотим знать не только, сколько было прослушиваний.</p>
-              <p class="manifesto-copy">Мы хотим понимать, почему их стало больше или меньше.</p>
-              <p class="manifesto-copy">Не только сколько стоила кампания.</p>
-              <p class="manifesto-copy">А какую отдачу она создала.</p>
-              <p class="manifesto-copy">Не только вышел ли релиз.</p>
-              <p class="manifesto-copy">А был ли он услышан.</p>
-              <p class="manifesto-copy">Не только достиг ли артист определённой цифры.</p>
-              <p class="manifesto-copy">А приблизила ли эта цифра его к той позиции, которую он действительно хочет занять.</p>
-              <p class="manifesto-copy">Для нас отчётность — не бюрократия.</p>
-              <p class="manifesto-copy">Это форма уважения к времени.</p>
-              <p class="manifesto-copy">Мы не обещаем артисту отсутствие ошибок.</p>
-              <p class="manifesto-copy">Мы предлагаем систему, в которой ошибка становится информацией, действие — опытом, опыт — стратегией, а стратегия — движением вперёд.</p>
-              <p class="manifesto-copy">S U A World Music существует именно в точке между намерением и действием.</p>
-              <p class="manifesto-copy">Мы хотим сократить расстояние между ними настолько, насколько возможно.</p>
-              <p class="manifesto-copy">Не обещанием лёгкого пути.</p>
-              <p class="manifesto-copy">А устранением ненужного сопротивления.</p>
-              <p class="manifesto-copy">Мы берём на себя сложность там, где она должна принадлежать системе.</p>
-              <p class="manifesto-copy">Артисту оставляем главное — создавать.</p>
-              <p class="manifesto-copy">Но создание не заканчивается звуком.</p>
-              <p class="manifesto-copy">Оно продолжается решением выпустить.</p>
-              <p class="manifesto-copy">Решением не остановиться.</p>
-              <p class="manifesto-copy">Решением посмотреть на цифры.</p>
-              <p class="manifesto-copy">Решением признать ошибку.</p>
-              <p class="manifesto-copy">Решением изменить стратегию.</p>
-              <p class="manifesto-copy">Решением работать ещё точнее.</p>
-              <p class="manifesto-copy">Успех нельзя гарантировать.</p>
-              <p class="manifesto-copy">Ни одна честная система не способна обещать человеку результат, который зависит от миллионов переменных: качества произведения, аудитории, времени, конкуренции, культурного контекста, алгоритмов, экономики и самого артиста.</p>
-              <p class="manifesto-copy">Но можно гарантировать другое.</p>
-              <p class="manifesto-copy">Можно построить систему, в которой решения принимаются не вслепую.</p>
-              <p class="manifesto-copy">Где данные не прячутся.</p>
-              <p class="manifesto-copy">Где ошибки фиксируются.</p>
-              <p class="manifesto-copy">Где время учитывается как ресурс.</p>
-              <p class="manifesto-copy">Где релиз не исчезает после кнопки «отправить».</p>
-              <p class="manifesto-copy">Где артист понимает, что происходит с его музыкой.</p>
-              <p class="manifesto-copy">Где его каталог является активом, а не архивом.</p>
-              <p class="manifesto-copy">Где каждое действие оставляет след.</p>
-              <p class="manifesto-copy">И где этот след позволяет принимать следующее решение лучше предыдущего.</p>
-              <h3 class="manifesto-heading">Вот что значит быть монументальной платформой</h3>
-              <p class="manifesto-copy">Монументальность определяется не количеством страниц интерфейса и не количеством функций.</p>
-              <p class="manifesto-copy">Она определяется способностью системы выдерживать масштаб человеческой амбицииS U A World Music должна быть именно такой системой.</p>
-              <p class="manifesto-copy">Достаточно большой, чтобы сопровождать артиста от первого релиза до международного каталога.</p>
-              <p class="manifesto-copy">Достаточно интеллектуальной, чтобы различать контекст.</p>
-              <p class="manifesto-copy">Достаточно строгой, чтобы требовать результата.</p>
-              <p class="manifesto-copy">Достаточно гибкой, чтобы развиваться вместе с человеком.</p>
-              <p class="manifesto-copy">И достаточно амбициозной, чтобы самой никогда не считать достигнутое окончательным.</p>
-              <p class="manifesto-copy">В конечном счёте вопрос никогда не был только в музыке.</p>
-              <p class="manifesto-copy">Он был во времени.</p>
-              <p class="manifesto-copy">В том, что человек делает с ограниченным количеством дней, которые ему предоставлены.</p>
-              <p class="manifesto-copy">Можно провести их в ожидании.</p>
-              <p class="manifesto-copy">Можно провести их в бесконечной подготовке.</p>
-              <p class="manifesto-copy">Можно годами искать идеальную возможность.</p>
-              <p class="manifesto-copy">Можно постоянно начинать сначала.</p>
-              <p class="manifesto-copy">А можно принять неприятную, но освобождающую истину:</p>
-              <p class="manifesto-copy">никто не придёт прожить твою жизнь вместо тебя.</p>
-              <p class="manifesto-copy">Никто не напишет за тебя музыку.</p>
-              <p class="manifesto-copy">Никто не примет за тебя решение.</p>
-              <p class="manifesto-copy">Никто не понесёт за тебя последствия.</p>
-              <p class="manifesto-copy">И никто не вернёт тебе годы, которые ты добровольно отдал бездействию.</p>
-              <p class="manifesto-copy">Но именно поэтому у человека остаётся власть.</p>
-              <p class="manifesto-copy">Пока он способен действовать — он способен менять направление.</p>
-              <p class="manifesto-copy">Пока он способен отвечать за себя — он свободен.</p>
-              <p class="manifesto-copy">Пока он способен начать снова — история не закончена.</p>
-              <p class="manifesto-copy">S U A создана для этой свободы.</p>
-              <p class="manifesto-copy">Не для того, чтобы избавить артиста от ответственности.</p>
-              <p class="manifesto-copy">А для того, чтобы ответственность перестала быть одиночеством.</p>
-              <p class="manifesto-copy">И однажды — оглянуться назад и увидеть не бесконечную цепь попыток, а траекторию.</p>
-              <p class="manifesto-copy">Вот чего мы хотим от S U A World Music.</p>
-              <p class="manifesto-copy">Не быть компанией, которая просто присутствует в музыкальной индустрии.</p>
-              <p class="manifesto-copy">А стать системой, которая заставляет эту индустрию работать точнее.</p>
-              <p class="manifesto-copy">Не быть самым громким именем.</p>
-              <p class="manifesto-copy">А стать именем, за которым стоит доказательство.</p>
-              <p class="manifesto-copy">Не говорить артисту:</p>
-              <p class="manifesto-copy">«Мы сделаем всё за тебя».</p>
-              <p class="manifesto-copy">А сказать гораздо честнее:</p>
-              <p class="manifesto-copy">«Мы построим с тобой систему, в которой ты сможешь сделать больше, чем смог бы один».</p>
-              <p class="manifesto-copy">И тогда выбор становится простым.</p>
-              <p class="manifesto-copy">Можно продолжать ждать.</p>
-              <p class="manifesto-copy">Можно продолжать сомневаться.</p>
-              <p class="manifesto-copy">Можно продолжать бегать по одному и тому же кругу, каждый раз называя это новым опытом.</p>
-              <p class="manifesto-copy">А можно остановиться.</p>
-              <p class="manifesto-copy">Посмотреть на собственное время.</p>
-              <p class="manifesto-copy">Понять его конечность.</p>
-              <p class="manifesto-copy">И начать работать.</p>
-              <p class="manifesto-copy">Музыка — одна из немногих вещей, которым человек может доверить своё отсутствие.</p>
-              <p class="manifesto-copy">Всё остальное со временем теряет очертания.</p>
-              <p class="manifesto-copy">Здания оседают в пыли. Имена тускнеют на камне. Государства распадаются. Города меняют улицы, языки — звучание, привычки — смысл. Даже память, пока ещё хранящая человека, однажды начинает пропускать его черты: забывает голос, жесты, слова, то, что он любил и что успел создать.</p>
-              <p class="manifesto-copy">Но звук иногда переживает того, кто его породил.</p>
-              <p class="manifesto-copy">Музыка не спрашивает, сколько тебе было лет, кем ты считался, сколько у тебя было денег, сколько дверей перед тобой закрыли и сколько людей произнесли твоё имя с верой.</p>
-              <p class="manifesto-copy">Она просто продолжает звучать.</p>
-              <p class="manifesto-copy">В ней остаётся не биография, а след присутствия — то, что не помещается в даты и факты.</p>
-              <p class="manifesto-copy">Музыка никогда не была лишь способом заполнить тишину. В ней человек учится не исчезать бесследно.</p>
-              <p class="manifesto-copy">Записывая произведение, он оставляет часть своего внутреннего мира за пределами собственной жизни. Голос, однажды пойманный микрофоном, уже не принадлежит только тому мгновению, в котором прозвучал. Он может перейти дальше — в чужую комнату, в чужую память, в чужое время.</p>
-              <p class="manifesto-copy">Голос может умолкнуть.</p>
-              <p class="manifesto-copy">Человек — уйти.</p>
-              <p class="manifesto-copy">А запись продолжит жить.</p>
-              <p class="manifesto-copy">Через десять лет.</p>
-              <p class="manifesto-copy">Через пятьдесят.</p>
-              <p class="manifesto-copy">Через сто.</p>
-              <p class="manifesto-copy">В комнате, которой сегодня ещё нет. В наушниках человека, который ещё не родился. В городе, чьи улицы пока существуют только на чертеже.</p>
-              <p class="manifesto-copy">Поэтому значение музыки не исчерпывается числом прослушиваний.</p>
-              <p class="manifesto-copy">Прослушивание заканчивается. Музыка остаётся.</p>
-              <p class="manifesto-copy">Музыка — одна из немногих вещей, которым человек может доверить своё отсутствие. Всё остальное со временем теряет очертания. Здания оседают в пыли. Имена тускнеют на камне. Государства распадаются. Города меняют улицы, языки — звучание, привычки — смысл. Даже память, пока ещё хранящая человека, однажды начинает пропускать его черты: забывает голос, жесты, слова, то, что он любил и что успел создать. Но звук иногда переживает того, кто его породил. Музыка не спрашивает, сколько тебе было лет, кем ты считался, сколько у тебя было денег, сколько дверей перед тобой закрыли и сколько людей произнесли твоё имя с верой. Она просто продолжает звучать. В ней остаётся не биография, а след присутствия — то, что не помещается в даты и факты. Музыка никогда не была лишь способом заполнить тишину. В ней человек учится не исчезать бесследно. Записывая произведение, он оставляет часть своего внутреннего мира за пределами собственной жизни. Голос, однажды пойманный микрофоном, уже не принадлежит только тому мгновению, в котором прозвучал. Он может перейти дальше — в чужую комнату, в чужую память, в чужое время. Голос может умолкнуть. Человек — уйти. А запись продолжит жить. Через десять лет. Через пятьдесят. Через сто. В комнате, которой сегодня ещё нет. В наушниках человека, который ещё не родился. В городе, чьи улицы пока существуют только на чертеже. Поэтому значение музыки не исчерпывается числом прослушиваний. Прослушивание заканчивается. Музыка остаётся.</p>
-            </div>
-          </section>
-
-          <section class="home-section">
-            <div class="home-kicker">как мы работаем</div>
-            <div class="home-title">5 шагов от заявки<br>до первого релиза <span class="gold">под командой.</span></div>
-            <p class="home-copy">Никаких «полугодовых тестов». Смотрим проект, фиксируем задачи, строим стратегию и запускаем работу.</p>
-            <div class="steps-track">
-              <div class="step-card"><span class="step-no">Шаг 01</span><b>Заявка</b><p>Заполняешь форму, присылаешь ссылки. Мы лично слушаем и смотрим — без ботов и автоответчиков.</p></div>
-              <div class="step-card"><span class="step-no">Шаг 02</span><b>Аудит</b><p>Разбираем проект: сильные стороны, дыры, упущенные деньги и точки роста.</p></div>
-              <div class="step-card"><span class="step-no">Шаг 03</span><b>Стратегия</b><p>Фиксируем цели на квартал и год, бюджет, релиз-план, концерты и медиа.</p></div>
-              <div class="step-card"><span class="step-no">Шаг 04</span><b>Контракт</b><p>Прозрачные условия, никаких «вечных» прав и скрытых процентов. Ты в курсе всего.</p></div>
-              <div class="step-card"><span class="step-no">Шаг 05</span><b>Запуск</b><p>Подключаем команду, запускаем первый релиз и открываем рабочую систему отчётности.</p></div>
-            </div>
-          </section>
-
-          <section class="home-section">
-            <div class="home-kicker">что внутри</div>
-            <div class="home-title">Музыкальный менеджер: 8 фронтов работы — <span class="gold">всё на нас.</span></div>
-            <p class="home-copy">Это не «пакет услуг». Это команда людей, которая каждый день думает о твоей карьере вместе с тобой.</p>
-            <div class="service-grid">
-              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-compass"></i></div><b>Стратегия</b><p>Позиционирование, цели на квартал/год, аудитория, ритм релизов. Без этого реклама бьёт мимо.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div><b>Букинг и туры</b><p>Договоры с площадками, техрайдеры, логистика, бэклайн. Превращаем релизы в живые деньги и аудиторию.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-regular fa-file-lines"></i></div><b>Контракты и сделки</b><p>Лейбл, дистрибуция, синки, бренды. Читаем каждый шрифт, торгуемся за роялти, защищаем мастера.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-dollar-sign"></i></div><b>Финансы</b><p>Бюджет, P&L каждого релиза, прозрачные отчёты, сбор роялти и авторских. Налоговая чистота.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-people-group"></i></div><b>Команда вокруг</b><p>Продюсеры, режиссёры клипов, SMM, PR, юристы, буеры. Координируем, чтобы все играли в одну сторону.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-link"></i></div><b>Связи</b><p>Редакторы стримингов, ТВ, радио, fashion, кинопродакшн, бренды и агентства. Открываем двери.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-regular fa-id-card"></i></div><b>Личный кабинет</b><p>Роялти, отчёты, договоры, медиа-план в одном окне. Живая аналитика по всем площадкам.</p></div>
-              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div><b>Кризис-менеджмент 24/7</b><p>Сорванный концерт, негатив в медиа, удалённый клип, проблемы со звуком — подключаемся, когда нужно.</p></div>
-            </div>
-          </section>
-
-          <section class="home-section">
-            <div class="home-kicker">условия</div>
-            <div class="home-title">Сколько стоят услуги <span class="gold">менеджера артиста.</span></div>
-            <div class="price-layout">
-              <div>
-                <div class="home-quote">«Артист без менеджера — это бизнес без отдела продаж. Креатив есть. Денег и роста — нет».</div>
-                <p class="home-copy">Единого прайса не существует: артист на старте и артист с турами требуют разного объёма работы. Поэтому формат определяется после аудита.</p>
-              </div>
-              <div class="price-table">
-                <div class="price-row head"><span>Формат</span><span>Кому подходит</span><span>Как считаем</span></div>
-                <div class="price-row"><b>Процент с дохода</b><span>Артист на старте, бюджета на фикс нет</span><span>Доля с роялти и концертов. Мы зарабатываем только когда зарабатываешь ты.</span></div>
-                <div class="price-row"><b>Фикс + процент</b><span>Есть регулярные релизы и концерты</span><span>Ежемесячная ставка за объём работ + меньшая доля с дохода.</span></div>
-                <div class="price-row"><b>Проектный</b><span>Нужен запуск альбома, тура или кампании</span><span>Смета под конкретный проект и сроки.</span></div>
-              </div>
-            </div>
-            <div class="home-rule"></div>
-            <div class="home-kicker">почему мы</div>
-            <div class="home-title">Не посредник. Не курс.<br><span class="gold">Команда лейбла в твоём углу.</span></div>
-            <div class="why-grid">
-              <div class="why-card"><div class="service-icon"><i class="fa-solid fa-bars-staggered"></i></div><b>15 лет — не на словах</b><p>Опыт индустрии и понимание того, какой шаг работает на твоей стадии.</p></div>
-              <div class="why-card"><div class="service-icon"><i class="fa-regular fa-handshake"></i></div><b>Партнёрские связи</b><p>Партнёры и отношения с площадками и музыкальными сервисами.</p></div>
-              <div class="why-card"><div class="service-icon"><i class="fa-regular fa-square"></i></div><b>Один менеджер на 15 ролей</b><p>Не «ассистент с Excel», а координация всей команды вокруг артиста.</p></div>
-              <div class="why-card"><div class="service-icon"><i class="fa-solid fa-chart-line"></i></div><b>Прозрачно. Без «вечных» прав</b><p>Все отчёты и роялти доступны в любой момент. Расходимся, если не нравится.</p></div>
-            </div>
-          </section>
 
           <section class="home-section">
             <div class="home-kicker">условия</div>
@@ -996,107 +1066,70 @@
             </div>
           </section>
 
-          <section class="home-section">
-            <div class="home-kicker">SUA ARTIST SCORE</div>
-            <div class="home-title">Рейтинг должен влиять на <span class="gold">экосистему.</span></div>
-            <p class="home-copy">Концепция заказчика: не один декоративный рейтинг, а система профессиональной репутации, в которой оценки, реальные данные, качество критика и антифрод влияют на рекомендации, поиск и профессиональные возможности.</p>
-            <div class="score-overview">
-              <div class="score-hero">
-                <div class="home-kicker">пример профиля</div>
-                <div class="score-number">917</div>
-                <div class="score-label">SUA SCORE / 1000</div>
-                <div class="score-bars">
-                  <div class="score-bar-row"><span>Community</span><div class="score-bar"><span style="width:87%"></span></div><b>8.7</b></div>
-                  <div class="score-bar-row"><span>Critic</span><div class="score-bar"><span style="width:94%"></span></div><b>9.4</b></div>
-                  <div class="score-bar-row"><span>Industry</span><div class="score-bar"><span style="width:92%"></span></div><b>9.2</b></div>
-                  <div class="score-bar-row"><span>Performance</span><div class="score-bar"><span style="width:89%"></span></div><b>8.9</b></div>
-                </div>
+<section class="home-section">
+            <div class="home-kicker">условия</div>
+            <div class="home-title">Сколько стоят услуги <span class="gold">менеджера артиста.</span></div>
+            <div class="price-layout">
+              <div>
+                <div class="home-quote">«Артист без менеджера — это бизнес без отдела продаж. Креатив есть. Денег и роста — нет».</div>
+                <p class="home-copy">Единого прайса не существует: артист на старте и артист с турами требуют разного объёма работы. Поэтому формат определяется после аудита.</p>
               </div>
-              <div class="score-rules">
-                <div class="score-rule"><b>Что учитывает Score</b><p>Прослушивания, уникальные слушатели, удержание, сохранения, плейлисты, лайки, комментарии, рецензии, регулярность релизов, рост аудитории, географию, активность, качество профиля и профессиональные достижения.</p></div>
-                <div class="score-rule"><b>4 типа оценки</b><p>Community Score — аудитория. Critic Score — проверенные рецензенты. Industry Score — профессионалы. Performance Score — алгоритмическая оценка реальных данных.</p></div>
-                <div class="score-rule"><b>Вес самой оценки</b><p>Оценка пользователя с подтверждённой репутацией и высокой Predictive Accuracy должна весить больше случайной оценки нового аккаунта.</p></div>
-                <div class="score-rule"><b>Anti-Fraud Engine</b><p>Массовое голосование, одинаковые IP, подозрительные аккаунты, боты, взаимные накрутки, аномальные всплески и несколько аккаунтов одного устройства получают коэффициент доверия.</p></div>
+              <div class="price-table">
+                <div class="price-row head"><span>Формат</span><span>Кому подходит</span><span>Как считаем</span></div>
+                <div class="price-row"><b>Процент с дохода</b><span>Артист на старте, бюджета на фикс нет</span><span>Доля с роялти и концертов. Мы зарабатываем только когда зарабатываешь ты.</span></div>
+                <div class="price-row"><b>Фикс + процент</b><span>Есть регулярные релизы и концерты</span><span>Ежемесячная ставка за объём работ + меньшая доля с дохода.</span></div>
+                <div class="price-row"><b>Проектный</b><span>Нужен запуск альбома, тура или кампании</span><span>Смета под конкретный проект и сроки.</span></div>
               </div>
             </div>
-            <div class="levels">
-              <span class="level-pill">Reviewer</span><span class="level-pill">Critic</span><span class="level-pill">Senior Critic</span><span class="level-pill">Expert</span><span class="level-pill">SUA Editorial</span><span class="level-pill">Critic Accuracy</span>
-            </div>
-            <div class="achievement-grid">
-              <div class="achievement"><i class="fa-solid fa-music"></i><b>Первый релиз</b></div>
-              <div class="achievement"><i class="fa-solid fa-compact-disc"></i><b>10 релизов</b></div>
-              <div class="achievement"><i class="fa-solid fa-fire"></i><b>100K прослушиваний</b></div>
-              <div class="achievement"><i class="fa-solid fa-gem"></i><b>1M прослушиваний</b></div>
-              <div class="achievement"><i class="fa-solid fa-earth-europe"></i><b>10 стран</b></div>
-              <div class="achievement"><i class="fa-solid fa-trophy"></i><b>#1 рейтинга</b></div>
-              <div class="achievement"><i class="fa-solid fa-rocket"></i><b>Rising Artist</b></div>
-              <div class="achievement"><i class="fa-solid fa-microphone"></i><b>100K слушателей</b></div>
-              <div class="achievement"><i class="fa-solid fa-star"></i><b>100 отзывов</b></div>
-              <div class="achievement"><i class="fa-solid fa-crown"></i><b>SUA Legend</b></div>
-            </div>
-            <div class="home-cta">
-              <div><h3>NEW NAMES — система обнаружения талантов</h3><p>Мало слушателей + высокий рост + высокий engagement + хорошие оценки и рецензии → Potential Breakthrough.</p></div>
-              <span class="status-pill gold">Концепция для следующих этапов</span>
+            <div class="home-rule"></div>
+            <div class="home-kicker">почему мы</div>
+            <div class="home-title">Не посредник. Не курс.<br><span class="gold">Команда лейбла в твоём углу.</span></div>
+            <div class="why-grid">
+              <div class="why-card"><div class="service-icon"><i class="fa-solid fa-bars-staggered"></i></div><b>15 лет — не на словах</b><p>Опыт индустрии и понимание того, какой шаг работает на твоей стадии.</p></div>
+              <div class="why-card"><div class="service-icon"><i class="fa-regular fa-handshake"></i></div><b>Партнёрские связи</b><p>Партнёры и отношения с площадками и музыкальными сервисами.</p></div>
+              <div class="why-card"><div class="service-icon"><i class="fa-regular fa-square"></i></div><b>Один менеджер на 15 ролей</b><p>Не «ассистент с Excel», а координация всей команды вокруг артиста.</p></div>
+              <div class="why-card"><div class="service-icon"><i class="fa-solid fa-chart-line"></i></div><b>Прозрачно. Без «вечных» прав</b><p>Все отчёты и роялти доступны в любой момент. Расходимся, если не нравится.</p></div>
             </div>
           </section>
+
+<section class="home-section">
+            <div class="home-kicker">как мы работаем</div>
+            <div class="home-title">5 шагов от заявки<br>до первого релиза <span class="gold">под командой.</span></div>
+            <p class="home-copy">Никаких «полугодовых тестов». Смотрим проект, фиксируем задачи, строим стратегию и запускаем работу.</p>
+            <div class="steps-track">
+              <div class="step-card"><span class="step-no">Шаг 01</span><b>Заявка</b><p>Заполняешь форму, присылаешь ссылки. Мы лично слушаем и смотрим — без ботов и автоответчиков.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 02</span><b>Аудит</b><p>Разбираем проект: сильные стороны, дыры, упущенные деньги и точки роста.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 03</span><b>Стратегия</b><p>Фиксируем цели на квартал и год, бюджет, релиз-план, концерты и медиа.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 04</span><b>Контракт</b><p>Прозрачные условия, никаких «вечных» прав и скрытых процентов. Ты в курсе всего.</p></div>
+              <div class="step-card"><span class="step-no">Шаг 05</span><b>Запуск</b><p>Подключаем команду, запускаем первый релиз и открываем рабочую систему отчётности.</p></div>
+            </div>
+          </section>
+
+<section class="home-section">
+            <div class="home-kicker">что внутри</div>
+            <div class="home-title">Музыкальный менеджер: 8 фронтов работы — <span class="gold">всё на нас.</span></div>
+            <p class="home-copy">Это не «пакет услуг». Это команда людей, которая каждый день думает о твоей карьере вместе с тобой.</p>
+            <div class="service-grid">
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-compass"></i></div><b>Стратегия</b><p>Позиционирование, цели на квартал/год, аудитория, ритм релизов. Без этого реклама бьёт мимо.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div><b>Букинг и туры</b><p>Договоры с площадками, техрайдеры, логистика, бэклайн. Превращаем релизы в живые деньги и аудиторию.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-regular fa-file-lines"></i></div><b>Контракты и сделки</b><p>Лейбл, дистрибуция, синки, бренды. Читаем каждый шрифт, торгуемся за роялти, защищаем мастера.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-dollar-sign"></i></div><b>Финансы</b><p>Бюджет, P&L каждого релиза, прозрачные отчёты, сбор роялти и авторских. Налоговая чистота.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-people-group"></i></div><b>Команда вокруг</b><p>Продюсеры, режиссёры клипов, SMM, PR, юристы, буеры. Координируем, чтобы все играли в одну сторону.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-link"></i></div><b>Связи</b><p>Редакторы стримингов, ТВ, радио, fashion, кинопродакшн, бренды и агентства. Открываем двери.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-regular fa-id-card"></i></div><b>Личный кабинет</b><p>Роялти, отчёты, договоры, медиа-план в одном окне. Живая аналитика по всем площадкам.</p></div>
+              <div class="service-card"><div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div><b>Кризис-менеджмент 24/7</b><p>Сорванный концерт, негатив в медиа, удалённый клип, проблемы со звуком — подключаемся, когда нужно.</p></div>
+            </div>
+          </section>
+
         </div>
       </section>
 
-      <section id="screen-music" class="app-screen">
-        <div class="music-grid">
-          <div class="main-panel glass">
-            <div class="panel-head">
-              <div><h1>Музыка / Обзор</h1><p>Каталог SUA будет наполняться вашими релизами</p></div>
-              <select class="genre"><option>Все жанры</option><option>Hip-Hop</option><option>Pop</option><option>Electronic</option><option>Alternative</option></select>
-            </div>
-            <div class="subtabs" id="musicTabs">
-              <button class="subtab active" data-music-tab="overview">Обзор</button>
-              <button class="subtab" data-music-tab="charts">Чарты</button>
-              <button class="subtab" data-music-tab="playlists">Плейлисты</button>
-            </div>
-            <div id="musicExtraPanel"></div>
-            
-            <div class="hero" id="musicOverviewHero">
-              <div class="hero-copy">
-                <div class="kicker">SUA WORLD MUSIC RECORDS</div>
-                <h2>Новые релизы скоро здесь</h2>
-                <p>Добавим настоящий каталог, артистов, обложки и музыку после утверждения контента.</p>
-                <button class="gold-btn" onclick="switchScreen('distribution',document.querySelector('[onclick*=distribution]'))"><i class="fa-solid fa-cloud-arrow-up"></i> Загрузить релиз</button>
-              </div>
-              <img class="hero-art" src="assets/logo-lockup.png" alt="SUA" style="object-fit:contain;padding:28px;background:rgba(7,10,15,.30)">
-              <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            </div>
-
-            <div id="musicOverviewContent"><div class="section-title"><h3>Новые релизы</h3><button type="button">Смотреть все</button></div>
-            <div class="release-row" id="releaseRow">
-              <div class="empty-state empty-release"><i class="fa-solid fa-compact-disc"></i><b>Релизов пока нет</b><span>Здесь появятся реальные релизы SUA, когда вы добавите музыку и обложки.</span></div>
-            </div>
-
-            <div class="section-title"><h3>Популярные треки</h3><button type="button">Смотреть все</button></div>
-            <div class="tracks-box glass" id="trackList">
-              <div class="empty-state empty-track"><i class="fa-solid fa-music"></i><b>Треков пока нет</b><span>Демо-композиции удалены. Раздел готов для настоящего каталога.</span></div>
-            </div>
-            </div>
-          </div>
-
-          <aside class="now glass">
-            <h3>Сейчас играет</h3>
-            <div class="now-empty-cover"><i class="fa-solid fa-music"></i></div>
-            <div id="nowTitle" class="now-title">Нет трека</div>
-            <div id="nowArtist" class="now-artist">Выберите композицию из каталога</div>
-            <div class="mini-progress"></div><div class="time-row"><span>0:00</span><span>0:00</span></div>
-            <div class="now-controls"><button disabled><i class="fa-solid fa-shuffle"></i></button><button disabled><i class="fa-solid fa-backward-step"></i></button><button class="main-play" disabled><i id="sidePlayIcon" class="fa-solid fa-play"></i></button><button disabled><i class="fa-solid fa-forward-step"></i></button><button disabled><i class="fa-solid fa-repeat"></i></button></div>
-            <div class="queue-title">Плейлист</div>
-            <div id="queueList"><div class="empty-state" style="min-height:120px"><span>Очередь пуста</span></div></div>
-            <button class="outline-btn">Открыть плейлист</button>
-          </aside>
-        </div>
-      </section>
+      <section id="screen-music" class="app-screen" aria-label="Музыка"></section>
 
       <section id="screen-distribution" class="app-screen">
         <div class="content-card glass">
           <h1>Дистрибуция</h1>
-          <p class="lead">Загрузите музыкальный файл, обложку, данные артиста и договор для проверки администратором.</p>
+          <p class="lead">Загрузите музыкальный файл, обложку и данные артиста для проверки администратором. Договор добавляет администратор после проверки.</p>
 
           <div class="form-grid">
             <div class="field"><label>Музыкальный файл</label><label class="drop" id="audioFileLabel">Выбрать WAV / FLAC / MP3<input id="releaseAudio" type="file" accept="audio/*" hidden></label></div>
@@ -1106,7 +1139,6 @@
             <div class="field"><label>ФИО правообладателя</label><input id="releaseOwner" placeholder="ФИО"></div>
             <div class="field"><label>Телефон</label><input id="releasePhone" placeholder="+7 999 000-00-00"></div>
             <div class="field full"><label>Комментарий администратору</label><textarea id="releaseComment" placeholder="Комментарий..."></textarea></div>
-            <div class="field full"><label>Договор</label><label class="drop" id="contractFileLabel">Прикрепить PDF / DOCX<input id="releaseContract" type="file" accept=".pdf,.doc,.docx" hidden></label></div>
           </div>
           <button class="primary" id="releaseSubmitBtn" type="button"><i class="fa-solid fa-cloud-arrow-up"></i> Отправить на модерацию</button>
           <div id="releaseFeedback" class="notice-box" style="display:none;margin-top:12px"></div>
@@ -1193,6 +1225,9 @@
             <div class="info-card"><i class="fa-solid fa-link"></i><h3>Смарт-ссылки</h3><p>Страница релиза и ссылки на музыкальные сервисы.</p></div>
           </div>
 
+          
+          
+
           <div class="subtabs" id="artistTabs">
             <button class="subtab active" data-artist-tab="analytics">Аналитика</button>
             <button class="subtab" data-artist-tab="wallet">Кошелёк</button>
@@ -1200,6 +1235,7 @@
           </div>
           <div id="artistFunctionalPanel"></div>
 
+          
           <div class="knowledge-block">
             <div class="knowledge-heading">
               <h2>Условия и возможности</h2>
@@ -1239,6 +1275,80 @@
 <p>Линк для трека — бонус для пользователей нашего сервиса дистрибуции музыки. На данный момент использование функции не требует оплаты. Страница трека создаётся автоматически для всех музыкальных релизов, которые мы выпустим в партнерстве с вами. На данный момент вы не сможете настроить страницу релиза для музыки, которую выпускали любые другие партнеры.</p></div>
     </details></div>
           </div>
+
+          <div class="knowledge-block artist-faq-v34">
+            <div class="knowledge-heading">
+              <h2>Вопросы и ответы</h2>
+              <p>Нажмите на конкретный вопрос — откроется только ответ на него.</p>
+            </div>
+            <div class="knowledge-list">
+              <details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как вывести средства?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Независимо от того активен ваш аккаунт, или завершился — вы можете вывести средства при достижении минимальной суммы согласно договору. Как правило, — это 50 € / 5000 рублей. В случае, если ваш контент не пользуется популярностью — средства продолжают накапливаться из месяца в месяц.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Что делать, если релиз нужно опубликовать быстрее?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Пожалуйста, укажите просьбу в поле &quot;Комментарий к релизу&quot;. Например:  &quot;Пожалуйста, опубликуйте релиз раньше рекомендуемой даты&quot;. Данное поле предназначено для указания пожеланий и просьб, не учтенных упрощённой анкетой для загрузки релиза. Обратите внимание, просьба будет выполнена, если физически возможно ее выполнить. Частью услуг сервиса не является решение организационных проблем музыкального проекта. К вопросу о срочной публикации важно добавить, что существует большая разница между &quot;действительно нужно опубликовать быстрее&quot; и &quot;кажется, что нужно опубликовать быстрее&quot;. В 90%  случаев мы сталкиваемся с желанием опубликовать контент срочно без какой-либо существенной причины (просто хочется, сами не знаем зачем).  Дело в том, что большинству музыкальных проектов не понятен и/или неизвестен технический и организационный принцип доставки музыки на площадки — давайте обсудим это далее.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Какие недостатки у срочной публикации?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Никак нельзя упустить возможность и объяснить читателю этой статьи, что у срочной публикации контента есть существенные минусы.</p><p>Пожалуйста, ознакомьтесь с ними:</p><p>ваша просьба о приоритетной доставке на площадки будет выполнена не всегда по организационным и техническим причинам. Не всегда возможно срочно отправить контент на площадки; ваш релиз может не появиться на музыкальных сервисах в желаемую срочную дату (потому-что музыкальному сервису нужно принять ваш контент и подготовить его к премьере заранее— это занимает непредсказуемый период, точно также, как и модерация у музыкального дистрибьютора); мы не сможем показать ваши песни музыкальным редакторам или сможем, но в спешке — что влечет бессмысленную трату времени для всех сторон процесса. Такие треки часто лишаются шанса на поддержку в плейлистах или не получают приоритета в сети рекомендаций. Потому-что у редакции музыкальных сервисов нет времени прослушать их срочно.</p><p>Спешка, как стиль жизни...</p><p>Намерения стереотипизировать пользователей сайта нет, но факты говорят о том, что артисты, загружающие контент в срочном порядке — в 90% случаев совершают ошибки во всём, что касается музыкального проекта в принципе (спешка для спешки ради спешки, чтобы непонятно что и непонятно зачем). Большинство просьб о срочной публикации поступает в комплекте с неправильными файлами или банальными ошибками и опечатками в форме загрузки. Очень часто приходится видеть музыкальные релизы с просьбой опубликовать &quot;сегодня или завтра&quot; с обложками и аудиозаписями неправильного формата. Из этого вытекают уточнения, переписки, исправления контента перед отгрузкой, что занимает время. Время, которое вы могли бы потратить на внимательное чтение простых правил и загрузку изначально корректного релиза.</p><p>Время, которое вы можете потратить на подготовку к премьере песни и на подготовку к рекламе, например.</p><p>Выводы:</p><p>Чаще всего просьба о быстрой публикации песни не оправдана для всех участников процесса, включая самого артиста. Исключения — большая редкость. Из соображений индивидуального взаимодействия с каждым проектом мы очень часто идем на встречу в этом, но надеемся, что прочтение этой статьи сделает ваш проект ещё опытнее.</p><p>Волна популярности сервисов на базе искусственного интеллекта растёт, а значит, настал момент, когда нужно обозначить политику относительно результатов ИИ и дать дополнительные пояснения пользователям сайтов и приложений для генерации аудио. Чтобы текст был менее тяжёлым для чтения — наличие в нём юридической и технической терминологии сведено к минимуму. Печатая эти буквы, есть понимание, что вам необходимо знать — пройдет ли ваш релиз модерацию перед публикацией на площадки, но... К сожалению, ответа формата &quot;да/нет&quot; не будет в этой статье. Релизы, созданные с использованием ИИ или сгенерированные при помощи ИИ иногда пройдут модерацию, иногда нет.  Если вы планируете публиковать такой контент, ознакомьтесь с принципами модерации такого контента, а также с причинами потенциального отклонения таких релизов.</p><p>ИИ можно использовать по-разному Один музыкальный проект использует современные решения в области искусственного интеллекта для улучшения качества звучания; и/или для вдохновения на написание собственных аранжировок; и/или привносит в полученный результат значительное собственное участие. Другой музыкальный проект — набор из аудиофайлов и картинок, созданных путём автоматической генерации из информации в интернете (зачастую из фрагментов фонограмм и текстов посторонних авторов, которые не давали согласие на использование своих произведений). Первый вариант  будет загружаться на музыкальные сервисы без проблем (при соблюдении прочих равных условий и правил), второй — скорее всего получит отказ в сотрудничестве сразу или позже. Обратите внимание — предложены две крайности, чтобы наглядно продемонстрировать отличия. Каждый случай использования ИИ — индивидуален т.к. области использования нейросети огромны, а уровень владения современными музыкальными программами очень сильно отличается от пользователя к пользователю.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Чем музыка ИИ отличается от созданной вручную в музыкальных программах и/или способом живой записи?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Юридические отличия: Музыка и песни, сгенерированные средствами ИИ создают дилемму в юридическом смысле, а музыкальные площадки, в свою очередь, не сформировали единое мнение относительно такого контента. Принято считать, что сервисы ИИ генерируют музыку самостоятельно, но это не совсем так. Нейросети &quot;обучаются&quot; изготавливать аудио на основании других песен в интернете, цифровых отпечатков голосов исполнителей и музыкальных инструментов в фонограммах, а значит, и на основании текстов, исполнений, фонограмм и произведений других правообладателей, цифровых отпечатков голосов артистов, которые не соглашались на это. (при желании, вы можете найти в интернете информацию о случаях использования голосов мировых звёзд и последствий такого использования). Аудиозапись, созданная полностью ИИ автоматически создает риск в правовом смысле — риск будет расти с развитием технологии. Нейросети неизбежно будут использоваться правообладателями для поиска заимствований из объектов, обладателем прав на которые они являются. С развитием таких инструментов поиска, аудитория &quot;искусственных музыкантов и певцов&quot; будет сталкиваться с претензиями о заимствовании и плагиате значительно чаще, чем сейчас. А значит, будет сталкиваться и каждый участник публикации песен на цифровых площадках. Музыкальный дистрибьютор стремится к юридической чистоте контента и является промежуточным звеном для доставки многих тысяч песен, что увеличивает риски участия в спорах о юридической чистоте сгенерированных песен.</p><p>Отличия в политиках сервисов: Музыкальный дистрибьютор и музыкальные площадки всегда связывает договор. Неотъемлемой частью условий сотрудничества являются гарантии в области авторского и смежного права, а если простыми словами — два эти игрока плотно связаны обязательствами не создавать друг другу сложности и траты времени, неизбежно вытекающие в финансовые потери. Принято считать в сети, что музыкальные сервисы &quot;не против&quot; треков, созданных через ИИ. Это не совсем так из-за тесной связи особенностей происхождения ИИ песен и несовершенства законодательства в разных странах.</p><p>Правильно будет сказать так: на данный момент инструменты для генерации аудио более развиты, чем инструменты для поиска контента, созданного искусственно. Так будет не всегда — хранить не совсем легальные тысячи песен и треков (часто не нужных даже их инициатору) никакой музыкальной площадке не нужно. Пользователи ИИ сервисов генерации могли обратить внимание, что сервисы предоставляют права на сгенерированный контент, но и тут не всё просто (нельзя разрешить использовать то, что сервису ИИ-генерации тоже не полностью принадлежит с правовой точки зрения.)</p><p>Финансовые отличия: Ценность контента, созданного полностью ИИ с коммерческой точки зрения крайне сомнительна (в контексте аудио-генерации) и вот почему: ценность создания песни через нейросети низкая, таких песен можно генерировать десятки в день (что и происходит по воле особенно вдохновлённых пользователей); юзеров, использующих ИИ для генерации аудио, часто затмевает иллюзия, что количество созданных треков равняется количеству вознаграждений от музыкальных сервисов (количество не равняется популярности и/или востребованности таких песен);  сгенерированные треки, при этом, нужно хранить на серверах музыкального дистрибьютора и каждой музыкальной площадки (на это нужно иметь ежегодных бюджет, оправданный  соответствующей популярностью контента, которой зачастую нет); ИИ песни имеют артефакты в ударениях и произношении слов, а также в звучании почти всех музыкальных инструментов. Способ создания отчетливо слышен носителю языка, на котором песня, а исключением являются лишь некоторые единицы аудиофайлов; это &quot;мёртвая музыка&quot; с эмоциональной точки зрения. Написать &quot;хит&quot; только с использованием ИИ, как твердят десятки роликов на YouTube - на данный момент невозможно. Понятие &quot;хит&quot; — это результат труда в продвижении хорошей песни или трека, а не характеристика аудио-записи; вышеописанное серьезно влияет на востребованность сгенерированных песен и треков. Их значительно реже дослушивают до конца на стриминг-сервисах, не добавляют в избранное, чтобы послушать снова и прочая отрицательная обратная связь от слушателей.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Значит, мою песню не пропустят на площадки, если она создана ИИ?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>50/50. Основным краеугольным камнем в этом вопросе является способ и возможность определения контента, как искусственный. Если невозможно или очень сложно отличить ваши аудио от генерации ИИ - есть высокий шанс на одобрение (это зависит от объекта, который у вас получился). Для музыкального дистрибьютора важен также баланс между количеством загруженного вами контента и потенциальной или фактической его востребованностью. Простыми словами — любой музыкальной компании не интересен промышленный объем песен, которые никто не будет слушать. Другая ситуация, если искусственный интеллект органично вписывается в музыкальный проект, уже доказавший востребованность своих песен на деле, а не в теории. И/или, если в результат генерации привнесено значительное участие музыканта или вокалиста.</p><p>Авторы музыки и слов — заполняются всегда только фамилией и именем Не указывайте в полях авторства ничего другого — ошибка приведет к необходимости повторной загрузки релиза. Правильное указание автора музыки: Иванов Иван — если автор один, например Иванов Иван, Петрова Наталья — если авторов два, например</p><p>Неправильное указание: Никнейм исполнителя (ник не может быть указан в этом поле, если вам нужно указать prod. Никнейм) Что-либо другое кроме фамилии и имени.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Мои одобренные релизы будут удалены?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Нет. Релизы, одобренные и отправленные музыкальным витринам в процессе нашего партнерства, продолжают размещаться согласно соглашениям и их сроку. Вам не нужно это оплачивать или что-либо делать, чтобы размещение контента продолжилось далее. За исключением случаев, предусмотренных индивидуальным договором и/или тарифом и его условиями.</p><p>Требования к обложке:</p><p>Обложка должна быть авторской или измененной до неузнаваемости (производное изображение). Это может быть коллаж, арт, иной художественный дизайн или ваше фото. Размеры обложки 3000х3000 пикселей. Текстовая составляющая обложки должна дублировать имя релиза (не отличаться от него) или отсутствовать. Разный текст на обложке и названии релиза запрещен на iTunes/Apple Music. Также запрещена порнография, оскорбления других рас, социальных групп и прочие и без того понятные вещи. Обратите также внимание, что далеко не все FREE фото в интернете действительно являются таковыми, у большинства красивых и действительно качественных фотографий есть законный автор.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как увеличить шансы быть замеченным на Spotify?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Спотифай наиболее алгоритмически сложный сервис, использующий для рекомендаций музыки и ваши соцсети тоже. При этом, поскольку ВКонтакте никак не используется в ранжировании музыки, акцент отдан Instagram &amp; Facebook, Twitter и присутствию на Wikipedia. Именно поэтому, в том числе, сервис попросит указать ссылки на ваши социальные профили. Чтобы иметь возможность</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как создать страницу своей песни на ТикТок?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>После доставки вашей песни в Tik Tok , соцсеть создаст отдельную страничку с обложкой релиза, названием песни, именем артиста, а также покажет список видео-роликов, использующих ваш хит. Для этого не требуется дополнительных действий, кроме предварительной доставки контента.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как на своём профиле Тик Ток создать дополнительную вкладку с релизами?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>(музыкальная вкладка)</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Если имя вашего профиля в ТикТок совпадает с именем исполнителя (ваш никнейм) - это не означает, что вкладка с музыкой появится на вашей страничке автоматически. Но хотелось бы — верно?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>К сожалению платформа имеет ограничения в предоставлении такой функции. Но вы можете её получить.</p><p>Что для этого нужно:</p><p>•	Верифицированный аккаунт</p><p>или, если аккаунт не верифицирован:</p><p>•	5000+ созданных видео под треки артиста (количество клипов, в которых использованы ваши песни)</p><p>•	аккаунт не должен быть заброшен: минимум 50 опубликованных клипов, у которых суммарное количество просмотров более 1 млн.</p><p>•	к TIKTOK аккаунту нужно привязать аккаунт в другой социальной сети, где более 100 тысяч человек.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Уверен, вы множество раз слышали, что трек &quot;завирусился&quot; в ТикТок?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Эта платформа действительно способна сделать артиста популярным и прилично заработать, но трек должен стать хитом.</p><p>ТикТок оплачивает использование музыки в клипах. Каждое добавление песни в ролик — это роялти. Количество просмотров ролика при этом, не влияет на роялти. Только добавление.</p><p>В зависимости от территории эта сумма существенно варьируется. Начинающим артистам рекомендуем рассматривать площадку, как отличное место для популяризации песен. Ведь популярность в ТикТок подразумевает активность на других музыкальных площадках. Если вы обрели популярность там — это отразиться на востребованности вашей музыки в других витринах.</p><p>Вопросы и ответы:</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Если я использую платную часть услуг сайта и уже загружен трек, полностью сгенерированный ИИ. Мне вернут деньги в случае отклонения релиза?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Следующая политика о возврате средств для аккаунтов, с контентом, созданным полностью или в значительной степени ИИ инструментами действует с 22 Января 2025 года -&gt;.</p><p>•	Если вы уже публиковали другие песни и, в том числе, если у вас был опыт успешной публикации треков с использованием ИИ ранее — средства за активацию годового аккаунта не могут быть возвращены, т.к. аккаунт уже использовался. (обратите внимание, если вы будущий пользователь и читаете этот текст до сотрудничества — музыкальные сервисы, а также сервисы дистрибуции могут изменить политику в отношении песен, генерированных ИИ в любой момент. Если ваш первый трек/релиз был одобрен — это не значит, что так будет всегда. Одобренный трек, созданный через ИИ может быть удалён в будущем, при работе музыкального сервиса с своим каталогом.)</p><p>•	Если вы не загружали на сервис какие-либо песни ранее, являетесь пользователем годового аккаунта, и вам было отказано в публикации контента на этапе первого взаимодействия (модерация первого релиза), а также если у вас нет другого контента, который можно загрузить вместо отклоненного, - вы можете обратиться в поддержку за частичным возвратом средств в размере 50% от оплаты.</p><p>•	Если вы относитесь к пользователям, которые используют формат оплаты за один релиз (аккаунт &quot;ONE&quot;) и трек с ИИ не прошёл этап модерации - ваш аккаунт будет однократно активирован повторно для загрузки другого одного релиза (без необходимости повторной оплаты). Процесс повторной активации аккаунта &quot;One&quot; не может длиться бесконечно, т.к. проверка даже отклоненного релиза требует времени и использования технической инфраструктуры сайта. В случае повторной загрузки, новая копия релиза проходит рассмотрение, если пользователь получает отказ - средства не возвращаются (в том числе частично).</p><p>•	Если вы пользуетесь сервисом бесплатно в результате индивидуальных договоренностей об использовании или в течении бонусного периода после завершения основного срока действия аккаунта — данный вопрос не актуален для вас, т.к. никаких услуг вы не оплачивали. При этом, бонусное или бесплатное сопровождение аккаунта, загружающего сгенерированные треки может быть прекращено администрацией сервиса досрочно.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Я использую искусственный интеллект для работы с технической частью трека (баланс инструментов, сведение и мастеринг). Это считается треком, сгенерированным ИИ?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>•	Нет. Этот случай относится к вспомогательному использованию ИИ, а не к генерации песен через ИИ. Множество VST плагинов сегодня используют искусственный интеллект для работы с качеством звучания на основании референса. Разница между генерацией песен через ИИ и использованием ИИ для самопомощи при музыкальном производстве/для вдохновения — огромна. Не путайте два эти способа при прочтении статьи.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Могу ли я использовать обложку для релиза, созданную средствами ИИ?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Как правило, проблем не возникает. При этом, вам, как лицу, предоставляющему гарантии на юридическую чистоту контента, важно использовать нейросети аккуратно и оценивать результат самостоятельно, т.к. принцип работы сервисов ИИ для картинок аналогично основан на изображениях в интернете: фотографиях моделей; актеров; картин; арт-объектов и т.п. Сгенерированные изображения вполне могут нарушать права какого-либо художника, например, в случае значительного сходства.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Мой релиз прошел модерацию. Значит мой контент с использованием ИИ юридически чист?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Успешная модерация не означает, что ваш контент юридически чист, а также не значит, что любая другая песня пройдет проверку точно также, как первая. Если релиз прошел шаг модерации и был опубликован - означает, что на момент проверки технические или физические средства проверки не смогли найти чего-либо, препятствующего публикации. Ответственность за любые нарушения в области интеллектуальной собственности в будущем несет пользователь, являющийся правообладателем при загрузке.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как использовать смарт-линк для продвижения?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>В день релиза рекомендуем указывать ссылку на ваш новый релиз в социальных сетях. Это также отличный вариант для использования в таргетированной рекламе в качестве целевой страницы. Заинтересованным в вашей песне просто и легко выбрать удобный способ прослушивания, а значит большинство потенциальных фанов не потеряются.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как открыть страницу ссылок на мой релиз?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>URL-адрес страницы смарт-линка доступен в личном кабинете, либо же, обратитесь в поддержку с запросом.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как на странице релиза указать название трека и название артиста?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Функционал смарт-линков является неотъемлемой частью сервиса дистрибуции музыкального контента. Поэтому наименование и релиза и артистов уже указаны на странице и не требуют заполнения. Вам также не требуется указывать UPC релиза и прочие настройки.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как изменить порядок ссылок на удобный для меня?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Изменяйте порядок ссылок нажав на кнопку &quot;Добавить&quot; — далее используйте навигационные элементы вверх и вниз для перемещения нужной ссылки. Нажмите &quot;Сохранить изменения&quot;. Готово.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Как добавить отсутствующие ссылки на страницу смарт-линка?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Пожалуйста, нажмите &quot;Добавить&quot;, если некоторые ссылки не отображены. Скопируйте, а затем вставьте необходимую ссылку в поле ввода. Нажмите &quot;Добавить&quot; под полем ввода. Изменения выполнены.</p><p>Вам доступно добавление ссылок на следующие ресурсы: ВКонтакте, ВК Музыка (ранее BOOM), Яндекс Музыка, ЗВУК, Apple Music, Spotify, Deezer, YouTube Music, YouTube, SoundCloud, Amazon, Tidal, Anghami, TikTok, Pandora, Napster, Boomplay, Bandcamp, JunoDownload.</p></div>
+    </details><details class="knowledge-item">
+      <summary><span class="knowledge-icon"><i class="fa-solid fa-circle-question"></i></span><span>Сколько это стоит?</span><i class="fa-solid fa-chevron-down knowledge-arrow"></i></summary>
+      <div class="knowledge-body"><p>Линк для трека — бонус для пользователей нашего сервиса дистрибуции музыки. На данный момент использование функции не требует оплаты. Страница трека создаётся автоматически для всех музыкальных релизов, которые мы выпустим в партнерстве с вами. На данный момент вы не сможете настроить страницу релиза для музыки, которую выпускали любые другие партнеры.</p></div>
+    </details>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -1414,53 +1524,40 @@
         </div>
       </section>
       <section id="screen-sanctum" class="app-screen">
-        <div class="content-card glass">
-          <h1>Клуб знаний</h1>
-          <p class="lead">Книги, аудиолекции, курсы и ветви обсуждений.</p>
-          <div class="subtabs" id="knowledgeTabs">
-            <button class="subtab active" data-knowledge-tab="library">Библиотека</button>
-            <button class="subtab" data-knowledge-tab="lectures">Аудиолекции</button>
-            <button class="subtab" data-knowledge-tab="courses">Курсы</button>
-            <button class="subtab" data-knowledge-tab="discussions">Дискуссии</button>
-          </div>
-          <div id="knowledgeFunctionalPanel"></div>
-        </div>
+        <div class="content-card glass club-v44"><div class="club-masthead"><div class="club-brand">SUA / КЛУБ ЗНАНИЙ</div><span>Музыка. Мнение. Сообщество.</span></div><div id="clubApp"></div></div>
       </section>
-    </div>
-  </main>
-
-
+    </div></main></div>
 
   <div class="profile-screen" id="profileScreen">
     <div class="profile-shell">
       <div class="profile-topbar">
-        <div><h1>Мой профиль</h1><div style="font-size:10px;color:var(--muted);margin-top:4px">Управление аккаунтом, друзьями и заявками</div></div>
-        <button class="profile-close" id="profileCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+        <div><h1>Мой профиль</h1><div style="font-size:10px;color:var(--muted);margin-top:4px">Ваша страница в SUA</div></div>
+        <div class="profile-header-actions"><button class="soft-btn" onclick="suaProfileTab('settings')" aria-label="Настройки профиля"><i class="fa-solid fa-gear"></i> Настройки</button><button class="profile-close" id="profileCloseBtn" aria-label="Закрыть профиль"><i class="fa-solid fa-xmark"></i></button></div>
       </div>
       <div class="profile-layout">
         <aside class="profile-card">
           <div class="profile-avatar-wrap">
             <div class="profile-avatar-large" id="profileAvatarLarge">S</div>
-            <label class="avatar-upload-btn">Изменить аватар<input id="profileAvatarInput" type="file" accept="image/*" hidden></label>
+            
             <div class="profile-name" id="profileDisplayName">SUA User</div>
             <div class="profile-username" id="profileUsername">@username</div>
           </div>
           <div class="profile-stats">
-            <div class="profile-stat"><b id="profileFriendsCount">0</b><span>Друзей</span></div>
-            <div class="profile-stat"><b id="profileRequestsCount">0</b><span>Заявок</span></div>
+            <button class="profile-stat" onclick="suaProfileTab('friends')"><b id="profileFriendsCount">—</b><span>Друзья</span></button><button class="profile-stat" onclick="suaProfileTab('following')"><b id="profileFollowingCount">—</b><span>Подписки</span></button>
+            <button class="profile-stat" onclick="suaProfileTab('requests')"><b id="profileRequestsCount">—</b><span>Заявки</span></button>
           </div>
         </aside>
         <main class="profile-main-card">
           <div class="profile-nav">
-            <button class="profile-tab active" data-profile-tab="settings">Профиль</button>
+            <button class="profile-tab active" data-profile-tab="posts">Публикации</button><button class="profile-tab" data-profile-tab="music">Музыка</button><button class="profile-tab" data-profile-tab="following">Подписки</button>
             <button class="profile-tab" data-profile-tab="friends">Друзья</button>
-            <button class="profile-tab" data-profile-tab="requests">Заявки в друзья <span id="profileRequestsBadge" class="request-count" hidden>0</span></button>
+            <button class="profile-tab" data-profile-tab="requests">Заявки в друзья <span id="profileRequestsBadge" class="request-count" hidden></span></button>
           </div>
-          <div id="profilePanelSettings" class="profile-panel active">
+          <div id="profilePanelPosts" class="profile-panel active"><div class="profile-compose"><textarea id="profilePostText" maxlength="5000" placeholder="Что нового?" aria-label="Текст новой публикации"></textarea><button class="quick-btn" id="profilePublishBtn" onclick="suaPublishProfilePost()">Опубликовать</button><div id="profilePostFeedback" role="status"></div></div><div id="ownProfilePosts"></div></div><div id="profilePanelMusic" class="profile-panel"><div id="ownProfileMusic"><div class="profile-empty">Музыка пока не добавлена.</div></div></div><div id="profilePanelFollowing" class="profile-panel"><div id="profileFollowingList"></div><h3 class="profile-section-title">Отправленные заявки</h3><div id="profileOutgoingList"></div></div><div id="profilePanelSettings" class="profile-panel"><h2 class="profile-section-title">Настройки профиля</h2><label class="avatar-upload-btn">Изменить аватар<input id="profileAvatarInput" type="file" accept="image/*" hidden></label><p class="profile-section-copy">Ваше имя и адрес профиля помогают другим участникам найти вас в SUA.</p>
             <div class="profile-form-grid">
-              <div class="full"><div class="profile-label">Имя</div><input class="profile-input" id="profileNameInput" placeholder="Имя"></div>
-              <div class="full"><div class="profile-label">Username</div><input class="profile-input" id="profileUsernameInput" placeholder="username"></div>
-              <div class="full"><div class="profile-label">Email</div><input class="profile-input" id="profileEmailInput" disabled></div>
+              <div class="full"><label class="profile-label" for="profileNameInput">Имя или имя артиста</label><input class="profile-input" id="profileNameInput" placeholder="Имя"></div>
+              <div class="full"><label class="profile-label" for="profileUsernameInput">Адрес профиля</label><input class="profile-input" id="profileUsernameInput" placeholder="username"></div>
+              <div class="full"><label class="profile-label" for="profileEmailInput">Электронная почта</label><input class="profile-input" id="profileEmailInput" disabled></div>
             </div>
             <div id="profileFeedback" class="notice-box" style="display:none;margin-top:12px"></div>
             <button class="profile-save" id="profileSaveChangesBtn">Сохранить изменения</button>
@@ -1480,7 +1577,7 @@
           <h1>Профиль пользователя</h1>
           <div style="font-size:10px;color:var(--muted);margin-top:4px">Профиль, друзья и публикации</div>
         </div>
-        <button class="profile-close" id="publicProfileCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+        <button class="profile-close" id="publicProfileCloseBtn" aria-label="Закрыть профиль"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
       <div class="profile-layout">
@@ -1493,22 +1590,22 @@
           </div>
 
           <div class="profile-stats">
-            <div class="profile-stat"><b id="publicProfileFriendsCount">0</b><span>Друзей</span></div>
-            <div class="profile-stat"><b id="publicProfileRequestsCount">0</b><span>Заявок</span></div>
+            <button class="profile-stat" onclick="suaPublicList('friends')"><b id="publicProfileFriendsCount">—</b><span>Друзья</span></button>
+            <button class="profile-stat" onclick="suaPublicList('following')"><b id="publicProfileFollowingCount">—</b><span>Подписки</span></button>
           </div>
 
           <div class="form-actions" style="margin-top:16px">
-            <button class="quick-btn" id="publicProfileFriendBtn">Добавить в друзья</button>
+            <button class="soft-btn" id="publicFollowBtn" onclick="suaToggleFollow()">Подписаться</button><button class="quick-btn" id="publicProfileFriendBtn">Добавить в друзья</button>
             <button class="soft-btn" id="publicProfileMessageBtn"><i class="fa-regular fa-message"></i> Написать</button>
           </div>
         </aside>
 
         <main class="profile-main-card">
           <div class="profile-nav">
-            <button class="profile-tab active" data-public-profile-tab="posts">Публикации</button>
+            <button class="profile-tab active" data-public-profile-tab="posts" onclick="suaPublicTab('posts')">Публикации</button><button class="profile-tab" data-public-profile-tab="music" onclick="suaPublicTab('music')">Музыка</button>
           </div>
           <div class="profile-panel active">
-            <div id="publicProfilePosts"><div class="profile-empty">Публикации загружаются...</div></div>
+            <div id="publicProfileMusic" hidden><div class="profile-empty">Музыка пока не добавлена.</div></div><div id="publicProfilePosts"><div class="profile-empty">Публикации загружаются...</div></div>
           </div>
         </main>
       </div>
@@ -1523,7 +1620,7 @@
   </div>
 
   <div class="site-modal" id="siteModal">
-    <div class="site-modal-card">
+    <div class="site-modal-card" role="dialog" aria-modal="true" aria-labelledby="siteModalTitle" tabindex="-1">
       <div class="site-modal-head"><h2 id="siteModalTitle">SUA</h2><button class="site-modal-close" id="siteModalClose"><i class="fa-solid fa-xmark"></i></button></div>
       <div id="siteModalBody"></div>
     </div>
@@ -1550,28 +1647,67 @@
     </div>
   </div>
 
-  <div class="player">
-    <div class="player-track">
-      <div id="playerCover" style="width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;color:rgba(255,255,255,.35)"><i class="fa-solid fa-music"></i></div>
-      <div class="meta"><b id="playerTitle">Без трека</b><span id="playerArtist">Каталог пока пуст</span></div>
-      <button class="heart" disabled><i class="fa-regular fa-heart"></i></button>
-    </div>
-    <div class="player-center"><button disabled><i class="fa-solid fa-shuffle"></i></button><button disabled><i class="fa-solid fa-backward-step"></i></button><button class="play" disabled><i id="playIcon" class="fa-solid fa-play"></i></button><button disabled><i class="fa-solid fa-forward-step"></i></button><button disabled><i class="fa-solid fa-repeat"></i></button></div>
-    <div class="player-right"><i class="fa-solid fa-volume-high"></i><div class="volume"></div><i class="fa-solid fa-sliders"></i></div>
-  </div>
-</div>
-
 <script>
-  const backgrounds=['assets/bg-1.jpg','assets/bg-2.jpg','assets/bg-3.jpg','assets/bg-4.jpg','assets/bg-5.jpg','assets/bg-6.jpg','assets/bg-7.jpg','assets/bg-8.jpg','assets/bg-9.jpg'];
-  let bgIndex=Number(localStorage.getItem('suaBgIndex')||0)%backgrounds.length;
+  const backgrounds=['black','assets/bg-1.jpg','assets/bg-2.jpg','assets/bg-3.jpg','assets/bg-4.jpg','assets/bg-5.jpg','assets/bg-6.jpg','assets/bg-7.jpg','assets/bg-8.jpg','assets/bg-9.jpg'];
+  let savedBgIndex=Number(localStorage.getItem('suaBgIndex'));
+  let bgIndex=Number.isFinite(savedBgIndex) && savedBgIndex>=0 && savedBgIndex<backgrounds.length
+    ? savedBgIndex
+    : 1;
   const workspace=document.getElementById('workspace');
+
+  function syncBackgroundPicker(){
+    document.querySelectorAll('.bg-thumb').forEach((btn,index)=>{
+      btn.classList.toggle('active',index===bgIndex);
+    });
+  }
+
   function applyBackground(){
     const bg=backgrounds[bgIndex];
-    workspace.style.backgroundColor='';
-    workspace.style.backgroundImage=`url('${bg}')`;
-    document.body.classList.remove('white-workspace');
+
+    if(bg==='black'){
+      workspace.classList.add('black-background');
+      workspace.style.setProperty('--workspace-bg-image','none');
+      workspace.style.backgroundColor='#000';
+    }else{
+      workspace.classList.remove('black-background');
+      workspace.style.setProperty('--workspace-bg-image',`url('${bg}')`);
+      workspace.style.backgroundColor='#0b0e14';
+    }
+
+    syncBackgroundPicker();
   }
-  function changeBackground(){bgIndex=(bgIndex+1)%backgrounds.length;localStorage.setItem('suaBgIndex',bgIndex);applyBackground();}
+
+  function changeBackground(){
+    bgIndex=(bgIndex+1)%backgrounds.length;
+    localStorage.setItem('suaBgIndex',bgIndex);
+    applyBackground();
+  }
+
+  window.selectBackground=function(index,event){
+    event?.stopPropagation();
+    const next=Number(index);
+    if(!Number.isInteger(next) || next<0 || next>=backgrounds.length)return;
+    bgIndex=next;
+    localStorage.setItem('suaBgIndex',bgIndex);
+    applyBackground();
+  };
+
+  window.toggleBackgroundPicker=function(event){
+    event?.stopPropagation();
+    const panel=document.getElementById('bgPickerPanel');
+    if(!panel)return;
+    panel.hidden=!panel.hidden;
+    syncBackgroundPicker();
+  };
+
+  document.addEventListener('click',event=>{
+    const control=document.querySelector('.sidebar-background-control');
+    const panel=document.getElementById('bgPickerPanel');
+    if(panel && !panel.hidden && control && !control.contains(event.target)){
+      panel.hidden=true;
+    }
+  });
+
   applyBackground();
 
   // Стартовый экран — Главная: здесь оставляем только профиль и уведомления.
@@ -1608,12 +1744,23 @@
     switchScreen(id,nav||null);
   }
 
+  let siteModalReturnFocus=null;
   function openSiteModal(title,body){
+    if(!document.getElementById('siteModal').classList.contains('open'))siteModalReturnFocus=document.activeElement;
+    if(window.suaCloseClubDialog)window.suaCloseClubDialog();
+    if(window.suaCloseCommentsModal)window.suaCloseCommentsModal();
     document.getElementById('siteModalTitle').textContent=title;
     document.getElementById('siteModalBody').innerHTML=body;
     document.getElementById('siteModal').classList.add('open');
+    document.querySelector('#siteModal .site-modal-card').focus();
   }
-  function closeSiteModal(){document.getElementById('siteModal').classList.remove('open')}
+  function closeSiteModal(){
+    if(window.suaCloseClubDialog)window.suaCloseClubDialog();
+    document.getElementById('siteModal').classList.remove('open');
+    if(siteModalReturnFocus?.isConnected)siteModalReturnFocus.focus();
+    if(window.suaCloseCommentsModal)window.suaCloseCommentsModal();
+  }
+  document.getElementById('siteModal').addEventListener('keydown',e=>{if(e.key!=='Tab')return;const elements=[...e.currentTarget.querySelectorAll('button:not(:disabled),input:not(:disabled),textarea,select,a[href],[tabindex="0"]')].filter(el=>!el.hidden);if(!elements.length)return;const first=elements[0],last=elements[elements.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
   document.getElementById('siteModalClose').addEventListener('click',closeSiteModal);
   document.getElementById('siteModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSiteModal()});
 
@@ -1633,33 +1780,7 @@
   document.getElementById('notificationsBtn').addEventListener('click',showNotifications);
   document.getElementById('profileBtn').addEventListener('click',openQuickProfile);
 
-  // MUSIC
-  const chartDemo=[
-    ['1','Новые релизы SUA','Каталог будет формироваться из одобренных релизов'],
-    ['2','Тренды недели','Данные появятся после наполнения каталога'],
-    ['3','Выбор редакции','Редакторская подборка SUA']
-  ];
-  const playlistDemo=[
-    ['Новые релизы','Свежая музыка каталога SUA'],
-    ['Фокус','Подборка для внимательного прослушивания'],
-    ['Ночной эфир','Атмосферный плейлист платформы']
-  ];
-  function renderMusicTab(tab){
-    const hero=document.getElementById('musicOverviewHero');
-    const content=document.getElementById('musicOverviewContent');
-    const panel=document.getElementById('musicExtraPanel');
-    if(tab==='overview'){hero.style.display='flex';content.style.display='block';panel.innerHTML='';return}
-    hero.style.display='none';content.style.display='none';
-    if(tab==='charts'){
-      panel.innerHTML=`<div class="data-list">${chartDemo.map(x=>`<div class="data-row"><div><b>${x[0]}. ${x[1]}</b><span>${x[2]}</span></div><span class="status-pill gold">Скоро</span></div>`).join('')}</div>`;
-    }else{
-      panel.innerHTML=`<div class="data-list">${playlistDemo.map(x=>`<div class="data-row"><div><b>${x[0]}</b><span>${x[1]}</span></div><button class="mini-btn" onclick="alert('Плейлист станет доступен после наполнения каталога')">Открыть</button></div>`).join('')}</div>`;
-    }
-  }
-  document.querySelectorAll('#musicTabs .subtab').forEach(b=>b.addEventListener('click',()=>{
-    document.querySelectorAll('#musicTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderMusicTab(b.dataset.musicTab);
-  }));
-
+  function renderMusicTab(){}
 
   // HOME APPLICATION
   window.submitHomeJoin=function(){
@@ -1700,7 +1821,6 @@
   }
   bindFile('releaseAudio','audioFileLabel','audio');
   bindFile('releaseCover','coverFileLabel','cover');
-  bindFile('releaseContract','contractFileLabel','contract');
 
   function renderReleaseRequests(){
     if(window.suaRenderReleaseRequests) return window.suaRenderReleaseRequests();
@@ -1737,25 +1857,46 @@
 
   // FEED
   function renderFeed(){
-    const base=[{id:'official1',author:'SUA Music',text:'Добро пожаловать в ленту SUA. Здесь будут появляться новости платформы, анонсы релизов и материалы музыкальной индустрии.',likes:12,time:'Официально'}];
-    const user=suaStore.get('suaFeedPosts',[]);
-    const rows=[...user.slice().reverse(),...base],box=document.getElementById('feedList');if(!box)return;
-    box.innerHTML=rows.map(p=>`<div class="post-card"><div class="post-head"><b>${h(p.author||'SUA User')}</b><span class="status-pill">${h(p.time||'сейчас')}</span></div><div class="post-body">${h(p.text)}</div><div class="post-actions"><button onclick="likePost('${h(p.id)}')"><i class="fa-regular fa-heart"></i> ${Number(p.likes||0)}</button><button onclick="alert('Комментарии подключим как отдельные ветви Firebase')"><i class="fa-regular fa-comment"></i> Комментарии</button></div></div>`).join('');
-  }
-  document.getElementById('createPostBtn')?.addEventListener('click',()=>openSiteModal('Новая публикация','<textarea id="newPostText" class="modal-textarea" placeholder="Что нового?"></textarea><div class="form-actions"><button class="quick-btn" onclick="savePost()">Опубликовать</button></div>'));
-  window.savePost=async function(){
-    const t=document.getElementById('newPostText').value.trim();
-    if(!t)return;
-    if(window.suaSavePost){
-      try{await window.suaSavePost(t)}catch(error){console.error(error)}
+    const box=document.getElementById('feedList');
+    if(!box)return;
+
+    if(window.suaRenderFirebaseFeed){
+      window.suaRenderFirebaseFeed();
+      return;
     }
-    const a=suaStore.get('suaFeedPosts',[]);
-    a.push({id:String(Date.now()),author:'SUA User',text:t,likes:0,time:new Date().toLocaleString('ru-RU')});
-    suaStore.set('suaFeedPosts',a);
-    closeSiteModal();
-    renderFeed()
+
+    box.innerHTML='<div class="notice-box">Лента подключается...</div>';
+  }
+
+  document.getElementById('createPostBtn')?.addEventListener('click',()=>{
+    openSiteModal(
+      'Новая публикация',
+      '<textarea id="newPostText" class="modal-textarea" placeholder="Что нового?"></textarea><div class="form-actions"><button class="quick-btn" onclick="savePost()">Опубликовать</button></div>'
+    );
+  });
+
+  window.savePost=async function(){
+    const input=document.getElementById('newPostText');
+    const t=input?.value.trim();
+    if(!t)return;
+
+    if(!window.suaSavePost){
+      alert('Войдите в аккаунт и обновите страницу.');
+      return;
+    }
+
+    try{
+      await window.suaSavePost(t);
+      closeSiteModal();
+      renderFeed();
+    }catch(error){
+      console.error(error);
+      alert(error?.message||'Не удалось опубликовать пост.');
+    }
   };
-  window.likePost=function(id){const a=suaStore.get('suaFeedPosts',[]),p=a.find(x=>x.id===id);if(p){p.likes=(p.likes||0)+1;suaStore.set('suaFeedPosts',a);renderFeed()}};
+
+  // Старую localStorage-логику лайков отключили.
+  // Один пользователь = максимум одна запись в postLikes/{postId}/{uid}.
 
   // COMMUNITIES
   const communityData=[
@@ -1772,20 +1913,7 @@
   window.toggleCommunity=function(id){let a=suaStore.get('suaCommunities',[]);a=a.includes(id)?a.filter(x=>x!==id):[...a,id];suaStore.set('suaCommunities',a);renderCommunities('all')};
   window.openCommunity=function(id){const c=communityData.find(x=>x.id===id);openSiteModal(c.name,`<div class="notice-box">${c.desc}</div><div class="form-actions"><button class="quick-btn" onclick="alert('Публикации сообщества подключим к Firebase на следующем этапе')">Создать тему</button></div>`)};
 
-  // KNOWLEDGE
-  const knowledgeData={
-    library:[['Музыкальный бизнес: основы','Книга / подборка'],['Диалектика просвещения','Философия и культурная теория'],['Маркетинг артиста','Практическое руководство']],
-    lectures:[['Стратегия релиза','Аудиолекция · 28 мин'],['Авторское право без сложных терминов','Аудиолекция · 34 мин'],['Как читать статистику стриминга','Аудиолекция · 21 мин']],
-    courses:[['Дистрибуция от загрузки до отчёта','4 модуля'],['Продвижение первого релиза','6 модулей'],['Позиционирование артиста','5 модулей']],
-    discussions:[['Что делает релиз успешным?','Открытая дискуссия'],['ИИ и музыка: инструмент или автор?','Дискуссионная ветка'],['Как искать команду?','Обсуждение сообщества']]
-  };
-  function renderKnowledge(tab='library'){
-    const box=document.getElementById('knowledgeFunctionalPanel'),rows=knowledgeData[tab]||[];
-    box.innerHTML=rows.map((x,i)=>`<div class="course-card"><h3>${h(x[0])}</h3><p>${h(x[1])}</p>${tab==='courses'?`<div class="progress-line"><span style="width:${suaStore.get('suaCourseProgress',{})[`${tab}-${i}`]||0}%"></span></div>`:''}<div class="form-actions"><button class="mini-btn gold" onclick="openKnowledgeItem('${tab}',${i})">${tab==='discussions'?'Открыть':'Подробнее'}</button>${tab==='courses'?`<button class="mini-btn" onclick="advanceCourse('${tab}-${i}')">Продолжить</button>`:''}</div></div>`).join('');
-  }
-  window.openKnowledgeItem=function(tab,i){const x=knowledgeData[tab][i];openSiteModal(x[0],`<div class="notice-box">${h(x[1])}. Полный контент материала будет добавляться администрацией клуба знаний.</div>`)};
-  window.advanceCourse=function(key){const p=suaStore.get('suaCourseProgress',{});p[key]=Math.min(100,(p[key]||0)+25);suaStore.set('suaCourseProgress',p);renderKnowledge('courses')};
-  document.querySelectorAll('#knowledgeTabs .subtab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#knowledgeTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderKnowledge(b.dataset.knowledgeTab)}));
+  function renderKnowledge(){if(window.suaRenderClub)window.suaRenderClub();else document.getElementById('clubApp').innerHTML='<p class="club-note">Клуб подключается…</p>';}
 
   // ADVERTISING
   function renderAdvertising(tab='campaigns'){
@@ -1801,7 +1929,7 @@
   document.querySelectorAll('#adTabs .subtab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#adTabs .subtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderAdvertising(b.dataset.adTab)}));
 
   function initFullSite(){
-    renderReleaseRequests();renderArtistPanel('analytics');renderFeed();renderCommunities('all');renderKnowledge('library');renderAdvertising('campaigns');renderMusicTab('overview');
+    renderReleaseRequests();renderArtistPanel('analytics');renderFeed();renderCommunities('all');renderKnowledge('route');renderAdvertising('campaigns');renderMusicTab('overview');
   }
   window.addEventListener('DOMContentLoaded',initFullSite);
 
@@ -1819,13 +1947,13 @@
 
     // На Главной — только уведомления и профиль.
     // В Музыке — только поиск музыки / артистов / альбомов.
-    if(globalSearch) globalSearch.style.display = id==='music' ? 'flex' : 'none';
+    if(globalSearch) globalSearch.style.display = 'none';
     if(globalIcons) globalIcons.style.display = id==='home' ? 'flex' : 'none';
 
     document.body.classList.toggle('home-screen', id==='home');
     if(id==='feed')renderFeed();
     if(id==='communities')renderCommunities('all');
-    if(id==='sanctum')renderKnowledge('library');
+    if(id==='sanctum')renderKnowledge('route');
     if(id==='distribution')renderReleaseRequests();
   }
 </script>
@@ -1883,7 +2011,7 @@
     appId: "1:233930266962:web:4567d6cac73c6f110c028b"
   };
 
-  console.log('SUA build 2026-09-06-v32');
+  console.log('SUA build 2026-09-08-v44');
   const firebaseApp = initializeApp(firebaseConfig);
   const auth = getAuth(firebaseApp);
   const db = getDatabase(firebaseApp);
@@ -1923,6 +2051,10 @@
   let publicProfileUid = null;
   let publicProfileUser = null;
   let publicProfileRelation = 'none';
+  let firebaseFeedCache = [];
+  let commentsUnsubscribe = null;
+  let activeCommentsPostId = null;
+
   let organizerUser = null;
   const ORGANIZER_USERNAME = 'sua_admin';
 
@@ -2131,13 +2263,12 @@
     ['releaseTitle','releaseArtist','releaseOwner','releasePhone','releaseComment'].forEach(id=>{
       if($(id))$(id).value='';
     });
-    ['releaseAudio','releaseCover','releaseContract'].forEach(id=>{
+    ['releaseAudio','releaseCover'].forEach(id=>{
       if($(id))$(id).value='';
     });
     if($('audioFileLabel')) $('audioFileLabel').childNodes[0].nodeValue='Выбрать WAV / FLAC / MP3 ';
     if($('coverFileLabel')) $('coverFileLabel').childNodes[0].nodeValue='Выбрать JPG / PNG ';
-    if($('contractFileLabel')) $('contractFileLabel').childNodes[0].nodeValue='Прикрепить PDF / DOCX ';
-    fileNames.audio=fileNames.cover=fileNames.contract='';
+    fileNames.audio=fileNames.cover='';
   }
 
   window.suaSubmitRelease=async function(){
@@ -2154,7 +2285,6 @@
     const comment=$('releaseComment').value.trim();
     const audio=$('releaseAudio').files?.[0];
     const cover=$('releaseCover').files?.[0];
-    const contract=$('releaseContract').files?.[0]||null;
 
     if(!title||!artist||!owner||!audio||!cover){
       releaseFeedback('Заполните название, артиста, правообладателя и выберите аудио + обложку.',true);
@@ -2177,19 +2307,16 @@
     const base=`releases/${currentUser.uid}/${releaseId}`;
 
     try{
-      let audioP=0,coverP=0,contractP=contract?0:100;
+      let audioP=0,coverP=0;
       const updateTotal=()=>{
-        const total=(audioP+coverP+contractP)/3;
+        const total=(audioP+coverP)/2;
         setReleaseProgress(true,total,`Загрузка ${Math.round(total)}%`);
       };
 
       const audioPromise=uploadReleaseFile(`${base}/audio_${safeFileName(audio.name)}`,audio,p=>{audioP=p;updateTotal()});
       const coverPromise=uploadReleaseFile(`${base}/cover_${safeFileName(cover.name)}`,cover,p=>{coverP=p;updateTotal()});
-      const contractPromise=contract
-        ? uploadReleaseFile(`${base}/contract_${safeFileName(contract.name)}`,contract,p=>{contractP=p;updateTotal()})
-        : Promise.resolve('');
 
-      const [audioUrl,coverUrl,contractUrl]=await Promise.all([audioPromise,coverPromise,contractPromise]);
+      const [audioUrl,coverUrl]=await Promise.all([audioPromise,coverPromise]);
 
       const now=Date.now();
       const release={
@@ -2205,7 +2332,7 @@
         files:{
           audio:{name:audio.name,url:audioUrl},
           cover:{name:cover.name,url:coverUrl},
-          contract:contract?{name:contract.name,url:contractUrl}:null
+          contract:null
         }
       };
 
@@ -2365,6 +2492,10 @@
         ${r.files?.cover?.url?`<button class="soft-btn" onclick="window.open('${r.files.cover.url}','_blank')">Открыть обложку</button>`:''}
         ${r.files?.audio?.url?`<button class="soft-btn" onclick="window.open('${r.files.audio.url}','_blank')">Открыть аудио</button>`:''}
         ${r.files?.contract?.url?`<button class="soft-btn" onclick="window.open('${r.files.contract.url}','_blank')">Открыть договор</button>`:''}
+        <label class="soft-btn" style="cursor:pointer">
+          ${r.files?.contract?.url?'Заменить договор':'Прикрепить договор'}
+          <input type="file" accept=".pdf,.doc,.docx" hidden onchange="adminUploadContract('${r.id}',this)">
+        </label>
       </div>
 
       <textarea id="adminModeratorComment" class="modal-textarea" placeholder="Комментарий пользователю...">${escapeHtml(r.moderatorComment||'')}</textarea>
@@ -2374,6 +2505,44 @@
         <button class="soft-btn" onclick="adminSetReleaseStatus('${r.id}','rejected')">Отклонить</button>
       </div>
     `);
+  };
+
+
+  window.adminUploadContract=async function(releaseId,input){
+    if(!isAdmin || !input?.files?.[0])return;
+    const r=adminReleaseCache.find(x=>x.id===releaseId);
+    if(!r)return;
+
+    const file=input.files[0];
+    if(!/\.(pdf|doc|docx)$/i.test(file.name)){
+      alert('Договор должен быть PDF, DOC или DOCX.');
+      input.value='';
+      return;
+    }
+
+    try{
+      const path=`releases/${r.uid}/${releaseId}/admin_contract_${safeFileName(file.name)}`;
+      const url=await uploadReleaseFile(path,file,()=>{});
+      const now=Date.now();
+
+      await update(ref(db),{
+        [`releases/${releaseId}/files/contract`]:{name:file.name,url,uploadedBy:'admin',uploadedAt:now},
+        [`releases/${releaseId}/updatedAt`]:now
+      });
+
+      const cached=adminReleaseCache.find(x=>x.id===releaseId);
+      if(cached){
+        cached.files=cached.files||{};
+        cached.files.contract={name:file.name,url,uploadedBy:'admin',uploadedAt:now};
+      }
+      alert('Договор прикреплён администратором.');
+      adminOpenRelease(releaseId);
+    }catch(error){
+      console.error('Admin contract upload:',error);
+      alert('Не удалось прикрепить договор: '+firebaseErrorMessage(error));
+    }finally{
+      input.value='';
+    }
   };
 
   window.adminSetReleaseStatus=async function(releaseId,status){
@@ -2428,7 +2597,7 @@
   };
 
 
-  window.suaOpenProfile=async function(tab='settings'){
+  window.suaOpenProfile=async function(tab='posts'){
     if(!currentUser){openAuth('login');return;}
     const p=myProfile||{};
     $('profileDisplayName').textContent=p.displayName||'SUA User';
@@ -2437,11 +2606,14 @@
     $('profileUsernameInput').value=p.username||'';
     $('profileEmailInput').value=currentUser.email||'';
     setAvatarElement($('profileAvatarLarge'),p);
+    $('publicProfileScreen').classList.remove('open');
     $('profileScreen').classList.add('open');
     document.body.style.overflow='hidden';
     switchProfileTab(tab);
     subscribeProfileFriends();
     subscribeFriendRequests();
+    subscribeOwnPosts();
+    subscribeFollowing();
 
     // Сразу синхронизируем количество друзей из базы, не дожидаясь onValue.
     try{
@@ -2486,6 +2658,7 @@
   }
 
   function stopListeners(){
+    stopSocialV44();
     if(conversationUnsubscribe){conversationUnsubscribe();conversationUnsubscribe=null}
     if(messagesUnsubscribe){messagesUnsubscribe();messagesUnsubscribe=null}
     if(presenceUnsubscribe){presenceUnsubscribe();presenceUnsubscribe=null}
@@ -2525,12 +2698,16 @@
       checkAdminAccess();
       subscribeNotifications();
       subscribeProfileFriends();
+      subscribeOwnPosts();
+      subscribeFollowing();
+      startClub();
     }else{
       $('conversationList').innerHTML='<div class="chat-empty-list">Войдите, чтобы увидеть диалоги.</div>';
       $('chatPlaceholder').style.display='grid';
       $('activeChat').hidden=true;
       $('activeChat').style.display='';
     }
+    window.suaRenderClub?.();
   });
 
   async function searchUsers(){
@@ -2595,7 +2772,7 @@
           </div>
           <div class="people-actions">
             <button class="message-user" data-action="message" title="Написать"><i class="fa-regular fa-message"></i></button>
-            <button class="friend-user ${(isFriend||requestSent)?'sent':''}" data-action="friend" title="${isFriend?'Уже в друзьях':requestSent?'Запрос отправлен':'Добавить в друзья'}">${isFriend?'✓':requestSent?'…':'+'}</button>
+            <button class="friend-user ${(isFriend||requestSent)?'sent':''}" data-action="friend" title="${isFriend?'Уже в друзьях':requestSent?'Отменить заявку':'Добавить в друзья'}">${isFriend?'✓':requestSent?'Отменить':'+'}</button>
           </div>
         </div>`;
       }).join('');
@@ -2652,10 +2829,9 @@
         return;
       }
       const existingRequest=await get(ref(db,`sentFriendRequests/${currentUser.uid}/${otherUserId}`));
-      if(existingRequest.exists()){
-        if(button){button.textContent='…';button.classList.add('sent');button.title='Запрос уже отправлен'}
-        return;
-      }
+      if(existingRequest.exists()){await cancelFriendRequest(otherUserId,button);return;}
+      const incoming=await get(ref(db,`friendRequests/${currentUser.uid}/${otherUserId}`));
+      if(incoming.exists()){await acceptFriendRequest(otherUserId);return;}
       const now=Date.now();
       const notificationId=push(ref(db,`notifications/${otherUserId}`)).key;
       const senderName=myProfile?.displayName||'Пользователь';
@@ -2669,7 +2845,7 @@
           createdAt:now,read:false,type:'friend_request',senderUid:currentUser.uid
         }
       });
-      if(button){button.textContent='…';button.classList.add('sent');button.title='Запрос отправлен'}
+      if(button){button.textContent='Отменить';button.classList.add('sent');button.title='Отменить заявку'}
     }catch(error){
       console.error(error);
       alert('Не удалось отправить запрос в друзья: '+firebaseErrorMessage(error));
@@ -2678,7 +2854,7 @@
 
 
   async function rebuildIncomingFriendRequestsFromNotifications(){
-    if(!currentUser)return;
+    if(!currentUser||requestListAvailable)return;
 
     try{
       const snap=await get(ref(db,`notifications/${currentUser.uid}`));
@@ -2706,6 +2882,7 @@
         }
       }
 
+      if(requestListAvailable||!currentUser)return;requestsLoaded=true;
       friendRequestCache=currentRequests.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
       updateProfileCounters();
       renderProfileRequests();
@@ -2714,42 +2891,26 @@
     }
   }
 
+  let requestGeneration=0,requestListAvailable=false;
   function subscribeFriendRequests(){
     if(!currentUser)return;
     if(friendRequestsUnsubscribe)friendRequestsUnsubscribe();
-
-    // Основной путь: если правила позволяют читать весь список входящих заявок.
-    friendRequestsUnsubscribe=onValue(
-      ref(db,`friendRequests/${currentUser.uid}`),
-      async snap=>{
-        const raw=snap.val()||{};
-        const entries=Object.entries(raw);
-
-        friendRequestCache=await Promise.all(entries.map(async([fromUid,item])=>{
-          const uSnap=await get(ref(db,`users/${fromUid}`));
-          return {uid:fromUid,createdAt:item?.createdAt||0,...(uSnap.val()||{})};
-        }));
-
-        friendRequestCache.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-        updateProfileCounters();
-        renderProfileRequests();
-
-        // Если direct-list дал пусто, дополнительно проверяем реальные friend_request уведомления.
-        if(!entries.length)rebuildIncomingFriendRequestsFromNotifications();
-      },
-      error=>{
-        console.warn('Direct incoming requests list unavailable:',error);
-        rebuildIncomingFriendRequestsFromNotifications();
-      }
-    );
-
-    // И сразу синхронизируем через уведомления, чтобы профиль не оставался пустым до события onValue.
-    rebuildIncomingFriendRequestsFromNotifications();
+    const owner=currentUser.uid;requestListAvailable=false;
+    friendRequestsUnsubscribe=onValue(ref(db,`friendRequests/${owner}`),async snap=>{
+      requestListAvailable=true;requestsLoaded=true;const generation=++requestGeneration;
+      const entries=Object.entries(snap.val()||{}).filter(([,v])=>!!v);
+      const rows=await hydratePeople(entries.map(([uid])=>uid));
+      if(currentUser?.uid!==owner||generation!==requestGeneration)return;
+      friendRequestCache=rows.map(u=>({...u,createdAt:snap.val()?.[u.uid]?.createdAt||0})).sort((a,b)=>b.createdAt-a.createdAt);
+      updateProfileCounters();renderProfileRequests();
+    },()=>{requestListAvailable=false;rebuildIncomingFriendRequestsFromNotifications()});
   }
 
   async function acceptFriendRequest(fromUid){
     if(!currentUser)return;
     try{
+      const pending=await get(ref(db,`friendRequests/${currentUser.uid}/${fromUid}`));
+      if(!pending.exists())throw new Error('Эта заявка уже отменена или обработана.');
       const now=Date.now();
       const notificationId=push(ref(db,`notifications/${fromUid}`)).key;
       const acceptorName=myProfile?.displayName||'Пользователь';
@@ -2759,6 +2920,8 @@
         [`friends/${fromUid}/${currentUser.uid}`]:true,
         [`friendRequests/${currentUser.uid}/${fromUid}`]:null,
         [`sentFriendRequests/${fromUid}/${currentUser.uid}`]:null,
+        [`sentFriendRequests/${currentUser.uid}/${fromUid}`]:null,
+        [`friendRequests/${fromUid}/${currentUser.uid}`]:null,
         [`notifications/${fromUid}/${notificationId}`]:{
           title:'Заявка принята',
           text:`${acceptorName} (@${acceptorUsername}) принял(а) вашу заявку в друзья.`,
@@ -2787,17 +2950,15 @@
 
 
   function switchProfileTab(tab){
-    document.querySelectorAll('.profile-tab').forEach(b=>b.classList.toggle('active',b.dataset.profileTab===tab));
-    $('profilePanelSettings').classList.toggle('active',tab==='settings');
-    $('profilePanelFriends').classList.toggle('active',tab==='friends');
-    $('profilePanelRequests').classList.toggle('active',tab==='requests');
-    if(tab==='friends')renderProfileFriends();
-    if(tab==='requests'){
-      renderProfileRequests();
-      rebuildIncomingFriendRequestsFromNotifications();
-    }
+    const selected=['posts','settings','friends','requests','following','music'].includes(tab)?tab:'posts';
+    document.querySelectorAll('#profileScreen .profile-tab').forEach(b=>b.classList.toggle('active',b.dataset.profileTab===selected));
+    document.querySelectorAll('#profileScreen .profile-panel').forEach(p=>p.classList.toggle('active',p.id==='profilePanel'+selected[0].toUpperCase()+selected.slice(1)));
+    if(selected==='friends')renderProfileFriends();
+    if(selected==='requests')renderProfileRequests();
+    if(selected==='following')renderFollowingLists();
   }
-  document.querySelectorAll('.profile-tab').forEach(btn=>btn.addEventListener('click',()=>switchProfileTab(btn.dataset.profileTab)));
+  window.suaProfileTab=switchProfileTab;
+  document.querySelectorAll('#profileScreen .profile-tab').forEach(btn=>btn.addEventListener('click',()=>switchProfileTab(btn.dataset.profileTab)));
   $('profileCloseBtn').addEventListener('click',()=>{$('profileScreen').classList.remove('open');document.body.style.overflow='';});
   $('notificationCloseBtn').addEventListener('click',()=>$('notificationDrawer').classList.remove('open'));
   $('notificationDrawer').addEventListener('click',e=>{if(e.target===e.currentTarget)$('notificationDrawer').classList.remove('open')});
@@ -2843,7 +3004,7 @@
     const oldUsername=safeUsername(myProfile?.username||'');
     $('profileFeedback').style.display='block';
     if(!name||nextUsername.length<3){$('profileFeedback').textContent='Укажите имя и username минимум из 3 символов.';return;}
-    if(!/^[a-z0-9_.-]+$/.test(nextUsername)){$('profileFeedback').textContent='Username может содержать латинские буквы, цифры, точку, дефис и _.';return;}
+    if(!/^[a-z0-9_]{3,24}$/.test(nextUsername)){$('profileFeedback').textContent='Адрес профиля: от 3 до 24 латинских букв, цифр или _.';return;}
     try{
       if(nextUsername!==oldUsername){
         const usernameSnap=await get(ref(db,`usernames/${nextUsername}`));
@@ -2862,46 +3023,35 @@
     }catch(error){$('profileFeedback').textContent='Не удалось сохранить: '+firebaseErrorMessage(error);}
   });
 
+  let friendsGeneration=0,friendsLoaded=false,requestsLoaded=false;
   function subscribeProfileFriends(){
     if(!currentUser)return;
     if(friendsUnsubscribe)friendsUnsubscribe();
-    friendsUnsubscribe=onValue(ref(db,`friends/${currentUser.uid}`),async snap=>{
-      const ids=Object.keys(snap.val()||{});
-      friendsCache=await Promise.all(ids.map(async uid=>{const uSnap=await get(ref(db,`users/${uid}`));return {uid,...(uSnap.val()||{})};}));
-      updateProfileCounters();renderProfileFriends();
-    });
+    const owner=currentUser.uid;
+    friendsUnsubscribe=onValue(ref(db,`friends/${owner}`),async snap=>{
+      friendsLoaded=true;const generation=++friendsGeneration,rows=await hydratePeople(Object.keys(snap.val()||{}));
+      if(currentUser?.uid!==owner||generation!==friendsGeneration)return;
+      friendsCache=rows;updateProfileCounters();renderProfileFriends();
+    },()=>{$('profileFriendsCount').textContent='—';$('profileFriendsList').innerHTML='<div class="profile-empty">Не удалось загрузить друзей. Попробуйте открыть профиль ещё раз.</div>'});
   }
 
   function updateProfileCounters(){
-    $('profileFriendsCount').textContent=friendsCache.length;
-    $('profileRequestsCount').textContent=friendRequestCache.length;
-    const badge=$('profileRequestsBadge');
-    badge.hidden=friendRequestCache.length===0;
-    badge.textContent=friendRequestCache.length>99?'99+':friendRequestCache.length;
-
-    // Храним только публичные СЧЁТЧИКИ в профиле пользователя.
-    // Списки друзей и сами заявки по-прежнему остаются закрытыми правилами Firebase.
-    if(currentUser){
-      const counts={friendsCount:friendsCache.length,friendRequestsCount:friendRequestCache.length};
-      const changed=Number(myProfile?.friendsCount||0)!==counts.friendsCount ||
-                    Number(myProfile?.friendRequestsCount||0)!==counts.friendRequestsCount;
-      if(changed){
-        update(ref(db,`users/${currentUser.uid}`),counts).catch(()=>{});
-        myProfile={...(myProfile||{}),...counts};
-      }
-    }
+    $('profileFriendsCount').textContent=friendsLoaded?friendsCache.length:'—';
+    $('profileRequestsCount').textContent=requestsLoaded?friendRequestCache.length:'—';
+    const badge=$('profileRequestsBadge');badge.hidden=!friendRequestCache.length;badge.textContent=friendRequestCache.length;
+    renderNotifications();
   }
 
   function renderProfileFriends(){
     const box=$('profileFriendsList');if(!box)return;
     if(!friendsCache.length){box.innerHTML='<div class="profile-empty">У вас пока нет друзей. Найдите пользователя в мессенджере и нажмите «+».</div>';return;}
-    box.innerHTML=friendsCache.map(u=>`<div class="friend-row"><div class="chat-avatar clickable-avatar" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" title="Открыть профиль">${avatarInner(u)}</div><div class="friend-copy"><b>${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}${u.online?' · онлайн':''}</span></div><div class="friend-actions"><button class="friend-primary" onclick="profileOpenFriendChat('${escapeHtml(u.uid)}')"><i class="fa-regular fa-message"></i> Написать</button></div></div>`).join('');
+    box.innerHTML=friendsCache.map(u=>`<div class="friend-row"><div class="chat-avatar clickable-avatar" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" title="Открыть профиль">${avatarInner(u)}</div><div class="friend-copy"><b role="button" tabindex="0" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" onkeydown="if(event.key==='Enter')this.click()">${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}${u.online?' · онлайн':''}</span></div><div class="friend-actions"><button class="friend-primary" onclick="profileOpenFriendChat('${escapeHtml(u.uid)}')"><i class="fa-regular fa-message"></i> Написать</button></div></div>`).join('');
   }
 
   function renderProfileRequests(){
     const box=$('profileRequestsList');if(!box)return;
     if(!friendRequestCache.length){box.innerHTML='<div class="profile-empty">Новых заявок в друзья нет.</div>';return;}
-    box.innerHTML=friendRequestCache.map(u=>`<div class="friend-row"><div class="chat-avatar clickable-avatar" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" title="Открыть профиль">${avatarInner(u)}</div><div class="friend-copy"><b>${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}</span></div><div class="friend-actions"><button class="friend-primary" onclick="profileAcceptFriend('${escapeHtml(u.uid)}')">Принять</button><button class="friend-secondary" onclick="profileDeclineFriend('${escapeHtml(u.uid)}')">Отклонить</button></div></div>`).join('');
+    box.innerHTML=friendRequestCache.map(u=>`<div class="friend-row"><div class="chat-avatar clickable-avatar" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" title="Открыть профиль">${avatarInner(u)}</div><div class="friend-copy"><b role="button" tabindex="0" onclick="profileOpenFriendProfile('${escapeHtml(u.uid)}')" onkeydown="if(event.key==='Enter')this.click()">${escapeHtml(u.displayName||'Пользователь')}</b><span>@${escapeHtml(u.username||'user')}</span></div><div class="friend-actions"><button class="friend-primary" onclick="profileAcceptFriend('${escapeHtml(u.uid)}')">Принять</button><button class="friend-secondary" onclick="profileDeclineFriend('${escapeHtml(u.uid)}')">Отклонить</button></div></div>`).join('');
   }
   window.profileAcceptFriend=acceptFriendRequest;window.profileDeclineFriend=declineFriendRequest;
   window.profileOpenFriendProfile=async function(uid){
@@ -2918,7 +3068,7 @@
       notificationCache=Object.entries(snap.val()||{}).map(([id,n])=>({id,...n})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
       const unread=notificationCache.filter(n=>!n.read).length,badge=$('notificationBadge');
       badge.hidden=unread===0;
-      badge.textContent=unread>99?'99+':unread;
+      badge.textContent=unread===0?'':(unread>99?'99+':unread);
       renderNotifications();
 
       // Новая заявка может прийти через notification раньше, чем профиль открыт.
@@ -2929,7 +3079,7 @@
   function renderNotifications(){
     const box=$('notificationList');if(!box)return;
     if(!notificationCache.length){box.innerHTML='<div class="profile-empty">Уведомлений пока нет.</div>';return;}
-    box.innerHTML=notificationCache.map(n=>`<div class="notification-item ${n.read?'':'unread'}"><b>${escapeHtml(notificationTitle(n))}</b><p>${escapeHtml(n.text||'')}</p><time>${new Date(n.createdAt||Date.now()).toLocaleString('ru-RU')}</time>${n.type==='friend_request'&&n.senderUid?`<div class="notification-actions"><button class="friend-primary" onclick="notificationAcceptFriend('${escapeHtml(n.senderUid)}')">Принять</button><button class="friend-secondary" onclick="notificationDeclineFriend('${escapeHtml(n.senderUid)}')">Отклонить</button></div>`:''}</div>`).join('');
+    box.innerHTML=notificationCache.map(n=>`<div class="notification-item ${n.read?'':'unread'}"><b>${escapeHtml(notificationTitle(n))}</b><p>${escapeHtml(n.text||'')}</p><time>${new Date(n.createdAt||Date.now()).toLocaleString('ru-RU')}</time>${n.type==='friend_request'&&n.senderUid&&friendRequestCache.some(u=>u.uid===n.senderUid)?`<div class="notification-actions"><button class="friend-primary" onclick="notificationAcceptFriend('${escapeHtml(n.senderUid)}')">Принять</button><button class="friend-secondary" onclick="notificationDeclineFriend('${escapeHtml(n.senderUid)}')">Отклонить</button></div>`:''}</div>`).join('');
   }
   window.notificationAcceptFriend=async function(uid){await acceptFriendRequest(uid);$('notificationDrawer').classList.remove('open');window.suaOpenProfile('friends');};
   window.notificationDeclineFriend=async function(uid){await declineFriendRequest(uid);};
@@ -2939,15 +3089,307 @@
 
   window.suaSavePost=async function(text){
     if(!currentUser)throw new Error('Нужно войти в аккаунт');
+
+    const body=String(text||'').trim();
+    if(!body)throw new Error('Введите текст публикации.');
+
     const postRef=push(ref(db,`posts/${currentUser.uid}`));
     const now=Date.now();
+
     await set(postRef,{
       id:postRef.key,
       uid:currentUser.uid,
-      body:String(text||'').trim(),
+      body,
       createdAt:now
     });
+
+    renderOwnPosts();
+    return postRef.key;
   };
+
+  async function loadPostInteraction(postId){
+    const [likesSnap,commentsSnap]=await Promise.all([
+      get(ref(db,`postLikes/${postId}`)),
+      get(ref(db,`postComments/${postId}`))
+    ]);
+
+    const likes=likesSnap?.val?.()||{};
+    const comments=commentsSnap?.val?.()||{};
+
+    return {
+      likesCount:Object.keys(likes).length,
+      commentsCount:Object.keys(comments).length,
+      likedByMe:!!likes[currentUser?.uid]
+    };
+  }
+
+  function firebasePostHtml(post){
+    postViewCache.set(post.id,post);
+    const author=post.author||cachedUsers[post.uid]||{displayName:'Пользователь',username:'user'};
+    const interaction=post.interaction||{likesCount:0,commentsCount:0,likedByMe:false};
+
+    return `
+      <article class="feed-post" data-post-id="${escapeHtml(post.id)}">
+        <div class="feed-post-head">
+          <div class="chat-avatar clickable-avatar" onclick="openPublicProfile('${escapeHtml(post.uid)}')" title="Открыть профиль">
+            ${avatarInner(author)}
+          </div>
+          <div class="feed-post-author">
+            <b onclick="openPublicProfile('${escapeHtml(post.uid)}')">${escapeHtml(author.displayName||'Пользователь')}</b>
+            <span>@${escapeHtml(author.username||'user')} · ${new Date(post.createdAt||Date.now()).toLocaleString('ru-RU')}</span>
+          </div>
+        </div>
+
+        <div class="feed-post-body">${escapeHtml(post.body||'').replace(/\n/g,'<br>')}</div>
+
+        <div class="feed-post-actions">
+          <button class="${interaction.likedByMe?'liked':''}" onclick="suaTogglePostLike('${escapeHtml(post.id)}')">
+            <i class="${interaction.likedByMe?'fa-solid':'fa-regular'} fa-heart"></i>
+            <span data-post-likes-count>${interaction.likesCount}</span>
+          </button><button onclick="suaShowPostLikes('${escapeHtml(post.id)}')" title="Кому понравилось">Кто оценил</button>
+          <button onclick="suaOpenPostComments('${escapeHtml(post.id)}')">
+            <i class="fa-regular fa-comment"></i>
+            <span data-post-comments-count>${interaction.commentsCount}</span>
+          </button>
+          ${currentUser?.uid===post.uid ? `
+            <button class="post-delete-btn" onclick="suaDeleteOwnPost('${escapeHtml(post.uid)}','${escapeHtml(post.id)}')" title="Удалить публикацию">
+              <i class="fa-regular fa-trash-can"></i>
+              <span>Удалить</span>
+            </button>` : ''}
+        </div>
+      </article>`;
+  }
+
+  async function collectAllFirebasePosts(){
+    if(!currentUser)return [];
+
+    let users={};
+    try{
+      const usersSnap=await get(ref(db,'users'));
+      users=usersSnap.val()||{};
+    }catch(error){
+      console.warn('Users feed load:',error);
+      users={...cachedUsers};
+    }
+
+    const uids=Object.keys(users);
+    const posts=[];
+
+    await Promise.all(uids.map(async uid=>{
+      try{
+        const postSnap=await get(ref(db,`posts/${uid}`));
+        postSnap.forEach(child=>{
+          const p=child.val()||{};
+          posts.push({
+            id:child.key,
+            uid,
+            ...p,
+            author:{uid,...(users[uid]||cachedUsers[uid]||{})}
+          });
+        });
+      }catch(error){
+        console.warn('Posts feed load skipped:',uid,error);
+      }
+    }));
+
+    posts.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+
+    await Promise.all(posts.map(async p=>{
+      p.interaction=await loadPostInteraction(p.id);
+    }));
+
+    return posts;
+  }
+
+  window.suaRenderFirebaseFeed=async function(){
+    const box=$('feedList');
+    if(!box)return;
+
+    if(!currentUser){
+      box.innerHTML='<div class="notice-box">Войдите в аккаунт, чтобы видеть публикации пользователей.</div>';
+      return;
+    }
+
+    box.innerHTML='<div class="notice-box">Загрузка публикаций...</div>';
+
+    try{
+      firebaseFeedCache=await collectAllFirebasePosts();
+
+      if(!firebaseFeedCache.length){
+        box.innerHTML='<div class="profile-empty">В ленте пока нет публикаций. Опубликуйте первую.</div>';
+        return;
+      }
+
+      box.innerHTML=firebaseFeedCache.map(firebasePostHtml).join('');
+    }catch(error){
+      console.error('Feed render:',error);
+      box.innerHTML='<div class="profile-empty">Не удалось загрузить ленту.</div>';
+    }
+  };
+
+
+  window.suaDeleteOwnPost=async function(ownerUid,postId){
+    if(!currentUser || currentUser.uid!==ownerUid)return;
+
+    if(!confirm('Удалить эту публикацию?'))return;
+
+    try{
+      // Удаляем пост и его социальные данные одной операцией.
+      await set(ref(db,`posts/${ownerUid}/${postId}`),null);
+      if(activeCommentsPostId===postId)closeSiteModal();
+
+      await window.suaRenderFirebaseFeed?.();
+      await renderOwnPosts();
+
+      if(
+        publicProfileUid===ownerUid &&
+        $('publicProfileScreen')?.classList.contains('open') &&
+        publicProfileUser
+      ){
+        await renderPublicProfilePosts(ownerUid,publicProfileUser);
+      }
+    }catch(error){
+      console.error('Delete post:',error);
+      alert('Не удалось удалить публикацию: '+firebaseErrorMessage(error));
+    }
+  };
+
+  window.suaTogglePostLike=async function(postId){
+    if(!currentUser){openAuth('login');return;}
+
+    const likeRef=ref(db,`postLikes/${postId}/${currentUser.uid}`);
+
+    try{
+      const snap=await get(likeRef);
+
+      // В этой ветке у одного uid физически может существовать только ОДНА запись.
+      // Второе нажатие снимает лайк, а не добавляет ещё один.
+      if(snap.exists())await set(likeRef,null);
+      else await set(likeRef,true);
+      await syncPostCounters(postId);
+
+      // Обновляем и ленту, и открытый публичный профиль.
+      await window.suaRenderFirebaseFeed?.();
+      await renderOwnPosts();
+
+      if(
+        publicProfileUid &&
+        $('publicProfileScreen')?.classList.contains('open') &&
+        publicProfileUser
+      ){
+        await renderPublicProfilePosts(publicProfileUid,publicProfileUser);
+      }
+    }catch(error){
+      console.error('Post like:',error);
+      alert('Не удалось изменить лайк: '+firebaseErrorMessage(error));
+    }
+  };
+
+  function closeCommentsModal(){
+    if(commentsUnsubscribe){
+      commentsUnsubscribe();
+      commentsUnsubscribe=null;
+    }
+    activeCommentsPostId=null;
+    $('siteModal').classList.remove('comments-modal');
+  }
+
+  async function renderCommentsSnapshot(postId,snap){
+    const box=$('postCommentsList');
+    if(!box || activeCommentsPostId!==postId)return;
+
+    const raw=snap.val()||{};
+    const rows=Object.entries(raw)
+      .map(([id,c])=>({id,...c}))
+      .sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+
+    if(!rows.length){
+      box.innerHTML='<div class="profile-empty">Комментариев пока нет.</div>';
+      return;
+    }
+
+    const missing=[...new Set(rows.map(c=>c.uid).filter(uid=>uid && !cachedUsers[uid]))];
+    await Promise.all(missing.map(async uid=>{
+      try{
+        const uSnap=await get(ref(db,`users/${uid}`));
+        if(uSnap.exists())cachedUsers[uid]={uid,...(uSnap.val()||{})};
+      }catch(_){}
+    }));
+
+    if(activeCommentsPostId!==postId)return;
+
+    box.innerHTML=rows.map(c=>{
+      const u=cachedUsers[c.uid]||{displayName:'Пользователь',username:'user'};
+      return `
+        <div class="comment-row">
+          <div class="chat-avatar clickable-avatar" onclick="closeSiteModal();openPublicProfile('${escapeHtml(c.uid||'')}')">${avatarInner(u)}</div>
+          <div class="comment-copy">
+            <b onclick="closeSiteModal();openPublicProfile('${escapeHtml(c.uid||'')}')">${escapeHtml(u.displayName||'Пользователь')}</b>
+            <p>${escapeHtml(c.body||'').replace(/\n/g,'<br>')}</p>
+            <time>${new Date(c.createdAt||Date.now()).toLocaleString('ru-RU')}</time>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  window.suaOpenPostComments=function(postId){
+    if(!currentUser){openAuth('login');return;}
+
+    closeCommentsModal();
+    openSiteModal(
+      'Комментарии',
+      `<div class="post-modal-layout"><div class="post-modal-original">${postViewCache.has(postId)?firebasePostHtml(postViewCache.get(postId)):'<p>Публикация</p>'}</div><div class="post-modal-discussion"><div id="postCommentsList" class="comment-list"><div class="profile-empty">Загрузка комментариев...</div></div>
+       <div class="comment-compose">
+         <input id="postCommentInput" maxlength="1500" placeholder="Написать комментарий...">
+         <button class="quick-btn" id="postCommentSendBtn" onclick="suaSubmitPostComment('${escapeHtml(postId)}')">Отправить</button>
+       </div></div></div>`
+    );
+
+    activeCommentsPostId=postId;
+    $('siteModal').classList.add('comments-modal');
+    $('postCommentInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();suaSubmitPostComment(postId)}});
+    commentsUnsubscribe=onValue(
+      ref(db,`postComments/${postId}`),
+      snap=>renderCommentsSnapshot(postId,snap),
+      error=>{
+        console.error('Comments listener:',error);
+        if($('postCommentsList'))$('postCommentsList').innerHTML='<div class="profile-empty">Не удалось загрузить комментарии.</div>';
+      }
+    );
+
+    setTimeout(()=>$('postCommentInput')?.focus(),0);
+  };
+
+  window.suaSubmitPostComment=async function(postId){
+    if(!currentUser)return;
+
+    const input=$('postCommentInput');
+    const body=input?.value.trim();
+    if(!body)return;
+
+    const send=$('postCommentSendBtn');if(send?.disabled)return;if(send)send.disabled=true;
+    const commentRef=push(ref(db,`postComments/${postId}`));
+
+    try{
+      await set(commentRef,{
+        uid:currentUser.uid,
+        body,
+        createdAt:Date.now()
+      });
+      input.value='';
+      await syncPostCounters(postId);
+
+      // Обновим счётчик комментариев в фоне.
+      window.suaRenderFirebaseFeed?.();
+      renderOwnPosts();
+      if(publicProfileUid&&publicProfileUser)renderPublicProfilePosts(publicProfileUid,publicProfileUser);
+    }catch(error){
+      console.error('Post comment:',error);
+      alert('Комментарий не отправлен: '+firebaseErrorMessage(error));
+    }finally{if(send)send.disabled=false}
+  };
+
+  window.suaCloseCommentsModal=closeCommentsModal;
 
   async function getPublicProfileRelation(uid){
     if(!currentUser||!uid||uid===currentUser.uid)return 'self';
@@ -2972,9 +3414,8 @@
       btn.textContent='Удалить из друзей';
       btn.classList.add('remove');
     }else if(publicProfileRelation==='outgoing'){
-      btn.textContent='Заявка отправлена';
+      btn.textContent='Отменить заявку';
       btn.classList.add('pending');
-      btn.disabled=true;
     }else if(publicProfileRelation==='incoming'){
       btn.textContent='Принять заявку';
     }else if(publicProfileRelation==='self'){
@@ -2989,10 +3430,17 @@
   async function renderPublicProfilePosts(uid,user){
     const box=$('publicProfilePosts');
     box.innerHTML='<div class="profile-empty">Публикации загружаются...</div>';
+
     try{
       const snap=await get(ref(db,`posts/${uid}`));
       const posts=[];
-      snap.forEach(child=>posts.push({id:child.key,...(child.val()||{})}));
+      snap.forEach(child=>posts.push({
+        id:child.key,
+        uid,
+        ...(child.val()||{}),
+        author:user
+      }));
+
       posts.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
 
       if(!posts.length){
@@ -3000,14 +3448,11 @@
         return;
       }
 
-      box.innerHTML=posts.map(p=>`
-        <article class="public-post">
-          <div class="public-post-head">
-            <div class="chat-avatar">${avatarInner(user)}</div>
-            <div><b>${escapeHtml(user.displayName||'Пользователь')}</b><span>@${escapeHtml(user.username||'user')} · ${new Date(p.createdAt||Date.now()).toLocaleString('ru-RU')}</span></div>
-          </div>
-          <div class="public-post-body">${escapeHtml(p.body||'').replace(/\n/g,'<br>')}</div>
-        </article>`).join('');
+      await Promise.all(posts.map(async p=>{
+        p.interaction=await loadPostInteraction(p.id);
+      }));
+
+      box.innerHTML=posts.map(firebasePostHtml).join('');
     }catch(error){
       console.error(error);
       box.innerHTML='<div class="profile-empty">Не удалось загрузить публикации.</div>';
@@ -3017,7 +3462,7 @@
   window.openPublicProfile=async function(uid){
     if(!currentUser){openAuth('login');return;}
     if(!uid)return;
-    if(uid===currentUser.uid){window.suaOpenProfile('settings');return;}
+    if(uid===currentUser.uid){window.suaOpenProfile('posts');return;}
 
     try{
       const userSnap=await get(ref(db,`users/${uid}`));
@@ -3038,16 +3483,22 @@
       let liveFriendsCount=Number(user.friendsCount||0);
       try{
         const friendsSnap=await get(ref(db,`friends/${uid}`));
-        if(friendsSnap.exists()) liveFriendsCount=Object.keys(friendsSnap.val()||{}).length;
+        // Даже если список пустой, это актуальный результат.
+        liveFriendsCount=friendsSnap.exists()
+          ? Object.keys(friendsSnap.val()||{}).length
+          : 0;
       }catch(error){
         console.warn('Public friends count fallback:',error);
       }
 
-      $('publicProfileFriendsCount').textContent=liveFriendsCount;
+      $('publicProfileFriendsCount').textContent=String(liveFriendsCount);
       // Количество входящих заявок остаётся из публичного счётчика профиля,
       // сами заявки и их список другим пользователям не раскрываются.
-      $('publicProfileRequestsCount').textContent=Number(user.friendRequestsCount||0);
       renderPublicProfileFriendButton();
+      subscribePublicSocial(uid);
+      suaPublicTab('posts');
+      renderProfileMusic();
+      $('profileScreen').classList.remove('open');
 
       $('publicProfileScreen').classList.add('open');
       document.body.style.overflow='hidden';
@@ -3098,6 +3549,9 @@
       if(publicProfileRelation==='friend'){
         await removeFriend(publicProfileUid);
         publicProfileRelation='none';
+      }else if(publicProfileRelation==='outgoing'){
+        await cancelFriendRequest(publicProfileUid);
+        publicProfileRelation='none';
       }else if(publicProfileRelation==='incoming'){
         await acceptFriendRequest(publicProfileUid);
         publicProfileRelation='friend';
@@ -3105,6 +3559,7 @@
         await sendFriendRequest(publicProfileUid,null);
         publicProfileRelation='outgoing';
       }
+      publicProfileRelation=await getPublicProfileRelation(publicProfileUid);
       renderPublicProfileFriendButton();
     }catch(error){
       console.error(error);
@@ -3275,7 +3730,6 @@
           $('publicProfilePresence').classList.toggle('online',!!u.online);
           // Не перезаписываем количество друзей устаревшим users.friendsCount.
           // Оно обновляется из /friends/{uid} при открытии профиля.
-          $('publicProfileRequestsCount').textContent=Number(u.friendRequestsCount||0);
         }
       }
     });
@@ -3585,7 +4039,7 @@
     }).join('') || '<div class="chat-empty-list">Начните диалог — отправьте первое сообщение.</div>';
     box.querySelectorAll('[data-message-profile]').forEach(el=>el.addEventListener('click',e=>{
       const uid=e.currentTarget.dataset.messageProfile;
-      if(uid===currentUser.uid)window.suaOpenProfile('settings');
+      if(uid===currentUser.uid)window.suaOpenProfile('posts');
       else openPublicProfile(uid);
     }));
     box.scrollTop=box.scrollHeight;
@@ -3708,6 +4162,200 @@
       console.warn('Unread reset skipped:',error);
     }
   }
+  // v44 social workspace. Subscription lifetimes are tied to the signed-in account.
+  async function syncPostCounters(postId){
+    const interaction=await loadPostInteraction(postId),post=postViewCache.get(postId);if(post)post.interaction=interaction;
+    document.querySelectorAll('[data-post-id]').forEach(article=>{if(article.dataset.postId!==postId)return;
+      const likes=article.querySelector('[data-post-likes-count]'),comments=article.querySelector('[data-post-comments-count]');
+      if(likes){likes.textContent=interaction.likesCount;const button=likes.closest('button');button.classList.toggle('liked',interaction.likedByMe);button.querySelector('i').className=(interaction.likedByMe?'fa-solid':'fa-regular')+' fa-heart'}
+      if(comments)comments.textContent=interaction.commentsCount;
+    });
+  }
+  const postViewCache=new Map();
+  let ownPostsUnsubscribe=null,followingUnsubscribe=null,outgoingUnsubscribe=null;
+  let ownPostsCache=[],followingCache=[],outgoingCache=[],publicSocialUnsubscribes=[],followingError=false;
+  let socialEpoch=0,ownPostsRenderVersion=0,followingVersion=0,outgoingVersion=0;
+  let publicFriends=[],publicFollowing=[];
+  async function hydratePeople(ids){return Promise.all(ids.map(async uid=>{try{const snap=await get(ref(db,`users/${uid}`));return {...(snap.val()||{}),uid}}catch(_){return {uid,displayName:'Пользователь недоступен',username:''}}}))}
+  function stopSocialV44(){
+    friendsLoaded=false;requestsLoaded=false;followingError=false;
+    ++socialEpoch;++ownPostsRenderVersion;++followingVersion;++outgoingVersion;
+    [ownPostsUnsubscribe,followingUnsubscribe,outgoingUnsubscribe,...publicSocialUnsubscribes].forEach(fn=>fn?.());
+    ownPostsUnsubscribe=followingUnsubscribe=outgoingUnsubscribe=null;publicSocialUnsubscribes=[];
+    ownPostsCache=[];followingCache=[];outgoingCache=[];postViewCache.clear();
+    $('publicProfileScreen').classList.remove('open');closeSiteModal();
+    if(typeof stopClub==='function')stopClub();
+  }
+  function subscribeOwnPosts(){
+    if(!currentUser)return;ownPostsUnsubscribe?.();const uid=currentUser.uid;
+    ownPostsUnsubscribe=onValue(ref(db,`posts/${uid}`),snap=>{if(currentUser?.uid!==uid)return;ownPostsCache=Object.entries(snap.val()||{}).map(([id,p])=>({...p,id,uid}));renderOwnPosts()},()=>{$('ownProfilePosts').innerHTML='<div class="profile-empty">Не удалось загрузить публикации.</div>'});
+  }
+  async function renderOwnPosts(){
+    if(!currentUser)return;const uid=currentUser.uid,version=++ownPostsRenderVersion;
+    const rows=ownPostsCache.slice().sort((a,b)=>b.createdAt-a.createdAt);
+    await Promise.all(rows.map(async p=>{p.author=myProfile||{};p.interaction=await loadPostInteraction(p.id)}));
+    if(currentUser?.uid!==uid||version!==ownPostsRenderVersion)return;
+    $('ownProfilePosts').innerHTML=rows.map(firebasePostHtml).join('')||'<div class="profile-empty">Здесь появятся ваши публикации. Расскажите, над чем работаете.</div>';
+  }
+  window.suaPublishProfilePost=async function(){
+    const input=$('profilePostText'),button=$('profilePublishBtn'),feedback=$('profilePostFeedback');
+    if(button.disabled)return;const value=input.value.trim();if(!value){feedback.textContent='Введите текст публикации.';return}
+    button.disabled=true;feedback.textContent='Публикуем…';
+    try{await suaSavePost(value);input.value='';feedback.textContent='Опубликовано';await suaRenderFirebaseFeed()}catch(e){feedback.textContent=firebaseErrorMessage(e)}finally{button.disabled=false}
+  };
+  function personRow(user,actions=''){
+    const uid=escapeHtml(user.uid);
+    return `<div class="friend-row"><button class="chat-avatar" onclick="closeSiteModal();profileOpenFriendProfile('${uid}')" aria-label="Открыть профиль">${avatarInner(user)}</button><button class="friend-copy person-link" onclick="closeSiteModal();profileOpenFriendProfile('${uid}')"><b>${escapeHtml(user.displayName||'Пользователь')}</b><span>${user.username?'@'+escapeHtml(user.username):''}</span></button><div class="friend-actions">${actions}</div></div>`;
+  }
+  function subscribeFollowing(){
+    if(!currentUser)return;followingUnsubscribe?.();outgoingUnsubscribe?.();const uid=currentUser.uid;
+    followingUnsubscribe=onValue(ref(db,`following/${uid}`),async snap=>{
+      const version=++followingVersion,rows=await hydratePeople(Object.keys(snap.val()||{}));
+      if(currentUser?.uid!==uid||version!==followingVersion)return;followingError=false;followingCache=rows;
+      $('profileFollowingCount').textContent=rows.length;renderFollowingLists();renderFollowButton();
+    },()=>{followingError=true;$('profileFollowingCount').textContent='—';$('profileFollowingList').innerHTML='<div class="profile-empty">Не удалось загрузить подписки. Попробуйте открыть профиль ещё раз.</div>'});
+    outgoingUnsubscribe=onValue(ref(db,`sentFriendRequests/${uid}`),async snap=>{
+      const version=++outgoingVersion,rows=await hydratePeople(Object.keys(snap.val()||{}));
+      if(currentUser?.uid!==uid||version!==outgoingVersion)return;outgoingCache=rows;renderFollowingLists();
+    },()=>{$('profileOutgoingList').innerHTML='<div class="profile-empty">Не удалось загрузить отправленные заявки.</div>'});
+  }
+  function renderFollowingLists(){
+    $('profileFollowingList').innerHTML=followingError?'<div class="profile-empty">Не удалось загрузить подписки. Попробуйте открыть профиль ещё раз.</div>':followingCache.map(u=>personRow(u,`<button class="friend-secondary" onclick="suaUnfollow('${escapeHtml(u.uid)}')">Отписаться</button>`)).join('')||'<div class="profile-empty">Вы пока ни на кого не подписаны.</div>';
+    $('profileOutgoingList').innerHTML=outgoingCache.map(u=>personRow(u,`<button class="friend-secondary" onclick="suaCancelFriendRequest('${escapeHtml(u.uid)}',this)">Отменить заявку</button>`)).join('')||'<div class="profile-empty">Отправленных заявок нет.</div>';
+  }
+  async function cancelFriendRequest(uid,button){
+    if(!currentUser||!uid)return;if(button)button.disabled=true;
+    try{await update(ref(db),{[`friendRequests/${uid}/${currentUser.uid}`]:null,[`sentFriendRequests/${currentUser.uid}/${uid}`]:null});
+      if(publicProfileUid===uid){publicProfileRelation=await getPublicProfileRelation(uid);renderPublicProfileFriendButton()}
+      if(button){button.textContent='Добавить';button.classList.remove('sent');button.title='Добавить в друзья'}
+    }catch(e){alert('Не удалось отменить заявку: '+firebaseErrorMessage(e))}finally{if(button)button.disabled=false}
+  }
+  window.suaCancelFriendRequest=cancelFriendRequest;
+  window.suaUnfollow=async function(uid){if(!currentUser)return;try{await set(ref(db,`following/${currentUser.uid}/${uid}`),null);renderFollowButton()}catch(e){alert(firebaseErrorMessage(e))}};
+  function renderFollowButton(){const button=$('publicFollowBtn');if(!button)return;button.textContent=followingCache.some(u=>u.uid===publicProfileUid)?'Отписаться':'Подписаться'}
+  window.suaToggleFollow=async function(){
+    if(!currentUser||!publicProfileUid)return;const button=$('publicFollowBtn');if(button.disabled)return;button.disabled=true;
+    try{const path=ref(db,`following/${currentUser.uid}/${publicProfileUid}`);const snap=await get(path);await set(path,snap.exists()?null:true);if(!followingUnsubscribe)subscribeFollowing()}catch(e){alert('Не удалось изменить подписку: '+firebaseErrorMessage(e))}finally{button.disabled=false}
+  };
+  function subscribePublicSocial(uid){
+    publicSocialUnsubscribes.forEach(fn=>fn());publicSocialUnsubscribes=[];publicFriends=[];publicFollowing=[];
+    for(const kind of ['friends','following']){
+      const counter=$(kind==='friends'?'publicProfileFriendsCount':'publicProfileFollowingCount');counter.textContent='—';let version=0;
+      publicSocialUnsubscribes.push(onValue(ref(db,`${kind}/${uid}`),async snap=>{
+        const seq=++version,ids=Object.keys(snap.val()||{});if(publicProfileUid!==uid)return;counter.textContent=ids.length;
+        const users=await hydratePeople(ids);if(publicProfileUid!==uid||seq!==version)return;
+        if(kind==='friends')publicFriends=users;else publicFollowing=users;
+      },()=>{if(publicProfileUid===uid)counter.textContent='—'}));
+    }
+    for(const path of [`friends/${currentUser.uid}/${uid}`,`friendRequests/${currentUser.uid}/${uid}`,`sentFriendRequests/${currentUser.uid}/${uid}`]){
+      publicSocialUnsubscribes.push(onValue(ref(db,path),async()=>{const relation=await getPublicProfileRelation(uid);if(publicProfileUid===uid){publicProfileRelation=relation;renderPublicProfileFriendButton()}}));
+    }
+    renderFollowButton();
+    get(ref(db,`following/${currentUser.uid}/${uid}`)).then(snap=>{if(publicProfileUid===uid)$('publicFollowBtn').textContent=snap.exists()?'Отписаться':'Подписаться'}).catch(()=>{});
+  }
+  window.suaPublicList=function(kind){const rows=kind==='friends'?publicFriends:publicFollowing;openSiteModal(kind==='friends'?'Друзья':'Подписки',rows.map(u=>personRow(u)).join('')||'<div class="profile-empty">Список пуст или ещё загружается.</div>')};
+  window.suaPublicTab=function(tab){$('publicProfilePosts').hidden=tab!=='posts';$('publicProfileMusic').hidden=tab!=='music';document.querySelectorAll('[data-public-profile-tab]').forEach(b=>b.classList.toggle('active',b.dataset.publicProfileTab===tab))};
+  window.suaShowPostLikes=async function(postId){
+    openSiteModal('Кому понравилось','<div class="profile-empty" id="postLikesPeople">Загрузка…</div>');
+    try{const snap=await get(ref(db,`postLikes/${postId}`)),rows=await hydratePeople(Object.keys(snap.val()||{}));const box=$('postLikesPeople');if(box)box.innerHTML=rows.map(u=>personRow(u)).join('')||'Пока нет отметок «Нравится».'}catch(_){if($('postLikesPeople'))$('postLikesPeople').textContent='Не удалось загрузить список.'}
+  };
+  // Keyboard navigation for overlays; modal remains above both profile surfaces.
+  document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if($('siteModal').classList.contains('open'))closeSiteModal();else if($('publicProfileScreen').classList.contains('open'))$('publicProfileCloseBtn').click();else if($('profileScreen').classList.contains('open'))$('profileCloseBtn').click()});
+
+  // v44 music community. No imported reviews, fabricated rankings or private distribution files.
+  let clubDialogUnsubscribe=null;
+  window.suaCloseClubDialog=function(){clubDialogUnsubscribe?.();clubDialogUnsubscribe=null};
+  let clubUnsubscribes=[],clubItems={},clubReviews={},clubRatings={},clubLikes={},clubComments={};
+  let clubView='home',clubQuery='',clubSort='new',clubLoading=false,clubError='',clubOwner=null,clubOpenItem=null;
+  function renderProfileMusic(){
+    const render=uid=>clubRows().filter(x=>x.type==='release'&&x.artistUid===uid).map(clubReleaseCard).join('')||'<div class="profile-empty">Музыка пока не добавлена.</div>';
+    if(currentUser&&$('ownProfileMusic'))$('ownProfileMusic').innerHTML=render(currentUser.uid);
+    if(publicProfileUid&&$('publicProfileMusic'))$('publicProfileMusic').innerHTML=render(publicProfileUid);
+  }
+  const clubViews={home:'Главная',releases:'Релизы',reviews:'Рецензии',rating:'Рейтинг',top:'ТОП-90 пользователей',authors:'Авторы',new:'Новые имена',authorLikes:'Авторские лайки',authorComments:'Авторские комментарии',albums:'Ценность альбомов',achievements:'Достижения',playlists:'Плейлисты',concerts:'Концерты',awards:'Премия SUA',news:'Новости',about:'О клубе',faq:'Вопросы и ответы'};
+  const clubEmpty=text=>`<div class="club-empty">${text}</div>`;
+  const clubRows=()=>Object.entries(clubItems).map(([id,x])=>({...x,id}));
+  const clubReviewRows=()=>Object.entries(clubReviews).map(([id,x])=>({...x,id}));
+  const clubUser=uid=>cachedUsers[uid]||{displayName:'Участник SUA',username:''};
+  const clubSafeUrl=value=>{try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:''}catch(_){return ''}};
+  const clubItemScore=id=>{const ratings=Object.values(clubRatings[id]||{}).map(x=>Number(x.score)).filter(x=>Number.isFinite(x)&&x>=0&&x<=100);return {count:ratings.length,value:ratings.length?Math.round(ratings.reduce((a,b)=>a+b,0)/ratings.length):null}};
+  function stopClub(){clubUnsubscribes.forEach(fn=>fn());clubUnsubscribes=[];clubOwner=null;clubItems={};clubReviews={};clubRatings={};clubLikes={};clubComments={};clubOpenItem=null;}
+  function startClub(){
+    if(!currentUser||clubOwner===currentUser.uid)return;stopClub();clubOwner=currentUser.uid;clubLoading=true;clubError='';const uid=currentUser.uid;let loaded=new Set();
+    const sources={knowledgeItems:v=>clubItems=v,knowledgeReviews:v=>clubReviews=v,knowledgeRatings:v=>clubRatings=v,knowledgeLikes:v=>clubLikes=v,knowledgeComments:v=>clubComments=v};
+    for(const [path,assign] of Object.entries(sources))clubUnsubscribes.push(onValue(ref(db,path),snap=>{
+      if(currentUser?.uid!==uid)return;assign(snap.val()||{});loaded.add(path);clubLoading=loaded.size<Object.keys(sources).length;
+      if($('screen-sanctum').classList.contains('active'))renderClubContent();
+      if(clubOpenItem&&$('clubDetailDynamic'))renderClubDetail(clubOpenItem);
+      renderProfileMusic();
+    },()=>{clubLoading=false;clubError='Не удалось загрузить клуб. Попробуйте ещё раз. Если ошибка повторится, обратитесь к администратору SUA.';renderClubContent()}));
+  }
+  window.suaRenderClub=function(){
+    const box=$('clubApp');if(!box)return;
+    box.innerHTML=`<div class="club-toolbar"><div><h1>Территория музыкального мнения.</h1><p>Слушайте релизы, пишите рецензии и открывайте новых авторов.</p></div><button class="quick-btn" onclick="suaClubCreate()"><i class="fa-solid fa-plus"></i> Добавить</button></div><nav class="club-nav" aria-label="Разделы клуба">${Object.entries(clubViews).map(([key,title])=>`<button data-club-view="${key}" onclick="suaClubNavigate('${key}')" class="${clubView===key?'active':''}">${title}</button>`).join('')}</nav><div class="club-filters"><input class="club-search" id="clubSearchV44" type="search" aria-label="Поиск по клубу" placeholder="Авторы, релизы, рецензии" value="${escapeHtml(clubQuery)}" oninput="suaClubSearch(this.value)"><select aria-label="Сортировка" onchange="suaClubSort(this.value)"><option value="new" ${clubSort==='new'?'selected':''}>Сначала новые</option><option value="score" ${clubSort==='score'?'selected':''}>По оценке</option><option value="popular" ${clubSort==='popular'?'selected':''}>По числу оценок</option></select></div><div id="clubContent"></div>`;
+    startClub();renderClubContent();
+  };
+  window.suaClubNavigate=function(view){if(!clubViews[view])return;clubView=view;document.querySelectorAll('[data-club-view]').forEach(b=>b.classList.toggle('active',b.dataset.clubView===view));renderClubContent()};
+  window.suaClubSearch=value=>{clubQuery=value;renderClubContent()};window.suaClubSort=value=>{clubSort=value;renderClubContent()};
+  function clubFilterRows(rows){const q=clubQuery.toLowerCase().trim();return rows.filter(x=>([x.title,x.artist,x.body,clubUser(x.uid).displayName].join(' ')).toLowerCase().includes(q))}
+  function clubReleaseCard(item){const score=clubItemScore(item.id),cover=clubSafeUrl(item.cover);return `<button class="club-release club-item-button" style="width:100%" onclick="suaClubOpen('${escapeHtml(item.id)}')">${cover?`<img class="club-cover" src="${escapeHtml(cover)}" alt="" loading="lazy">`:'<span class="club-cover"><i class="fa-solid fa-compact-disc"></i></span>'}<span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.artist||clubUser(item.uid).displayName)} · ${escapeHtml(item.format||({concert:'Концерт',playlist:'Плейлист',news:'Новость',award:'Премия'}[item.type]||'Релиз'))}${item.date?' · '+escapeHtml(item.date):''}</p></span><span class="club-score">${score.value??'—'}<small>${score.count} оценок</small></span></button>`}
+  function clubReviewCard(review){const item=clubItems[review.targetId],author=clubUser(review.uid),likes=clubLikes[review.id]||{},comments=clubComments[review.id]||{},ownAuthor=item?.artistUid;return `<article class="club-review"><div class="club-review-head"><button class="person-link" onclick="openPublicProfile('${escapeHtml(review.uid)}')"><b>${escapeHtml(author.displayName)}</b><small> · ${new Date(review.createdAt).toLocaleDateString('ru-RU')}</small></button>${likes[ownAuthor]?'<span class="club-eyebrow">ПОНРАВИЛОСЬ АВТОРУ</span>':''}</div><h3><button class="person-link" onclick="suaClubOpen('${escapeHtml(review.targetId)}')">${escapeHtml(item?.title||'Релиз недоступен')}</button></h3><p>${escapeHtml(review.body)}</p><div class="club-review-actions"><button class="soft-btn" onclick="suaClubLike('${escapeHtml(review.id)}')"><i class="fa-${likes[currentUser?.uid]?'solid':'regular'} fa-heart"></i> ${Object.keys(likes).length}</button><button class="soft-btn" onclick="suaClubReviewComments('${escapeHtml(review.id)}')">Комментарии · ${Object.keys(comments).length}</button>${review.uid===currentUser?.uid?`<button class="soft-btn" onclick="suaClubDeleteReview('${escapeHtml(review.id)}')">Удалить</button>`:''}</div></article>`}
+  function clubSection(title,view,html){return `<section class="club-section"><div class="club-section-head"><h2>${title}</h2><button onclick="suaClubNavigate('${view}')">Все →</button></div>${html}</section>`}
+  function clubRankRows(){
+    const scores={};for(const review of clubReviewRows()){scores[review.uid]=(scores[review.uid]||0)+1}
+    for(const row of Object.values(clubRatings))for(const uid of Object.keys(row||{}))scores[uid]=(scores[uid]||0)+1;
+    return Object.entries(scores).map(([uid,score])=>({uid,score})).sort((a,b)=>b.score-a.score||a.uid.localeCompare(b.uid)).slice(0,90);
+  }
+  function renderClubContent(){
+    const box=$('clubContent');if(!box)return;
+    if(['about','faq'].includes(clubView)){box.innerHTML=clubView==='about'?'<div class="club-feature"><span class="club-eyebrow">SUA KNOWLEDGE CLUB</span><h2>Разговор о музыке, в котором важен каждый голос.</h2><p>Клуб объединяет слушателей и авторов: каталог релизов, рецензии, оценки, подборки и обсуждения. Профиль SUA связывает вашу музыку, публикации и знакомства.</p><button class="quick-btn" onclick="goSection(\'messenger\')">Обратная связь</button></div>':`<div class="club-detail">${[['Как добавить релиз?','Нажмите «Добавить», выберите релиз и укажите название, артиста и ссылку на прослушивание. Это запись в каталоге клуба, а не отправка на дистрибуцию.'],['Как считается рейтинг?','Оценка релиза — среднее арифметическое оценок участников от 0 до 100. Один аккаунт оставляет одну оценку на релиз и может её изменить. Рядом всегда показано число оценок.'],['Как написать рецензию?','Откройте релиз или концерт, нажмите «Написать рецензию» и объясните своё мнение. Один участник публикует одну рецензию на объект и может её обновить.'],['Что такое авторские реакции?','Так отмечаются лайки и комментарии автора, чей профиль связан с релизом. Они не добавляют баллов оценке музыки.'],['Как считается ТОП-90?','Это рейтинг активности: один балл за оценку и один за рецензию. Изменение своей оценки или рецензии дополнительных баллов не даёт.'],['Как появляются достижения?','За первую рецензию, десять рецензий и пятьдесят оценок. Достижения определяются по вашим текущим публикациям.'],['Чем друзья отличаются от подписок?','Дружба требует принятия заявки. Подписка — отдельная связь без подтверждения. Отправленные заявки можно отменить в профиле.']].map(([q,a])=>`<details class="knowledge-item"><summary>${q}</summary><div style="padding:0 20px 20px">${a}</div></details>`).join('')}</div>`;return}
+    if(!currentUser){box.innerHTML=clubEmpty('Войдите в SUA, чтобы видеть релизы, оценки и рецензии клуба.')+'<button class="quick-btn" onclick="document.getElementById(\'loginBtn\').click()">Войти</button>';return}
+    if(clubError){box.innerHTML=`<div class="club-notice">${escapeHtml(clubError)}</div><button class="soft-btn" onclick="suaClubRetry()">Повторить загрузку</button>`;return}
+    if(clubLoading){box.innerHTML=clubEmpty('Загружаем клуб…');return}
+    const rows=clubFilterRows(clubRows()).sort((a,b)=>clubSort==='score'?(clubItemScore(b.id).value??-1)-(clubItemScore(a.id).value??-1):clubSort==='popular'?clubItemScore(b.id).count-clubItemScore(a.id).count:b.createdAt-a.createdAt);
+    const releases=rows.filter(x=>x.type==='release'),reviews=clubFilterRows(clubReviewRows()).sort((a,b)=>b.createdAt-a.createdAt),cards=list=>list.map(clubReleaseCard).join('')||clubEmpty('Пока нет публикаций в этом разделе. Добавьте первую.'),reviewCards=list=>list.map(clubReviewCard).join('')||clubEmpty('Рецензий пока нет. Откройте релиз или концерт и поделитесь мнением.');
+    if(clubView==='home'){
+      box.innerHTML=`<div class="club-stats"><div><b>${clubRows().filter(x=>x.type==='release').length}</b><span>Релизы</span></div><div><b>${clubReviewRows().length}</b><span>Рецензии</span></div><div><b>${Object.values(clubRatings).reduce((n,x)=>n+Object.keys(x).length,0)}</b><span>Оценки</span></div><div><b>${new Set(clubRows().filter(x=>x.artistUid).map(x=>x.artistUid)).size}</b><span>Авторы</span></div></div>`+clubSection('Добавленные релизы','releases',cards(releases.slice(0,4)))+clubSection('Новые рецензии','reviews',reviewCards(reviews.slice(0,3)))+clubSection('Понравилось авторам','authorLikes',reviewCards(reviews.filter(r=>clubLikes[r.id]?.[clubItems[r.targetId]?.artistUid]).slice(0,2)))+clubSection('Новые имена','new',cards(releases.filter(x=>x.debut).slice(0,3)))+clubSection('Концерты, туры и фестивали','concerts',cards(rows.filter(x=>x.type==='concert').slice(0,3)))+clubSection('Плейлисты','playlists',cards(rows.filter(x=>x.type==='playlist').slice(0,3)));return;
+    }
+    if(clubView==='reviews'){box.innerHTML=reviewCards(reviews);return}
+    if(clubView==='authorLikes'){box.innerHTML=reviewCards(reviews.filter(r=>clubLikes[r.id]?.[clubItems[r.targetId]?.artistUid]));return}
+    if(clubView==='authorComments'){
+      const comments=[];for(const [reviewId,list] of Object.entries(clubComments)){const review=clubReviews[reviewId],item=clubItems[review?.targetId];for(const c of Object.values(list||{}))if(item?.artistUid&&c.uid===item.artistUid)comments.push({...c,reviewId,title:item.title})}
+      box.innerHTML=comments.sort((a,b)=>b.createdAt-a.createdAt).map(c=>`<article class="club-review"><span class="club-eyebrow">${escapeHtml(clubUser(c.uid).displayName)} · ${escapeHtml(c.title)}</span><p>${escapeHtml(c.body)}</p><button class="soft-btn" onclick="suaClubReviewComments('${escapeHtml(c.reviewId)}')">Открыть обсуждение</button></article>`).join('')||clubEmpty('Авторы ещё не оставляли комментарии к рецензиям.');return;
+    }
+    if(clubView==='top'){box.innerHTML='<p class="club-note">Рейтинг активности за всё время: один балл за оценку и один за рецензию.</p>'+clubRankRows().filter(x=>clubUser(x.uid).displayName?.toLowerCase().includes(clubQuery.toLowerCase())).map((u,i)=>`<div class="club-release"><span class="club-rank">${i+1}</span><button class="person-link" onclick="openPublicProfile('${escapeHtml(u.uid)}')"><h3>${escapeHtml(clubUser(u.uid).displayName)}</h3></button><b class="club-score">${u.score}</b></div>`).join('');if(!clubRankRows().length)box.innerHTML+=clubEmpty('Рейтинг появится после первых оценок и рецензий.');return}
+    if(clubView==='authors'){const ids=[...new Set(releases.filter(x=>x.artistUid).map(x=>x.artistUid))];box.innerHTML=ids.map(uid=>personRow({...clubUser(uid),uid})).join('')||clubEmpty('Авторы появятся после добавления своих релизов.');return}
+    if(clubView==='achievements'){const reviewsCount=clubReviewRows().filter(x=>x.uid===currentUser.uid).length,ratingCount=Object.values(clubRatings).filter(x=>x[currentUser.uid]).length;box.innerHTML='<h2 class="club-heading">Ваши достижения</h2><div class="club-grid">'+[['Первое мнение','Написать первую рецензию',reviewsCount>=1],['Музыкальный критик','Написать 10 рецензий',reviewsCount>=10],['Внимательный слушатель','Оценить 50 релизов и концертов',ratingCount>=50]].map(([title,desc,done])=>`<div class="club-card"><span class="club-eyebrow">${done?'ПОЛУЧЕНО':'ВПЕРЕДИ'}</span><h3>${title}</h3><p>${desc}</p></div>`).join('')+'</div>';return}
+    if(clubView==='rating'){box.innerHTML='<p class="club-note">Средняя оценка участников. Релизы без оценок не занимают места в рейтинге.</p>'+cards(releases.filter(x=>clubItemScore(x.id).count).sort((a,b)=>clubItemScore(b.id).value-clubItemScore(a.id).value));return}
+    const types={concerts:'concert',playlists:'playlist',news:'news',awards:'award'};
+    let filtered=types[clubView]?rows.filter(x=>x.type===types[clubView]):releases;
+    if(clubView==='new')filtered=releases.filter(x=>x.debut);
+    if(clubView==='albums')filtered=releases.filter(x=>x.format==='Альбом'||x.format==='EP');
+    box.innerHTML=(clubView==='albums'?'<p class="club-note">Альбомы и EP: оценки слушателей и аргументированные рецензии.</p>':'')+cards(filtered);
+  }
+  window.suaClubRetry=function(){stopClub();suaRenderClub()};
+  window.suaClubCreate=function(){
+    if(!currentUser){openAuth('login');return}
+    const options=[['release','Релиз'],['playlist','Плейлист'],...(isAdmin?[['concert','Концерт / фестиваль'],['news','Новость'],['award','Премия']]:[])];
+    openSiteModal('Добавить в клуб',`<form class="club-form" id="clubCreateForm"><label><span class="club-label">Тип публикации</span><select class="modal-select" id="clubCreateType">${options.map(([value,label])=>`<option value="${value}">${label}</option>`).join('')}</select></label><label><span class="club-label">Название</span><input class="modal-input" id="clubCreateTitle" maxlength="160" required></label><label><span class="club-label">Артист / участники</span><input class="modal-input" id="clubCreateArtist" maxlength="120"></label><label><span class="club-label">Формат релиза</span><select class="modal-select" id="clubCreateFormat"><option>Сингл</option><option>EP</option><option>Альбом</option></select></label><label><span class="club-label">Дата</span><input class="modal-input" id="clubCreateDate" type="date"></label><label><span class="club-label">Ссылка на прослушивание или страницу события</span><input class="modal-input" id="clubCreateLink" type="url" placeholder="https://"></label><label><span class="club-label">Ссылка на обложку (необязательно)</span><input class="modal-input" id="clubCreateCover" type="url" placeholder="https://"></label><label><span class="club-label">Описание</span><textarea class="modal-textarea" id="clubCreateBody" maxlength="5000"></textarea></label><label class="club-check"><input id="clubCreateOwn" type="checkbox">Я автор этого релиза</label><label class="club-check"><input id="clubCreateDebut" type="checkbox">Это мой дебютный релиз</label><div id="clubCreateFeedback" role="status"></div><button class="quick-btn" type="submit">Опубликовать</button></form>`);
+    $('clubCreateForm').addEventListener('submit',async e=>{e.preventDefault();const button=e.submitter;if(button.disabled)return;const type=$('clubCreateType').value,title=$('clubCreateTitle').value.trim(),url=$('clubCreateLink').value.trim(),cover=$('clubCreateCover').value.trim();if(!title)return;if((url&&!clubSafeUrl(url))||(cover&&!clubSafeUrl(cover))){$('clubCreateFeedback').textContent='Укажите корректные ссылки https://';return}button.disabled=true;
+      try{const item={uid:currentUser.uid,type,title,artist:$('clubCreateArtist').value.trim(),format:type==='release'?$('clubCreateFormat').value:'',date:$('clubCreateDate').value,url,cover,body:$('clubCreateBody').value.trim(),artistUid:type==='release'&&$('clubCreateOwn').checked?currentUser.uid:'',debut:type==='release'&&$('clubCreateOwn').checked&&$('clubCreateDebut').checked,createdAt:Date.now()};await set(push(ref(db,'knowledgeItems')),item);closeSiteModal()}catch(error){$('clubCreateFeedback').textContent=firebaseErrorMessage(error)}finally{button.disabled=false}
+    });
+  };
+  window.suaClubOpen=function(id){if(!clubItems[id])return;clubOpenItem=id;openSiteModal(clubItems[id].title,'<div id="clubDetailDynamic"></div>');renderClubDetail(id)};
+  function renderClubDetail(id){const item=clubItems[id],box=$('clubDetailDynamic');if(!item||!box)return;const score=clubItemScore(id),link=clubSafeUrl(item.url),reviewRows=clubReviewRows().filter(x=>x.targetId===id),rateable=['release','concert'].includes(item.type);
+    box.innerHTML=`<div class="club-detail"><span class="club-eyebrow">${escapeHtml(item.artist||clubUser(item.uid).displayName)} · ${escapeHtml(item.date||'')}</span><p>${escapeHtml(item.body||'')}</p>${link?`<p><a href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${item.type==='release'||item.type==='playlist'?'Слушать на площадке':'Открыть страницу'} ↗</a></p>`:''}${rateable?`<h3>${score.value??'—'} / 100 <small>· ${score.count} оценок</small></h3><div class="form-actions"><button class="quick-btn" onclick="suaClubRate('${escapeHtml(id)}')">Оценить</button><button class="soft-btn" onclick="suaClubWriteReview('${escapeHtml(id)}')">Написать рецензию</button></div><h3>Рецензии</h3>${reviewRows.map(clubReviewCard).join('')||clubEmpty('Станьте первым, кто поделится мнением.')}`:''}</div>`;
+  }
+  window.suaClubRate=function(id){const current=clubRatings[id]?.[currentUser.uid]?.score??'';openSiteModal('Ваша оценка',`<form id="clubRatingForm" class="club-form"><label><span class="club-label">Оценка от 0 до 100</span><input id="clubRatingValue" class="modal-input" type="number" min="0" max="100" step="1" required value="${current}"></label><p class="club-note">Повторная оценка заменит предыдущую.</p><div id="clubRatingFeedback" role="status"></div><button class="quick-btn">Сохранить</button></form>`);$('clubRatingForm').onsubmit=async e=>{e.preventDefault();const score=Number($('clubRatingValue').value);if(!Number.isInteger(score)||score<0||score>100)return;const button=e.submitter;button.disabled=true;try{await set(ref(db,`knowledgeRatings/${id}/${currentUser.uid}`),{score,createdAt:Date.now()});suaClubOpen(id)}catch(error){$('clubRatingFeedback').textContent=firebaseErrorMessage(error);button.disabled=false}}};
+  window.suaClubWriteReview=function(id){const key=id+'_'+currentUser.uid,existing=clubReviews[key];openSiteModal('Рецензия',`<form class="club-form" id="clubReviewForm"><label><span class="club-label">Что вы услышали и почему так оцениваете работу?</span><textarea class="modal-textarea" id="clubReviewBody" minlength="80" maxlength="5000" required>${escapeHtml(existing?.body||'')}</textarea></label><p class="club-note">От 80 до 5000 символов. Аргументируйте мнение и уважайте других участников.</p><div id="clubReviewFeedback" role="status"></div><button class="quick-btn">${existing?'Сохранить изменения':'Опубликовать'}</button></form>`);$('clubReviewForm').onsubmit=async e=>{e.preventDefault();const body=$('clubReviewBody').value.trim();if(body.length<80)return;const button=e.submitter;button.disabled=true;try{await set(ref(db,`knowledgeReviews/${key}`),{uid:currentUser.uid,targetId:id,body,createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()});suaClubOpen(id)}catch(error){$('clubReviewFeedback').textContent=firebaseErrorMessage(error);button.disabled=false}}};
+  window.suaClubDeleteReview=async function(id){if(clubReviews[id]?.uid!==currentUser?.uid||!confirm('Удалить вашу рецензию?'))return;try{await set(ref(db,`knowledgeReviews/${id}`),null)}catch(error){alert(firebaseErrorMessage(error))}};
+  window.suaClubLike=async function(id){if(!currentUser)return;try{const path=ref(db,`knowledgeLikes/${id}/${currentUser.uid}`),snap=await get(path);await set(path,snap.exists()?null:true)}catch(error){alert(firebaseErrorMessage(error))}};
+  window.suaClubReviewComments=function(id){const review=clubReviews[id];if(!review)return;const item=clubItems[review.targetId];openSiteModal('Обсуждение рецензии',`<div class="club-detail"><h3>${escapeHtml(item?.title||'Рецензия')}</h3><p>${escapeHtml(review.body)}</p></div><div id="clubReviewComments"></div><form id="clubCommentForm" class="comment-compose"><input id="clubCommentText" maxlength="1500" required placeholder="Написать комментарий" aria-label="Комментарий"><button class="quick-btn">Отправить</button></form><div id="clubCommentFeedback" role="status"></div>`);
+    const render=()=>{const box=$('clubReviewComments');if(box)box.innerHTML=Object.values(clubComments[id]||{}).sort((a,b)=>a.createdAt-b.createdAt).map(c=>`<article class="comment-row"><span class="chat-avatar">${avatarInner(clubUser(c.uid))}</span><div class="comment-copy"><b>${escapeHtml(clubUser(c.uid).displayName)}${c.uid===item?.artistUid?' · Автор':''}</b><p>${escapeHtml(c.body)}</p></div></article>`).join('')||clubEmpty('Комментариев пока нет.')};render();
+    clubDialogUnsubscribe=onValue(ref(db,`knowledgeComments/${id}`),snap=>{clubComments[id]=snap.val()||{};render()});
+    $('clubCommentForm').onsubmit=async e=>{e.preventDefault();const input=$('clubCommentText'),body=input.value.trim(),button=e.submitter;if(!body||button.disabled)return;button.disabled=true;try{await set(push(ref(db,`knowledgeComments/${id}`)),{uid:currentUser.uid,body,createdAt:Date.now()});input.value=''}catch(error){$('clubCommentFeedback').textContent=firebaseErrorMessage(error)}finally{button.disabled=false}};
+  };
+  suaRenderClub();
 </script>
 
 </body>
